@@ -1,0 +1,219 @@
+html,
+body
+{
+	margin:0;
+	padding:0px;
+	width:100%;
+	height:100%;
+	font-size: medium;
+	position: relative;
+	color: white;
+	background-color: rgb(88, 88, 88);
+	font-family: "League Spartan", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 500;
+}
+div,
+span {
+  box-sizing: content-box;
+}
+
+button
+{
+	background-color: white;
+	font-size: large;
+	font-family: "League Spartan", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 500;
+}
+
+.help {
+	cursor: help;
+	text-align: center;
+}
+
+#new_content
+{
+	display: block;
+	min-width: 1260px;
+	min-height: 760px;
+	width: 100%;
+	height: 100%;
+	margin: 1%;
+	padding: 0px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	unicode-bidi: isolate;
+}
+
+#tick_progress_bar {
+	width: 99.5%;
+	background-color: grey;
+	border-radius: 10px;
+	border:#000 2px solid;
+ }
+ 
+ #tick_progress_inside {
+	width: 100%;
+	height: 15px;
+	background-color: rgba(16, 17, 99, 0.75);
+	border-radius: 10px;
+ }
+
+ #tick_info
+ {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 10%;
+ }
+
+.task_window
+{
+	border: black  1px solid;
+	width: 100%;
+	height: 100%;
+}
+
+#info_panel
+{
+	float: left;
+	width: 20%;
+	height: calc(90%);
+	background-color: rgb(122, 80, 25);
+}
+
+#main_panel
+{
+	display: flex;
+	flex-direction: column;
+	float: left;
+	width: 50%;
+	height: calc(90%);
+}
+
+#player_battle_data, 
+#monster_battle_data
+{
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	width: 49.5%;
+}
+
+#battle_looking_for_enemy
+{
+	display: none;
+}
+
+#healing_window
+{
+	display: none;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	text-align: center;
+	flex-direction: column;
+}
+
+#battle_window
+{
+	display: none;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+}
+
+#questing_window
+{
+	display: none;
+	flex-direction: column;
+}
+
+#training_window
+{
+	display: none;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+}
+
+#training_table
+{
+	width: 100%;
+	height: 100%;
+}
+
+#control_buttons
+{
+	height: 10%;
+	display: flex;
+	align-items: flex-end;
+}
+
+.questing_slider_button_info
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#questing_window_info
+{
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	height: 80%;
+	width: 100%;
+}
+
+#questing_window_slider
+{
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	height: 20%;
+	width: 100%;
+}
+
+#questing_window_slider_info
+{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	align-content: center;
+	flex-direction: row;
+	width: 70%;
+}
+
+#questing_progress_bar {
+	width: 50%;
+	background-color: grey;
+	border-radius: 10px;
+	border:#000 2px solid;
+ }
+ 
+ #questing_progress_bar_inside {
+	width: 100%;
+	height: 15px;
+	background-color: rgba(29, 3, 99, 0.85);
+	border-radius: 10px;
+ }
+
+.equipment_slot_info
+{
+	display: flex;
+	border: black  1px solid;
+	justify-content: center;
+	align-items: center; 
+}
