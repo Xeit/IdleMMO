@@ -7,7 +7,7 @@ var enemyHealth = 10;
 var enemyMaxHealth = 10;
 var enemyDamage = 4;
 var enemyLevel = 1;
-var enemyXp = 3;
+var enemyXp = 1;
 var chanceOfDroppingItem = 15;
 
 function tickBattle()
@@ -51,7 +51,7 @@ function startBattle()
 
 function getNewEnemy()
 {
-	const enemyRoll = (Math.random() * 100).toFixed();
+	const enemyRoll = +(Math.random() * 100).toFixed();
 
 	if(enemyRoll < 96)
 	{
@@ -59,7 +59,7 @@ function getNewEnemy()
 		enemyMaxHealth = 10;
 		enemyDamage = 3;
 		enemyLevel = 1;
-		enemyXp = 3;
+		enemyXp = 1;
 		chanceOfDroppingItem = 15;
 	}
 	else
@@ -68,11 +68,11 @@ function getNewEnemy()
 		enemyMaxHealth = 30;
 		enemyDamage = 6;
 		enemyLevel = 5;
-		enemyXp = 10;
+		enemyXp = 5;
 		chanceOfDroppingItem = 60;
 	}
 
-	enemyHealth = enemyMaxHealth;
+	enemyHealth = +enemyMaxHealth;
 	bIsEnemyAlive = true;
 	updateBattleHealth();
 	$("#battle_looking_for_enemy").css("display", "none");
@@ -81,31 +81,30 @@ function getNewEnemy()
 
 function hitEnemy()
 {
-	var playerDamage = playerStrength;
+	var playerDamage = +playerStrength;
 	if(playerWeaponSlot != null)
 	{
-		playerDamage += playerWeaponSlot.returnItemPower();
+		playerDamage += +playerWeaponSlot.returnItemPower();
 	}
-	enemyHealth -= playerDamage;
+	enemyHealth -= +playerDamage;
 
 	if(enemyHealth <= 0)
 	{
-		console.log("Enemy killed.");
 		bIsEnemyAlive = false;
 
 		//Current lvl cap
 		if(playerLevel < 50)
 		{
 			playerXp += +enemyXp;
-			if(playerXp >= playerRequiredXp)
+			if(playerXp >= +playerRequiredXp)
 			{
 				playerXp = 0;
 				playerLevel += 1;
-				playerRequiredXp = (0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
+				playerRequiredXp = +(0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
 			}
 		}
 
-		const itemDropRoll = (Math.random() * 100).toFixed();
+		const itemDropRoll = +(Math.random() * 100).toFixed();
 		if(itemDropRoll < chanceOfDroppingItem)
 		{
 			var generatedNewItem = new Item();
@@ -120,25 +119,25 @@ function hitEnemy()
 
 function hitPlayer()
 {
-	var monsterDamage = enemyDamage - Math.floor(playerStamina / 2);
+	var monsterDamage = +(enemyDamage - Math.floor(playerStamina / 2));
 
 	//Gear calculations 
 	//(in future might be smart to make function to call from item or player to get total armour but who cares for now xD)
 	if(playerHelmetSlot != null)
 	{
-		monsterDamage -= Math.floor(playerHelmetSlot.returnItemPower() / 2);
+		monsterDamage -= +Math.floor(playerHelmetSlot.returnItemPower() / 2);
 	}
 	if(playerBodyArmourSlot != null)
 	{
-		monsterDamage -= Math.floor(playerBodyArmourSlot.returnItemPower() / 2);
+		monsterDamage -= +Math.floor(playerBodyArmourSlot.returnItemPower() / 2);
 	}
 	if(playerGlovesSlot != null)
 	{
-		monsterDamage -= Math.floor(playerGlovesSlot.returnItemPower() / 2);
+		monsterDamage -= +Math.floor(playerGlovesSlot.returnItemPower() / 2);
 	}
 	if(playerBootsSlot != null)
 	{
-		monsterDamage -= Math.floor(playerBootsSlot.returnItemPower() / 2);
+		monsterDamage -= +Math.floor(playerBootsSlot.returnItemPower() / 2);
 	}
 
 
@@ -147,12 +146,11 @@ function hitPlayer()
 		monsterDamage = 1;
 	}
 
-	playerHealth -= monsterDamage;
+	playerHealth -= +monsterDamage;
 
 	if(playerHealth <= 0)
 	{
 		playerHealth = 0;
-		console.log("Player was killed by " + enemyName);
 		newPlayerTask(PlayerTasks.healing);
 	}
 }

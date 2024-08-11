@@ -68,25 +68,25 @@ function tickQuesting()
 
 function getNewQuest()
 {
-	const minXpRoll = playerLevel * 10;
+	const minXpRoll = playerLevel * 5;
 	const maxXpRoll = minXpRoll * 2;
 
-	const minGoldRoll = playerLevel * 5;
-	const maxGoldRoll = playerLevel * 4;
+	const minGoldRoll = playerLevel * 4;
+	const maxGoldRoll = playerLevel * 3;
 
-	var xpRoll = (Math.random() * (maxXpRoll - minXpRoll) + minXpRoll).toFixed();
-	var goldRoll = (Math.random() * (maxGoldRoll - minGoldRoll) + minGoldRoll).toFixed();
+	var xpRoll = +(Math.random() * (maxXpRoll - minXpRoll) + minXpRoll).toFixed();
+	var goldRoll = +(Math.random() * (maxGoldRoll - minGoldRoll) + minGoldRoll).toFixed();
 
 	switch (questFocus) {
 		case QuestFocuses.XP:
-			xpRoll = (xpRoll * 1.5).toFixed();
-			goldRoll = (goldRoll * 0.5).toFixed();
+			xpRoll = +(xpRoll * 1.25).toFixed();
+			goldRoll = +(goldRoll * 0.75).toFixed();
 			break;
 		case QuestFocuses.BALANCED:
 			break;
 		case QuestFocuses.GOLD:
-			xpRoll = (xpRoll * 0.5).toFixed();
-			goldRoll = (goldRoll * 1.5).toFixed();
+			xpRoll = +(xpRoll * 0.75).toFixed();
+			goldRoll = +(goldRoll * 1.25).toFixed();
 			break;
 		default:
 			break;
@@ -95,7 +95,7 @@ function getNewQuest()
 	questXp = xpRoll;
 	questGold = goldRoll;
 
-	questTarget = (Math.random() * 3 + playerLevel + 3).toFixed();
+	questTarget = +(Math.random() * 3 + playerLevel + 3).toFixed();
 	questProgress = 0;
 	
 	questFlavourText = "You are from NPC to NPC as a messenger. Such challenge for a hero!";
@@ -116,7 +116,7 @@ function finishQuest()
 		{
 			playerXp = 0;
 			playerLevel += 1;
-			playerRequiredXp = (0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
+			playerRequiredXp = +(0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
 		}
 	}
 

@@ -78,7 +78,7 @@ function startEquipment()
 function generateItem(enemyLevel)
 {
 	//itemPower
-	var percentRoll = (Math.random() * 100).toFixed();
+	var percentRoll = +(Math.random() * 100).toFixed();
 	if(percentRoll < 50)
 	{
 		enemyLevel -= 2;
@@ -102,7 +102,7 @@ function generateItem(enemyLevel)
 
 	//itemRarity
 	var newItemRarity = ItemRarity.none;
-	var rarityRoll = (Math.random() * 1000).toFixed();
+	var rarityRoll = +(Math.random() * 1000).toFixed();
 	if(rarityRoll < 700)
 		newItemRarity = ItemRarity.common;
 	else if(rarityRoll < 900)
@@ -119,14 +119,14 @@ function generateItem(enemyLevel)
 	//itemSlot
 	var itemSlot = ItemSlot.none;
 	var itemName = ""
-	var itemTypeRoll = (Math.random() * 100).toFixed();
+	var itemTypeRoll = +(Math.random() * 100).toFixed();
 	if(itemTypeRoll < 10)
 	{
 		itemSlot = ItemSlot.weapon;
 	}
 	else
 	{
-		var itemSlotRoll = (Math.random() * 100).toFixed();
+		var itemSlotRoll = +(Math.random() * 100).toFixed();
 		if(itemSlotRoll < 25)
 		{
 			itemSlot = ItemSlot.helmet;
