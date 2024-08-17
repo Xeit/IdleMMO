@@ -86,8 +86,7 @@ function updateInfoPanel()
 	$("#player_info_stamina").text("Stamina: " + playerStamina);
 	$("#player_info_intelligence").text("Intelligence: " + playerIntelligence);
 	
-	$("#player_info_supplies").text("Supplies: " + playerSupplies + "%");
-	$("#player_info_exhaustion").text("Exhaustion: " + playerExhaustion + "%");
+	$("#player_info_exhaustion").text("Exhaustion: " + (playerExhaustion / playerMaxExhaustion * 100).toFixed() + "%");
 }
 
 function newPlayerTask(newTask)

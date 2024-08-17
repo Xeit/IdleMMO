@@ -88,12 +88,14 @@ function hitEnemy()
 	}
 	enemyHealth -= +playerDamage;
 
+	//Kill enemy
 	if(enemyHealth <= 0)
 	{
 		bIsEnemyAlive = false;
 
 		addPlayerXp(enemyXp);
 
+		//Item drop
 		const itemDropRoll = +(Math.random() * 100).toFixed();
 		if(itemDropRoll < chanceOfDroppingItem)
 		{
@@ -102,7 +104,19 @@ function hitEnemy()
 			tryNewItem(generatedNewItem);
 			updateEquipmentWindow();
 			//Add new "Attack" and "Defensive" in left UI?
-			//Add usefulness to items XD LOL
+		}
+
+		//Lower player quest exhaustion
+		if(playerExhaustion > 0)
+		{
+			if(playerExhaustion < 3)
+			{
+				playerExhaustion = 0;
+			}
+			else
+			{
+				playerExhaustion -= +3;
+			}
 		}
 	}
 }

@@ -162,6 +162,18 @@ button
 	align-items: center;
 }
 
+#questing_window_exhaustion
+{
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	height: 30%;
+	width: 100%;
+}
+
 #questing_window_info
 {
 	display: flex;
@@ -170,7 +182,7 @@ button
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	height: 80%;
+	height: 50%;
 	width: 100%;
 }
 

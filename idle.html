@@ -10,18 +10,18 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-	<link rel="stylesheet" href="idle.css?v=11">
+	<link rel="stylesheet" href="idle.css?v=12">
 	
-	<script src="enums.js?v=11"></script>
-	<script src="item.js?v=11"></script>
-	<script src="player.js?v=11"></script>
+	<script src="enums.js?v=12"></script>
+	<script src="item.js?v=12"></script>
+	<script src="player.js?v=12"></script>
 
-	<script src="battle.js?v=11"></script>
-	<script src="healing.js?v=11"></script>
-	<script src="training.js?v=11"></script>
-	<script src="questing.js?v=11"></script>
+	<script src="battle.js?v=12"></script>
+	<script src="healing.js?v=12"></script>
+	<script src="training.js?v=12"></script>
+	<script src="questing.js?v=12"></script>
 
-	<script src="idle.js?v=11"></script>
+	<script src="idle.js?v=12"></script>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 	</style>
@@ -41,7 +41,6 @@
 			<div id="player_info_stamina">Stamina: 1</div>
 			<div id="player_info_intelligence">Intelligence: 1</div>
 			<br>
-			<div id="player_info_supplies">Supplies: 100%</div>
 			<div id="player_info_exhaustion">Exhaustion: 0%</div>
 		</div>
 		
@@ -96,6 +95,10 @@
 						</span>
 					</div>
 					<div>There is (still) no gold tho :></div>
+				</div>
+				<div id="questing_window_exhaustion">
+					<div>Questing is mentaly exhausting, we know that... right?</div>
+					<div id="questing_exhaustion_percentage" style="font-size: x-large;">Exhaustion level: 0%</div>
 				</div>
 				<div id="questing_window_info">
 					<div>Current Quest</div>

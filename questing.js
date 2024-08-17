@@ -50,17 +50,21 @@ function stopQuesting()
 
 function tickQuesting()
 {
-	if(questProgress < questTarget)
+	if(playerExhaustion < playerMaxExhaustion)
 	{
-		questProgress++;
-		if(questProgress >= questTarget)
+		if(questProgress < questTarget)
 		{
-			finishQuest();
+			questProgress++;
+			playerExhaustion++;
+			if(questProgress >= questTarget)
+			{
+				finishQuest();
+			}
 		}
-	}
-	else
-	{
-		getNewQuest();
+		else
+		{
+			getNewQuest();
+		}
 	}
 
 	updateQuestInfo();
@@ -133,4 +137,15 @@ function updateQuestInfo()
 		const questProgressFillPercent = (questProgress / questTarget * 100) + "%";
 		$("#questing_progress_bar_inside").css("width", questProgressFillPercent);
 	}
+
+	const playerExhaustionFillPercent = (playerExhaustion / playerMaxExhaustion * 100).toFixed();
+	if(playerExhaustionFillPercent > 80)
+	{
+		$("#questing_exhaustion_percentage").css("color", "red");
+	}
+	else
+	{
+		$("#questing_exhaustion_percentage").css("color", "white");
+	}
+	$("#questing_exhaustion_percentage").text("Exhaustion level: " + playerExhaustionFillPercent + "%");
 }

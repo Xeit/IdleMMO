@@ -14,6 +14,7 @@ var playerStamina = 1;
 var playerIntelligence = 1;
 var playerSupplies = 100;
 var playerExhaustion = 0;
+var playerMaxExhaustion = 50;
 
 var playerStrengthXP = 0;
 var playerDexterityXP = 0;
