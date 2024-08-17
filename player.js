@@ -12,7 +12,6 @@ var playerStrength = 1;
 var playerDexterity = 1;
 var playerStamina = 1;
 var playerIntelligence = 1;
-var playerSupplies = 100;
 var playerExhaustion = 0;
 var playerMaxExhaustion = 50;
 
@@ -39,9 +38,18 @@ function addPlayerXp(xpToAdd)
 		playerXp += +xpToAdd;
 		if(playerXp >= +playerRequiredXp)
 		{
-			playerXp = 0;
-			playerLevel += 1;
-			playerRequiredXp = +(0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
+			playerLevelUp();
 		}
 	}
+}
+
+function playerLevelUp()
+{
+	playerLevel += 1;
+	playerXp = 0;
+	playerRequiredXp = +(0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
+
+	playerMaxHealth = 100 + (10 * (playerLevel - 1));
+	playerMaxMana = 100 + (10 * (playerLevel - 1));
+	playerMaxExhaustion = 50 + (5 * (playerLevel - 1));
 }
