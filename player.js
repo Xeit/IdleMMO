@@ -29,3 +29,18 @@ var playerHelmetSlot;
 var playerBodyArmourSlot;
 var playerGlovesSlot;
 var playerBootsSlot;
+
+function addPlayerXp(xpToAdd)
+{
+	//This is current level cap
+	if(playerLevel < 50)
+	{
+		playerXp += +xpToAdd;
+		if(playerXp >= +playerRequiredXp)
+		{
+			playerXp = 0;
+			playerLevel += 1;
+			playerRequiredXp = +(0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
+		}
+	}
+}

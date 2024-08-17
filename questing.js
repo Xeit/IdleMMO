@@ -107,21 +107,9 @@ function getNewQuest()
 
 function finishQuest()
 {
-	//TODO: Move this (and stuff from battle) to player.js 
-	//Current lvl cap
-	if(playerLevel < 50)
-	{
-		playerXp += +questXp;
-		if(playerXp >= playerRequiredXp)
-		{
-			playerXp = 0;
-			playerLevel += 1;
-			playerRequiredXp = +(0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
-		}
-	}
+	addPlayerXp(questXp);
 
 	//TODO: Gold, lol.
-
 
 	questTarget = 0;
 	questProgress = 0;

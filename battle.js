@@ -92,17 +92,7 @@ function hitEnemy()
 	{
 		bIsEnemyAlive = false;
 
-		//Current lvl cap
-		if(playerLevel < 50)
-		{
-			playerXp += +enemyXp;
-			if(playerXp >= +playerRequiredXp)
-			{
-				playerXp = 0;
-				playerLevel += 1;
-				playerRequiredXp = +(0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
-			}
-		}
+		addPlayerXp(enemyXp);
 
 		const itemDropRoll = +(Math.random() * 100).toFixed();
 		if(itemDropRoll < chanceOfDroppingItem)

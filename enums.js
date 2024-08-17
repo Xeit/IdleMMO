@@ -1,4 +1,5 @@
-const PlayerTasks = {
+const PlayerTasks = 
+{
 	none : "none",
 	farming_monsters: "farming monsters",
 	healing: "healing",
@@ -6,3 +7,11 @@ const PlayerTasks = {
 	equipment: "equipment",
 	questing: "questing"
  };
+
+const PlayerSkills =
+{
+	strength: "strength",
+	dexterity: "dexterity",
+	stamina: "stamina",
+	intelligence: "intelligence"
+};
