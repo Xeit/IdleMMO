@@ -51,25 +51,38 @@ function startBattle()
 
 function getNewEnemy()
 {
-	const enemyRoll = +(Math.random() * 100).toFixed();
+	var totalEnemyWeight = 0;
+	const arrayOfEnemyWeights = [];
+	//TODO: This can be any other zone
+	zoneCellars.monsters.forEach((zoneEnemyWeight, index) => 
+	{
+		totalEnemyWeight += +zoneEnemyWeight.encounterWeight;
+		arrayOfEnemyWeights.push(zoneEnemyWeight.encounterWeight);
+	});
+	
+	var nextEnemy = null;
 
-	if(enemyRoll < 96)
+	var enemyRoll = +(Math.random() * totalEnemyWeight).toFixed();
+	for (let it = 0; it < arrayOfEnemyWeights.length; ++it)
 	{
-		enemyName = "Rat";
-		enemyMaxHealth = 10;
-		enemyDamage = 3;
-		enemyLevel = 1;
-		enemyXp = 1;
-		chanceOfDroppingItem = 15;
+		enemyRoll -= +arrayOfEnemyWeights[it];
+		if(enemyRoll <= 0)
+		{
+			nextEnemy = enemyMap.get(zoneCellars.monsters[it].enemyName);
+			break;
+		}
 	}
-	else
+
+	if(nextEnemy != null)
 	{
-		enemyName = "Big Rat"
-		enemyMaxHealth = 30;
-		enemyDamage = 6;
-		enemyLevel = 5;
-		enemyXp = 5;
-		chanceOfDroppingItem = 60;
+		enemyName = nextEnemy.enemyName;
+		enemyMaxHealth = nextEnemy.enemyMaxHealth;
+		enemyDamage = nextEnemy.enemyDamage;
+		enemyLevel = nextEnemy.enemyLevel;
+		enemyXp = nextEnemy.enemyXp;
+		chanceOfDroppingItem = nextEnemy.chanceOfDroppingItem;
+
+		$("#monster_battle_name").text(enemyName);
 	}
 
 	enemyHealth = +enemyMaxHealth;
