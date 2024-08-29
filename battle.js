@@ -33,6 +33,7 @@ function tickBattle()
 function stopBattle()
 {
 	$("#battle_window").css("display", "none");
+	$("#battle_window_battle").css("display", "none");
 	bIsInBattle = false;
 	bIsEnemyAlive = false;
 }
@@ -47,6 +48,7 @@ function startBattle()
 	updateBattleHealth();
 
 	$("#battle_window").css("display", "flex");
+	$("#battle_window_battle").css("display", "flex");
 }
 
 function getNewEnemy()

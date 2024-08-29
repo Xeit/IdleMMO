@@ -56,24 +56,59 @@
 
 			<h3 id="task_info">CURRENT TASK: none</h3>
 
-			<div class="task_window" id="empty_window"></div>
-
-			<div class = "task_window" id = "battle_window">
-				<span id = "player_battle_data">
-					<div class="help" title="It's You. Do NOT kill it.">
-						Player
-						<div id="player_battle_health">HP: 100%</div>
-					</div>
-				</span>
-				<span id = "monster_battle_data">
-					<div class ="help" title="Monster name. Kill it." id = "battle_window_monster_data">
-						<div id="monster_battle_name">Rat</div>
-						<div id="monster_battle_health">HP: 100%</div>
-					</div>
-					<div id = "battle_looking_for_enemy">Looking for enemy.</div>
-				</span>
+			<!-- STARTING PLACE -->
+			<div class="task_window" id="empty_window">
 			</div>
 
+			<!-- BATTLE -->
+			<div class = "task_window" id = "battle_window">
+				<div id = "battle_window_battle">
+					<div id="battle_window_select_zone" style="display: none; width: 100%; height: 100%; justify-content: center;">
+						<div id="select_zone_scrolling_list" style="width: 60%;">
+							<div style="height: 10%; display: flex; align-items: center;">
+								<span style="width: 50%; display: flex; justify-content: center;">
+									<div>
+										CELLARS
+									</div>
+								</span>
+								<span style="width: 50%; display: flex; justify-content: center;">
+									<div>
+										<button id="zoneCellarsButton">SELECT</button>
+									</div>
+								</span>
+							</div>
+							<div style="height: 10%; display: flex; align-items: center;">
+								<span style="width: 50%; display: flex; justify-content: center;">
+									<div>
+										FOREST
+									</div>
+								</span>
+								<span style="width: 50%; display: flex; justify-content: center;">
+									<div>
+										<button id="zoneForestButton">SELECT</button>
+									</div>
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<span id = "player_battle_data">
+						<div class="help" title="It's You. Do NOT kill it.">
+							Player
+							<div id="player_battle_health">HP: 100%</div>
+						</div>
+					</span>
+					<span id = "monster_battle_data">
+						<div class ="help" title="Monster name. Kill it." id = "battle_window_monster_data">
+							<div id="monster_battle_name">Rat</div>
+							<div id="monster_battle_health">HP: 100%</div>
+						</div>
+						<div id = "battle_looking_for_enemy">Looking for enemy.</div>
+					</span>
+				</div>
+			</div>
+			
+			<!-- QUESTING -->
 			<div class="task_window" id="questing_window">
 				<div id="questing_window_slider">
 					<div id="questing_window_slider_info">
@@ -116,12 +151,14 @@
 				</div>
 			</div>
 
+			<!-- HEALING -->
 			<div class = "task_window" id = "healing_window">
 				<div>You are resting.</div>
 				<br>
 				<div id ="player_resting_health">Your current HP: </div>
 			</div>
 
+			<!-- TRAINING -->
 			<div class = "task_window" id="training_window">
 				<table id="training_table">
 					<tr>
@@ -155,6 +192,7 @@
 				</table>
 			</div>
 
+			<!-- EQUIPMENT -->
 			<div class = "task_window" id="equipment_window" style="display: none;">
 				<div id="equipment_helmet" style="height: 10%;display: flex;">
 					<span class="equipment_slot_info" style="width: 20%;">Helmet: </span>
