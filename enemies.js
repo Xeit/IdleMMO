@@ -24,5 +24,8 @@ class Enemy
 
 const enemyMap = new Map();
 
-enemyMap.set("Rat", new Enemy("Rat", 1, 15, EnemyDifficulty.easy));
-enemyMap.set("Big Rat", new Enemy("Big Rat", 3, 60, EnemyDifficulty.medium));
+enemyMap.set("Rat", new Enemy("Rat", 1, 10, EnemyDifficulty.easy));
+enemyMap.set("Big Rat", new Enemy("Big Rat", 3, 50, EnemyDifficulty.medium));
+enemyMap.set("Huge Bee", new Enemy("Huge Bee", 2, 10, EnemyDifficulty.easy));
+enemyMap.set("Fox", new Enemy("Fox", 4, 20, EnemyDifficulty.easy));
+enemyMap.set("Wolf", new Enemy("Wolf", 8, 50, EnemyDifficulty.medium));
