@@ -51,27 +51,7 @@ function startBattle()
 
 function getNewEnemy()
 {
-	var totalEnemyWeight = 0;
-	const arrayOfEnemyWeights = [];
-	//TODO: This can be any other zone
-	zoneCellars.monsters.forEach((zoneEnemyWeight, index) => 
-	{
-		totalEnemyWeight += +zoneEnemyWeight.encounterWeight;
-		arrayOfEnemyWeights.push(zoneEnemyWeight.encounterWeight);
-	});
-	
-	var nextEnemy = null;
-
-	var enemyRoll = +(Math.random() * totalEnemyWeight).toFixed();
-	for (let it = 0; it < arrayOfEnemyWeights.length; ++it)
-	{
-		enemyRoll -= +arrayOfEnemyWeights[it];
-		if(enemyRoll <= 0)
-		{
-			nextEnemy = enemyMap.get(zoneCellars.monsters[it].enemyName);
-			break;
-		}
-	}
+	var nextEnemy = getRandomMonsterFromBattleZone(zoneCellars);
 
 	if(nextEnemy != null)
 	{
