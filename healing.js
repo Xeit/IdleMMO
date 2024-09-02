@@ -20,9 +20,14 @@ function tickHealing()
 	if(bIsHealing)
 	{
 		playerHealth += playerStamina * 2;
+		playerMana += playerIntelligence * 2;
 		if(playerHealth > playerMaxHealth)
 		{
 			playerHealth = +playerMaxHealth;
+		}
+		if(playerMana > playerMaxMana)
+		{
+			playerMana = +playerMaxMana;
 		}
 		const playerHealthPercentage = playerHealth / playerMaxHealth * 100;
 		$("#player_resting_health").html("Your current HP: " + playerHealthPercentage.toFixed() + "%");
