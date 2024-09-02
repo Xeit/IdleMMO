@@ -1,5 +1,4 @@
 var bIsInBattle = false;
-
 var bIsEnemyAlive = false;
 
 var enemyName = "Rat";
@@ -9,6 +8,23 @@ var enemyDamage = 4;
 var enemyLevel = 1;
 var enemyXp = 1;
 var chanceOfDroppingItem = 15;
+
+var currentZone = null;
+
+function initializeBattle()
+{
+	$("#zoneCellarsButton").click(function()
+	{
+		currentZone = zoneCellars;
+		switchToBattleWindow();
+	});
+	
+	$("#zoneForestButton").click(function()
+	{
+		currentZone = zoneForest;
+		switchToBattleWindow();
+	});
+}
 
 function tickBattle()
 {
@@ -34,26 +50,37 @@ function stopBattle()
 {
 	$("#battle_window").css("display", "none");
 	$("#battle_window_battle").css("display", "none");
+	$("#battle_window_select_zone").css("display", "flex");
+	$("#battle_data").css("display", "none");
 	bIsInBattle = false;
 	bIsEnemyAlive = false;
+	currentZone = null;
 }
 
 function startBattle()
 {
+	/*
 	bIsInBattle = true;
 	if(!bIsEnemyAlive)
 	{
 		getNewEnemy();
 	}
+	*/
 	updateBattleHealth();
 
 	$("#battle_window").css("display", "flex");
+	$("#battle_window_select_zone").css("display", "flex");
 	$("#battle_window_battle").css("display", "flex");
+	$("#battle_data").css("display", "none");
 }
 
 function getNewEnemy()
 {
-	var nextEnemy = getRandomMonsterFromBattleZone(zoneCellars);
+	var nextEnemy = null;
+	if(currentZone != null)
+	{
+		var nextEnemy = getRandomMonsterFromBattleZone(currentZone);
+	}
 
 	if(nextEnemy != null)
 	{
@@ -65,13 +92,12 @@ function getNewEnemy()
 		chanceOfDroppingItem = nextEnemy.chanceOfDroppingItem;
 
 		$("#monster_battle_name").text(enemyName);
+		enemyHealth = +enemyMaxHealth;
+		bIsEnemyAlive = true;
+		updateBattleHealth();
+		$("#battle_looking_for_enemy").css("display", "none");
+		$("#battle_window_monster_data").css("display", "inline-block");
 	}
-
-	enemyHealth = +enemyMaxHealth;
-	bIsEnemyAlive = true;
-	updateBattleHealth();
-	$("#battle_looking_for_enemy").css("display", "none");
-	$("#battle_window_monster_data").css("display", "inline-block");
 }
 
 function hitEnemy()
@@ -169,4 +195,12 @@ function updateBattleHealth()
 		$("#battle_looking_for_enemy").css("display", "inline-block");
 		$("#battle_window_monster_data").css("display", "none");
 	}
+}
+
+function switchToBattleWindow()
+{
+	bIsInBattle = true;
+	$("#battle_window_battle").css("display", "flex");
+	$("#battle_window_select_zone").css("display", "none");
+	$("#battle_data").css("display", "flex");
 }

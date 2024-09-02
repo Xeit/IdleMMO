@@ -41,3 +41,13 @@ const zoneCellars =
 	monsters: [new ZoneEnemyWeight("Rat", 96), new ZoneEnemyWeight("Big Rat", 4)],
 	description: "A cellar filled with rats. Cliche."
 }
+
+const zoneForest =
+{
+	zoneName: "Forest",
+	levelRange: "2-8",
+	monsters: [new ZoneEnemyWeight("Huge Bee", 80), 
+		new ZoneEnemyWeight("Fox", 10),
+		new ZoneEnemyWeight("Wolf", 5)],
+	description: "Forest filled with wild animals. Btw you just hit a beehive."
+}

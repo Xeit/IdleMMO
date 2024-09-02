@@ -4,6 +4,7 @@ $(document).ready(function()
 {
 	initializeTraining();
 	initializeQuesting();
+	initializeBattle();
 
 	setInterval(function()
 	{

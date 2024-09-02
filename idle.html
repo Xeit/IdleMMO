@@ -10,20 +10,20 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-	<link rel="stylesheet" href="idle.css?v=13">
+	<link rel="stylesheet" href="idle.css?v=14">
 	
-	<script src="enums.js?v=13"></script>
-	<script src="item.js?v=13"></script>
-	<script src="player.js?v=13"></script>
-	<script src="enemies.js?v=13"></script>
-	<script src="battleZones.js?v=13"></script>
+	<script src="enums.js?v=14"></script>
+	<script src="item.js?v=14"></script>
+	<script src="player.js?v=14"></script>
+	<script src="enemies.js?v=14"></script>
+	<script src="battleZones.js?v=14"></script>
 
-	<script src="battle.js?v=13"></script>
-	<script src="healing.js?v=13"></script>
-	<script src="training.js?v=13"></script>
-	<script src="questing.js?v=13"></script>
+	<script src="battle.js?v=14"></script>
+	<script src="healing.js?v=14"></script>
+	<script src="training.js?v=14"></script>
+	<script src="questing.js?v=14"></script>
 
-	<script src="idle.js?v=13"></script>
+	<script src="idle.js?v=14"></script>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 	</style>
@@ -92,19 +92,21 @@
 						</div>
 					</div>
 
-					<span id = "player_battle_data">
-						<div class="help" title="It's You. Do NOT kill it.">
-							Player
-							<div id="player_battle_health">HP: 100%</div>
-						</div>
-					</span>
-					<span id = "monster_battle_data">
-						<div class ="help" title="Monster name. Kill it." id = "battle_window_monster_data">
-							<div id="monster_battle_name">Rat</div>
-							<div id="monster_battle_health">HP: 100%</div>
-						</div>
-						<div id = "battle_looking_for_enemy">Looking for enemy.</div>
-					</span>
+					<div id="battle_data">
+						<span id = "player_battle_data">
+							<div class="help" title="It's You. Do NOT kill it.">
+								Player
+								<div id="player_battle_health">HP: 100%</div>
+							</div>
+						</span>
+						<span id = "monster_battle_data">
+							<div class ="help" title="Monster name. Kill it." id = "battle_window_monster_data">
+								<div id="monster_battle_name">Rat</div>
+								<div id="monster_battle_health">HP: 100%</div>
+							</div>
+							<div id = "battle_looking_for_enemy">Looking for enemy.</div>
+						</span>
+					</div>
 				</div>
 			</div>
 			
