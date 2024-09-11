@@ -10,20 +10,20 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-	<link rel="stylesheet" href="idle.css?v=14">
+	<link rel="stylesheet" href="idle.css?v=16">
 	
-	<script src="enums.js?v=14"></script>
-	<script src="item.js?v=14"></script>
-	<script src="player.js?v=14"></script>
-	<script src="enemies.js?v=14"></script>
-	<script src="battleZones.js?v=14"></script>
+	<script src="enums.js?v=16"></script>
+	<script src="item.js?v=16"></script>
+	<script src="player.js?v=16"></script>
+	<script src="enemies.js?v=16"></script>
+	<script src="battleZones.js?v=16"></script>
 
-	<script src="battle.js?v=14"></script>
-	<script src="healing.js?v=14"></script>
-	<script src="training.js?v=14"></script>
-	<script src="questing.js?v=14"></script>
+	<script src="battle.js?v=16"></script>
+	<script src="healing.js?v=16"></script>
+	<script src="training.js?v=16"></script>
+	<script src="questing.js?v=16"></script>
 
-	<script src="idle.js?v=14"></script>
+	<script src="idle.js?v=16"></script>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 	</style>
@@ -32,20 +32,34 @@
 	<div id="new_content">
 		<div id="info_panel">
 			<h3 id="statsHeader">STATISTICS:</h3>
-			<div id="player_info_level">Level: 1</div>
-			<div id="player_info_xp">XP: 0%</div>
+			<div class="player_info_group">
+				<div id="player_info_level">Level: 1</div>
+				<div id="player_info_xp">XP: 0%</div>
+			</div>
 			<br>
-			<div id="player_info_health">Health: 100%</div>
-			<div id="player_info_mana">Mana: 100%</div>
+			<div class="player_info_group">
+				<div id="player_info_health">Health: 100%</div>
+				<div id="player_info_mana">Mana: 100%</div>
+			</div>
 			<br>
-			<div id="player_info_strength">Strength: 1</div>
-			<div id="player_info_dexterity">Dexterity: 1</div>
-			<div id="player_info_stamina">Stamina: 1</div>
-			<div id="player_info_intelligence">Intelligence: 1</div>
+			<div class="player_info_group">
+				<div id="player_info_gold">Gold: 0</div>
+			</div>
 			<br>
-			<div id="player_info_exhaustion">Exhaustion: 0%</div>
+			<div class="player_info_group">
+				<div id="player_info_strength">Strength: 1</div>
+				<div id="player_info_dexterity">Dexterity: 1</div>
+				<div id="player_info_stamina">Stamina: 1</div>
+				<div id="player_info_intelligence">Intelligence: 1</div>
+			</div>
+			<br>
+			<div class="player_info_group">
+				<div id="player_info_exhaustion">Exhaustion: 0%</div>
+			</div>
 		</div>
-		
+
+		<div class="vertical_spacer"></div>
+
 		<div id="main_panel">
 			<div id="tick_info">
 				<div>Tick: </div>
@@ -133,7 +147,6 @@
 							</div>
 						</span>
 					</div>
-					<div>There is (still) no gold tho :></div>
 				</div>
 				<div id="questing_window_exhaustion">
 					<div>Questing is mentaly exhausting, we know that... right?</div>

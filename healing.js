@@ -33,3 +33,9 @@ function tickHealing()
 		$("#player_resting_health").html("Your current HP: " + playerHealthPercentage.toFixed() + "%");
 	}
 }
+
+function healPlayerToMax()
+{
+	playerHealth = playerMaxHealth;
+	playerMana = playerMaxMana;
+}

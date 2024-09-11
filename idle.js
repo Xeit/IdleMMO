@@ -81,6 +81,8 @@ function updateInfoPanel()
 
 	$("#player_info_health").text("Health: " + (playerHealth / playerMaxHealth * 100).toFixed() + "%");
 	$("#player_info_mana").text("Mana: " + (playerMana / playerMaxMana * 100).toFixed() + "%");
+
+	$("#player_info_gold").text("Gold: " + playerGold);
 	
 	$("#player_info_strength").text("Strength: " + playerStrength);
 	$("#player_info_dexterity").text("Dexterity: " + playerDexterity);

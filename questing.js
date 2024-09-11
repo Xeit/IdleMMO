@@ -308,8 +308,7 @@ function getNewQuest()
 function finishQuest()
 {
 	addPlayerXp(questXp);
-
-	//TODO: Gold, lol.
+	playerGold = +(playerGold + questGold);
 
 	questTarget = 0;
 	questProgress = 0;
