@@ -102,7 +102,7 @@ button
 	float: left;
 	width: 20%;
 	height: calc(90%);
-	background-color: rgb(122, 80, 25);
+	background-color: rgba(25, 25, 150, 0.75);
 }
 
 #main_panel
