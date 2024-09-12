@@ -70,6 +70,7 @@ button
 	flex-direction: column;
 	justify-content: center;
 	height: 10%;
+	padding-left: 2px;
  }
 
 .task_window
@@ -92,6 +93,7 @@ button
 	border-bottom-color: black;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
+	padding-left: 2px;
 }
 
 #info_panel
