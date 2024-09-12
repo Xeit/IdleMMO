@@ -267,3 +267,8 @@ button
 	justify-content: center;
 	align-items: center; 
 }
+
+#select_zone_scrolling_list
+{
+	overflow-y: auto;
+}
