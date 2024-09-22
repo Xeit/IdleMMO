@@ -10,7 +10,7 @@ const EnemyDifficulty =
 
 class Enemy
 {
-	constructor(enemyName, enemyLevel, chanceOfDroppingItem, enemyDiff)
+	constructor(enemyName, enemyLevel, enemyDiff)
 	{
 		this.enemyName = enemyName;
 		this.enemyLevel = enemyLevel;
@@ -18,14 +18,37 @@ class Enemy
 		this.enemyXp = +(enemyLevel * 2 * enemyDiff).toFixed();
 		this.enemyMaxHealth = +(enemyLevel * 15 * enemyDiff).toFixed();
 		this.enemyDamage = +(enemyLevel * 4 * enemyDiff).toFixed();
-		this.chanceOfDroppingItem = chanceOfDroppingItem;
+
+		switch (enemyDiff) 
+		{
+			case EnemyDifficulty.easy:
+				this.chanceOfDroppingItem = 10;
+				break;
+			case EnemyDifficulty.medium:
+				this.chanceOfDroppingItem = 15;
+				break;
+			case EnemyDifficulty.hard:
+				this.chanceOfDroppingItem = 25;
+				break;
+			case EnemyDifficulty.very_hard:
+				this.chanceOfDroppingItem = 35;
+				break;
+			case EnemyDifficulty.mini_boss:
+				this.chanceOfDroppingItem = 75;
+				break;
+			case EnemyDifficulty.boss:
+				this.chanceOfDroppingItem = 100;
+				break;
+			default:
+				break;
+		}
 	}
 }
 
 const enemyMap = new Map();
 
-enemyMap.set("Rat", new Enemy("Rat", 1, 10, EnemyDifficulty.easy));
-enemyMap.set("Big Rat", new Enemy("Big Rat", 3, 50, EnemyDifficulty.medium));
-enemyMap.set("Huge Bee", new Enemy("Huge Bee", 2, 10, EnemyDifficulty.easy));
-enemyMap.set("Fox", new Enemy("Fox", 4, 20, EnemyDifficulty.easy));
-enemyMap.set("Wolf", new Enemy("Wolf", 8, 50, EnemyDifficulty.medium));
+enemyMap.set("Rat", new Enemy("Rat", 1, EnemyDifficulty.easy));
+enemyMap.set("Big Rat", new Enemy("Big Rat", 3, EnemyDifficulty.medium));
+enemyMap.set("Huge Bee", new Enemy("Huge Bee", 2, EnemyDifficulty.easy));
+enemyMap.set("Fox", new Enemy("Fox", 4, EnemyDifficulty.easy));
+enemyMap.set("Wolf", new Enemy("Wolf", 8, EnemyDifficulty.medium));
