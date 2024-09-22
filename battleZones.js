@@ -7,6 +7,17 @@ class ZoneEnemyWeight
 	}
 }
 
+class	BattleZone
+{
+	constructor(zoneName, levelsRange, monsters, description)
+	{
+		this.zoneName = zoneName;
+		this.levelsRange = levelsRange;
+		this.monsters = monsters;
+		this.description = description;
+	}
+}
+
 function getRandomMonsterFromBattleZone(selectedZone)
 {
 	var totalEnemyWeight = 0;
@@ -34,20 +45,7 @@ function getRandomMonsterFromBattleZone(selectedZone)
 	return nextEnemy;
 }
 
-const zoneCellars =
-{
-	zoneName: "Cellars",
-	levelRange: "1-3",
-	monsters: [new ZoneEnemyWeight("Rat", 96), new ZoneEnemyWeight("Big Rat", 4)],
-	description: "A cellar filled with rats. Cliche."
-}
+const battleZonesMap = new Array();
 
-const zoneForest =
-{
-	zoneName: "Forest",
-	levelRange: "2-8",
-	monsters: [new ZoneEnemyWeight("Huge Bee", 80), 
-		new ZoneEnemyWeight("Fox", 10),
-		new ZoneEnemyWeight("Wolf", 5)],
-	description: "Forest filled with wild animals. Btw you just hit a beehive."
-}
+battleZonesMap.push(new BattleZone("Cellars", "1-3", [new ZoneEnemyWeight("Rat", 96), new ZoneEnemyWeight("Big Rat", 4)], "A cellar filled with rats. Cliche."));
+battleZonesMap.push(new BattleZone("Forest", "2-8", [new ZoneEnemyWeight("Huge Bee", 80), new ZoneEnemyWeight("Fox", 10), new ZoneEnemyWeight("Wolf", 5)], "Forest filled with wild animals. Btw you just hit a beehive."));

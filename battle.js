@@ -13,17 +13,43 @@ var currentZone = null;
 
 function initializeBattle()
 {
-	$("#zoneCellarsButton").click(function()
+	for(var i = 0; i < battleZonesMap.length; i++)
 	{
-		currentZone = zoneCellars;
-		switchToBattleWindow();
-	});
-	
-	$("#zoneForestButton").click(function()
-	{
-		currentZone = zoneForest;
-		switchToBattleWindow();
-	});
+		//Please do not question this code, it's verbdose but it was late and I was drunk. :>
+
+		let newZone = document.createElement("div");
+		newZone.setAttribute("class", "battle_window_select_zone_element");
+
+		let zoneName = document.createElement("span");
+		zoneName.style.cssText = "width: 50%; display: flex; justify-content: center;";
+		newZone.append(zoneName);
+
+		let zoneNameText = document.createElement("div");
+		zoneNameText.textContent = battleZonesMap[i].zoneName.toUpperCase();
+		zoneName.append(zoneNameText);
+
+		let clickableButton = document.createElement("span");
+		clickableButton.style.cssText = "width: 50%; display: flex; justify-content: center;";
+		newZone.append(clickableButton);
+
+		let buttonDiv = document.createElement("div");
+		clickableButton.append(buttonDiv);
+
+		let buttonItself = document.createElement("button");
+		let buttonId = battleZonesMap[i].zoneName + "Button";
+		buttonItself.setAttribute("id", buttonId);
+		buttonItself.textContent = "SELECT";
+		buttonItself.setAttribute("zoneId", i);
+		buttonDiv.append(buttonItself);
+
+		buttonItself.onclick = function()
+		{
+			currentZone = battleZonesMap[buttonItself.getAttribute("zoneID")];
+			switchToBattleWindow();
+		};
+		
+		$("#select_zone_scrolling_list").append(newZone);
+	}
 }
 
 function tickBattle()

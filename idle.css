@@ -272,3 +272,10 @@ button
 {
 	overflow-y: auto;
 }
+
+.battle_window_select_zone_element
+{
+	height: 10%; 
+	display: flex; 
+	align-items: center;
+}
