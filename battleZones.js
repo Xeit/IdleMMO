@@ -49,3 +49,4 @@ const battleZonesMap = new Array();
 
 battleZonesMap.push(new BattleZone("Cellars", "1-3", [new ZoneEnemyWeight("Rat", 96), new ZoneEnemyWeight("Big Rat", 4)], "A cellar filled with rats. Cliche."));
 battleZonesMap.push(new BattleZone("Forest", "2-8", [new ZoneEnemyWeight("Huge Bee", 80), new ZoneEnemyWeight("Fox", 10), new ZoneEnemyWeight("Wolf", 5)], "Forest filled with wild animals. Btw you just hit a beehive."));
+battleZonesMap.push(new BattleZone("Bat Cave", "3-5", [new ZoneEnemyWeight("Bat", 50), new ZoneEnemyWeight("Scary Bat", 50)], "Standard cave. It's filled with bat family."))

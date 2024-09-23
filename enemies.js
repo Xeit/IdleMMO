@@ -52,3 +52,5 @@ enemyMap.set("Big Rat", new Enemy("Big Rat", 3, EnemyDifficulty.medium));
 enemyMap.set("Huge Bee", new Enemy("Huge Bee", 2, EnemyDifficulty.easy));
 enemyMap.set("Fox", new Enemy("Fox", 4, EnemyDifficulty.easy));
 enemyMap.set("Wolf", new Enemy("Wolf", 8, EnemyDifficulty.medium));
+enemyMap.set("Bat", new Enemy("Bat", 3, EnemyDifficulty.easy));
+enemyMap.set("Scary Bat", new Enemy("Scary Bat", 5, EnemyDifficulty.easy));

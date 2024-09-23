@@ -21,15 +21,19 @@ function initializeBattle()
 		newZone.setAttribute("class", "battle_window_select_zone_element");
 
 		let zoneName = document.createElement("span");
-		zoneName.style.cssText = "width: 50%; display: flex; justify-content: center;";
+		zoneName.style.cssText = "width: 40%; display: flex; justify-content: center;";
 		newZone.append(zoneName);
 
 		let zoneNameText = document.createElement("div");
 		zoneNameText.textContent = battleZonesMap[i].zoneName.toUpperCase();
 		zoneName.append(zoneNameText);
 
+		let levelInfo = document.createElement("span");
+		levelInfo.textContent = battleZonesMap[i].levelsRange.toUpperCase();
+		newZone.append(levelInfo);
+
 		let clickableButton = document.createElement("span");
-		clickableButton.style.cssText = "width: 50%; display: flex; justify-content: center;";
+		clickableButton.style.cssText = "width: 40%; display: flex; justify-content: center;";
 		newZone.append(clickableButton);
 
 		let buttonDiv = document.createElement("div");
