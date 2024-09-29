@@ -293,7 +293,7 @@ function getNewQuest()
 	questXp = xpRoll;
 	questGold = goldRoll;
 
-	questTarget = +(Math.random() * 3 + playerLevel + 3).toFixed();
+	questTarget = +(Math.random() * 3 + +playerLevel + 3).toFixed();
 	questProgress = 0;
 	
 	const randomFlavourTextID = +(Math.random() * FlavoutTexts.length - 1).toFixed();

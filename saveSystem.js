@@ -20,7 +20,9 @@ function eatCookie(cname)
 {
 	if(localStorage.getItem("v1") !== null)
 	{
-		readPlayerData();
+		var StringToRead = localStorage.getItem("v1");
+		var ArrayOfVariables = StringToRead.split("|");
+		readPlayerData(ArrayOfVariables);
 	}
 }
 
@@ -108,7 +110,102 @@ function gatherPlayerData()
 	addData(playerBootsSlot);
 }
 
-function readPlayerData()
+function readPlayerData(ArrayOfVariables)
 {
-
+	if(ArrayOfVariables[0] === "v1")
+	{
+		for(var i = 1; i < ArrayOfVariables.length; i = i + 2)
+		{
+			if(ArrayOfVariables[i] !== undefined)
+			{
+				var VariableName = ArrayOfVariables[i];
+				switch(VariableName)
+				{
+					case "playerLevel":
+						playerLevel = +ArrayOfVariables[i+1];
+						break;
+					case "playerXp":
+						playerXp = +ArrayOfVariables[i+1];
+						break;
+					case "playerRequiredXp":
+						playerRequiredXp = +ArrayOfVariables[i+1];
+						break;
+					case "playerGold":
+						playerGold = +ArrayOfVariables[i+1];
+						break;
+					case "playerHealth":
+						playerHealth = +ArrayOfVariables[i+1];
+						break;
+					case "playerMaxHealth":
+						playerMaxHealth = +ArrayOfVariables[i+1];
+						break;
+					case "playerMana":
+						playerMana = +ArrayOfVariables[i+1];
+						break;
+					case "playerMaxMana":
+						playerMaxMana = +ArrayOfVariables[i+1];
+						break;
+					case "playerExhaustion":
+						playerExhaustion = +ArrayOfVariables[i+1];
+						break;
+					case "playerMaxExhaustion":
+						playerMaxExhaustion = +ArrayOfVariables[i+1];
+						break;
+					case "playerStrength":
+						playerStrength = +ArrayOfVariables[i+1];
+						break;
+					case "playerStrengthXP":
+						playerStrengthXP = +ArrayOfVariables[i+1];
+						break;
+					case "playerStrengthRequiredXP":
+						playerStrengthRequiredXP = +ArrayOfVariables[i+1];
+						break;
+					case "playerDexterity":
+						playerDexterity = +ArrayOfVariables[i+1];
+						break;
+					case "playerDexterityXP":
+						playerDexterityXP = +ArrayOfVariables[i+1];
+						break;
+					case "playerDexterityRequiredXP":
+						playerDexterityRequiredXP = +ArrayOfVariables[i+1];
+						break;
+					case "playerStamina":
+						playerStamina = +ArrayOfVariables[i+1];
+						break;
+					case "playerStaminaXP":
+						playerStaminaXP = +ArrayOfVariables[i+1];
+						break;
+					case "playerStaminaRequiredXP":
+						playerStaminaRequiredXP = +ArrayOfVariables[i+1];
+						break;
+					case "playerIntelligence":
+						playerIntelligence = +ArrayOfVariables[i+1];
+						break;
+					case "playerIntelligenceXP":
+						playerIntelligenceXP = +ArrayOfVariables[i+1];
+						break;
+					case "playerIntelligenceRequiredXP":
+						playerIntelligenceRequiredXP = +ArrayOfVariables[i+1];
+						break;
+					case "playerWeaponSlot":
+						playerWeaponSlot = ArrayOfVariables[i+1];
+						break;
+					case "playerHelmetSlot":
+						playerHelmetSlot = ArrayOfVariables[i+1];
+						break;
+					case "playerBodyArmourSlot":
+						playerBodyArmourSlot = ArrayOfVariables[i+1];
+						break;
+					case "playerGlovesSlot":
+						playerGlovesSlot = ArrayOfVariables[i+1];
+						break;
+					case "playerBootsSlot":
+						playerBootsSlot = ArrayOfVariables[i+1];
+						break;
+					default:
+						console.log("There was unexpected data when reading the save file, name of unexpected variable: " + VariableName); 
+				}
+			}
+		}
+	}
 }

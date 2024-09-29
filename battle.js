@@ -134,7 +134,7 @@ function getNewEnemy()
 function hitEnemy()
 {
 	var playerDamage = +playerStrength;
-	if(playerWeaponSlot != null)
+	if(playerWeaponSlot != null && playerWeaponSlot != undefined)
 	{
 		playerDamage += +playerWeaponSlot.returnItemPower();
 	}

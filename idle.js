@@ -5,6 +5,8 @@ $(document).ready(function()
 	initializeTraining();
 	initializeQuesting();
 	initializeBattle();
+	
+	eatCookie();
 
 	setInterval(function()
 	{
@@ -34,6 +36,7 @@ $(document).ready(function()
 
 			updateInfoPanel();
 
+			bakeACookie();
 			//Tbh all bs I wrote was started by this tutorial: https://www.youtube.com/playlist?list=PLgHw_wODS1vX20X7ppbssrn_MU6SaYoDF
 			//He had like 4k views on playlist, it's not best tutorial but still helped me start writing this website. Thanks!
 			//Old stuff from tutorial on YT that had literally like 1k views, LMAO.
