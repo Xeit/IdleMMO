@@ -1,28 +1,28 @@
-var DataToSave = "";
+var dataToSave = "";
 
-function addData(DataToAdd)
+function addData(dataToAdd)
 {
-	DataToSave += "|";
-	DataToSave += DataToAdd;
+	dataToSave += "|save|";
+	dataToSave += dataToAdd;
 }
 
 function bakeACookie() 
 {
 	const fileName = "v1";
-	DataToSave = fileName;
+	dataToSave = fileName;
 
 	gatherPlayerData();
 	
-	localStorage.setItem("v1", DataToSave);
+	localStorage.setItem("v1", dataToSave);
 }
 
 function eatCookie(cname) 
 {
 	if(localStorage.getItem("v1") !== null)
 	{
-		var StringToRead = localStorage.getItem("v1");
-		var ArrayOfVariables = StringToRead.split("|");
-		readPlayerData(ArrayOfVariables);
+		var stringToRead = localStorage.getItem("v1");
+		var arrayOfVariables = stringToRead.split("|save|");
+		readPlayerData(arrayOfVariables);
 	}
 }
 
@@ -95,112 +95,193 @@ function gatherPlayerData()
 	addData(playerIntelligenceRequiredXP);
 	
 	addData("playerWeaponSlot");
-	addData(playerWeaponSlot);
+	if(playerWeaponSlot != undefined)
+	{
+		addData(playerWeaponSlot.SerializeItem());
+	}
+	else
+	{
+		addData(undefined);
+	}
 	
 	addData("playerHelmetSlot");
-	addData(playerHelmetSlot);
+	if(playerHelmetSlot != undefined)
+	{
+		addData(playerHelmetSlot.SerializeItem());
+	}
+	else
+	{
+		addData(undefined);
+	}
 	
 	addData("playerBodyArmourSlot");
-	addData(playerBodyArmourSlot);
+	if(playerBodyArmourSlot != undefined)
+	{
+		addData(playerBodyArmourSlot.SerializeItem());
+	}
+	else
+	{
+		addData(undefined);
+	}
 	
 	addData("playerGlovesSlot");
-	addData(playerGlovesSlot);
+	if(playerGlovesSlot != undefined)
+	{
+		addData(playerGlovesSlot.SerializeItem());
+	}
+	else
+	{
+		addData(undefined);
+	}
 	
 	addData("playerBootsSlot");
-	addData(playerBootsSlot);
+	if(playerBootsSlot != undefined)
+	{
+		addData(playerBootsSlot.SerializeItem());
+	}
+	else
+	{
+		addData(undefined);
+	}
 }
 
-function readPlayerData(ArrayOfVariables)
+function readPlayerData(arrayOfVariables)
 {
-	if(ArrayOfVariables[0] === "v1")
+	if(arrayOfVariables[0] === "v1")
 	{
-		for(var i = 1; i < ArrayOfVariables.length; i = i + 2)
+		for(var i = 1; i < arrayOfVariables.length; i = i + 2)
 		{
-			if(ArrayOfVariables[i] !== undefined)
+			if(arrayOfVariables[i] !== undefined)
 			{
-				var VariableName = ArrayOfVariables[i];
+				var VariableName = arrayOfVariables[i];
 				switch(VariableName)
 				{
 					case "playerLevel":
-						playerLevel = +ArrayOfVariables[i+1];
+						playerLevel = +arrayOfVariables[i+1];
 						break;
 					case "playerXp":
-						playerXp = +ArrayOfVariables[i+1];
+						playerXp = +arrayOfVariables[i+1];
 						break;
 					case "playerRequiredXp":
-						playerRequiredXp = +ArrayOfVariables[i+1];
+						playerRequiredXp = +arrayOfVariables[i+1];
 						break;
 					case "playerGold":
-						playerGold = +ArrayOfVariables[i+1];
+						playerGold = +arrayOfVariables[i+1];
 						break;
 					case "playerHealth":
-						playerHealth = +ArrayOfVariables[i+1];
+						playerHealth = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxHealth":
-						playerMaxHealth = +ArrayOfVariables[i+1];
+						playerMaxHealth = +arrayOfVariables[i+1];
 						break;
 					case "playerMana":
-						playerMana = +ArrayOfVariables[i+1];
+						playerMana = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxMana":
-						playerMaxMana = +ArrayOfVariables[i+1];
+						playerMaxMana = +arrayOfVariables[i+1];
 						break;
 					case "playerExhaustion":
-						playerExhaustion = +ArrayOfVariables[i+1];
+						playerExhaustion = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxExhaustion":
-						playerMaxExhaustion = +ArrayOfVariables[i+1];
+						playerMaxExhaustion = +arrayOfVariables[i+1];
 						break;
 					case "playerStrength":
-						playerStrength = +ArrayOfVariables[i+1];
+						playerStrength = +arrayOfVariables[i+1];
 						break;
 					case "playerStrengthXP":
-						playerStrengthXP = +ArrayOfVariables[i+1];
+						playerStrengthXP = +arrayOfVariables[i+1];
 						break;
 					case "playerStrengthRequiredXP":
-						playerStrengthRequiredXP = +ArrayOfVariables[i+1];
+						playerStrengthRequiredXP = +arrayOfVariables[i+1];
 						break;
 					case "playerDexterity":
-						playerDexterity = +ArrayOfVariables[i+1];
+						playerDexterity = +arrayOfVariables[i+1];
 						break;
 					case "playerDexterityXP":
-						playerDexterityXP = +ArrayOfVariables[i+1];
+						playerDexterityXP = +arrayOfVariables[i+1];
 						break;
 					case "playerDexterityRequiredXP":
-						playerDexterityRequiredXP = +ArrayOfVariables[i+1];
+						playerDexterityRequiredXP = +arrayOfVariables[i+1];
 						break;
 					case "playerStamina":
-						playerStamina = +ArrayOfVariables[i+1];
+						playerStamina = +arrayOfVariables[i+1];
 						break;
 					case "playerStaminaXP":
-						playerStaminaXP = +ArrayOfVariables[i+1];
+						playerStaminaXP = +arrayOfVariables[i+1];
 						break;
 					case "playerStaminaRequiredXP":
-						playerStaminaRequiredXP = +ArrayOfVariables[i+1];
+						playerStaminaRequiredXP = +arrayOfVariables[i+1];
 						break;
 					case "playerIntelligence":
-						playerIntelligence = +ArrayOfVariables[i+1];
+						playerIntelligence = +arrayOfVariables[i+1];
 						break;
 					case "playerIntelligenceXP":
-						playerIntelligenceXP = +ArrayOfVariables[i+1];
+						playerIntelligenceXP = +arrayOfVariables[i+1];
 						break;
 					case "playerIntelligenceRequiredXP":
-						playerIntelligenceRequiredXP = +ArrayOfVariables[i+1];
+						playerIntelligenceRequiredXP = +arrayOfVariables[i+1];
 						break;
 					case "playerWeaponSlot":
-						playerWeaponSlot = ArrayOfVariables[i+1];
+						if(arrayOfVariables[i+1] != "undefined")
+						{
+							var itemString = arrayOfVariables[i+1];
+							var arrayOfVariables = itemString.split("|item|");
+							if(arrayOfVariables.length == 4)
+							{
+								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								playerWeaponSlot = recreatedItem;
+							}
+							playerWeaponSlot = arrayOfVariables[i+1];
+						}
 						break;
 					case "playerHelmetSlot":
-						playerHelmetSlot = ArrayOfVariables[i+1];
+						if(arrayOfVariables[i+1] != "undefined")
+						{
+							var itemString = arrayOfVariables[i+1];
+							var arrayOfVariables = itemString.split("|item|");
+							if(arrayOfVariables.length == 4)
+							{
+								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								playerHelmetSlot = recreatedItem;
+							}
+						}
 						break;
 					case "playerBodyArmourSlot":
-						playerBodyArmourSlot = ArrayOfVariables[i+1];
+						if(arrayOfVariables[i+1] != "undefined")
+						{
+							var itemString = arrayOfVariables[i+1];
+							var arrayOfVariables = itemString.split("|item|");
+							if(arrayOfVariables.length == 4)
+							{
+								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								playerBodyArmourSlot = recreatedItem;
+							}
+						}
 						break;
 					case "playerGlovesSlot":
-						playerGlovesSlot = ArrayOfVariables[i+1];
+						if(arrayOfVariables[i+1] != "undefined")
+						{
+							var itemString = arrayOfVariables[i+1];
+							var arrayOfVariables = itemString.split("|item|");
+							if(arrayOfVariables.length == 4)
+							{
+								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								playerGlovesSlot = recreatedItem;
+							}
+						}
 						break;
 					case "playerBootsSlot":
-						playerBootsSlot = ArrayOfVariables[i+1];
+						if(arrayOfVariables[i+1] != "undefined")
+						{
+							var itemString = arrayOfVariables[i+1];
+							var arrayOfVariables = itemString.split("|item|");
+							if(arrayOfVariables.length == 4)
+							{
+								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								playerBootsSlot = recreatedItem;
+							}
+						}
 						break;
 					default:
 						console.log("There was unexpected data when reading the save file, name of unexpected variable: " + VariableName); 

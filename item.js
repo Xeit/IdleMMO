@@ -62,6 +62,16 @@ class Item
 
 		return itemPower;
 	}
+
+	SerializeItem()
+	{
+		var serializedString = this.itemRarity + "|item|";
+		serializedString += this.itemSlot + "|item|";
+		serializedString += this.itemLevel + "|item|";
+		serializedString += this.itemName;
+		
+		return serializedString;
+	}
 }
 
 function stopEquipment()
@@ -168,12 +178,12 @@ function updateEquipmentWindow()
 	}
 	if(playerGlovesSlot != null)
 	{
-		$("#equipment_gloves_power").text(playerGlovesSlot.itemName);
-		$("#equipment_gloves_name").text(playerGlovesSlot.returnItemPower());
+		$("#equipment_gloves_name").text(playerGlovesSlot.itemName);
+		$("#equipment_gloves_power").text(playerGlovesSlot.returnItemPower());
 	}
 	if(playerBootsSlot != null)
 	{
-		$("#equipment_boots_name").text(playerBootsSlot.itemName);
+		$("#equipment_boots_name").text(playerBootsSlot.itemName);	
 		$("#equipment_boots_power").text(playerBootsSlot.returnItemPower());
 	}
 }
