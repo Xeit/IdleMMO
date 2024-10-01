@@ -63,7 +63,7 @@ button
  #tick_progress_inside {
 	width: 100%;
 	height: 15px;
-	background-color: rgba(16, 17, 99, 0.75);
+	background: linear-gradient(179deg, rgba(16, 17, 99, 0.75), rgba(103, 104, 187, 0.75));
 	border-radius: 10px;
  }
 
@@ -99,7 +99,7 @@ button
 	padding-left: 2px;
 	padding-bottom: 1px;
 	padding-top: 4px;
-	background-color: rgba(25, 100, 150, 0.75);
+	background: linear-gradient(130deg, rgba(25, 100, 150, 0.75), rgba(72, 176, 245, 0.75));
 	font-size: larger;
 }
 
@@ -109,7 +109,7 @@ button
 	float: left;
 	width: 20%;
 	height: calc(90%);
-	background-color: rgba(25, 25, 150, 0.75);
+	background: linear-gradient(130deg, rgba(25, 25, 150, 0.75), rgba(163, 163, 255, 0.75));
 }
 
 #main_panel
@@ -263,7 +263,7 @@ button
 #questing_progress_bar_inside {
 	width: 100%;
 	height: 15px;
-	background-color: rgba(29, 3, 99, 0.85);
+	background: linear-gradient(179deg, rgba(29, 3, 99, 0.85), rgba(109, 63, 233, 0.85));
 	border-radius: 10px;
 }
 
