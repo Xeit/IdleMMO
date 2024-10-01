@@ -30,6 +30,7 @@ button
 	font-weight: 500;
 	padding-top: 5px;
 	text-shadow: 0px 0px 1px #6e6e6e;
+	background: linear-gradient(180deg, rgba(235, 245, 255, 0.75), rgb(127 136 255));
 }
 
 .help {
@@ -198,6 +199,9 @@ button
 	height: 10%;
 	display: flex;
 	align-items: flex-end;
+	padding-left: 3px;
+	padding-bottom: 3px;
+	column-gap: 2px;
 }
 
 .questing_slider_button_info
