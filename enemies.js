@@ -22,10 +22,10 @@ class Enemy
 		switch (enemyDiff) 
 		{
 			case EnemyDifficulty.easy:
-				this.chanceOfDroppingItem = 10;
+				this.chanceOfDroppingItem = 15;
 				break;
 			case EnemyDifficulty.medium:
-				this.chanceOfDroppingItem = 15;
+				this.chanceOfDroppingItem = 20;
 				break;
 			case EnemyDifficulty.hard:
 				this.chanceOfDroppingItem = 25;
