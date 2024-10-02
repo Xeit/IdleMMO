@@ -30,11 +30,11 @@ function initializeBattle()
 
 		let levelInfo = document.createElement("span");
 		levelInfo.textContent = battleZonesMap[i].levelsRange.toUpperCase();
-		levelInfo.style.cssText = "width: 10%; display: flex; justify-content: center;";
+		levelInfo.style.cssText = "width: 30%; display: flex; justify-content: center;";
 		newZone.append(levelInfo);
 
 		let clickableButton = document.createElement("span");
-		clickableButton.style.cssText = "width: 45%; display: flex; justify-content: center;";
+		clickableButton.style.cssText = "width: 25%; display: flex; justify-content: center;";
 		newZone.append(clickableButton);
 
 		let buttonDiv = document.createElement("div");

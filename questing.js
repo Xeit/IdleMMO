@@ -325,7 +325,7 @@ function updateQuestInfo()
 {
 	if(questTarget == 0)
 	{
-		$("#questing_progress_bar_inside").css("width", "100%");
+		$("#questing_progress_bar_inside").css("width", "0%");
 	}
 	else
 	{

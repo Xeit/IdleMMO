@@ -8,7 +8,7 @@ body
 	font-size: medium;
 	position: relative;
 	color: white;
-	background-color: rgb(88, 88, 88);
+	background-color: rgb(31, 32, 32);
 	font-family: "League Spartan", sans-serif;
 	font-optical-sizing: auto;
 	font-style: normal;
@@ -22,7 +22,7 @@ span {
 
 button
 {
-	background-color: white;
+	background-color: #c3c3c3;
 	font-size: larger;
 	font-family: "League Spartan", sans-serif;
 	font-optical-sizing: auto;
@@ -30,7 +30,7 @@ button
 	font-weight: 500;
 	padding-top: 5px;
 	text-shadow: 0px 0px 1px #6e6e6e;
-	background: linear-gradient(180deg, rgba(235, 245, 255, 0.75), rgb(127 136 255));
+	border-radius: 5px;
 }
 
 .help {
@@ -55,8 +55,8 @@ button
 }
 
 #tick_progress_bar {
-	width: 99.5%;
-	background-color: grey;
+	width: 98%;
+	background-color: rgb(31, 32, 32);
 	border-radius: 10px;
 	border:#000 2px solid;
  }
@@ -64,7 +64,7 @@ button
  #tick_progress_inside {
 	width: 100%;
 	height: 15px;
-	background: linear-gradient(179deg, rgba(16, 17, 99, 0.75), rgba(103, 104, 187, 0.75));
+	background: linear-gradient(179deg, #454545, #6b6b6b);
 	border-radius: 10px;
  }
 
@@ -73,8 +73,7 @@ button
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	height: 10%;
-	padding-left: 2px;
+	width: 98%;
  }
 
 .task_window
@@ -100,27 +99,30 @@ button
 	padding-left: 2px;
 	padding-bottom: 1px;
 	padding-top: 4px;
-	background: linear-gradient(130deg, rgba(25, 100, 150, 0.75), rgba(72, 176, 245, 0.75));
+	background: linear-gradient(130deg, #454545, #6b6b6b);
 	font-size: larger;
 }
 
 #info_panel
 {
 	border: black 2px solid;
+	border-radius: 8px;
 	float: left;
 	width: 20%;
 	height: calc(90%);
-	background: linear-gradient(130deg, rgba(25, 25, 150, 0.75), rgba(163, 163, 255, 0.75));
+	background-color: #3c3c3c;
 }
 
 #main_panel
 {
 	border: black 2px solid;
+	border-radius: 8px;
 	display: flex;
 	flex-direction: column;
 	float: left;
 	width: 50%;
 	height: calc(90%);
+	background-color: #3c3c3c;
 }
 
 .vertical_spacer
@@ -259,15 +261,15 @@ button
 
 #questing_progress_bar {
 	width: 50%;
-	background-color: grey;
+	background-color: rgb(31, 32, 32);
 	border-radius: 10px;
 	border:#000 2px solid;
  }
  
 #questing_progress_bar_inside {
-	width: 100%;
+	width: 0%;
 	height: 15px;
-	background: linear-gradient(179deg, rgba(29, 3, 99, 0.85), rgba(109, 63, 233, 0.85));
+	background: linear-gradient(179deg, #454545, #6b6b6b);
 	border-radius: 10px;
 }
 
@@ -288,7 +290,10 @@ button
 
 #select_zone_scrolling_list
 {
+	width: 80%;
 	overflow-y: auto;
+	border-left:#000 solid 1px;
+	border-right:#000 solid 1px;
 }
 
 .battle_window_select_zone_element
@@ -296,4 +301,5 @@ button
 	height: 5%; 
 	display: flex; 
 	align-items: center;
+	border-bottom:#000 solid 1px;
 }

@@ -10,22 +10,22 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-	<link rel="stylesheet" href="idle.css?v=19">
+	<link rel="stylesheet" href="idle.css?v=20">
 	
 	<script src="saveSystem.js?v=1"></script>
 
-	<script src="enums.js?v=19"></script>
-	<script src="item.js?v=19"></script>
-	<script src="player.js?v=19"></script>
-	<script src="enemies.js?v=19"></script>
-	<script src="battleZones.js?v=19"></script>
+	<script src="enums.js?v=20"></script>
+	<script src="item.js?v=20"></script>
+	<script src="player.js?v=20"></script>
+	<script src="enemies.js?v=20"></script>
+	<script src="battleZones.js?v=20"></script>
 
-	<script src="battle.js?v=19"></script>
-	<script src="healing.js?v=19"></script>
-	<script src="training.js?v=19"></script>
-	<script src="questing.js?v=19"></script>
+	<script src="battle.js?v=20"></script>
+	<script src="healing.js?v=20"></script>
+	<script src="training.js?v=20"></script>
+	<script src="questing.js?v=20"></script>
 
-	<script src="idle.js?v=19"></script>
+	<script src="idle.js?v=20"></script>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 	</style>
@@ -63,14 +63,16 @@
 		<div class="vertical_spacer"></div>
 
 		<div id="main_panel">
-			<div id="tick_info">
-				<div>Tick: </div>
-				<div id="tick_progress_bar">
-					<div id="tick_progress_inside"></div>
+			<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+				<div id="tick_info">
+					<div style="padding-top: 10px;">Tick: </div>
+					<div id="tick_progress_bar">
+						<div id="tick_progress_inside"></div>
+					</div>
+					<h3 id="task_info" style="padding-left: 2px;">CURRENT TASK: none</h3>
 				</div>
 			</div>
 
-			<h3 id="task_info" style="padding-left: 2px;">CURRENT TASK: none</h3>
 
 			<!-- STARTING PLACE -->
 			<div class="task_window" id="empty_window">
@@ -80,7 +82,7 @@
 			<div class = "task_window" id = "battle_window">
 				<div id = "battle_window_battle">
 					<div id="battle_window_select_zone" style="display: none; width: 100%; height: 100%; justify-content: center;">
-						<div id="select_zone_scrolling_list" style="width: 60%;">
+						<div id="select_zone_scrolling_list">
 						</div>
 					</div>
 
@@ -134,10 +136,11 @@
 					<div>Current Quest</div>
 					<br>
 					<br>
-					<div id="questing_flavour_text">You are from NPC to NPC as a messenger. Such challenge for a hero!</div>
+					<div id="questing_flavour_text" style="width: 95%; display: flex; justify-content: center;">You are from NPC to NPC as a messenger. Such challenge for a hero!</div>
 					<div id="questing_progress_bar">
 						<div id="questing_progress_bar_inside"></div>
 					</div>
+					<br>
 					<div>REWARDS</div>
 					<div id="questing_reward_xp">XP: 0</div>
 					<div id="questing_reward_gold">GOLD: 0</div>
@@ -212,6 +215,7 @@
 					<span class="equipment_slot_info" style="width: 10%;" id="equipment_weapon_power">0</span>
 					<span class="equipment_slot_info" style="width: 70%;" id="equipment_weapon_name">Fists</span>
 				</div>
+				<br>
 				<div style="padding-left: 2px;">Explanation about stats and what they do:</div>
 				<div style="padding-left: 2px;">Weapon power is added to your attack 1:1 :></div>
 				<div style="padding-left: 2px;">Armour power reduces damage received at half of it's power (rounded down). (still min dmg received is 1)</div>
