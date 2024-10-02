@@ -34,7 +34,6 @@ function stopTraining()
 function startTraining()
 {
 	bIsTraining = true;
-	updateTrainingXpValues();
 	$("#training_window").css("display", "block");
 }
 

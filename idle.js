@@ -2,11 +2,13 @@ var timeFromLastTick = 0;
 
 $(document).ready(function()
 {
+	eatCookie();
+	
 	initializeTraining();
 	initializeQuesting();
 	initializeBattle();
 	
-	eatCookie();
+	updateInfoPanel();
 
 	setInterval(function()
 	{

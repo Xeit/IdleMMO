@@ -145,7 +145,20 @@ function hitEnemy()
 	{
 		bIsEnemyAlive = false;
 
-		addPlayerXp(enemyXp);
+		if(playerLevel > enemyLevel)
+		{
+			const levelDifference = playerLevel - enemyLevel;
+			if(levelDifference < 5)
+			{
+				const xpPenaltyMultiplier = levelDifference * 0.2;
+				const xpToAddAfterPenalty = enemyXp * (1 - xpPenaltyMultiplier);
+				addPlayerXp(xpToAddAfterPenalty);
+			}
+		}
+		else
+		{
+			addPlayerXp(enemyXp);
+		}
 
 		//Item drop
 		const itemDropRoll = +(Math.random() * 100).toFixed();
