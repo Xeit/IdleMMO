@@ -28,7 +28,7 @@ class Item
 	{
 		this.itemRarity = itemRarity;
 		this.itemSlot = itemSlot;
-		this.itemLevel = itemLevel;
+		this.itemLevel = +itemLevel;
 		this.itemName = itemName;
 	}
 

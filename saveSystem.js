@@ -226,23 +226,22 @@ function readPlayerData(arrayOfVariables)
 						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
-							var arrayOfVariables = itemString.split("|item|");
-							if(arrayOfVariables.length == 4)
+							var itemArrayOfVariables = itemString.split("|item|");
+							if(itemArrayOfVariables.length == 4)
 							{
-								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
 								playerWeaponSlot = recreatedItem;
 							}
-							playerWeaponSlot = arrayOfVariables[i+1];
 						}
 						break;
 					case "playerHelmetSlot":
-						if(arrayOfVariables[i+1] != "undefined")
+						if(itemArrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
-							var arrayOfVariables = itemString.split("|item|");
-							if(arrayOfVariables.length == 4)
+							var itemArrayOfVariables = itemString.split("|item|");
+							if(itemArrayOfVariables.length == 4)
 							{
-								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
 								playerHelmetSlot = recreatedItem;
 							}
 						}
@@ -251,10 +250,10 @@ function readPlayerData(arrayOfVariables)
 						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
-							var arrayOfVariables = itemString.split("|item|");
-							if(arrayOfVariables.length == 4)
+							var itemArrayOfVariables = itemString.split("|item|");
+							if(itemArrayOfVariables.length == 4)
 							{
-								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
 								playerBodyArmourSlot = recreatedItem;
 							}
 						}
@@ -263,10 +262,10 @@ function readPlayerData(arrayOfVariables)
 						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
-							var arrayOfVariables = itemString.split("|item|");
-							if(arrayOfVariables.length == 4)
+							var itemArrayOfVariables = itemString.split("|item|");
+							if(itemArrayOfVariables.length == 4)
 							{
-								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
 								playerGlovesSlot = recreatedItem;
 							}
 						}
@@ -275,10 +274,10 @@ function readPlayerData(arrayOfVariables)
 						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
-							var arrayOfVariables = itemString.split("|item|");
-							if(arrayOfVariables.length == 4)
+							var itemArrayOfVariables = itemString.split("|item|");
+							if(itemArrayOfVariables.length == 4)
 							{
-								var recreatedItem = new Item(arrayOfVariables[0], arrayOfVariables[1], arrayOfVariables[2], arrayOfVariables[3]);
+								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
 								playerBootsSlot = recreatedItem;
 							}
 						}
