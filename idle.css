@@ -96,11 +96,20 @@ button
 	border-bottom-color: black;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	padding-left: 2px;
-	padding-bottom: 1px;
-	padding-top: 4px;
-	background: linear-gradient(130deg, #454545, #6b6b6b);
+	background: rgb(31, 32, 32);
 	font-size: larger;
+}
+
+.player_info_element
+{
+	display: flex;
+	justify-content: space-between;
+	padding-top: 4px;
+	padding-left: 3px;
+	padding-right: 3px;
+	background-repeat: no-repeat;
+	background: linear-gradient(130deg, #454545, #6b6b6b);
+	background-size: 100% 100%;
 }
 
 #info_panel

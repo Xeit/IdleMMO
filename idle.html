@@ -10,22 +10,22 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-	<link rel="stylesheet" href="idle.css?v=21">
+	<link rel="stylesheet" href="idle.css?v=22">
 	
 	<script src="saveSystem.js?v=1"></script>
 
-	<script src="enums.js?v=21"></script>
-	<script src="item.js?v=21"></script>
-	<script src="player.js?v=21"></script>
-	<script src="enemies.js?v=21"></script>
-	<script src="battleZones.js?v=21"></script>
+	<script src="enums.js?v=22"></script>
+	<script src="item.js?v=22"></script>
+	<script src="player.js?v=22"></script>
+	<script src="enemies.js?v=22"></script>
+	<script src="battleZones.js?v=22"></script>
 
-	<script src="battle.js?v=21"></script>
-	<script src="healing.js?v=21"></script>
-	<script src="training.js?v=21"></script>
-	<script src="questing.js?v=21"></script>
+	<script src="battle.js?v=22"></script>
+	<script src="healing.js?v=22"></script>
+	<script src="training.js?v=22"></script>
+	<script src="questing.js?v=22"></script>
 
-	<script src="idle.js?v=21"></script>
+	<script src="idle.js?v=22"></script>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 	</style>
@@ -35,28 +35,58 @@
 		<div id="info_panel">
 			<h3 id="statsHeader" style="padding-left: 2px;">STATISTICS:</h3>
 			<div class="player_info_group">
-				<div id="player_info_level">Level: 1</div>
-				<div id="player_info_xp">XP: 0%</div>
+				<div class="player_info_element">
+					Level:
+					<span id="player_info_level"></span>
+				</div>
+				<div class="player_info_element" id="XP">
+					XP:
+					<span id="player_info_xp"></span>
+				</div>
 			</div>
 			<br>
 			<div class="player_info_group">
-				<div id="player_info_health">Health: 100%</div>
-				<div id="player_info_mana">Mana: 100%</div>
+				<div class="player_info_element" id="HP">
+					Health:
+					<span id="player_info_health"></span>
+				</div>
+				<div class="player_info_element" id="MANA">
+					Mana:
+					<span id="player_info_mana"></span>
+				</div>
 			</div>
 			<br>
 			<div class="player_info_group">
-				<div id="player_info_gold">Gold: 0</div>
+				<div class="player_info_element">
+					Gold:
+					<span id="player_info_gold"></span>
+				</div>
 			</div>
 			<br>
 			<div class="player_info_group">
-				<div id="player_info_strength">Strength: 1</div>
-				<div id="player_info_dexterity">Dexterity: 1</div>
-				<div id="player_info_stamina">Stamina: 1</div>
-				<div id="player_info_intelligence">Intelligence: 1</div>
+				<div class="player_info_element" id="STR">
+					Strength:
+					<span id="player_info_strength"></span>
+				</div>
+				<div class="player_info_element" id="DEX">
+					Dexterity:
+					<span id="player_info_dexterity"></span>
+				</div>
+				<div class="player_info_element" id="STA">
+					Stamina:
+					<span id="player_info_stamina"></span>
+				</div>
+				<div class="player_info_element" id="INT">
+					Intelligence:
+					<span id="player_info_intelligence"></span>
+				</div>
 			</div>
 			<br>
 			<div class="player_info_group">
-				<div id="player_info_exhaustion">Exhaustion: 0%</div>
+				<div class="player_info_element" id="EXH">
+					Exhaustion:
+					<span id="player_info_exhaustion"></span>
+				</div>
 			</div>
 		</div>
 
