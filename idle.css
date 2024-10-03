@@ -134,6 +134,14 @@ button
 	float: left;
 }
 
+#battle_data
+{
+	display: none;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+}
+
 #player_battle_data, 
 #monster_battle_data
 {

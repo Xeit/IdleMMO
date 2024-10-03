@@ -230,6 +230,8 @@ function initializeQuesting()
 	});
 
 	questFocus = QuestFocuses.BALANCED;
+	
+	updateQuestInfo();
 }
 
 function startQuesting()
