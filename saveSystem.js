@@ -101,7 +101,7 @@ function gatherPlayerData()
 	}
 	else
 	{
-		addData(undefined);
+		addData("undefined");
 	}
 	
 	addData("playerHelmetSlot");
@@ -111,7 +111,7 @@ function gatherPlayerData()
 	}
 	else
 	{
-		addData(undefined);
+		addData("undefined");
 	}
 	
 	addData("playerBodyArmourSlot");
@@ -121,7 +121,7 @@ function gatherPlayerData()
 	}
 	else
 	{
-		addData(undefined);
+		addData("undefined");
 	}
 	
 	addData("playerGlovesSlot");
@@ -131,7 +131,7 @@ function gatherPlayerData()
 	}
 	else
 	{
-		addData(undefined);
+		addData("undefined");
 	}
 	
 	addData("playerBootsSlot");
@@ -141,7 +141,7 @@ function gatherPlayerData()
 	}
 	else
 	{
-		addData(undefined);
+		addData("undefined");
 	}
 }
 
@@ -223,7 +223,7 @@ function readPlayerData(arrayOfVariables)
 						playerIntelligenceRequiredXP = +arrayOfVariables[i+1];
 						break;
 					case "playerWeaponSlot":
-						if(arrayOfVariables[i+1] !== undefined && arrayOfVariables[i+1] !== "undefined")
+						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
 							var itemArrayOfVariables = itemString.split("|item|");
@@ -235,7 +235,7 @@ function readPlayerData(arrayOfVariables)
 						}
 						break;
 					case "playerHelmetSlot":
-						if(arrayOfVariables[i+1] !== undefined && itemArrayOfVariables[i+1] !== "undefined")
+						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
 							var itemArrayOfVariables = itemString.split("|item|");
@@ -247,7 +247,7 @@ function readPlayerData(arrayOfVariables)
 						}
 						break;
 					case "playerBodyArmourSlot":
-						if(arrayOfVariables[i+1] !== undefined && arrayOfVariables[i+1] !== "undefined")
+						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
 							var itemArrayOfVariables = itemString.split("|item|");
@@ -259,7 +259,7 @@ function readPlayerData(arrayOfVariables)
 						}
 						break;
 					case "playerGlovesSlot":
-						if(arrayOfVariables[i+1] !== undefined && arrayOfVariables[i+1] !== "undefined")
+						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
 							var itemArrayOfVariables = itemString.split("|item|");
@@ -271,7 +271,7 @@ function readPlayerData(arrayOfVariables)
 						}
 						break;
 					case "playerBootsSlot":
-						if(arrayOfVariables[i+1] !== undefined && arrayOfVariables[i+1] !== "undefined")
+						if(arrayOfVariables[i+1] != "undefined")
 						{
 							var itemString = arrayOfVariables[i+1];
 							var itemArrayOfVariables = itemString.split("|item|");
