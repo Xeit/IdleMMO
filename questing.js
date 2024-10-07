@@ -237,6 +237,7 @@ function initializeQuesting()
 function startQuesting()
 {
 	$("#questing_window").css("display", "flex");
+	updateQuestInfo();
 }
 
 function stopQuesting()

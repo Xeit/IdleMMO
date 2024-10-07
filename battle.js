@@ -172,6 +172,10 @@ function hitEnemy()
 			//Add new "Attack" and "Defensive" in left UI?
 		}
 
+		//Gold drop
+		const goldDropRoll = Math.round((Math.random() * enemyLevel)) + enemyLevel;
+		playerGold += +goldDropRoll;
+
 		//Lower player quest exhaustion
 		if(playerExhaustion > 0)
 		{
