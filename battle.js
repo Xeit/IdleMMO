@@ -90,13 +90,6 @@ function stopBattle()
 
 function startBattle()
 {
-	/*
-	bIsInBattle = true;
-	if(!bIsEnemyAlive)
-	{
-		getNewEnemy();
-	}
-	*/
 	updateBattleHealth();
 
 	$("#battle_window").css("display", "flex");
@@ -138,6 +131,14 @@ function hitEnemy()
 	{
 		playerDamage += +playerWeaponSlot.returnItemPower();
 	}
+
+	const critRoll = +(Math.random() * enemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex
+	if(critRoll < playerDexterity)
+	{
+		//This is crit
+		playerDamage = playerDamage * 2;
+	}
+
 	enemyHealth -= +playerDamage;
 
 	//Kill enemy
