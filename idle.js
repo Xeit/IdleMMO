@@ -71,6 +71,10 @@ $(document).ready(function()
 	$("#equipmentButton").click(function(){
 		newPlayerTask(PlayerTasks.equipment);
 	});
+
+	$("#shopButton").click(function(){
+		newPlayerTask(PlayerTasks.shop);
+	})
 	
 	//Tbh all bs I wrote was started by this tutorial: https://www.youtube.com/playlist?list=PLgHw_wODS1vX20X7ppbssrn_MU6SaYoDF
 	//He had like 4k views on playlist, it's not best tutorial but still helped me start writing this website. Thanks!
@@ -101,6 +105,9 @@ function newPlayerTask(newTask)
 		case PlayerTasks.questing:
 			stopQuesting();
 			break;
+		case PlayerTasks.shop:
+			stopShop();
+			break;
 	}
 
 	//Start new task
@@ -122,6 +129,9 @@ function newPlayerTask(newTask)
 			break;
 		case PlayerTasks.questing:
 			startQuesting();
+			break;
+		case PlayerTasks.shop:
+			startShop();
 			break;
 	}
 

@@ -5,7 +5,8 @@ const PlayerTasks =
 	healing: "healing",
 	training: "training",
 	equipment: "equipment",
-	questing: "questing"
+	questing: "questing",
+	shop: "shop"
  };
 
 const PlayerSkills =
