@@ -7,6 +7,7 @@ $(document).ready(function()
 	initializeTraining();
 	initializeQuesting();
 	initializeBattle();
+	initializeShops();
 	
 	updateInfoPanel();
 	
@@ -106,7 +107,7 @@ function newPlayerTask(newTask)
 			stopQuesting();
 			break;
 		case PlayerTasks.shop:
-			stopShop();
+			stopShops();
 			break;
 	}
 
@@ -131,7 +132,7 @@ function newPlayerTask(newTask)
 			startQuesting();
 			break;
 		case PlayerTasks.shop:
-			startShop();
+			startShops();
 			break;
 	}
 

@@ -9,6 +9,9 @@
 	-->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+	</style>
 
 	<link rel="stylesheet" href="idle.css?v=24">
 	
@@ -25,12 +28,9 @@
 	<script src="healing.js?v=24"></script>
 	<script src="training.js?v=24"></script>
 	<script src="questing.js?v=24"></script>
-	<script src="shop.js?v=24"></script>
+	<script src="shops.js?v=24"></script>
 
 	<script src="idle.js?v=24"></script>
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
-	</style>
 </head>
 <body>
 	<div id="new_content">
@@ -253,13 +253,62 @@
 				<div style="padding-left: 2px;">Armour power reduces damage received at half of it's power (rounded down). (still min dmg received is 1)</div>
 			</div>
 
-			<!-- SHOP -->
+			<!-- SHOPS -->
 			<div class = "task_window" id="shop_window" style="display: none;">
-				<span style="width: 30%; height: 100%;" id="potion_seller"></span>
-				<span style="width: 5%;"></span>
-				<span style="width: 30%; height: 100%;" id="church_buffer"></span>
-				<span style="width: 5%;"></span>
-				<span style="width: 30%; height: 100%;" id="tavern"></span>
+				<span style="width: 32%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;" id="potion_seller">
+					<div>Potion Seller</div>
+					<button id="potionSellerButton">ENTER</button>
+				</span>
+				<span style="width: 2%;"></span>
+				<span style="width: 32%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;" id="church_buffer">
+					<div>Church</div>
+					<button id="churchButton">ENTER</button>
+				</span>
+				<span style="width: 2%;"></span>
+				<span style="width: 32%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;" id="tavern">
+					<div>Tavern</div>
+					<button id="tavernButton">ENTER</button>
+				</span>
+			</div>
+
+			<!-- POTION SELLER (SHOP) -->
+			<div class="task_window" id="potion_seller_window" style="display: none; justify-content: center;">
+				<div style="width: 80%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
+					<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<span style="width: 45%; display: flex; justify-content: center;">
+							NAME
+						</span>
+						<span style="width: 30%; display: flex; justify-content: center;">
+							PRICE
+						</span>
+						<span style="width: 25%; display: flex; justify-content: center;">
+							<div>
+							</div>
+						</span>
+					</div>
+
+					<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<span style="width: 45%; display: flex; justify-content: center;">
+							HEALTH POTION
+						</span>
+						<span style="width: 30%; display: flex; justify-content: center;">
+							2000
+						</span>
+						<span style="width: 25%; display: flex; justify-content: center;">
+							<div>
+								<button id="buyItemButton" itemId="0">BUY</button>
+							</div>
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- CHURCH (SHOP) -->
+			<div class="task_window" id="church_window" style="display: none;">
+				
+			</div>
+			<!-- TAVERN (SHOP) -->
+			<div class="task_window" id="tavern_window" style="display: none;">
+				
 			</div>
 
 			<div id = "control_buttons">
@@ -268,7 +317,7 @@
 				<button id="recoverHealthButton">HEAL</button>
 				<button id="trainingButton">TRAIN</button>
 				<button id="equipmentButton">EQ</button>
-				<button id="shopButton">SHOP</button>
+				<button id="shopButton">SHOPS</button>
 			</div>
 		</div>
 	</div>

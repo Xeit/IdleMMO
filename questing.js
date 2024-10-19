@@ -269,7 +269,7 @@ function tickQuesting()
 
 function getNewQuest()
 {
-	const minXpRoll = playerLevel * 5;
+	const minXpRoll = playerLevel * 3;
 	const maxXpRoll = minXpRoll * 2;
 
 	const minGoldRoll = playerLevel * 4;
@@ -296,7 +296,7 @@ function getNewQuest()
 	questXp = xpRoll;
 	questGold = goldRoll;
 
-	questTarget = +(Math.random() * 3 + +playerLevel + 3).toFixed();
+	questTarget = +(Math.random() * 3 + +((1/2 * playerLevel).toFixed()) + 3).toFixed();
 	questProgress = 0;
 	
 	const randomFlavourTextID = +(Math.random() * FlavoutTexts.length - 1).toFixed();
