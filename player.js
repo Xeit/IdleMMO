@@ -36,6 +36,9 @@ var playerBodyArmourSlot;
 var playerGlovesSlot;
 var playerBootsSlot;
 
+//Inventory
+var playerHealthPotions = 0;
+
 function addPlayerXp(xpToAdd)
 {
 	//This is current level cap
@@ -60,4 +63,51 @@ function playerLevelUp()
 	playerMaxExhaustion = 50 + (5 * (playerLevel - 1));
 
 	healPlayerToMax();
+}
+
+function playerGetArmourValue()
+{
+	var armourValue = 0;
+
+	armourValue += playerHelmetSlot.returnItemPower();
+	armourValue += playerBodyArmourSlot.returnItemPower();
+	armourValue += playerGlovesSlot.returnItemPower();
+	armourValue += playerBootsSlot.returnItemPower();
+
+	return armourValue;
+}
+
+function playerHealPlayer(hpToAdd)
+{
+	playerHealth += +hpToAdd;
+	if(playerHealth > playerMaxHealth)
+	{
+		playerHealth = playerMaxHealth;
+	}
+}
+
+function playerTakeDamage(monsterDamageNumber)
+{	
+	monsterDamageNumber = +(monsterDamageNumber - Math.floor(playerStamina / 2));
+	monsterDamageNumber -= +Math.floor(playerGetArmourValue() / 2);
+
+	if(monsterDamageNumber < 1)
+	{
+		monsterDamageNumber = 1;
+	}
+
+	playerHealth -= +monsterDamageNumber;
+
+	if(playerHealth <= 0)
+	{
+		playerHealth = 0;
+		newPlayerTask(PlayerTasks.healing);
+	}
+	else if(playerHealth < (playerMaxHealth / 2) && playerHealthPotions > 0)
+	{
+		//Use potion if under 50% health
+		playerHealthPotions -= 1;
+		const healthToHeal = +Math.floor(playerMaxHealth / 2);
+		playerHealPlayer(healthToHeal);
+	}
 }

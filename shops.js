@@ -26,7 +26,7 @@ function initializeShops()
 
 	$(".buyItemButton").click(function()
 	{
-
+		buyItem($(this).attr("itemId"));
 	});
 }
 
@@ -56,7 +56,20 @@ function buyItem(itemId)
 			break;
 		default:
 			console.log("Missing itemId to buy: " + itemId);
+			break;
 	}
 
-	//Does nothing for not. Basically TODO xD
+	if(playerGold >= itemCost)
+	{
+		playerGold -= +itemCost;
+
+		switch(itemId)
+		{
+			case "0":
+				playerHealthPotions = playerHealthPotions + 1;
+				break;
+			default:
+				break;
+		}
+	}
 }

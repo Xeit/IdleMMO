@@ -143,6 +143,9 @@ function gatherPlayerData()
 	{
 		addData("undefined");
 	}
+
+	addData("playerHealthPotions");
+	addData(playerHealthPotions);
 }
 
 function readPlayerData(arrayOfVariables)
@@ -281,6 +284,9 @@ function readPlayerData(arrayOfVariables)
 								playerBootsSlot = recreatedItem;
 							}
 						}
+						break;
+					case "playerHealthPotions":
+						playerHealthPotions = +arrayOfVariables[i+1];
 						break;
 					default:
 						console.log("There was unexpected data when reading the save file, name of unexpected variable: " + VariableName); 

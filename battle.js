@@ -66,7 +66,7 @@ function tickBattle()
 			hitEnemy();
 			if(bIsEnemyAlive)
 			{
-				hitPlayer();
+				playerTakeDamage(enemyDamage);
 			}
 			updateBattleHealth();
 		}
@@ -188,44 +188,6 @@ function hitEnemy()
 				playerExhaustion -= +3;
 			}
 		}
-	}
-}
-
-function hitPlayer()
-{
-	var monsterDamage = +(enemyDamage - Math.floor(playerStamina / 2));
-
-	//Gear calculations 
-	//(in future might be smart to make function to call from item or player to get total armour but who cares for now xD)
-	if(playerHelmetSlot != null)
-	{
-		monsterDamage -= +Math.floor(playerHelmetSlot.returnItemPower() / 2);
-	}
-	if(playerBodyArmourSlot != null)
-	{
-		monsterDamage -= +Math.floor(playerBodyArmourSlot.returnItemPower() / 2);
-	}
-	if(playerGlovesSlot != null)
-	{
-		monsterDamage -= +Math.floor(playerGlovesSlot.returnItemPower() / 2);
-	}
-	if(playerBootsSlot != null)
-	{
-		monsterDamage -= +Math.floor(playerBootsSlot.returnItemPower() / 2);
-	}
-
-
-	if(monsterDamage < 1)
-	{
-		monsterDamage = 1;
-	}
-
-	playerHealth -= +monsterDamage;
-
-	if(playerHealth <= 0)
-	{
-		playerHealth = 0;
-		newPlayerTask(PlayerTasks.healing);
 	}
 }
 
