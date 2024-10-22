@@ -30,11 +30,11 @@ var playerIntelligenceXP = 0;
 var playerIntelligenceRequiredXP = 50;
 
 //Equipment slots
-var playerWeaponSlot;
-var playerHelmetSlot;
-var playerBodyArmourSlot;
-var playerGlovesSlot;
-var playerBootsSlot;
+var playerWeaponSlot = undefined;
+var playerHelmetSlot = undefined;
+var playerBodyArmourSlot = undefined;
+var playerGlovesSlot = undefined;
+var playerBootsSlot = undefined;
 
 //Inventory
 var playerHealthPotions = 0;
@@ -69,10 +69,22 @@ function playerGetArmourValue()
 {
 	var armourValue = 0;
 
-	armourValue += playerHelmetSlot.returnItemPower();
-	armourValue += playerBodyArmourSlot.returnItemPower();
-	armourValue += playerGlovesSlot.returnItemPower();
-	armourValue += playerBootsSlot.returnItemPower();
+	if(typeof(playerHelmetSlot) == Item)
+	{
+		armourValue += playerHelmetSlot.returnItemPower();
+	}
+	if(typeof(playerHelmetSlot) == Item)
+	{
+		armourValue += playerBodyArmourSlot.returnItemPower();
+	}
+	if(typeof(playerHelmetSlot) == Item)
+	{
+		armourValue += playerGlovesSlot.returnItemPower();
+	}
+	if(typeof(playerHelmetSlot) == Item)
+	{
+		armourValue += playerBootsSlot.returnItemPower();
+	}
 
 	return armourValue;
 }

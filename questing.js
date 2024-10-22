@@ -269,7 +269,7 @@ function tickQuesting()
 
 function getNewQuest()
 {
-	const minXpRoll = playerLevel * 3;
+	const minXpRoll = playerLevel * 3 + 5;
 	const maxXpRoll = minXpRoll * 2;
 
 	const minGoldRoll = playerLevel * 4;
