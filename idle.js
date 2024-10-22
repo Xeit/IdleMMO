@@ -40,6 +40,9 @@ $(document).ready(function()
 						tickQuesting();
 						break;
 				}
+
+				tickBuffs();
+
 				updateInfoPanel();
 				bakeACookie();
 			}

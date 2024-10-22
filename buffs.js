@@ -33,3 +33,19 @@ class PlayerBuff
 		return serializedString;
 	}
 }
+
+function tickBuffs()
+{
+	for(var i = 0; i < playerBuffList.length; i = i + 1)
+	{
+		if(typeof(playerBuffList[i] == PlayerBuff))
+		{
+			playerBuffList[i].buffDuration -= 1;
+			if(playerBuffList[i].buffDuration <= 0)
+			{
+				//This is the dumbest way of removing element from list. WTF JavaScript.
+				playerBuffList = playerBuffList.filter(buff => buff !== playerBuffList[i]);
+			}
+		}
+	}
+}
