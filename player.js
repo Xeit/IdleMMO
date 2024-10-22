@@ -39,6 +39,9 @@ var playerBootsSlot = undefined;
 //Inventory
 var playerHealthPotions = 0;
 
+//Buffs
+var playerBuffList = [];
+
 function addPlayerXp(xpToAdd)
 {
 	//This is current level cap
