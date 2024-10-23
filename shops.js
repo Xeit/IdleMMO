@@ -28,6 +28,11 @@ function initializeShops()
 	{
 		buyItem($(this).attr("itemId"));
 	});
+
+	$(".buyBuffButton").click(function()
+	{
+		buyBuff($(this).attr("buffId"), $(this).attr("cost"));
+	});
 }
 
 function startShops()
@@ -70,6 +75,48 @@ function buyItem(itemId)
 				break;
 			default:
 				break;
+		}
+	}
+}
+
+function buyBuff(buffId, cost)
+{
+	if(playerGold >= cost)
+	{
+		playerGold -= +cost;
+
+		var createNewBuff = true;
+		var buffDefaultValues = null;
+
+		for(var i = 0; i < buffsDefaultsArray.length; i = i + 1)
+		{
+			if(typeof(buffsDefaultsArray[i] == PlayerBuff))
+			{
+				if(buffsDefaultsArray[i].buffId == buffId)
+				{
+					buffDefaultValues = new PlayerBuff(buffsDefaultsArray[i].buffId, buffsDefaultsArray[i].buffType, buffsDefaultsArray[i].buffPower, buffsDefaultsArray[i].buffDuration, buffsDefaultsArray[i].buffName, buffsDefaultsArray[i].buffDescription);
+					break;
+				}
+			}
+		}
+
+		for(var i = 0; i < playerBuffList.length; i = i + 1)
+		{
+			if(typeof(playerBuffList[i] == PlayerBuff))
+			{
+				if(playerBuffList[i].buffId == buffId)
+				{
+					//Refresh duration on the buff
+					playerBuffList[i].buffDuration = buffDefaultValues.buffDuration;
+					createNewBuff = false;
+					break;
+				}
+			}
+		}
+
+		if(createNewBuff)
+		{
+			playerBuffList.push(buffDefaultValues);
 		}
 	}
 }

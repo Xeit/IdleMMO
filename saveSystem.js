@@ -331,9 +331,9 @@ function readPlayerBuffList(buffListString)
 		if(typeof(arrayOfBuffs[i]) == PlayerBuff)
 		{
 			const arrayOfBuffParameters = arrayOfBuffs[i].split("|buff|");
-			if(arrayOfBuffParameters.length == 5)
+			if(arrayOfBuffParameters.length == 6)
 			{
-				var recreatedBuff = new PlayerBuff(arrayOfBuffParameters[0], arrayOfBuffParameters[1], arrayOfBuffParameters[2], arrayOfBuffParameters[3], arrayOfBuffParameters[4]);
+				var recreatedBuff = new PlayerBuff(arrayOfBuffParameters[0], arrayOfBuffParameters[1], arrayOfBuffParameters[2], arrayOfBuffParameters[3], arrayOfBuffParameters[4], arrayOfBuffParameters[5]);
 				playerBuffList.push(recreatedBuff);
 			}
 			else
