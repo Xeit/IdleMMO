@@ -126,19 +126,8 @@ function getNewEnemy()
 
 function hitEnemy()
 {
-	var playerDamage = +playerStrength;
-	if(typeof(playerWeaponSlot) == Item)
-	{
-		playerDamage += +playerWeaponSlot.returnItemPower();
-	}
-
-	const critRoll = +(Math.random() * enemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex
-	if(critRoll < playerDexterity)
-	{
-		//This is crit
-		playerDamage = playerDamage * 2;
-	}
-
+	var playerDamage = playerGetAttackDamage(enemyLevel);
+	
 	enemyHealth -= +playerDamage;
 
 	//Kill enemy

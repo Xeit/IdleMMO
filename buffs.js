@@ -54,6 +54,24 @@ function tickBuffs()
 	}
 }
 
+function getTotalBuffsWithType(buffTypeToGet)
+{
+	var totalBuffStrength = 0;
+
+	for(var i = 0; i < playerBuffList.length; i = i + 1)
+	{
+		if(typeof(playerBuffList[i] == PlayerBuff))
+		{
+			if(playerBuffList[i].buffType == buffTypeToGet)
+			{
+				totalBuffStrength += +playerBuffList[i].buffPower;
+			}
+		}
+	}
+
+	return totalBuffStrength;
+}
+
 const buffsDefaultsArray = new Array();
 
 buffsDefaultsArray.push(new PlayerBuff("churchDamage", BuffType.damage, 10, 3600, "Church Damage Blessing", "Applies 10 additional damage"));

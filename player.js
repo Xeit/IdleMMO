@@ -106,6 +106,8 @@ function playerTakeDamage(monsterDamageNumber)
 	monsterDamageNumber = +(monsterDamageNumber - Math.floor(playerStamina / 2));
 	monsterDamageNumber -= +Math.floor(playerGetArmourValue() / 2);
 
+	monsterDamageNumber -= +getTotalBuffsWithType(BuffType.defense);
+
 	if(monsterDamageNumber < 1)
 	{
 		monsterDamageNumber = 1;
@@ -125,4 +127,26 @@ function playerTakeDamage(monsterDamageNumber)
 		const healthToHeal = +Math.floor(playerMaxHealth / 2);
 		playerHealPlayer(healthToHeal);
 	}
+}
+
+function playerGetAttackDamage(againstEnemyLevel)
+{
+	var playerDamageToDeal = 0;
+	
+	playerDamageToDeal = +playerStrength;
+	if(typeof(playerWeaponSlot) == Item)
+	{
+		playerDamageToDeal += +playerWeaponSlot.returnItemPower();
+	}
+
+	const critRoll = +(Math.random() * againstEnemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex
+	if(critRoll < playerDexterity)
+	{
+		//This is crit
+		playerDamageToDeal = playerDamageToDeal * 2;
+	}
+
+	playerDamageToDeal += +getTotalBuffsWithType(BuffType.damage);
+
+	return playerDamageToDeal;
 }
