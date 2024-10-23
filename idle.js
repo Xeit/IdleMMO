@@ -10,6 +10,7 @@ $(document).ready(function()
 	initializeShops();
 	
 	updateInfoPanel();
+	tickBuffs();
 	
 	var tickWorker;
 	if(typeof(Worker) !== "undefined")

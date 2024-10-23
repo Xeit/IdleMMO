@@ -13,25 +13,26 @@
 		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 	</style>
 
-	<link rel="stylesheet" href="idle.css?v=24">
+	<link rel="stylesheet" href="idle.css?v=25">
+	
+	<script src="uiFunctions.js?v=25"></script>
+
+	<script src="enums.js?v=25"></script>
+	<script src="item.js?v=25"></script>
+	<script src="player.js?v=25"></script>
+	<script src="enemies.js?v=25"></script>
+	<script src="battleZones.js?v=25"></script>
+	<script src="buffs.js?v=25"></script>
 	
 	<script src="saveSystem.js?v=1"></script>
-	<script src="uiFunctions.js?v=24"></script>
 
-	<script src="enums.js?v=24"></script>
-	<script src="item.js?v=24"></script>
-	<script src="player.js?v=24"></script>
-	<script src="enemies.js?v=24"></script>
-	<script src="battleZones.js?v=24"></script>
-	<script src="buffs.js?v=24"></script>
+	<script src="battle.js?v=25"></script>
+	<script src="healing.js?v=25"></script>
+	<script src="training.js?v=25"></script>
+	<script src="questing.js?v=25"></script>
+	<script src="shops.js?v=25"></script>
 
-	<script src="battle.js?v=24"></script>
-	<script src="healing.js?v=24"></script>
-	<script src="training.js?v=24"></script>
-	<script src="questing.js?v=24"></script>
-	<script src="shops.js?v=24"></script>
-
-	<script src="idle.js?v=24"></script>
+	<script src="idle.js?v=25"></script>
 </head>
 <body>
 	<div id="new_content">
@@ -97,6 +98,10 @@
 					Exhaustion:
 					<span id="player_info_exhaustion"></span>
 				</div>
+			</div>
+			<br>
+			<br>
+			<div class="player_info_group" id="player_info_buffs">
 			</div>
 		</div>
 
@@ -366,7 +371,40 @@
 			</div>
 			<!-- TAVERN (SHOP) -->
 			<div class="task_window" id="tavern_window" style="display: none;">
-				
+				<div style="width: 80%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
+					<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<span style="width: 25%; display: flex; justify-content: center;">
+							NAME
+						</span>
+						<span style="width: 50%; display: flex; justify-content: center;">
+							DESCRIPTION
+						</span>
+						<span style="width: 15%; display: flex; justify-content: center;">
+							PRICE
+						</span>
+						<span style="width: 10%; display: flex; justify-content: center;">
+							<div>
+							</div>
+						</span>
+					</div>
+
+					<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<span style="width: 25%; display: flex; justify-content: center;">
+							+5 DAMAGE
+						</span>
+						<span style="width: 50%; display: flex; justify-content: center;">
+							Stuffs you with spicy food. You feel pain. 20 min duration.
+						</span>
+						<span style="width: 15%; display: flex; justify-content: center;">
+							500
+						</span>
+						<span style="width: 10%; display: flex; justify-content: center;">
+							<div>
+								<button class="buyBuffButton" buffId="spicyFood" cost="500">BUY</button>
+							</div>
+						</span>
+					</div>
+				</div>
 			</div>
 
 			<div id = "control_buttons">

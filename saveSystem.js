@@ -157,7 +157,7 @@ function serializeBuffList()
 
 	for(var i = 1; i <= playerBuffList.length; i = i + 1)
 	{
-		if(typeof(playerBuffList[i-1]) == PlayerBuff)
+		if(playerBuffList[i-1] instanceof PlayerBuff)
 		{
 			buffsString += playerBuffList[i-1].serializeBuff();
 	
@@ -326,20 +326,22 @@ function readPlayerBuffList(buffListString)
 {
 	const arrayOfBuffs = buffListString.split("|buffList|");
 
+	if(arrayOfBuffs.length == 1 && arrayOfBuffs[0] == "")
+	{
+		return;
+	}
+
 	for(var i = 0; i < arrayOfBuffs.length; i = i + 1)
 	{
-		if(typeof(arrayOfBuffs[i]) == PlayerBuff)
+		const arrayOfBuffParameters = arrayOfBuffs[i].split("|buff|");
+		if(arrayOfBuffParameters.length == 6)
 		{
-			const arrayOfBuffParameters = arrayOfBuffs[i].split("|buff|");
-			if(arrayOfBuffParameters.length == 6)
-			{
-				var recreatedBuff = new PlayerBuff(arrayOfBuffParameters[0], arrayOfBuffParameters[1], arrayOfBuffParameters[2], arrayOfBuffParameters[3], arrayOfBuffParameters[4], arrayOfBuffParameters[5]);
-				playerBuffList.push(recreatedBuff);
-			}
-			else
-			{
-				console.log("Incorrect amount of buff parameters in saveSystem.js readPlayerBuffList(buffListString)");
-			}
+			var recreatedBuff = new PlayerBuff(arrayOfBuffParameters[0], arrayOfBuffParameters[1], arrayOfBuffParameters[2], arrayOfBuffParameters[3], arrayOfBuffParameters[4], arrayOfBuffParameters[5]);
+			playerBuffList.push(recreatedBuff);
+		}
+		else
+		{
+			console.log("Incorrect amount of buff parameters in saveSystem.js readPlayerBuffList(buffListString)");
 		}
 	}
 }
