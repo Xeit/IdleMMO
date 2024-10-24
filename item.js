@@ -130,7 +130,7 @@ function generateItem(enemyLevel)
 	var itemSlot = ItemSlot.none;
 	var itemName = ""
 	var itemTypeRoll = +(Math.random() * 100).toFixed();
-	if(itemTypeRoll < 10)
+	if(itemTypeRoll < 15)
 	{
 		itemSlot = ItemSlot.weapon;
 	}
