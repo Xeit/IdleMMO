@@ -22,19 +22,19 @@ class Enemy
 		switch (enemyDiff) 
 		{
 			case EnemyDifficulty.easy:
-				this.chanceOfDroppingItem = 15;
-				break;
-			case EnemyDifficulty.medium:
-				this.chanceOfDroppingItem = 20;
-				break;
-			case EnemyDifficulty.hard:
 				this.chanceOfDroppingItem = 25;
 				break;
-			case EnemyDifficulty.very_hard:
+			case EnemyDifficulty.medium:
 				this.chanceOfDroppingItem = 35;
 				break;
+			case EnemyDifficulty.hard:
+				this.chanceOfDroppingItem = 45;
+				break;
+			case EnemyDifficulty.very_hard:
+				this.chanceOfDroppingItem = 60;
+				break;
 			case EnemyDifficulty.mini_boss:
-				this.chanceOfDroppingItem = 75;
+				this.chanceOfDroppingItem = 85;
 				break;
 			case EnemyDifficulty.boss:
 				this.chanceOfDroppingItem = 100;
