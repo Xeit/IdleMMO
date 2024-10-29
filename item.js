@@ -89,19 +89,19 @@ function generateItem(enemyLevel)
 {
 	//itemPower
 	var percentRoll = +(Math.random() * 100).toFixed();
-	if(percentRoll < 50)
+	if(percentRoll < 15)
 	{
 		enemyLevel -= 2;
 	}
-	else if(percentRoll < 75)
+	else if(percentRoll < 45)
 	{
 		enemyLevel -= 1;
 	}
-	else if(percentRoll < 90)
+	else if(percentRoll < 85)
 	{
 		//enemyLevel stays the same
 	}
-	else if(percentRoll < 98)
+	else if(percentRoll < 95)
 	{
 		enemyLevel += 1;
 	}
@@ -113,9 +113,9 @@ function generateItem(enemyLevel)
 	//itemRarity
 	var newItemRarity = ItemRarity.none;
 	var rarityRoll = +(Math.random() * 1000).toFixed();
-	if(rarityRoll < 700)
+	if(rarityRoll < 600)
 		newItemRarity = ItemRarity.common;
-	else if(rarityRoll < 900)
+	else if(rarityRoll < 850)
 		newItemRarity = ItemRarity.uncommon;
 	else if(rarityRoll < 950)
 		newItemRarity = ItemRarity.magic;
