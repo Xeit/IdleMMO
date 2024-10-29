@@ -42,19 +42,19 @@ class Item
 			case ItemRarity.common:
 				break;
 			case ItemRarity.uncommon:
-				itemPower += 1;
+				itemPower += +(1.2 * itemPower).toFixed();
 				break;
 			case ItemRarity.magic:
-				itemPower += 2;
+				itemPower += +(1.5 * itemPower).toFixed();
 				break;
 			case ItemRarity.rare:
-				itemPower += 3;
+				itemPower += +(2 * itemPower).toFixed();
 				break;
 			case ItemRarity.mythic:
-				itemPower += 5;
+				itemPower += +(3 * itemPower).toFixed();
 				break;
 			case ItemRarity.legendary:
-				itemPower += 10;
+				itemPower += +(5 * itemPower).toFixed();
 				break;
 			default:
 				break;
