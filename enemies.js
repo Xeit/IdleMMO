@@ -16,25 +16,25 @@ class Enemy
 		this.enemyLevel = enemyLevel;
 		this.enemyDifficulty = enemyDiff;
 		this.enemyXp = +(enemyLevel * 2 * enemyDiff).toFixed();
-		this.enemyMaxHealth = +(enemyLevel * 15 * enemyDiff).toFixed();
-		this.enemyDamage = +(enemyLevel * 3.5 * enemyDiff).toFixed();
+		this.enemyMaxHealth = +(enemyLevel * 12 * enemyDiff).toFixed();
+		this.enemyDamage = +(enemyLevel * 3 * enemyDiff).toFixed();
 
 		switch (enemyDiff) 
 		{
 			case EnemyDifficulty.easy:
-				this.chanceOfDroppingItem = 25;
+				this.chanceOfDroppingItem = 40;
 				break;
 			case EnemyDifficulty.medium:
-				this.chanceOfDroppingItem = 35;
+				this.chanceOfDroppingItem = 55;
 				break;
 			case EnemyDifficulty.hard:
-				this.chanceOfDroppingItem = 45;
+				this.chanceOfDroppingItem = 65;
 				break;
 			case EnemyDifficulty.very_hard:
-				this.chanceOfDroppingItem = 60;
+				this.chanceOfDroppingItem = 80;
 				break;
 			case EnemyDifficulty.mini_boss:
-				this.chanceOfDroppingItem = 85;
+				this.chanceOfDroppingItem = 100;
 				break;
 			case EnemyDifficulty.boss:
 				this.chanceOfDroppingItem = 100;
