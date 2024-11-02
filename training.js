@@ -42,20 +42,17 @@ function tickTraining()
 {
 	if(bIsTraining)
 	{
+		const maxPlayerStatLvl = playerLevel * 3;
+		const xpToReceive = 1 + Math.floor(playerIntelligence /2);
+
 		switch(currentlyTrainedStatystic)
 		{
 			case "none":
 				break;
 			case "strength":
-				const maxStrengthLvl = playerLevel * 3;
-				if(playerStrength < maxStrengthLvl)
+				if(playerStrength < maxPlayerStatLvl)
 				{
-					const chanceOfReceivingXp = 0;//playerStrength / (maxStrengthLvl * 2);
-					const RandomRoll = +Math.random();
-					if(RandomRoll > chanceOfReceivingXp)
-					{
-						playerStrengthXP += 1 + Math.floor(playerIntelligence /2);
-					}
+					playerStrengthXP += xpToReceive;
 
 					if(playerStrengthXP >= playerStrengthRequiredXP)
 					{
@@ -75,15 +72,9 @@ function tickTraining()
 				}
 				break;
 			case "dexterity":
-				const maxDexterityLvl = playerLevel * 3;
-				if(playerDexterity < maxDexterityLvl)
+				if(playerDexterity < maxPlayerStatLvl)
 				{
-					const chanceOfReceivingXp = 0;// playerDexterity / (maxDexterityLvl * 2);
-					const RandomRoll = +Math.random();
-					if(RandomRoll > chanceOfReceivingXp)
-					{
-						playerDexterityXP += 1 + Math.floor(playerIntelligence /2);
-					}
+					playerDexterityXP += xpToReceive;
 
 					if(playerDexterityXP >= playerDexterityRequiredXP)
 					{
@@ -103,15 +94,9 @@ function tickTraining()
 				}
 				break;
 			case "stamina":
-				const maxStaminaLvl = playerLevel * 3;
-				if(playerStamina < maxStaminaLvl)
+				if(playerStamina < maxPlayerStatLvl)
 				{
-					const chanceOfReceivingXp = 0;// playerStamina / (maxStaminaLvl * 2);
-					const RandomRoll = +Math.random();
-					if(RandomRoll > chanceOfReceivingXp)
-					{
-						playerStaminaXP += 1 + Math.floor(playerIntelligence /2);
-					}
+					playerStaminaXP += xpToReceive;
 
 					if(playerStaminaXP >= playerStaminaRequiredXP)
 					{
@@ -131,17 +116,9 @@ function tickTraining()
 				}
 				break;
 			case "intelligence":
-				const maxIntelligenceLvl = playerLevel * 3;
-				if(playerIntelligence < maxIntelligenceLvl)
+				if(playerIntelligence < maxPlayerStatLvl)
 				{
-					const chanceOfReceivingXp = 0;// playerIntelligence / (maxIntelligenceLvl * 2); // If player lvl is 2 and max is 4 chance will be 25%
-					const RandomRoll = +Math.random();
-					if(RandomRoll > chanceOfReceivingXp)
-					{
-						//Should player intelligence even be affected by intelligence stat?
-						//Design question :o
-						playerIntelligenceXP += 1 + Math.floor(playerIntelligence /3);
-					}
+					playerIntelligenceXP += xpToReceive;
 
 					if(playerIntelligenceXP >= playerIntelligenceRequiredXP)
 					{
