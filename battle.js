@@ -7,7 +7,7 @@ var enemyMaxHealth = 10;
 var enemyDamage = 4;
 var enemyLevel = 1;
 var enemyXp = 1;
-var chanceOfDroppingItem = 15;
+var enemyDifficulty = EnemyDifficulty.easy;
 
 var currentZone = null;
 
@@ -113,7 +113,7 @@ function getNewEnemy()
 		enemyDamage = nextEnemy.enemyDamage;
 		enemyLevel = nextEnemy.enemyLevel;
 		enemyXp = nextEnemy.enemyXp;
-		chanceOfDroppingItem = nextEnemy.chanceOfDroppingItem;
+		enemyDifficulty = nextEnemy.enemyDifficulty;
 
 		$("#monster_battle_name").text(enemyName);
 		enemyHealth = +enemyMaxHealth;
@@ -151,15 +151,10 @@ function hitEnemy()
 		}
 
 		//Item drop
-		const itemDropRoll = +(Math.random() * 100).toFixed();
-		if(itemDropRoll < chanceOfDroppingItem)
-		{
-			var generatedNewItem = new Item();
-			generatedNewItem = generateItem(enemyLevel);
-			tryNewItem(generatedNewItem);
-			updateEquipmentWindow();
-			//Add new "Attack" and "Defensive" in left UI?
-		}
+		var generatedNewItem = new Item();
+		generatedNewItem = generateItem(enemyLevel, enemyDifficulty);
+		tryNewItem(generatedNewItem);
+		updateEquipmentWindow();
 
 		//Gold drop
 		const goldDropRoll = Math.round((Math.random() * enemyLevel)) + enemyLevel;

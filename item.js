@@ -85,7 +85,7 @@ function startEquipment()
 	$("#equipment_window").css("display", "block");
 }
 
-function generateItem(enemyLevel)
+function generateItem(enemyLevel, enemyDifficulty)
 {
 	//itemPower
 	var percentRoll = +(Math.random() * 100).toFixed();
@@ -93,15 +93,15 @@ function generateItem(enemyLevel)
 	{
 		enemyLevel -= 2;
 	}
-	else if(percentRoll < 45)
+	else if(percentRoll < 25)
 	{
 		enemyLevel -= 1;
 	}
-	else if(percentRoll < 85)
+	else if(percentRoll < 75)
 	{
 		//enemyLevel stays the same
 	}
-	else if(percentRoll < 95)
+	else if(percentRoll < 90)
 	{
 		enemyLevel += 1;
 	}
@@ -112,16 +112,38 @@ function generateItem(enemyLevel)
 
 	//itemRarity
 	var newItemRarity = ItemRarity.none;
-	var rarityRoll = +(Math.random() * 1000).toFixed();
-	if(rarityRoll < 600)
+	var rarityRoll = Math.round(Math.random() * 1500);
+
+	switch (enemyDifficulty) 
+	{
+		case EnemyDifficulty.medium:
+			rarityRoll += 200;
+			break;
+		case EnemyDifficulty.hard:
+			rarityRoll += 500;
+			break;
+		case EnemyDifficulty.very_hard:
+			rarityRoll += 700;
+			break;
+		case EnemyDifficulty.mini_boss:
+			rarityRoll += 1200;
+			break;
+		case EnemyDifficulty.boss:
+			rarityRoll += 1700;
+			break;
+		default:
+			break;
+	}
+
+	if(rarityRoll < 500)
 		newItemRarity = ItemRarity.common;
-	else if(rarityRoll < 850)
+	else if(rarityRoll < 1000)
 		newItemRarity = ItemRarity.uncommon;
-	else if(rarityRoll < 950)
+	else if(rarityRoll < 1500)
 		newItemRarity = ItemRarity.magic;
-	else if(rarityRoll < 985)
+	else if(rarityRoll < 2000)
 		newItemRarity = ItemRarity.rare;
-	else if(rarityRoll < 999)
+	else if(rarityRoll < 2500)
 		newItemRarity = ItemRarity.mythic;
 	else
 		newItemRarity = ItemRarity.legendary;
@@ -129,31 +151,28 @@ function generateItem(enemyLevel)
 	//itemSlot
 	var itemSlot = ItemSlot.none;
 	var itemName = ""
-	var itemTypeRoll = +(Math.random() * 100).toFixed();
-	if(itemTypeRoll < 15)
+	var itemTypeRoll = Math.round(Math.random() * 100);
+	if(itemTypeRoll < 20)
 	{
 		itemSlot = ItemSlot.weapon;
 	}
+	else if(itemTypeRoll < 40)
+	{
+		itemSlot = ItemSlot.helmet;
+	}
+	else if(itemTypeRoll < 60)
+	{
+		itemSlot = ItemSlot.body_armour;
+	}
+	else if(itemTypeRoll < 80)
+	{
+		itemSlot = ItemSlot.gloves;
+	}
 	else
 	{
-		var itemSlotRoll = +(Math.random() * 100).toFixed();
-		if(itemSlotRoll < 25)
-		{
-			itemSlot = ItemSlot.helmet;
-		}
-		else if(itemSlotRoll < 50)
-		{
-			itemSlot = ItemSlot.body_armour;
-		}
-		else if(itemSlotRoll < 75)
-		{
-			itemSlot = ItemSlot.gloves;
-		}
-		else
-		{
-			itemSlot = ItemSlot.boots;
-		}
+		itemSlot = ItemSlot.boots;
 	}
+
 	itemName = newItemRarity + " " + itemSlot;
 
 	return (new Item(newItemRarity, itemSlot, enemyLevel, itemName));
