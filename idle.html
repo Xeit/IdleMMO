@@ -124,41 +124,54 @@
 			</div>
 
 			<!-- BATTLE -->
-			<div class = "task_window" id = "battle_window">
-				<div id = "battle_window_battle">
-					<div id="battle_window_select_zone" style="display: none; width: 100%; height: 100%; justify-content: center;">
-						<div id="select_zone_scrolling_list">
-						</div>
+			<div class = "task_window" id="battle_window">
+				<div id="battle_window_select_zone">
+					<div id="select_zone_scrolling_list"></div>
+				</div>
+
+				<div id="battle_window_battle">
+					<!-- Info about drops -->
+					<div style="display: flex; width: 100%; height: 5%;">
+						<div id="battle_window_drops"></div>
 					</div>
 
-					<div id="battle_data">
-
+					<!-- Actual battle -->
+					<div style="display: flex; width: 100%; height: 85%; align-items: center;">
 						<span id = "player_battle_data" class="help" title="It's You. Do NOT kill it." >
 							<div class="battle_data">
-								Player
-								
+								<div>Player</div>
+								<br>
 								<div class="battle_health_bar" id="battle_player_health_bar">
 									<div class="battle_health_bar_inside" id="battle_player_health_bar_inside">
 										<div id="player_battle_health" style="padding-top: 2px;">HP: 100%</div>
 									</div>
 								</div>
+								<br>
+								<div id="battle_player_crit_chance"></div>
 							</div>
 						</span>
-
+	
 						<span id = "monster_battle_data">
 							<div id ="battle_window_monster_data" class ="help" title="Monster name. Kill it." >
 								<div class="battle_data">
 									<div id="monster_battle_name">Rat</div>
-									
+									<br>
 									<div class="battle_health_bar" id="battle_monster_health_bar">
 										<div class="battle_health_bar_inside" id="battle_monster_health_bar_inside">
 											<div id="monster_battle_health" style="padding-top: 2px;">HP: 100%</div>
 										</div>
 									</div>
+									<br>
+									<div id="battle_monster_level"></div>
 								</div>
 							</div>
 							<div id = "battle_looking_for_enemy">Looking for enemy.</div>
 						</span>
+					</div>
+
+					<!-- Future skills and spells? Maybe -->
+					<div style="display: flex; width: 100%; height: 10%;">
+
 					</div>
 				</div>
 			</div>

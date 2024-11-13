@@ -139,7 +139,7 @@ function playerGetAttackDamage(againstEnemyLevel)
 		playerDamageToDeal += +playerWeaponSlot.returnItemPower();
 	}
 
-	const critRoll = +(Math.random() * againstEnemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex
+	const critRoll = +(Math.random() * againstEnemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex for enemy on same level
 	if(critRoll < playerDexterity)
 	{
 		//This is crit

@@ -94,7 +94,6 @@ function startBattle()
 
 	$("#battle_window").css("display", "flex");
 	$("#battle_window_select_zone").css("display", "flex");
-	$("#battle_window_battle").css("display", "flex");
 	$("#battle_data").css("display", "none");
 }
 
@@ -118,7 +117,11 @@ function getNewEnemy()
 		$("#monster_battle_name").text(enemyName);
 		enemyHealth = +enemyMaxHealth;
 		bIsEnemyAlive = true;
+
 		updateBattleHealth();
+		updatePlayerInfo();
+		updateMonsterInfo();
+
 		$("#battle_looking_for_enemy").css("display", "none");
 		$("#battle_window_monster_data").css("display", "block");
 	}
@@ -189,12 +192,31 @@ function updateBattleHealth()
 
 		$("#battle_monster_health_bar_inside").css("background-size", enemyHealthPercentage + "%");
 		$("#battle_monster_health_bar_inside").css("background-repeat", "no-repeat");
+		$("#battle_player_crit_chance").css("display", "block");
 	}
 	else
 	{
 		$("#battle_looking_for_enemy").css("display", "inline-block");
 		$("#battle_window_monster_data").css("display", "none");
+		$("#battle_player_crit_chance").css("display", "none");
 	}
+}
+
+function updatePlayerInfo()
+{
+	let critChance = Math.round((playerDexterity / (enemyLevel * 3 * 2)) * 100);
+	if(critChance > 100)
+	{
+		critChance = 100;
+	}
+
+	let critChanceString = "Crit chance: " + critChance + "%";
+	$("#battle_player_crit_chance").html(critChanceString);
+}
+
+function updateMonsterInfo()
+{
+	$("#battle_monster_level").html("Lvl: " + enemyLevel);
 }
 
 function switchToBattleWindow()

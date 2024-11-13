@@ -145,14 +145,6 @@ button
 	float: left;
 }
 
-#battle_data
-{
-	display: none;
-	width: 100%;
-	height: 100%;
-	align-items: center;
-}
-
 #player_battle_data, 
 #monster_battle_data
 {
@@ -179,17 +171,12 @@ button
 #battle_window
 {
 	display: none;
-	flex-wrap: wrap;
-	align-content: center;
-	justify-content: center;
 }
 
 #battle_window_battle
 {
 	display: none;
-	flex-wrap: wrap;
-	align-content: center;
-	justify-content: center;
+	flex-direction: column;
 	width: 100%;
 	height: 100%;
 }
@@ -313,6 +300,14 @@ button
 	overflow-y: auto;
 	border-left:#000 solid 1px;
 	border-right:#000 solid 1px;
+}
+
+#battle_window_select_zone
+{
+	display: flex; 
+	width: 100%; 
+	height: 100%; 
+	justify-content: center;
 }
 
 .battle_window_select_zone_element
