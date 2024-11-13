@@ -116,27 +116,27 @@ function generateItem(enemyLevel, enemyDifficulty)
 	switch (enemyDifficulty) 
 	{
 		case EnemyDifficulty.easy:
-			let = rarityRoll = rollPosibility(6, 3, 1, 0);
+			var rarityRoll = rollPosibility(6, 3, 1, 0);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.common, ItemRarity.uncommon, ItemRarity.magic, null);
 			break;
 		case EnemyDifficulty.medium:
-			let = rarityRoll = rollPosibility(20, 45, 30, 5);
+			var rarityRoll = rollPosibility(20, 45, 30, 5);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.common, ItemRarity.uncommon, ItemRarity.magic, ItemRarity.rare);
 			break;
 		case EnemyDifficulty.hard:
-			let = rarityRoll = rollPosibility(6, 3, 1, 0);
+			var rarityRoll = rollPosibility(6, 3, 1, 0);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.uncommon, ItemRarity.magic, ItemRarity.rare, null);
 			break;
 		case EnemyDifficulty.very_hard:
-			let = rarityRoll = rollPosibility(20, 45, 30, 5);
+			var rarityRoll = rollPosibility(20, 45, 30, 5);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.uncommon, ItemRarity.magic, ItemRarity.rare, ItemRarity.mythic);
 			break;
 		case EnemyDifficulty.mini_boss:
-			let = rarityRoll = rollPosibility(20, 45, 30, 5);
+			var rarityRoll = rollPosibility(20, 45, 30, 5);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.magic, ItemRarity.rare, ItemRarity.mythic, ItemRarity.legendary);
 			break;
 		case EnemyDifficulty.boss:
-			let = rarityRoll = rollPosibility(6, 3, 1, 0);
+			var rarityRoll = rollPosibility(6, 3, 1, 0);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.rare, ItemRarity.mythic, ItemRarity.legendary, null);
 			break;
 		default:

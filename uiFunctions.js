@@ -1,6 +1,12 @@
 function updateProgressBar()
 {
 	var fillPercent = (timeFromLastTick / 1000 * 100) + "%";
+
+	if(timeFromLastTick <= 100)
+	{
+		fillPercent = "2%";
+	}
+
 	$("#tick_progress_inside").css("width", fillPercent);
 }
 
