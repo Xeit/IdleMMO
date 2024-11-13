@@ -112,41 +112,36 @@ function generateItem(enemyLevel, enemyDifficulty)
 
 	//itemRarity
 	var newItemRarity = ItemRarity.none;
-	var rarityRoll = Math.round(Math.random() * 1500);
 
 	switch (enemyDifficulty) 
 	{
+		case EnemyDifficulty.easy:
+			let = rarityRoll = rollPosibility(6, 3, 1, 0);
+			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.common, ItemRarity.uncommon, ItemRarity.magic, null);
+			break;
 		case EnemyDifficulty.medium:
-			rarityRoll += 200;
+			let = rarityRoll = rollPosibility(20, 45, 30, 5);
+			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.common, ItemRarity.uncommon, ItemRarity.magic, ItemRarity.rare);
 			break;
 		case EnemyDifficulty.hard:
-			rarityRoll += 500;
+			let = rarityRoll = rollPosibility(6, 3, 1, 0);
+			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.uncommon, ItemRarity.magic, ItemRarity.rare, null);
 			break;
 		case EnemyDifficulty.very_hard:
-			rarityRoll += 700;
+			let = rarityRoll = rollPosibility(20, 45, 30, 5);
+			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.uncommon, ItemRarity.magic, ItemRarity.rare, ItemRarity.mythic);
 			break;
 		case EnemyDifficulty.mini_boss:
-			rarityRoll += 1200;
+			let = rarityRoll = rollPosibility(20, 45, 30, 5);
+			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.magic, ItemRarity.rare, ItemRarity.mythic, ItemRarity.legendary);
 			break;
 		case EnemyDifficulty.boss:
-			rarityRoll += 1700;
+			let = rarityRoll = rollPosibility(6, 3, 1, 0);
+			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.rare, ItemRarity.mythic, ItemRarity.legendary, null);
 			break;
 		default:
 			break;
 	}
-
-	if(rarityRoll < 500)
-		newItemRarity = ItemRarity.common;
-	else if(rarityRoll < 1000)
-		newItemRarity = ItemRarity.uncommon;
-	else if(rarityRoll < 1500)
-		newItemRarity = ItemRarity.magic;
-	else if(rarityRoll < 2000)
-		newItemRarity = ItemRarity.rare;
-	else if(rarityRoll < 2500)
-		newItemRarity = ItemRarity.mythic;
-	else
-		newItemRarity = ItemRarity.legendary;
 
 	//itemSlot
 	var itemSlot = ItemSlot.none;
@@ -205,6 +200,74 @@ function updateEquipmentWindow()
 		$("#equipment_boots_name").text(playerBootsSlot.itemName);	
 		$("#equipment_boots_power").text(playerBootsSlot.returnItemPower());
 	}
+}
+
+function rollPosibility(firstWeight, secondWeight, thirdWeight, fourthWeight)
+{
+	let selectedRoll = 0;
+
+	let fullWeight = firstWeight + secondWeight + thirdWeight + fourthWeight;
+
+	let roll = Math.round(Math.random() * fullWeight);
+
+	let bFinished = false;
+	roll -= firstWeight;
+	if(roll <= 0)
+	{
+		selectedRoll = 1;
+		bFinished = true;
+	}
+
+	if(!bFinished)
+	{
+		roll -= secondWeight;
+		if(roll <= 0)
+		{
+			selectedRoll = 2;
+			bFinished = true;
+		}
+	}
+
+	if(!bFinished)
+	{
+		roll -= thirdWeight;
+		if(roll <= 0)
+		{
+			selectedRoll = 3;
+			bFinished = true;
+		}
+	}
+	
+	if(!bFinished)
+	{
+		selectedRoll = 4;
+		bFinished = true;
+	}
+
+	return selectedRoll;
+}
+
+//this function is basically glorified switch-case to not copy-paste too much
+function selectCorrectRarity(selectedRarityNumber, firstRarity, secondRarity, thirdRarity, fourthRarity)
+{
+	let selectedRarity;
+	switch(selectedRarityNumber)
+	{
+		case 1:
+			selectedRarity = firstRarity;
+			break;
+		case 2:
+			selectedRarity = secondRarity;
+			break;
+		case 3:
+			selectedRarity = thirdRarity;
+			break;
+		case 4:
+			selectedRarity = fourthRarity;
+			break;
+	}
+
+	return selectedRarity;
 }
 
 function tryNewItem(newItem)
