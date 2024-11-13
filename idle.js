@@ -23,8 +23,8 @@ $(document).ready(function()
 			updateProgressBar();
 			if(timeFromLastTick >= 1000)
 			{
-				timeFromLastTick = 0;
-				
+				timeFromLastTick -= 1000;
+
 				switch(currentTask)
 				{
 					case PlayerTasks.none:
