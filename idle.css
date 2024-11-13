@@ -66,6 +66,7 @@ button
 	height: 15px;
 	background: linear-gradient(179deg, #454545, #6b6b6b);
 	border-radius: 10px;
+	transition-duration: 100ms;
  }
 
  #tick_info
@@ -110,6 +111,7 @@ button
 	background-repeat: no-repeat;
 	background: linear-gradient(90deg, #454545, #6b6b6b);
 	background-size: 100% 100%;
+	transition-duration: 150ms;
 }
 
 #info_panel
@@ -154,7 +156,6 @@ button
 #player_battle_data, 
 #monster_battle_data
 {
-	display: inline-block;
 	text-align: center;
 	vertical-align: middle;
 	width: 49.5%;
@@ -288,6 +289,7 @@ button
 	height: 15px;
 	background: linear-gradient(179deg, #454545, #6b6b6b);
 	border-radius: 10px;
+	transition-duration: 200ms;
 }
 
 .equipment_slot
@@ -319,4 +321,29 @@ button
 	display: flex; 
 	align-items: center;
 	border-bottom:#000 solid 1px;
+}
+
+.battle_data
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.battle_health_bar
+{
+	width: 80%;
+	background-color: rgb(31, 32, 32);
+	border-radius: 10px;
+	border:#000 2px solid;
+}
+
+.battle_health_bar_inside
+{
+	width: 100%;
+	height: 15px;
+	background: linear-gradient(90deg, rgb(151, 58, 58), rgb(153, 100, 100));
+	border-radius: 10px;
+	transition-duration: 150ms;
 }

@@ -20,10 +20,11 @@ $(document).ready(function()
 		function(event)
 		{
 			timeFromLastTick += +event.data;
+			updateProgressBar();
 			if(timeFromLastTick >= 1000)
 			{
 				timeFromLastTick = 0;
-		
+				
 				switch(currentTask)
 				{
 					case PlayerTasks.none:
@@ -47,7 +48,6 @@ $(document).ready(function()
 				updateInfoPanel();
 				bakeACookie();
 			}
-			updateProgressBar();
 		};
 	}
 	else

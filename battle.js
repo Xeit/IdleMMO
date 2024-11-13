@@ -120,7 +120,7 @@ function getNewEnemy()
 		bIsEnemyAlive = true;
 		updateBattleHealth();
 		$("#battle_looking_for_enemy").css("display", "none");
-		$("#battle_window_monster_data").css("display", "inline-block");
+		$("#battle_window_monster_data").css("display", "block");
 	}
 }
 
@@ -179,11 +179,16 @@ function updateBattleHealth()
 {
 	const playerHealthPercentage = playerHealth / playerMaxHealth * 100;
 	$("#player_battle_health").html("HP: " + playerHealthPercentage.toFixed() + "%");
+	$("#battle_player_health_bar_inside").css("background-size", playerHealthPercentage + "%");
+	$("#battle_player_health_bar_inside").css("background-repeat", "no-repeat");
 
 	if(bIsEnemyAlive)
 	{
 		const enemyHealthPercentage = enemyHealth / enemyMaxHealth * 100;
 		$("#monster_battle_health").html("HP: " + enemyHealthPercentage.toFixed() + "%");
+
+		$("#battle_monster_health_bar_inside").css("background-size", enemyHealthPercentage + "%");
+		$("#battle_monster_health_bar_inside").css("background-repeat", "no-repeat");
 	}
 	else
 	{
