@@ -15,7 +15,7 @@ $(document).ready(function()
 	var tickWorker;
 	if(typeof(Worker) !== "undefined")
 	{
-		tickWorker = new Worker("tickWorker.js");
+		tickWorker = new Worker("tickWorker.js?v=2");
 		tickWorker.onmessage = 
 		function(event)
 		{
