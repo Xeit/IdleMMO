@@ -220,6 +220,7 @@ function updatePlayerInfo()
 function updateMonsterInfo()
 {
 	$("#battle_monster_level").html("Lvl: " + enemyLevel);
+	$("#battle_monster_difficulty").html("Difficulty: " + GetEnemyDifficultyName(enemyDifficulty));
 }
 
 function switchToBattleWindow()

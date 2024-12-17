@@ -8,6 +8,27 @@ const EnemyDifficulty =
 	boss: 10
 };
 
+function GetEnemyDifficultyName(enemyDifficulty)
+{
+	switch(enemyDifficulty)
+	{
+		case "none":
+			return "none/error";
+		case EnemyDifficulty.easy:
+			return "easy";
+		case EnemyDifficulty.medium:
+			return "medium";
+		case EnemyDifficulty.hard:
+			return "hard";
+		case EnemyDifficulty.very_hard:
+			return "very hard";
+		case EnemyDifficulty.mini_boss:
+			return "mini boss";
+		case EnemyDifficulty.boss:
+			return "boss";
+	}
+}
+
 class Enemy
 {
 	constructor(enemyName, enemyLevel, enemyDiff)

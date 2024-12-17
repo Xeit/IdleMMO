@@ -130,13 +130,16 @@
 				</div>
 
 				<div id="battle_window_battle">
+
 					<!-- Info about drops -->
-					<div style="display: flex; width: 100%; height: 5%;">
+					<div style="display: flex; width: 100%; height: 15%;">
 						<div id="battle_window_drops"></div>
 					</div>
 
+					<div style="height: 15%;"></div>
+
 					<!-- Actual battle -->
-					<div style="display: flex; width: 100%; height: 85%; align-items: center;">
+					<div style="display: flex; width: 100%; height: 50%; align-items: flex-start;">
 						<span id = "player_battle_data" class="help" title="It's You. Do NOT kill it." >
 							<div class="battle_data" style="justify-content:space-around;">
 								<div>Player</div>
@@ -152,7 +155,7 @@
 						</span>
 	
 						<span id = "monster_battle_data">
-							<div id ="battle_window_monster_data" class ="help" title="Monster name. Kill it." >
+							<div id ="battle_window_monster_data" class ="help" title="It's a monster. Kill it." >
 								<div class="battle_data">
 									<div id="monster_battle_name">Rat</div>
 									<div id="battle_monster_crit" style="opacity: 0; color: red">CRIT</div>
@@ -163,6 +166,7 @@
 									</div>
 									<div style="opacity: 0;">.</div>
 									<div id="battle_monster_level"></div>
+									<div id="battle_monster_difficulty"></div>
 								</div>
 							</div>
 							<div id = "battle_looking_for_enemy">Looking for enemy.</div>
