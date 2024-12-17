@@ -74,3 +74,13 @@ function PlayerCritedUI()
 	monsterCritOpacity = 1;
 	$("#battle_monster_crit").css("opacity", monsterCritOpacity);
 }
+
+function DisplayCritChanceUI(againstEnemyLevel)
+{
+	var playerDisplayedCritChance = Math.round(playerDexterity / (againstEnemyLevel * 3 * 2) * 100);
+	if(playerDisplayedCritChance > 100)
+	{
+		playerDisplayedCritChance = 100;
+	}
+	$("#battle_player_crit_chance").text("Crit chance: " + playerDisplayedCritChance + "%");
+}

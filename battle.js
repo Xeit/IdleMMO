@@ -123,6 +123,7 @@ function getNewEnemy()
 		updateBattleHealth();
 		updatePlayerInfo();
 		updateMonsterInfo();
+		DisplayCritChanceUI(enemyLevel);
 
 		$("#battle_looking_for_enemy").css("display", "none");
 		$("#battle_window_monster_data").css("display", "block");
