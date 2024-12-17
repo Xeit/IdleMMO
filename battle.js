@@ -11,7 +11,9 @@ var enemyDifficulty = EnemyDifficulty.easy;
 
 var currentZone = null;
 var monsterCritOpacity = 0;
-var monsterCritOpacityDecay = 0.07;
+const monsterCritOpacityDecay = 0.07;
+var itemDroppedOpacity = 0;
+const itemDroppedOpacityDecay = 0.02;
 
 function initializeBattle()
 {
@@ -159,8 +161,13 @@ function hitEnemy()
 		//Item drop
 		var generatedNewItem = new Item();
 		generatedNewItem = generateItem(enemyLevel, enemyDifficulty);
-		tryNewItem(generatedNewItem);
+		var bGotNewItem = tryNewItem(generatedNewItem);
 		updateEquipmentWindow();
+
+		if(bGotNewItem)
+		{
+			UIItemDropped(generatedNewItem);
+		}
 
 		//Gold drop
 		const goldDropRoll = Math.round((Math.random() * enemyLevel)) + enemyLevel;

@@ -48,7 +48,8 @@ $(document).ready(function()
 				updateInfoPanel();
 				bakeACookie();
 			}
-			DecayCritOpacity();
+			UIDecayCritOpacity();
+			UIDecayItemDropped();
 		};
 	}
 	else

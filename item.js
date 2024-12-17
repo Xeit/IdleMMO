@@ -273,6 +273,7 @@ function selectCorrectRarity(selectedRarityNumber, firstRarity, secondRarity, th
 function tryNewItem(newItem)
 {
 	var currentItemPower = 0;
+	var bGotNewItem = false;
 	
 	switch (newItem.itemSlot) {
 		case ItemSlot.weapon:
@@ -283,6 +284,7 @@ function tryNewItem(newItem)
 			if(newItem.returnItemPower() > currentItemPower)
 			{
 				playerWeaponSlot = newItem;
+				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.boots:
@@ -293,6 +295,7 @@ function tryNewItem(newItem)
 			if(newItem.returnItemPower() > currentItemPower)
 			{
 				playerBootsSlot = newItem;
+				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.gloves:
@@ -303,6 +306,7 @@ function tryNewItem(newItem)
 			if(newItem.returnItemPower() > currentItemPower)
 			{
 				playerGlovesSlot = newItem;
+				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.helmet:
@@ -313,6 +317,7 @@ function tryNewItem(newItem)
 			if(newItem.returnItemPower() > currentItemPower)
 			{
 				playerHelmetSlot = newItem;
+				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.body_armour:
@@ -323,9 +328,11 @@ function tryNewItem(newItem)
 			if(newItem.returnItemPower() > currentItemPower)
 			{
 				playerBodyArmourSlot = newItem;
+				bGotNewItem = true;
 			}
 			break;
 		default:
 			break;
 	}
+	return bGotNewItem;
 }

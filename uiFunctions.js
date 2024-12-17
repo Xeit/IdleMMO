@@ -60,7 +60,7 @@ function updateInfoPanel()
 	$("#EXH.player_info_element").css("background-repeat", "no-repeat");
 }
 
-function DecayCritOpacity()
+function UIDecayCritOpacity()
 {
 	if(monsterCritOpacity > 0)
 	{
@@ -69,10 +69,32 @@ function DecayCritOpacity()
 	}
 }
 
-function PlayerCritedUI()
+function UIPlayerCrited()
 {
 	monsterCritOpacity = 1;
 	$("#battle_monster_crit").css("opacity", monsterCritOpacity);
+}
+
+function UIDecayItemDropped()
+{
+	if(itemDroppedOpacity > 0)
+	{
+		itemDroppedOpacity = itemDroppedOpacity - itemDroppedOpacityDecay;
+		$("#battle_window_drops").css("opacity", itemDroppedOpacity)
+	}
+}
+
+function UIItemDropped(generatedNewItem)
+{
+	if(generatedNewItem instanceof Item)
+	{
+		itemDroppedOpacity = 1;
+		$("#battle_window_drops").css("opacity", itemDroppedOpacity);
+		$("#battle_window_drops_name").text(generatedNewItem.itemName);
+		$("#battle_window_drops_rarity").text("Rarity: " + generatedNewItem.itemRarity);
+		$("#battle_window_drops_slot").text("Slot: " + generatedNewItem.itemSlot);
+		$("#battle_window_drops_power").text("Power: " + generatedNewItem.returnItemPower());
+	}
 }
 
 function DisplayCritChanceUI(againstEnemyLevel)
