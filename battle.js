@@ -10,6 +10,8 @@ var enemyXp = 1;
 var enemyDifficulty = EnemyDifficulty.easy;
 
 var currentZone = null;
+var monsterCritOpacity = 0;
+var monsterCritOpacityDecay = 0.07;
 
 function initializeBattle()
 {

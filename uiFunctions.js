@@ -59,3 +59,18 @@ function updateInfoPanel()
 	$("#EXH.player_info_element").css("background-size", playerEXHPercent + " 100%");
 	$("#EXH.player_info_element").css("background-repeat", "no-repeat");
 }
+
+function DecayCritOpacity()
+{
+	if(monsterCritOpacity > 0)
+	{
+		monsterCritOpacity = monsterCritOpacity - monsterCritOpacityDecay;
+		$("#battle_monster_crit").css("opacity", monsterCritOpacity);
+	}
+}
+
+function PlayerCritedUI()
+{
+	monsterCritOpacity = 1;
+	$("#battle_monster_crit").css("opacity", monsterCritOpacity);
+}

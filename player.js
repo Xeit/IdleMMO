@@ -144,6 +144,7 @@ function playerGetAttackDamage(againstEnemyLevel)
 	{
 		//This is crit
 		playerDamageToDeal = playerDamageToDeal * 2;
+		PlayerCritedUI()
 	}
 
 	playerDamageToDeal += +getTotalBuffsWithType(BuffType.damage);
