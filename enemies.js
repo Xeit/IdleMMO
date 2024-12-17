@@ -15,7 +15,7 @@ class Enemy
 		this.enemyName = enemyName;
 		this.enemyLevel = enemyLevel;
 		this.enemyDifficulty = enemyDiff;
-		this.enemyXp = +(enemyLevel * 2 * enemyDiff).toFixed();
+		this.enemyXp = +(enemyLevel * enemyDiff).toFixed();
 		this.enemyMaxHealth = +(enemyLevel * 12 * enemyDiff).toFixed();
 		this.enemyDamage = +(enemyLevel * 3 * enemyDiff).toFixed();
 	}

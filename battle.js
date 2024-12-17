@@ -144,9 +144,9 @@ function hitEnemy()
 		if(playerLevel > enemyLevel)
 		{
 			const levelDifference = playerLevel - enemyLevel;
-			if(levelDifference < 5)
+			if(levelDifference < 10)
 			{
-				const xpPenaltyMultiplier = levelDifference * 0.2;
+				const xpPenaltyMultiplier = levelDifference * 0.1;
 				const xpToAddAfterPenalty = enemyXp * (1 - xpPenaltyMultiplier);
 				addPlayerXp(xpToAddAfterPenalty);
 			}
