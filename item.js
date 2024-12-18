@@ -178,26 +178,31 @@ function updateEquipmentWindow()
 	if(playerWeaponSlot != null)
 	{
 		$("#equipment_weapon_name").text(playerWeaponSlot.itemName);
+		$("#equipment_weapon_level").text(playerWeaponSlot.itemLevel);
 		$("#equipment_weapon_power").text(playerWeaponSlot.returnItemPower());
 	}
 	if(playerHelmetSlot != null)
 	{
 		$("#equipment_helmet_name").text(playerHelmetSlot.itemName);
+		$("#equipment_helmet_level").text(playerHelmetSlot.itemLevel);
 		$("#equipment_helmet_power").text(playerHelmetSlot.returnItemPower());
 	}
 	if(playerBodyArmourSlot != null)
 	{
 		$("#equipment_body_armour_name").text(playerBodyArmourSlot.itemName);
+		$("#equipment_body_armour_level").text(playerBodyArmourSlot.itemLevel);
 		$("#equipment_body_armour_power").text(playerBodyArmourSlot.returnItemPower());
 	}
 	if(playerGlovesSlot != null)
 	{
 		$("#equipment_gloves_name").text(playerGlovesSlot.itemName);
+		$("#equipment_gloves_level").text(playerGlovesSlot.itemLevel);
 		$("#equipment_gloves_power").text(playerGlovesSlot.returnItemPower());
 	}
 	if(playerBootsSlot != null)
 	{
-		$("#equipment_boots_name").text(playerBootsSlot.itemName);	
+		$("#equipment_boots_name").text(playerBootsSlot.itemName);
+		$("#equipment_boots_level").text(playerBootsSlot.itemLevel);
 		$("#equipment_boots_power").text(playerBootsSlot.returnItemPower());
 	}
 }
