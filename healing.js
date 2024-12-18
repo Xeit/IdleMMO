@@ -1,18 +1,27 @@
 var bIsHealing = false;
 
+function ShowHealingWindow()
+{
+	const playerHealthPercentage = playerHealth / playerMaxHealth * 100;
+	$("#player_resting_health").html("Your current HP: " + playerHealthPercentage.toFixed() + "%");
+	$("#healing_window").css("display", "flex");
+}
+
+function HideHealingWindow()
+{
+	$("#healing_window").css("display", "none");
+}
+
 function stopHealing()
 {
 	bIsHealing = false;
-	$("#healing_window").css("display", "none");
+	HideHealingWindow();
 }
 
 function startHealing()
 {
 	bIsHealing = true;
-
-	const playerHealthPercentage = playerHealth / playerMaxHealth * 100;
-	$("#player_resting_health").html("Your current HP: " + playerHealthPercentage.toFixed() + "%");
-	$("#healing_window").css("display", "flex");
+	ShowHealingWindow();
 }
 
 function tickHealing()

@@ -234,15 +234,25 @@ function initializeQuesting()
 	updateQuestInfo();
 }
 
-function startQuesting()
+function ShowQuestingWindow()
 {
 	$("#questing_window").css("display", "flex");
+}
+
+function HideQuestingWindow()
+{
+	$("#questing_window").css("display", "none");
+}
+
+function startQuesting()
+{
 	updateQuestInfo();
+	ShowQuestingWindow();
 }
 
 function stopQuesting()
 {
-	$("#questing_window").css("display", "none");
+	HideQuestingWindow();
 }
 
 function tickQuesting()

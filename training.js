@@ -24,18 +24,28 @@ function initializeTraining()
 	updateTrainingXpValues();
 }
 
+function ShowTrainingWindow()
+{
+	$("#training_window").css("display", "block");
+}
+
+function HideTrainingWindow()
+{
+	$("#training_window").css("display", "none");
+}
+
 function stopTraining()
 {
 	bIsTraining = false;
 	currentlyTrainedStatystic = "none";
-	$("#training_window").css("display", "none");
+	HideTrainingWindow();
 }
 
 function startTraining()
 {
 	bIsTraining = true;
 	updateTrainingXpValues();
-	$("#training_window").css("display", "block");
+	ShowTrainingWindow();
 }
 
 function tickTraining()

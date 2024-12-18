@@ -81,12 +81,29 @@ function tickBattle()
 	}
 }
 
-function stopBattle()
+function ShowBattleWindow()
+{
+	$("#battle_window").css("display", "flex");
+	if(bIsInBattle == true)
+	{
+		$("#battle_window_battle").css("display", "flex");
+		$("#battle_window_select_zone").css("display", "none");
+	}
+	else
+	{
+		$("#battle_window_battle").css("display", "none");
+		$("#battle_window_select_zone").css("display", "flex");
+	}
+}
+
+function HideBattleWindow()
 {
 	$("#battle_window").css("display", "none");
-	$("#battle_window_battle").css("display", "none");
-	$("#battle_window_select_zone").css("display", "flex");
-	$("#battle_data").css("display", "none");
+}
+
+function stopBattle()
+{
+	HideBattleWindow();
 	bIsInBattle = false;
 	bIsEnemyAlive = false;
 	currentZone = null;
@@ -95,10 +112,7 @@ function stopBattle()
 function startBattle()
 {
 	updateBattleHealth();
-
-	$("#battle_window").css("display", "flex");
-	$("#battle_window_select_zone").css("display", "flex");
-	$("#battle_data").css("display", "none");
+	ShowBattleWindow();
 }
 
 function getNewEnemy()

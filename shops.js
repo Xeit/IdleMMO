@@ -2,26 +2,29 @@ function initializeShops()
 {
 	$("#potionSellerButton").click(function()
 	{
-		$("#shop_window").css("display", "none");
+		$("#shop_window").css("display", "flex");
 		$("#potion_seller_window").css("display", "flex");
 		$("#church_window").css("display", "none");
 		$("#tavern_window").css("display", "none");
+		$("#shop_window_selection").css("display", "none");
 	});
 	
 	$("#churchButton").click(function()
 	{
-		$("#shop_window").css("display", "none");
+		$("#shop_window").css("display", "flex");
 		$("#potion_seller_window").css("display", "none");
 		$("#church_window").css("display", "flex");
 		$("#tavern_window").css("display", "none");
+		$("#shop_window_selection").css("display", "none");
 	});
 	
 	$("#tavernButton").click(function()
 	{
-		$("#shop_window").css("display", "none");
+		$("#shop_window").css("display", "flex");
 		$("#potion_seller_window").css("display", "none");
 		$("#church_window").css("display", "none");
 		$("#tavern_window").css("display", "flex");
+		$("#shop_window_selection").css("display", "none");
 	});
 
 	$(".buyItemButton").click(function()
@@ -35,20 +38,28 @@ function initializeShops()
 	});
 }
 
-function startShops()
+function ShowShopsWindow()
 {
    $("#shop_window").css("display", "flex");
 	$("#potion_seller_window").css("display", "none");
 	$("#church_window").css("display", "none");
 	$("#tavern_window").css("display", "none");
+	$("#shop_window_selection").css("display", "flex");
+}
+
+function HideShopsWindow()
+{
+   $("#shop_window").css("display", "none");
+}
+
+function startShops()
+{
+	ShowShopsWindow();
 }
 
 function stopShops()
 {
-   $("#shop_window").css("display", "none");
-	$("#potion_seller_window").css("display", "none");
-	$("#church_window").css("display", "none");
-	$("#tavern_window").css("display", "none");
+	HideShopsWindow();
 }
 
 function buyItem(itemId)
