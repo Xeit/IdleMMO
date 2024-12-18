@@ -93,7 +93,7 @@ function UIItemDropped(generatedNewItem)
 		$("#battle_window_drops_name").text(generatedNewItem.itemName);
 		$("#battle_window_drops_rarity").text("Rarity: " + generatedNewItem.itemRarity);
 		$("#battle_window_drops_slot").text("Slot: " + generatedNewItem.itemSlot);
-		$("#battle_window_drops_power").text("Power: " + generatedNewItem.returnItemPower());
+		$("#battle_window_drops_power").text("iLvl: " + generatedNewItem.itemLevel + " Power: " + generatedNewItem.returnItemPower());
 	}
 }
 

@@ -342,3 +342,11 @@ button
 	border-radius: 10px;
 	transition-duration: 150ms;
 }
+
+.battle_window_drops_statistic
+{
+	width: 100%; 
+	height: 50%; 
+	display: flex; 
+	justify-content: center;
+}
