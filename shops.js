@@ -27,6 +27,14 @@ function initializeShops()
 		$("#shop_window_selection").css("display", "none");
 	});
 
+	$(".shop_window_button_back").click(function()
+	{
+		$("#potion_seller_window").css("display", "none");
+		$("#church_window").css("display", "none");
+		$("#tavern_window").css("display", "none");
+		$("#shop_window_selection").css("display", "flex");
+	});
+
 	$(".buyItemButton").click(function()
 	{
 		buyItem($(this).attr("itemId"));
