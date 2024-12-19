@@ -58,6 +58,12 @@ function initializeBattle()
 		};
 		
 		$("#select_zone_scrolling_list").append(newZone);
+
+		$("#battle_window_stop_battle").click(function(){
+			stopBattle();
+			ShowBattleWindow();
+			updateBattleHealth();
+		})
 	}
 }
 
