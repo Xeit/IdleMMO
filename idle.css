@@ -204,9 +204,9 @@ button
 #control_buttons
 {
 	height: 10%;
+	width: 100%;
 	display: flex;
 	align-items: flex-end;
-	padding-left: 3px;
 	padding-bottom: 3px;
 	column-gap: 2px;
 }
