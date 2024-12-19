@@ -106,3 +106,58 @@ function DisplayCritChanceUI(againstEnemyLevel)
 	}
 	$("#battle_player_crit_chance").text("Crit chance: " + playerDisplayedCritChance + "%");
 }
+
+function UIDisplayNewTask(newTaskToDisplay)
+{
+	//Hide current task
+	switch(currentTask)
+	{
+		case PlayerTasks.none:
+			$("#empty_window").css("display", "none");
+			break;
+		case PlayerTasks.farming_monsters:
+			HideBattleWindow();
+			break;
+		case PlayerTasks.healing:
+			HideHealingWindow();
+			break;
+		case PlayerTasks.training:
+			HideTrainingWindow();
+			break;
+		case PlayerTasks.equipment:
+			HideEquipmentWindow();
+			break;
+		case PlayerTasks.questing:
+			HideQuestingWindow();
+			break;
+		case PlayerTasks.shop:
+			HideShopsWindow();
+			break;
+	}
+
+	//Start new task
+	switch(newTaskToDisplay)
+	{
+		case PlayerTasks.none:
+			$("#empty_window").css("display", "block");
+			break;
+		case PlayerTasks.farming_monsters:
+			ShowBattleWindow();
+			break;
+		case PlayerTasks.healing:
+			ShowHealingWindow();
+			break;
+		case PlayerTasks.training:
+			ShowTrainingWindow();
+			break;
+		case PlayerTasks.equipment:
+			ShowEquipmentWindow();
+			break;
+		case PlayerTasks.questing:
+			ShowQuestingWindow();
+			break;
+		case PlayerTasks.shop:
+			ShowShopsWindow();
+			break;
+	}
+}

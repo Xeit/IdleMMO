@@ -247,12 +247,10 @@ function HideQuestingWindow()
 function startQuesting()
 {
 	updateQuestInfo();
-	ShowQuestingWindow();
 }
 
 function stopQuesting()
 {
-	HideQuestingWindow();
 }
 
 function tickQuesting()

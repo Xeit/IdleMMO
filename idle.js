@@ -91,6 +91,7 @@ $(document).ready(function()
 
 function newPlayerTask(newTask)
 {
+	UIDisplayNewTask(newTask);
 	//End current task
 	switch(currentTask)
 	{

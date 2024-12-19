@@ -15,13 +15,11 @@ function HideHealingWindow()
 function stopHealing()
 {
 	bIsHealing = false;
-	HideHealingWindow();
 }
 
 function startHealing()
 {
 	bIsHealing = true;
-	ShowHealingWindow();
 }
 
 function tickHealing()

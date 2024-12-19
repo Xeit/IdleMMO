@@ -38,14 +38,12 @@ function stopTraining()
 {
 	bIsTraining = false;
 	currentlyTrainedStatystic = "none";
-	HideTrainingWindow();
 }
 
 function startTraining()
 {
 	bIsTraining = true;
 	updateTrainingXpValues();
-	ShowTrainingWindow();
 }
 
 function tickTraining()

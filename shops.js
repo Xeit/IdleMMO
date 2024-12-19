@@ -54,12 +54,10 @@ function HideShopsWindow()
 
 function startShops()
 {
-	ShowShopsWindow();
 }
 
 function stopShops()
 {
-	HideShopsWindow();
 }
 
 function buyItem(itemId)

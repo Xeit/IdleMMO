@@ -74,7 +74,12 @@ class Item
 	}
 }
 
-function stopEquipment()
+function ShowEquipmentWindow()
+{
+	$("#equipment_window").css("display", "block");
+}
+
+function HideEquipmentWindow()
 {
 	$("#equipment_window").css("display", "none");
 }
@@ -82,7 +87,10 @@ function stopEquipment()
 function startEquipment()
 {
 	updateEquipmentWindow();
-	$("#equipment_window").css("display", "block");
+}
+
+function stopEquipment()
+{
 }
 
 function generateItem(enemyLevel, enemyDifficulty)

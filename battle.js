@@ -103,7 +103,6 @@ function HideBattleWindow()
 
 function stopBattle()
 {
-	HideBattleWindow();
 	bIsInBattle = false;
 	bIsEnemyAlive = false;
 	currentZone = null;
@@ -112,7 +111,6 @@ function stopBattle()
 function startBattle()
 {
 	updateBattleHealth();
-	ShowBattleWindow();
 }
 
 function getNewEnemy()
