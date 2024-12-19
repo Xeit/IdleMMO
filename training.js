@@ -6,19 +6,55 @@ function initializeTraining()
 {
 
 	$("#train_strength").click(function(){
-		currentlyTrainedStatystic = "strength";
+		ResetTrainingButtons();
+		if(currentlyTrainedStatystic == "strength")
+		{
+			currentlyTrainedStatystic = "none";
+		}
+		else
+		{
+			currentlyTrainedStatystic = "strength";
+			$("#train_strength").text("TRAINING");
+		}
 	});
 	
 	$("#train_dexterity").click(function(){
-		currentlyTrainedStatystic = "dexterity";
+		ResetTrainingButtons();
+		if(currentlyTrainedStatystic == "dexterity")
+		{
+			currentlyTrainedStatystic = "none";
+		}
+		else
+		{
+			currentlyTrainedStatystic = "dexterity";
+			$("#train_dexterity").text("TRAINING");
+		}
 	});
 	
 	$("#train_stamina").click(function(){
-		currentlyTrainedStatystic = "stamina";
+		ResetTrainingButtons();
+		if(currentlyTrainedStatystic == "stamina")
+		{
+			currentlyTrainedStatystic = "none";
+		}
+		else
+		{
+			currentlyTrainedStatystic = "stamina";
+			$("#train_stamina").text("TRAINING");
+		}
 	});
 	
 	$("#train_intelligence").click(function(){
-		currentlyTrainedStatystic = "intelligence";
+		ResetTrainingButtons();
+		if(currentlyTrainedStatystic == "intelligence")
+		{
+			currentlyTrainedStatystic = "none";
+		}
+		else
+		{
+			currentlyTrainedStatystic = "intelligence";
+			$("#train_intelligence").text("TRAINING");
+		}
 	});
 
 	updateTrainingXpValues();
@@ -38,6 +74,7 @@ function stopTraining()
 {
 	bIsTraining = false;
 	currentlyTrainedStatystic = "none";
+	ResetTrainingButtons();
 }
 
 function startTraining()
@@ -192,4 +229,12 @@ function updateTrainingXpValues()
 	{
 		$("#training_intelligence_xp").html("MAX for current LVL");
 	}
+}
+
+function ResetTrainingButtons()
+{
+	$("#train_strength").text("TRAIN");
+	$("#train_dexterity").text("TRAIN");
+	$("#train_stamina").text("TRAIN");
+	$("#train_intelligence").text("TRAIN");
 }
