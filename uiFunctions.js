@@ -110,7 +110,7 @@ function DisplayCritChanceUI(againstEnemyLevel)
 function UIDisplayNewTask(newTaskToDisplay)
 {
 	//Hide current task
-	switch(currentTask)
+	switch(currentOpenWindow)
 	{
 		case PlayerTasks.none:
 			$("#empty_window").css("display", "none");

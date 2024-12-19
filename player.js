@@ -1,5 +1,6 @@
 //Player data
 var currentTask = PlayerTasks.none;
+var currentOpenWindow = PlayerTasks.none;
 
 //Level
 var playerLevel = 1;

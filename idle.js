@@ -92,58 +92,78 @@ $(document).ready(function()
 function newPlayerTask(newTask)
 {
 	UIDisplayNewTask(newTask);
-	//End current task
-	switch(currentTask)
-	{
-		case PlayerTasks.none:
-			$("#empty_window").css("display", "none");
-			break;
-		case PlayerTasks.farming_monsters:
-			stopBattle();
-			break;
-		case PlayerTasks.healing:
-			stopHealing();
-			break;
-		case PlayerTasks.training:
-			stopTraining();
-			break;
-		case PlayerTasks.equipment:
-			stopEquipment();
-			break;
-		case PlayerTasks.questing:
-			stopQuesting();
-			break;
-		case PlayerTasks.shop:
-			stopShops();
-			break;
-	}
 
-	//Start new task
-	switch(newTask)
+
+	if(currentTask != newTask)
 	{
-		case PlayerTasks.none:
-			break;
-		case PlayerTasks.farming_monsters:
-			startBattle();
-			break;
-		case PlayerTasks.healing:
-			startHealing();
-			break;
-		case PlayerTasks.training:
-			startTraining();
-			break;
-		case PlayerTasks.equipment:
-			startEquipment();
-			break;
-		case PlayerTasks.questing:
-			startQuesting();
-			break;
-		case PlayerTasks.shop:
-			startShops();
-			break;
+		var bShouldStopPreviousTask = false;
+		//End current task
+		switch(newTask)
+		{
+			case PlayerTasks.farming_monsters:
+				bShouldStopPreviousTask = true;
+				break;
+			case PlayerTasks.healing:
+				bShouldStopPreviousTask = true;
+				break;
+			case PlayerTasks.training:
+				bShouldStopPreviousTask = true;
+				break;
+			case PlayerTasks.equipment:
+				break;
+			case PlayerTasks.questing:
+				bShouldStopPreviousTask = true;
+				break;
+			case PlayerTasks.shop:
+				break;
+			default:
+				break;
+		}
+	
+		if(bShouldStopPreviousTask == true)
+		{
+			//End current task
+			switch(currentTask)
+			{
+				case PlayerTasks.farming_monsters:
+					stopBattle();
+					break;
+				case PlayerTasks.healing:
+					stopHealing();
+					break;
+				case PlayerTasks.training:
+					stopTraining();
+					break;
+				case PlayerTasks.questing:
+					stopQuesting();
+					break;
+				default:
+					break;
+			}
+			currentTask = newTask;
+		}
+	
+		//Start new task
+		switch(newTask)
+		{
+			case PlayerTasks.farming_monsters:
+				startBattle();
+				break;
+			case PlayerTasks.healing:
+				startHealing();
+				break;
+			case PlayerTasks.training:
+				startTraining();
+				break;
+			case PlayerTasks.questing:
+				startQuesting();
+				break;
+			default:
+				break;
+		}
 	}
 
 	//Set current task
-	currentTask = newTask;
+	currentOpenWindow = newTask;
 	$("#task_info").text("CURRENT TASK: " + currentTask);
 }
