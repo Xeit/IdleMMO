@@ -147,6 +147,9 @@ function gatherPlayerData()
 	addData("playerHealthPotions");
 	addData(playerHealthPotions);
 
+	addData("playerHealthPotionUsePercent");
+	addData(playerHealthPotionUsePercent);
+
 	addData("playerBuffList");
 	addData(serializeBuffList());
 }
@@ -310,6 +313,9 @@ function readPlayerData(arrayOfVariables)
 						break;
 					case "playerHealthPotions":
 						playerHealthPotions = +arrayOfVariables[i+1];
+						break;
+					case "playerHealthPotionUsePercent":
+						playerHealthPotionUsePercent = +arrayOfVariables[i+1];
 						break;
 					case "playerBuffList":
 						readPlayerBuffList(arrayOfVariables[i+1]);

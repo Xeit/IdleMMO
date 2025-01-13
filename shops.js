@@ -44,11 +44,20 @@ function initializeShops()
 	{
 		buyBuff($(this).attr("buffId"), $(this).attr("cost"));
 	});
+
+	$("#shop_health_potion_slider").on("mousemove", function() 
+	{
+		$("#shop_health_potion_percentage").text($("#shop_health_potion_slider").val() + "%");
+		playerHealthPotionUsePercent = $("#shop_health_potion_slider").val();
+	});
+
+	$("#shop_health_potion_slider").val(playerHealthPotionUsePercent);
+	$("#shop_health_potion_percentage").text(playerHealthPotionUsePercent + "%");
 }
 
 function ShowShopsWindow()
 {
-   $("#shop_window").css("display", "flex");
+	$("#shop_window").css("display", "flex");
 	$("#potion_seller_window").css("display", "none");
 	$("#church_window").css("display", "none");
 	$("#tavern_window").css("display", "none");
@@ -57,7 +66,7 @@ function ShowShopsWindow()
 
 function HideShopsWindow()
 {
-   $("#shop_window").css("display", "none");
+	$("#shop_window").css("display", "none");
 }
 
 function startShops()

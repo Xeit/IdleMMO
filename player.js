@@ -39,6 +39,7 @@ var playerBootsSlot = undefined;
 
 //Inventory
 var playerHealthPotions = 0;
+var playerHealthPotionUsePercent = 50;
 
 //Buffs
 var playerBuffList = [];
