@@ -153,3 +153,52 @@ function playerGetAttackDamage(againstEnemyLevel)
 
 	return playerDamageToDeal;
 }
+
+function playerResetPlayer()
+{
+	//Player data
+	currentTask = PlayerTasks.none;
+	currentOpenWindow = PlayerTasks.none;
+
+	//Level
+	playerLevel = 1;
+	playerXp = 0;
+	playerRequiredXp = 50;
+
+	//Spendables
+	playerGold = 0;
+	playerHealth = 100;
+	playerMaxHealth = 100;
+	playerMana = 100;
+	playerMaxMana = 100;
+	playerExhaustion = 0;
+	playerMaxExhaustion = 50;
+
+	//Player
+	playerStrength = 1;
+	playerStrengthXP = 0;
+	playerStrengthRequiredXP = 50;
+	playerDexterity = 1;
+	playerDexterityXP = 0;
+	playerDexterityRequiredXP = 50;
+	playerStamina = 1;
+	playerStaminaXP = 0;
+	playerStaminaRequiredXP = 50;
+	playerIntelligence = 1;
+	playerIntelligenceXP = 0;
+	playerIntelligenceRequiredXP = 50;
+
+	//Equipment slots
+	playerWeaponSlot = undefined;
+	playerHelmetSlot = undefined;
+	playerBodyArmourSlot = undefined;
+	playerGlovesSlot = undefined;
+	playerBootsSlot = undefined;
+
+	//Inventory
+	playerHealthPotions = 0;
+	playerHealthPotionUsePercent = 50;
+
+	//Buffs
+	playerBuffList = [];
+}
