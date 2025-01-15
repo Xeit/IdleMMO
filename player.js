@@ -61,7 +61,7 @@ function playerLevelUp()
 {
 	playerLevel += 1;
 	playerXp = 0;
-	playerRequiredXp = +(0.25 * (playerLevel - 1 + (300 * 2 * ((playerLevel - 1) / 7))) + 50).toFixed();
+	playerRequiredXp = +(0.25 * (playerLevel + (300 * 2 * ((playerLevel - 1) / 4))) + 50).toFixed();
 
 	playerMaxHealth = 100 + (10 * (playerLevel - 1));
 	playerMaxMana = 100 + (10 * (playerLevel - 1));

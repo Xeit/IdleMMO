@@ -104,12 +104,6 @@ function tickTraining()
 						playerStrength += 1;
 						playerStrengthXP = 0;
 
-						const LevelPenalty = +Math.floor(playerStrength / 50)
-						if(LevelPenalty > 0)
-						{
-							playerStrengthRequiredXP = LevelPenalty * playerStrength * 50;
-						}
-						else
 						{
 							playerStrengthRequiredXP = playerStrength * 50;
 						}
@@ -126,12 +120,6 @@ function tickTraining()
 						playerDexterity += 1;
 						playerDexterityXP = 0;
 
-						const LevelPenalty = +Math.floor(playerDexterity / 50)
-						if(LevelPenalty > 0)
-						{
-							playerDexterityRequiredXP = LevelPenalty * playerDexterity * 50;
-						}
-						else
 						{
 							playerDexterityRequiredXP = playerDexterity * 50;
 						}
@@ -148,12 +136,6 @@ function tickTraining()
 						playerStamina += 1;
 						playerStaminaXP = 0;
 
-						const LevelPenalty = +Math.floor(playerStamina / 50)
-						if(LevelPenalty > 0)
-						{
-							playerStaminaRequiredXP = LevelPenalty * playerStamina * 50;
-						}
-						else
 						{
 							playerStaminaRequiredXP = playerStamina * 50;
 						}
@@ -170,12 +152,6 @@ function tickTraining()
 						playerIntelligence += 1;
 						playerIntelligenceXP = 0;
 
-						const LevelPenalty = +Math.floor(playerIntelligence / 50) // Bonus multiplier to required xp every 50 lvls
-						if(LevelPenalty > 0)
-						{
-							playerIntelligenceRequiredXP = LevelPenalty * playerIntelligence * 50;
-						}
-						else
 						{
 							playerIntelligenceRequiredXP = playerIntelligence * 50;
 						}
