@@ -1,6 +1,7 @@
 //Player data
 var currentTask = PlayerTasks.none;
 var currentOpenWindow = PlayerTasks.none;
+var playerUnlockedFunctionsUntilLevel = 0;
 
 //Level
 var playerLevel = 1;
@@ -154,11 +155,12 @@ function playerGetAttackDamage(againstEnemyLevel)
 	return playerDamageToDeal;
 }
 
-function playerResetPlayer()
+function PlayerResetPlayer()
 {
 	//Player data
 	currentTask = PlayerTasks.none;
 	currentOpenWindow = PlayerTasks.none;
+	playerUnlockedFunctionsUntilLevel = 0;
 
 	//Level
 	playerLevel = 1;
@@ -201,4 +203,23 @@ function playerResetPlayer()
 
 	//Buffs
 	playerBuffList = [];
+}
+
+function PlayerUnlockFunctions(levelToUnlock)
+{
+	switch(levelToUnlock)
+	{
+		case 0:
+			//Quests
+			break;
+		case 2:
+			//Training and battle
+			break;
+		case 5:
+			//Equipment
+			break;
+		case 15:
+			//Shop
+			break;
+	}
 }

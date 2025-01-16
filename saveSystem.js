@@ -28,6 +28,9 @@ function eatCookie(cname)
 
 function gatherPlayerData()
 {
+	addData("playerUnlockedFunctionsUntilLevel");
+	addData(playerUnlockedFunctionsUntilLevel);
+
 	addData("playerLevel");
 	addData(playerLevel);
 
@@ -185,6 +188,9 @@ function readPlayerData(arrayOfVariables)
 				var VariableName = arrayOfVariables[i];
 				switch(VariableName)
 				{
+					case "playerUnlockedFunctionsUntilLevel":
+						playerUnlockedFunctionsUntilLevel = +arrayOfVariables[i+1];
+						break;
 					case "playerLevel":
 						playerLevel = +arrayOfVariables[i+1];
 						break;
