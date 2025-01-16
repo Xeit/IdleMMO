@@ -123,7 +123,7 @@ function playerTakeDamage(monsterDamageNumber)
 		playerHealth = 0;
 		newPlayerTask(PlayerTasks.healing);
 	}
-	else if(((playerHealth / playerMaxHealth) * 100) < playerHealthPotionUsePercent)
+	else if((((playerHealth / playerMaxHealth) * 100) < playerHealthPotionUsePercent) && playerHealthPotions > 0)
 	{
 		//Use potion if under % health specified by player
 		playerHealthPotions -= 1;

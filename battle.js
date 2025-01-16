@@ -194,29 +194,28 @@ function hitEnemy()
 		//Lower player quest exhaustion
 		if(playerExhaustion > 0)
 		{
-			if(playerExhaustion < 3)
+			if(enemyLevel >= playerLevel)
+			{
+				playerExhaustion -= 5;
+			}
+			else if(enemyLevel >= playerLevel - 5)
+			{
+				playerExhaustion -= 3;
+			}
+			else if(enemyLevel >= playerLevel - 10)
+			{
+				playerExhaustion -= 2;
+			}
+			else if(enemyLevel >= playerLevel - 15)
+			{
+				playerExhaustion -= 1;
+			}
+
+			//Do not lower it if monster is 15 levels lower than player
+
+			if(playerExhaustion < 0)
 			{
 				playerExhaustion = 0;
-			}
-			else
-			{
-				if(enemyLevel >= playerLevel)
-				{
-					playerExhaustion -= 5;
-				}
-				else if(enemyLevel >= playerLevel - 5)
-				{
-					playerExhaustion -= 3;
-				}
-				else if(enemyLevel >= playerLevel - 10)
-				{
-					playerExhaustion -= 2;
-				}
-				else if(enemyLevel >= playerLevel - 15)
-				{
-					playerExhaustion -= 1;
-				}
-				//Do not lower it if monster is 15 levels lower than player
 			}
 		}
 	}
