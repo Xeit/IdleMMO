@@ -69,6 +69,9 @@ function playerLevelUp()
 	playerMaxExhaustion = 50 + (5 * (playerLevel - 1));
 
 	healPlayerToMax();
+
+	PlayerUnlockFunctions(playerLevel);
+	playerUnlockedFunctionsUntilLevel = playerLevel;
 }
 
 function playerGetArmourValue()
@@ -213,13 +216,15 @@ function PlayerUnlockFunctions(levelToUnlock)
 			//Quests
 			break;
 		case 2:
-			//Training and battle
+			$("#battleButton").css("display", "block");
+			$("#recoverHealthButton").css("display", "block");
+			$("#trainingButton").css("display", "block");
 			break;
 		case 5:
-			//Equipment
+			$("#equipmentButton").css("display", "block");
 			break;
 		case 15:
-			//Shop
+			$("#shopButton").css("display", "block");
 			break;
 	}
 }
