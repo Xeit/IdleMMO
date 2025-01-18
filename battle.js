@@ -198,20 +198,20 @@ function hitEnemy()
 			{
 				playerExhaustion -= 5;
 			}
-			else if(enemyLevel >= playerLevel - 5)
+			else if(enemyLevel >= playerLevel - 3)
 			{
 				playerExhaustion -= 3;
 			}
-			else if(enemyLevel >= playerLevel - 10)
+			else if(enemyLevel >= playerLevel - 6)
 			{
 				playerExhaustion -= 2;
 			}
-			else if(enemyLevel >= playerLevel - 15)
+			else if(enemyLevel >= playerLevel - 10)
 			{
 				playerExhaustion -= 1;
 			}
 
-			//Do not lower it if monster is 15 levels lower than player
+			//Do not lower it if monster is 10 levels lower than player
 
 			if(playerExhaustion < 0)
 			{

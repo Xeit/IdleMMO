@@ -49,9 +49,9 @@ const battleZonesMap = new Array();
 
 battleZonesMap.push(new BattleZone("Cellars", "1-3", [new ZoneEnemyWeight("Rat", 96), new ZoneEnemyWeight("Big Rat", 4)], "A cellar filled with rats. Cliche."));
 battleZonesMap.push(new BattleZone("Forest", "2-8", [new ZoneEnemyWeight("Huge Bee", 80), new ZoneEnemyWeight("Fox", 10), new ZoneEnemyWeight("Wolf", 5)], "Forest filled with wild animals. Btw you just hit a beehive."));
-battleZonesMap.push(new BattleZone("Bat Cave", "3-5", [new ZoneEnemyWeight("Bat", 50), new ZoneEnemyWeight("Scary Bat", 50)], "Standard cave. It's filled with bat family."));
-battleZonesMap.push(new BattleZone("Bandit Hideout", "7-15", [new ZoneEnemyWeight("Guard Dog", 20), new ZoneEnemyWeight("Bandit Grunt", 5), new ZoneEnemyWeight("Bandit Leader", 1)], "Hideout of fearsome bandits."));
-battleZonesMap.push(new BattleZone("Kobold Caves", "12-17", [new ZoneEnemyWeight("Kobold Scout", 50), new ZoneEnemyWeight("Kobold Warrior", 20), new ZoneEnemyWeight("Kobold Shaman", 5)], "A maze of tunnels crawling with pesky kobolds. They're territorial."));
+battleZonesMap.push(new BattleZone("Bat Cave", "3-6", [new ZoneEnemyWeight("Bat", 50), new ZoneEnemyWeight("Scary Bat", 50)], "Standard cave. It's filled with bat family."));
+battleZonesMap.push(new BattleZone("Bandit Hideout", "7-11", [new ZoneEnemyWeight("Guard Dog", 20), new ZoneEnemyWeight("Bandit Grunt", 5), new ZoneEnemyWeight("Bandit Leader", 1)], "Hideout of fearsome bandits."));
+battleZonesMap.push(new BattleZone("Kobold Caves", "12-15", [new ZoneEnemyWeight("Kobold Scout", 50), new ZoneEnemyWeight("Kobold Warrior", 20), new ZoneEnemyWeight("Kobold Shaman", 5)], "A maze of tunnels crawling with pesky kobolds. They're territorial."));
 battleZonesMap.push(new BattleZone("Mountain Pass", "15-22", [new ZoneEnemyWeight("Mountain Goat", 50), new ZoneEnemyWeight("Snow Wolf", 20), new ZoneEnemyWeight("Stone Golem", 10)], "A cold, windy pass. Wolves and worse lurk in the snow."));
 battleZonesMap.push(new BattleZone("Catacombs", "20-23", [new ZoneEnemyWeight("Skeleton Warrior", 50), new ZoneEnemyWeight("Plague Rat", 15)], "Ancient burial grounds full of monsters."));
 battleZonesMap.push(new BattleZone("Jungle Temple", "25-33", [new ZoneEnemyWeight("Jungle Spider", 50), new ZoneEnemyWeight("Poison Dart Frog", 50), new ZoneEnemyWeight("Temple Guardian", 10)], "A forgotten temple deep in the jungle."));
