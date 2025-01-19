@@ -88,7 +88,12 @@ function tickTraining()
 	if(bIsTraining)
 	{
 		const maxPlayerStatLvl = playerLevel * 3;
-		const xpToReceive = 1 + Math.floor(playerIntelligence /2);
+		var xpToReceive = 1 + Math.floor(playerIntelligence /2);
+
+		if(levelBreeze == true)
+		{
+			xpToReceive = xpToReceive * 50;
+		}
 
 		switch(currentlyTrainedStatystic)
 		{

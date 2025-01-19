@@ -45,6 +45,9 @@ var playerHealthPotionUsePercent = 50;
 //Buffs
 var playerBuffList = [];
 
+//Debug
+var levelBreeze = false;
+
 function addPlayerXp(xpToAdd)
 {
 	//This is current level cap
@@ -229,4 +232,9 @@ function PlayerUnlockFunctions(levelToUnlock)
 			$("#shopButton").css("display", "block");
 			break;
 	}
+}
+
+function StartDebug()
+{
+	levelBreeze = true;
 }

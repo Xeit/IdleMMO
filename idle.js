@@ -21,9 +21,16 @@ $(document).ready(function()
 		{
 			timeFromLastTick += +event.data;
 			updateProgressBar();
-			if(timeFromLastTick >= 1000)
+			if((timeFromLastTick >= 1000) || levelBreeze == true)
 			{
-				timeFromLastTick -= 1000;
+				if(levelBreeze != true)
+				{
+					timeFromLastTick -= 1000;
+				}
+				else
+				{
+					timeFromLastTick = 0;
+				}
 
 				switch(currentTask)
 				{
