@@ -227,7 +227,7 @@ function PlayerUnlockFunctions(levelToUnlock)
 			$("#equipmentButton").css("display", "block");
 			break;
 		case 10:
-			$("smithButton").css("display", "block");
+			$("#smithButton").css("display", "block");
 		case 15:
 			$("#shopButton").css("display", "block");
 			break;

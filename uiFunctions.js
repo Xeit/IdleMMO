@@ -133,6 +133,9 @@ function UIDisplayNewTask(newTaskToDisplay)
 		case PlayerTasks.shop:
 			HideShopsWindow();
 			break;
+		case PlayerTasks.smith:
+			HideSmithWindow();
+			break;
 	}
 
 	//Start new task
@@ -158,6 +161,9 @@ function UIDisplayNewTask(newTaskToDisplay)
 			break;
 		case PlayerTasks.shop:
 			ShowShopsWindow();
+			break;
+		case PlayerTasks.smith:
+			ShowSmithWindow();
 			break;
 	}
 }
