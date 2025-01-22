@@ -7,3 +7,11 @@ function HideSmithWindow()
 {
 	$("#smith_window").css("display", "none");
 }
+
+function InitializeSmith()
+{
+	$("#smithWeapon").click(function()
+	{
+		
+	});
+}

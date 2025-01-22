@@ -492,17 +492,78 @@
 			</div>
 
 			<!-- SMITH -->
-			<div class ="task_window" id="smith_window" style="display: none;">
-				<div style="height: 10%;">Item select
-					<span style="width: 100%; height: 20%;">playerWeaponSlot</span>
-					<span style="width: 100%; height: 20%;">playerHelmetSlot</span>
-					<span style="width: 100%; height: 20%;">playerBodyArmourSlot</span>
-					<span style="width: 100%; height: 20%;">playerGlovesSlot</span>
-					<span style="width: 100%; height: 20%;">playerBootsSlot</span>
+			<div class ="task_window" id="smith_window" style="display: none; flex-direction: column; align-items: center;">
+				<div style="display: flex; height: 20%; width: 100%;">
+					<span class="smith_item_select">
+						<button id="smithWeapon" class="smith_item_select_button">
+							<div class="smith_item_select_text" style="height: 40%;">
+								<div>WEAPON</div>
+								<div>+0</div>
+							</div>
+							<div style="height: 20%;"></div>
+							<div style="height: 40%;">
+								<div style="color: white;">0/10 PITTY</div>
+							</div>
+						</button>
+					</span>
+					<span class="smith_item_select">
+						<button id="smithHelmet" class="smith_item_select_button">
+							<div class="smith_item_select_text" style="height: 40%;">
+								<div>HELMET</div>
+								<div>+0</div>
+							</div>
+							<div style="height: 20%;"></div>
+							<div style="height: 40%;">
+								<div style="color: white;">0/10 PITTY</div>
+							</div>
+						</button>
+					</span>
+					<span class="smith_item_select">
+						<button id="smithBodyArmour" class="smith_item_select_button">
+							<div class="smith_item_select_text" style="height: 40%;">
+								<div>BODY ARMOUR</div>
+								<div>+0</div>
+							</div>
+							<div style="height: 20%;"></div>
+							<div style="height: 40%;">
+								<div style="color: white;">0/10 PITTY</div>
+							</div>
+						</button>
+					</span>
+					<span class="smith_item_select">
+						<button id="smithGloves" class="smith_item_select_button">
+							<div class="smith_item_select_text" style="height: 40%;">
+								<div>GLOVES</div>
+								<div>+0</div>
+							</div>
+							<div style="height: 20%;"></div>
+							<div style="height: 40%;">
+								<div style="color: white;">0/10 PITTY</div>
+							</div>
+						</button>
+					</span>
+					<span class="smith_item_select">
+						<button id="smithBoots" class="smith_item_select_button">
+							<div class="smith_item_select_text" style="height: 40%;">
+								<div>BOOTS</div>
+								<div>+0</div>
+							</div>
+							<div style="height: 20%;"></div>
+							<div style="height: 40%;">
+								<div style="color: white;">0/10 PITTY</div>
+							</div>
+						</button>
+					</span>
 				</div>
 
-				<div style="height: 90%;">
-					Enchanting window
+				<div style="height: 80%;display: flex;flex-direction: column; width: 100%;align-items: center;">
+					<div style="display: flex;height: 25%;"></div>
+					<div style="display: flex;flex-direction: column;height: 50%;">
+						<div style="display: flex; justify-content: center; align-items: center; height: 25%;">LEFT == item for security    RIGHT == PITY</div>
+						<div style="display: flex; justify-content: center; align-items: center; height: 50%;">LEFT == item for upgrade     CENTER == Item itself</div>
+						<div style="display: flex; justify-content: center; align-items: center; height: 25%;">none</div>
+					</div>
+					<div style="display: flex;height: 25%;">BUTTONS</div>
 				</div>
 			</div>
 

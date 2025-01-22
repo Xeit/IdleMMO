@@ -8,6 +8,7 @@ $(document).ready(function()
 	initializeQuesting();
 	initializeBattle();
 	initializeShops();
+	InitializeSmith();
 	
 	updateInfoPanel();
 	tickBuffs();

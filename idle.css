@@ -350,3 +350,30 @@ button
 	display: flex; 
 	justify-content: center;
 }
+
+.smith_item_select
+{
+	width: 20%;
+	height: 100%;
+}
+
+.smith_item_select_button
+{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent; 
+	border: transparent;
+}
+
+.smith_item_select_text
+{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	color:white;
+}
