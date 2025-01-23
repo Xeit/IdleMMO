@@ -190,7 +190,7 @@ function readPlayerData(arrayOfVariables)
 				{
 					case "playerUnlockedFunctionsUntilLevel":
 						let functionsLevels = +arrayOfVariables[i+1];
-						for(let i = 0; i < functionsLevels; i++)
+						for(let i = 0; i <= functionsLevels; i++)
 						{
 							PlayerUnlockFunctions(i);
 						}
