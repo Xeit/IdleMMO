@@ -377,3 +377,9 @@ button
 	align-items:center;
 	color:white;
 }
+
+.smith_border_1px
+{
+	border:#000 1px solid;
+	border-radius: 5px;
+}
