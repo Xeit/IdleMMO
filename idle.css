@@ -365,8 +365,6 @@ button
 	height: 100%;
 	align-items: center;
 	justify-content: center;
-	background-color: transparent; 
-	border: transparent;
 }
 
 .smith_item_select_text
