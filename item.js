@@ -63,16 +63,6 @@ class Item
 
 		return itemPower;
 	}
-
-	SerializeItem()
-	{
-		var serializedString = this.itemRarity + "|item|";
-		serializedString += this.itemSlot + "|item|";
-		serializedString += this.itemLevel + "|item|";
-		serializedString += this.itemName;
-		
-		return serializedString;
-	}
 }
 
 function ShowEquipmentWindow()
@@ -85,7 +75,7 @@ function HideEquipmentWindow()
 	$("#equipment_window").css("display", "none");
 }
 
-function startEquipment()
+function InitializeEquipment()
 {
 	updateEquipmentWindow();
 }
@@ -184,31 +174,31 @@ function generateItem(enemyLevel, enemyDifficulty)
 
 function updateEquipmentWindow()
 {
-	if(playerWeaponSlot != null)
+	if(playerWeaponSlot instanceof Item)
 	{
 		$("#equipment_weapon_name").text(playerWeaponSlot.itemName);
 		$("#equipment_weapon_level").text(playerWeaponSlot.itemLevel);
 		$("#equipment_weapon_power").text(playerWeaponSlot.returnItemPower());
 	}
-	if(playerHelmetSlot != null)
+	if(playerHelmetSlot instanceof Item)
 	{
 		$("#equipment_helmet_name").text(playerHelmetSlot.itemName);
 		$("#equipment_helmet_level").text(playerHelmetSlot.itemLevel);
 		$("#equipment_helmet_power").text(playerHelmetSlot.returnItemPower());
 	}
-	if(playerBodyArmourSlot != null)
+	if(playerBodyArmourSlot instanceof Item)
 	{
 		$("#equipment_body_armour_name").text(playerBodyArmourSlot.itemName);
 		$("#equipment_body_armour_level").text(playerBodyArmourSlot.itemLevel);
 		$("#equipment_body_armour_power").text(playerBodyArmourSlot.returnItemPower());
 	}
-	if(playerGlovesSlot != null)
+	if(playerGlovesSlot instanceof Item)
 	{
 		$("#equipment_gloves_name").text(playerGlovesSlot.itemName);
 		$("#equipment_gloves_level").text(playerGlovesSlot.itemLevel);
 		$("#equipment_gloves_power").text(playerGlovesSlot.returnItemPower());
 	}
-	if(playerBootsSlot != null)
+	if(playerBootsSlot instanceof Item)
 	{
 		$("#equipment_boots_name").text(playerBootsSlot.itemName);
 		$("#equipment_boots_level").text(playerBootsSlot.itemLevel);

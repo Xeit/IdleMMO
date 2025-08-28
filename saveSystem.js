@@ -100,7 +100,7 @@ function gatherPlayerData()
 	addData("playerWeaponSlot");
 	if(playerWeaponSlot !== undefined)
 	{
-		addData(playerWeaponSlot.SerializeItem());
+		addData(JSON.stringify(playerWeaponSlot));
 	}
 	else
 	{
@@ -110,7 +110,7 @@ function gatherPlayerData()
 	addData("playerHelmetSlot");
 	if(playerHelmetSlot !== undefined)
 	{
-		addData(playerHelmetSlot.SerializeItem());
+		addData(JSON.stringify(playerHelmetSlot));
 	}
 	else
 	{
@@ -120,7 +120,7 @@ function gatherPlayerData()
 	addData("playerBodyArmourSlot");
 	if(playerBodyArmourSlot !== undefined)
 	{
-		addData(playerBodyArmourSlot.SerializeItem());
+		addData(JSON.stringify(playerBodyArmourSlot));
 	}
 	else
 	{
@@ -130,7 +130,7 @@ function gatherPlayerData()
 	addData("playerGlovesSlot");
 	if(playerGlovesSlot !== undefined)
 	{
-		addData(playerGlovesSlot.SerializeItem());
+		addData(JSON.stringify(playerGlovesSlot));
 	}
 	else
 	{
@@ -140,7 +140,7 @@ function gatherPlayerData()
 	addData("playerBootsSlot");
 	if(playerBootsSlot !== undefined)
 	{
-		addData(playerBootsSlot.SerializeItem());
+		addData(JSON.stringify(playerBootsSlot));
 	}
 	else
 	{
@@ -265,60 +265,130 @@ function readPlayerData(arrayOfVariables)
 					case "playerWeaponSlot":
 						if(arrayOfVariables[i+1] != "undefined")
 						{
-							var itemString = arrayOfVariables[i+1];
-							var itemArrayOfVariables = itemString.split("|item|");
-							if(itemArrayOfVariables.length == 4)
+							try
 							{
-								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-								playerWeaponSlot = recreatedItem;
+								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
+								let recreatedItem = new Item();
+								Object.assign(recreatedItem, retrivedJSON);
+								if(recreatedItem instanceof Item)
+								{
+									playerWeaponSlot = recreatedItem;
+								}
+							}
+							catch (e)
+							{
+								// TODO: Remove this in the future, this is depricated
+								var itemString = arrayOfVariables[i+1];
+								var itemArrayOfVariables = itemString.split("|item|");
+								if(itemArrayOfVariables.length == 4)
+								{
+									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									playerWeaponSlot = recreatedItem;
+								}
 							}
 						}
 						break;
 					case "playerHelmetSlot":
 						if(arrayOfVariables[i+1] != "undefined")
 						{
-							var itemString = arrayOfVariables[i+1];
-							var itemArrayOfVariables = itemString.split("|item|");
-							if(itemArrayOfVariables.length == 4)
+							try
 							{
-								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-								playerHelmetSlot = recreatedItem;
+								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
+								let recreatedItem = new Item();
+								Object.assign(recreatedItem, retrivedJSON);
+								if(recreatedItem instanceof Item)
+								{
+									playerHelmetSlot = recreatedItem;
+								}
+							}
+							catch (e)
+							{
+								// TODO: Remove this in the future, this is depricated
+								var itemString = arrayOfVariables[i+1];
+								var itemArrayOfVariables = itemString.split("|item|");
+								if(itemArrayOfVariables.length == 4)
+								{
+									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									playerHelmetSlot = recreatedItem;
+								}
 							}
 						}
 						break;
 					case "playerBodyArmourSlot":
 						if(arrayOfVariables[i+1] != "undefined")
 						{
-							var itemString = arrayOfVariables[i+1];
-							var itemArrayOfVariables = itemString.split("|item|");
-							if(itemArrayOfVariables.length == 4)
+							try
 							{
-								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-								playerBodyArmourSlot = recreatedItem;
+								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
+								let recreatedItem = new Item();
+								Object.assign(recreatedItem, retrivedJSON);
+								if(recreatedItem instanceof Item)
+								{
+									playerBodyArmourSlot = recreatedItem;
+								}
+							}
+							catch (e)
+							{
+								// TODO: Remove this in the future, this is depricated
+								var itemString = arrayOfVariables[i+1];
+								var itemArrayOfVariables = itemString.split("|item|");
+								if(itemArrayOfVariables.length == 4)
+								{
+									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									playerBodyArmourSlot = recreatedItem;
+								}
 							}
 						}
 						break;
 					case "playerGlovesSlot":
 						if(arrayOfVariables[i+1] != "undefined")
 						{
-							var itemString = arrayOfVariables[i+1];
-							var itemArrayOfVariables = itemString.split("|item|");
-							if(itemArrayOfVariables.length == 4)
+							try
 							{
-								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-								playerGlovesSlot = recreatedItem;
+								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
+								let recreatedItem = new Item();
+								Object.assign(recreatedItem, retrivedJSON);
+								if(recreatedItem instanceof Item)
+								{
+									playerGlovesSlot = recreatedItem;
+								}
+							}
+							catch (e)
+							{
+								// TODO: Remove this in the future, this is depricated
+								var itemString = arrayOfVariables[i+1];
+								var itemArrayOfVariables = itemString.split("|item|");
+								if(itemArrayOfVariables.length == 4)
+								{
+									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									playerGlovesSlot = recreatedItem;
+								}
 							}
 						}
 						break;
 					case "playerBootsSlot":
 						if(arrayOfVariables[i+1] != "undefined")
 						{
-							var itemString = arrayOfVariables[i+1];
-							var itemArrayOfVariables = itemString.split("|item|");
-							if(itemArrayOfVariables.length == 4)
+							try
 							{
-								var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-								playerBootsSlot = recreatedItem;
+								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
+								let recreatedItem = new Item();
+								Object.assign(recreatedItem, retrivedJSON);
+								if(recreatedItem instanceof Item)
+								{
+									playerBootsSlot = recreatedItem;
+								}
+							}
+							catch (e)
+							{
+								// TODO: Remove this in the future, this is depricated
+								var itemString = arrayOfVariables[i+1];
+								var itemArrayOfVariables = itemString.split("|item|");
+								if(itemArrayOfVariables.length == 4)
+								{
+									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									playerBootsSlot = recreatedItem;
+								}
 							}
 						}
 						break;

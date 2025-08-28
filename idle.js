@@ -9,6 +9,7 @@ $(document).ready(function()
 	initializeBattle();
 	initializeShops();
 	InitializeSmith();
+	InitializeEquipment();
 	
 	updateInfoPanel();
 	tickBuffs();
