@@ -381,3 +381,8 @@ button
 	border:#000 1px solid;
 	border-radius: 5px;
 }
+
+.space
+{
+	margin: 10px 0 10px 0;
+}
