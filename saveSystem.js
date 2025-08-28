@@ -98,7 +98,7 @@ function gatherPlayerData()
 	addData(playerIntelligenceRequiredXP);
 	
 	addData("playerWeaponSlot");
-	if(playerWeaponSlot != undefined)
+	if(playerWeaponSlot !== undefined)
 	{
 		addData(playerWeaponSlot.SerializeItem());
 	}
@@ -108,7 +108,7 @@ function gatherPlayerData()
 	}
 	
 	addData("playerHelmetSlot");
-	if(playerHelmetSlot != undefined)
+	if(playerHelmetSlot !== undefined)
 	{
 		addData(playerHelmetSlot.SerializeItem());
 	}
@@ -118,7 +118,7 @@ function gatherPlayerData()
 	}
 	
 	addData("playerBodyArmourSlot");
-	if(playerBodyArmourSlot != undefined)
+	if(playerBodyArmourSlot !== undefined)
 	{
 		addData(playerBodyArmourSlot.SerializeItem());
 	}
@@ -128,7 +128,7 @@ function gatherPlayerData()
 	}
 	
 	addData("playerGlovesSlot");
-	if(playerGlovesSlot != undefined)
+	if(playerGlovesSlot !== undefined)
 	{
 		addData(playerGlovesSlot.SerializeItem());
 	}
@@ -138,7 +138,7 @@ function gatherPlayerData()
 	}
 	
 	addData("playerBootsSlot");
-	if(playerBootsSlot != undefined)
+	if(playerBootsSlot !== undefined)
 	{
 		addData(playerBootsSlot.SerializeItem());
 	}

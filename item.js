@@ -39,6 +39,7 @@ class Item
 		switch (this.itemRarity) {
 			case ItemRarity.none:
 				itemPower = 1;
+				break;
 			case ItemRarity.common:
 				break;
 			case ItemRarity.uncommon:

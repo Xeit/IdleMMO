@@ -81,19 +81,19 @@ function playerGetArmourValue()
 {
 	var armourValue = 0;
 
-	if(typeof(playerHelmetSlot) == Item)
+	if(playerHelmetSlot instanceof Item)
 	{
 		armourValue += playerHelmetSlot.returnItemPower();
 	}
-	if(typeof(playerHelmetSlot) == Item)
+	if(playerBodyArmourSlot instanceof Item)
 	{
 		armourValue += playerBodyArmourSlot.returnItemPower();
 	}
-	if(typeof(playerHelmetSlot) == Item)
+	if(playerGlovesSlot instanceof Item)
 	{
 		armourValue += playerGlovesSlot.returnItemPower();
 	}
-	if(typeof(playerHelmetSlot) == Item)
+	if(playerBootsSlot instanceof Item)
 	{
 		armourValue += playerBootsSlot.returnItemPower();
 	}
@@ -143,7 +143,7 @@ function playerGetAttackDamage(againstEnemyLevel)
 	var playerDamageToDeal = 0;
 	
 	playerDamageToDeal = +playerStrength;
-	if(typeof(playerWeaponSlot) == Item)
+	if(playerWeaponSlot instanceof Item)
 	{
 		playerDamageToDeal += +playerWeaponSlot.returnItemPower();
 	}
