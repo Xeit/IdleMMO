@@ -23,6 +23,8 @@ class Item
 	itemSlot = ItemSlot.none;
 	itemLevel = 0;
 	itemName = "";
+	itemUpgradeLevel = 0;
+	itemUpgradePitty = 0;
 
 	constructor (itemRarity, itemSlot, itemLevel, itemName)
 	{
@@ -60,6 +62,9 @@ class Item
 			default:
 				break;
 		}
+
+		// Upgrade level 
+		itemPower = +(itemPower + (itemPower * (0.1 * this.itemUpgradeLevel))).toFixed();
 
 		return itemPower;
 	}

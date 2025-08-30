@@ -370,10 +370,11 @@ button
 .smith_item_select_text
 {
 	display:flex;
-	flex-direction:column;
 	justify-content:center;
 	align-items:center;
 	color:white;
+	height: 70%;
+	width: 100%;
 }
 
 .smith_border_1px
