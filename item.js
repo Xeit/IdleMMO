@@ -34,7 +34,7 @@ class Item
 		this.itemName = itemName;
 	}
 
-	returnItemPower() 
+	returnItemPower(bWithUpgrades) 
 	{
 		var itemPower = this.itemLevel;
 
@@ -64,7 +64,10 @@ class Item
 		}
 
 		// Upgrade level 
-		itemPower = +(itemPower + (itemPower * (0.1 * this.itemUpgradeLevel))).toFixed();
+		if(bWithUpgrades == true)
+		{
+			itemPower = +(itemPower + (itemPower * (0.1 * this.itemUpgradeLevel))).toFixed();
+		}
 
 		return itemPower;
 	}
@@ -183,31 +186,31 @@ function updateEquipmentWindow()
 	{
 		$("#equipment_weapon_name").text(playerWeaponSlot.itemName);
 		$("#equipment_weapon_level").text(playerWeaponSlot.itemLevel);
-		$("#equipment_weapon_power").text(playerWeaponSlot.returnItemPower());
+		$("#equipment_weapon_power").text(playerWeaponSlot.returnItemPower(true));
 	}
 	if(playerHelmetSlot instanceof Item)
 	{
 		$("#equipment_helmet_name").text(playerHelmetSlot.itemName);
 		$("#equipment_helmet_level").text(playerHelmetSlot.itemLevel);
-		$("#equipment_helmet_power").text(playerHelmetSlot.returnItemPower());
+		$("#equipment_helmet_power").text(playerHelmetSlot.returnItemPower(true));
 	}
 	if(playerBodyArmourSlot instanceof Item)
 	{
 		$("#equipment_body_armour_name").text(playerBodyArmourSlot.itemName);
 		$("#equipment_body_armour_level").text(playerBodyArmourSlot.itemLevel);
-		$("#equipment_body_armour_power").text(playerBodyArmourSlot.returnItemPower());
+		$("#equipment_body_armour_power").text(playerBodyArmourSlot.returnItemPower(true));
 	}
 	if(playerGlovesSlot instanceof Item)
 	{
 		$("#equipment_gloves_name").text(playerGlovesSlot.itemName);
 		$("#equipment_gloves_level").text(playerGlovesSlot.itemLevel);
-		$("#equipment_gloves_power").text(playerGlovesSlot.returnItemPower());
+		$("#equipment_gloves_power").text(playerGlovesSlot.returnItemPower(true));
 	}
 	if(playerBootsSlot instanceof Item)
 	{
 		$("#equipment_boots_name").text(playerBootsSlot.itemName);
 		$("#equipment_boots_level").text(playerBootsSlot.itemLevel);
-		$("#equipment_boots_power").text(playerBootsSlot.returnItemPower());
+		$("#equipment_boots_power").text(playerBootsSlot.returnItemPower(true));
 	}
 }
 
@@ -288,9 +291,9 @@ function tryNewItem(newItem)
 		case ItemSlot.weapon:
 			if(playerWeaponSlot != null)
 			{
-				currentItemPower = playerWeaponSlot.returnItemPower();
+				currentItemPower = playerWeaponSlot.returnItemPower(false);
 			}
-			if(newItem.returnItemPower() > currentItemPower)
+			if(newItem.returnItemPower(false) > currentItemPower)
 			{
 				playerWeaponSlot = newItem;
 				bGotNewItem = true;
@@ -299,9 +302,9 @@ function tryNewItem(newItem)
 		case ItemSlot.boots:
 			if(playerBootsSlot != null)
 			{
-				currentItemPower = playerBootsSlot.returnItemPower();
+				currentItemPower = playerBootsSlot.returnItemPower(false);
 			}
-			if(newItem.returnItemPower() > currentItemPower)
+			if(newItem.returnItemPower(false) > currentItemPower)
 			{
 				playerBootsSlot = newItem;
 				bGotNewItem = true;
@@ -310,9 +313,9 @@ function tryNewItem(newItem)
 		case ItemSlot.gloves:
 			if(playerGlovesSlot != null)
 			{
-				currentItemPower = playerGlovesSlot.returnItemPower();
+				currentItemPower = playerGlovesSlot.returnItemPower(false);
 			}
-			if(newItem.returnItemPower() > currentItemPower)
+			if(newItem.returnItemPower(false) > currentItemPower)
 			{
 				playerGlovesSlot = newItem;
 				bGotNewItem = true;
@@ -321,9 +324,9 @@ function tryNewItem(newItem)
 		case ItemSlot.helmet:
 			if(playerHelmetSlot != null)
 			{
-				currentItemPower = playerHelmetSlot.returnItemPower();
+				currentItemPower = playerHelmetSlot.returnItemPower(false);
 			}
-			if(newItem.returnItemPower() > currentItemPower)
+			if(newItem.returnItemPower(false) > currentItemPower)
 			{
 				playerHelmetSlot = newItem;
 				bGotNewItem = true;
@@ -332,9 +335,9 @@ function tryNewItem(newItem)
 		case ItemSlot.body_armour:
 			if(playerBodyArmourSlot != null)
 			{
-				currentItemPower = playerBodyArmourSlot.returnItemPower();
+				currentItemPower = playerBodyArmourSlot.returnItemPower(false);
 			}
-			if(newItem.returnItemPower() > currentItemPower)
+			if(newItem.returnItemPower(false) > currentItemPower)
 			{
 				playerBodyArmourSlot = newItem;
 				bGotNewItem = true;

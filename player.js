@@ -83,19 +83,19 @@ function playerGetArmourValue()
 
 	if(playerHelmetSlot instanceof Item)
 	{
-		armourValue += playerHelmetSlot.returnItemPower();
+		armourValue += playerHelmetSlot.returnItemPower(true);
 	}
 	if(playerBodyArmourSlot instanceof Item)
 	{
-		armourValue += playerBodyArmourSlot.returnItemPower();
+		armourValue += playerBodyArmourSlot.returnItemPower(true);
 	}
 	if(playerGlovesSlot instanceof Item)
 	{
-		armourValue += playerGlovesSlot.returnItemPower();
+		armourValue += playerGlovesSlot.returnItemPower(true);
 	}
 	if(playerBootsSlot instanceof Item)
 	{
-		armourValue += playerBootsSlot.returnItemPower();
+		armourValue += playerBootsSlot.returnItemPower(true);
 	}
 
 	return armourValue;
@@ -145,7 +145,7 @@ function playerGetAttackDamage(againstEnemyLevel)
 	playerDamageToDeal = +playerStrength;
 	if(playerWeaponSlot instanceof Item)
 	{
-		playerDamageToDeal += +playerWeaponSlot.returnItemPower();
+		playerDamageToDeal += +playerWeaponSlot.returnItemPower(true);
 	}
 
 	const critRoll = +(Math.random() * againstEnemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex for enemy on same level

@@ -3,6 +3,7 @@ var smithCurrentItemSlot = undefined;
 function ShowSmithWindow()
 {
 	SmithUpdateButtonsInfo();
+	SmithUpdatePanelInfo();
 	$("#smith_window").css("display", "flex");
 }
 
@@ -17,22 +18,27 @@ function InitializeSmith()
 	$("#smithWeapon").click(function()
 	{
 		SmithNewItemSlot(playerWeaponSlot);
+		SmithUpdatePanelInfo();
 	});
 	$("#smithHelmet").click(function()
 	{
 		SmithNewItemSlot(playerHelmetSlot);
+		SmithUpdatePanelInfo();
 	});
 	$("#smithBodyArmour").click(function()
 	{
 		SmithNewItemSlot(playerBodyArmourSlot);
+		SmithUpdatePanelInfo();
 	});
 	$("#smithGloves").click(function()
 	{
 		SmithNewItemSlot(playerGlovesSlot);
+		SmithUpdatePanelInfo();
 	});
 	$("#smithBoots").click(function()
 	{
 		SmithNewItemSlot(playerBootsSlot);
+		SmithUpdatePanelInfo();
 	});
 }
 
@@ -67,6 +73,32 @@ function SmithUpdateButtonsInfo()
 		$("#smithBoots_upgradeLevel").text("+" + playerBootsSlot.itemUpgradeLevel);
 		$("#smithBoots_rarity").text(playerBootsSlot.itemRarity.toUpperCase());
 		$("#smithBoots_pitty").text(playerBootsSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(playerBootsSlot) + " PITTY");
+	}
+}
+
+function SmithUpdatePanelInfo()
+{
+	if(smithCurrentItemSlot instanceof Item)
+	{
+		$("#smithInfo_ILVL").text("iLvl: " + smithCurrentItemSlot.itemLevel);
+
+		let temporaryItemWithNextUpgrade = new Item();
+		Object.assign(temporaryItemWithNextUpgrade, smithCurrentItemSlot);
+		temporaryItemWithNextUpgrade.itemUpgradeLevel = temporaryItemWithNextUpgrade.itemUpgradeLevel + 1;
+		let additionalUpgradePower = temporaryItemWithNextUpgrade.returnItemPower(true) - smithCurrentItemSlot.returnItemPower(true);
+		$("#smithInfo_Power").text("ITEM POWER: " + smithCurrentItemSlot.returnItemPower(true) + " (+" + additionalUpgradePower + ")");
+		
+		$("#smithInfo_itemRarity").text(smithCurrentItemSlot.itemRarity.toUpperCase());
+		$("#smithInfo_itemSlot").text(smithCurrentItemSlot.itemSlot.toUpperCase());
+		$("#smithInfo_itemUpgradeLevel").text("+ " + smithCurrentItemSlot.itemUpgradeLevel);
+	}
+	else
+	{
+		$("#smithInfo_ILVL").text("NONE");
+		$("#smithInfo_Power").text("");
+		$("#smithInfo_itemRarity").text("NOTHING");
+		$("#smithInfo_itemSlot").text("");
+		$("#smithInfo_itemUpgradeLevel").text("");
 	}
 }
 

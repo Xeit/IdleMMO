@@ -573,15 +573,21 @@
 								<div style="display: flex; flex-direction: column; width: 50%; height: 50%; align-items: center; justify-content: center;">
 									<div>STATISTICS</div>
 									<div class="space"></div>
-									<div>DAMAGE 5(+1)</div>
+									<div id="smithInfo_ILVL">NONE</div>
+									<div id="smithInfo_Power"></div>
 								</div>
-							</div>
-							<div style="width: 3px;"></div>
-							<div class="smith_border_1px" style="display: flex; justify-content: center; align-items: center; width: 24%; height: 100%;">
+							</div> 
+							<div style="width: 1%;"></div>
+							<div class="smith_border_1px" style="display: flex; justify-content: center; align-items: center; width: 25%; height: 100%;">
 								<div style="display: flex; flex-direction: column; width: 50%; height: 50%; align-items: center; justify-content: center;">
-									<div>CURRENTLY UPGRADING</div>
+									<div>CURRENTLY</div>
+									<div>SELECTED</div>
 									<div class="space"></div>
-									<div>WEAPON +0</div>
+									<div id="smithInfo_itemRarity">COMMON</div>
+									<div>
+										<span id="smithInfo_itemSlot">WEAPON</span>
+										<span id="smithInfo_itemUpgradeLevel">+0</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -596,13 +602,21 @@
 							<div class="space"></div>
 							<div>GOLD COST</div>
 							<div class="space"></div>
-							<div>100G</div>
+							<div>0G</div>
 						</div>
 						<!-- UPGRADE button -->
 						<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 98%; width: 33%;">
-							<div class="smith_border_1px" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 95%; height: 50%;">
-								<div>PITTY</div>
-								<div>0/10</div>
+							<div style="display: flex; width: 95%; height: 50%;">
+								<span class="smith_border_1px" style="display: flex; flex-direction: column; justify-content: center; align-items: center;width: 49%;">
+									<div>PITTY</div>
+									<div>0/0</div>
+								</span>
+								<span style="width: 2%;"></span>
+								<span class="smith_border_1px" style="display: flex; flex-direction: column; justify-content: center; align-items: center;width: 49%;">
+									<div>UPGRADE</div>
+									<div>CHANCE</div>
+									<div>0%</div>
+								</span>
 							</div>
 							<div style="height: 5%;"></div>
 							<button style="width: 95%;height: 45%;">UPGRADE</button>
