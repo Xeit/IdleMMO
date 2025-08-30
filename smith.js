@@ -87,10 +87,14 @@ function SmithUpdatePanelInfo()
 		temporaryItemWithNextUpgrade.itemUpgradeLevel = temporaryItemWithNextUpgrade.itemUpgradeLevel + 1;
 		let additionalUpgradePower = temporaryItemWithNextUpgrade.returnItemPower(true) - smithCurrentItemSlot.returnItemPower(true);
 		$("#smithInfo_Power").text("ITEM POWER: " + smithCurrentItemSlot.returnItemPower(true) + " (+" + additionalUpgradePower + ")");
-		
+
 		$("#smithInfo_itemRarity").text(smithCurrentItemSlot.itemRarity.toUpperCase());
 		$("#smithInfo_itemSlot").text(smithCurrentItemSlot.itemSlot.toUpperCase());
 		$("#smithInfo_itemUpgradeLevel").text("+ " + smithCurrentItemSlot.itemUpgradeLevel);
+		$("#smithInfo_goldCost").text(SmithGetUpgradeGoldCost() + " G");
+		$("#smithInfo_itemCost").text("NOTHING");
+		$("#smithInfo_upgradeChance").text(SmithGetUpgradeChance(smithCurrentItemSlot) * 100 + "%");
+		$("#smithInfo_pitty").text(smithCurrentItemSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(smithCurrentItemSlot));
 	}
 	else
 	{
@@ -99,6 +103,9 @@ function SmithUpdatePanelInfo()
 		$("#smithInfo_itemRarity").text("NOTHING");
 		$("#smithInfo_itemSlot").text("");
 		$("#smithInfo_itemUpgradeLevel").text("");
+		$("#smithInfo_goldCost").text("");
+		$("#smithInfo_itemCost").text("");
+		$("#smithInfo_upgradeChance").text("0%");
 	}
 }
 
@@ -174,4 +181,40 @@ function SmithNewItemSlot(itemSlotToUse)
 	{
 		smithCurrentItemSlot = itemSlotToUse;
 	}
+}
+
+function SmithGetUpgradeGoldCost()
+{
+	let goldCost = 0;
+	if(smithCurrentItemSlot instanceof Item)
+	{
+		switch(smithCurrentItemSlot.itemRarity)
+		{
+			case ItemRarity.none:
+				break;
+			case ItemRarity.common:
+				break;
+			case ItemRarity.uncommon:
+				goldCost = 250;
+				break;
+			case ItemRarity.magic:
+				goldCost = 500;
+				break;
+			case ItemRarity.rare:
+				goldCost = 1200;
+				break;
+			case ItemRarity.mythic:
+				goldCost = 2500;
+				break;
+			case ItemRarity.legendary:
+				goldCost = 5000;
+				break;
+			default:
+				break;
+		}
+
+		goldCost = goldCost * (1 + smithCurrentItemSlot.itemUpgradeLevel);
+	}
+
+	return goldCost;
 }
