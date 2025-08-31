@@ -40,6 +40,10 @@ function InitializeSmith()
 		SmithNewItemSlot(playerBootsSlot);
 		SmithUpdatePanelInfo();
 	});
+	$("#smithInfo_upgradeButton").click(function()
+	{
+		
+	});
 }
 
 function SmithUpdateButtonsInfo()
@@ -95,6 +99,19 @@ function SmithUpdatePanelInfo()
 		$("#smithInfo_itemCost").text("NOTHING");
 		$("#smithInfo_upgradeChance").text(SmithGetUpgradeChance(smithCurrentItemSlot) * 100 + "%");
 		$("#smithInfo_pitty").text(smithCurrentItemSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(smithCurrentItemSlot));
+
+		if(SmithCanUpgradeItem())
+		{
+			$("#smithInfo_upgradeButton").prop('disabled', false);
+			$("#smithInfo_upgradeButton").removeClass("smith_disabledButton");
+			$("#smithInfo_upgradeButton").addClass("smith_enabledButton");
+		}
+		else
+		{
+			$("#smithInfo_upgradeButton").prop('disabled', true);
+			$("#smithInfo_upgradeButton").removeClass("smith_enabledButton");
+			$("#smithInfo_upgradeButton").addClass("smith_disabledButton");
+		}
 	}
 	else
 	{
@@ -106,6 +123,10 @@ function SmithUpdatePanelInfo()
 		$("#smithInfo_goldCost").text("");
 		$("#smithInfo_itemCost").text("");
 		$("#smithInfo_upgradeChance").text("0%");
+
+		$("#smithInfo_upgradeButton").prop('disabled', true);
+		$("#smithInfo_upgradeButton").removeClass("smith_enabledButton");
+		$("#smithInfo_upgradeButton").addClass("smith_disabledButton");
 	}
 }
 
@@ -217,4 +238,55 @@ function SmithGetUpgradeGoldCost()
 	}
 
 	return goldCost;
+}
+
+function SmithCanUpgradeItem()
+{
+	let bCanUpgradeItem = true;
+
+	if(smithCurrentItemSlot instanceof Item)
+	{
+		let maxUpgradeLevel = 0;
+
+		switch(smithCurrentItemSlot.itemRarity)
+		{
+			case ItemRarity.none:
+				break;
+			case ItemRarity.common:
+				break;
+			case ItemRarity.uncommon:
+				maxUpgradeLevel = 2;
+				break;
+			case ItemRarity.magic:
+				maxUpgradeLevel = 4;
+				break;
+			case ItemRarity.rare:
+				maxUpgradeLevel = 6;
+				break;
+			case ItemRarity.mythic:
+				maxUpgradeLevel = 8;
+				break;
+			case ItemRarity.legendary:
+				maxUpgradeLevel = 10;
+				break;
+			default:
+				break;
+		}
+
+		if(smithCurrentItemSlot.itemUpgradeLevel >= maxUpgradeLevel)
+		{
+			bCanUpgradeItem = false;
+		}
+
+		if(SmithGetUpgradeGoldCost() > playerGold)
+		{
+			bCanUpgradeItem = false;
+		}
+	}
+	else
+	{
+		bCanUpgradeItem = false;
+	}
+
+	return bCanUpgradeItem;
 }

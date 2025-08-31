@@ -387,3 +387,34 @@ button
 {
 	margin: 10px 0 10px 0;
 }
+
+.smith_enabledButton
+{
+	font-size: larger;
+	font-family: "League Spartan", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 500;
+	padding-top: 5px;
+	border-radius: 5px;
+
+	background-color: #c3c3c3;
+	color: white;
+	text-shadow: 1px 1px 2px #000000;
+}
+
+.smith_disabledButton
+{
+	font-size: larger;
+	font-family: "League Spartan", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 500;
+	padding-top: 5px;
+	border-radius: 5px;
+
+	background-color: #3c3c3c;
+	border-color: #000;
+	color: black;
+	text-shadow: 0px 0px 1px #6e6e6e;
+}
