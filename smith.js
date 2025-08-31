@@ -42,7 +42,9 @@ function InitializeSmith()
 	});
 	$("#smithInfo_upgradeButton").click(function()
 	{
-		
+		SmithTryToUpgradeItem();
+		SmithUpdateButtonsInfo();
+		SmithUpdatePanelInfo();
 	});
 }
 
@@ -97,20 +99,38 @@ function SmithUpdatePanelInfo()
 		$("#smithInfo_itemUpgradeLevel").text("+ " + smithCurrentItemSlot.itemUpgradeLevel);
 		$("#smithInfo_goldCost").text(SmithGetUpgradeGoldCost() + " G");
 		$("#smithInfo_itemCost").text("NOTHING");
-		$("#smithInfo_upgradeChance").text(SmithGetUpgradeChance(smithCurrentItemSlot) * 100 + "%");
 		$("#smithInfo_pitty").text(smithCurrentItemSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(smithCurrentItemSlot));
+
+		if(smithCurrentItemSlot.itemUpgradePitty >= SmithGetMaxPitty(smithCurrentItemSlot))
+		{
+			$("#smithInfo_upgradeChance").text("100%");
+		}
+		else
+		{
+			$("#smithInfo_upgradeChance").text(SmithGetUpgradeChance(smithCurrentItemSlot) * 100 + "%");
+		}
 
 		if(SmithCanUpgradeItem())
 		{
 			$("#smithInfo_upgradeButton").prop('disabled', false);
 			$("#smithInfo_upgradeButton").removeClass("smith_disabledButton");
 			$("#smithInfo_upgradeButton").addClass("smith_enabledButton");
+
+			if(smithCurrentItemSlot.itemUpgradePitty >= SmithGetMaxPitty(smithCurrentItemSlot))
+			{
+				$("#smithInfo_upgradeButton").text("PITTY");
+			}
+			else
+			{
+				$("#smithInfo_upgradeButton").text("UPGRADE");
+			}
 		}
 		else
 		{
 			$("#smithInfo_upgradeButton").prop('disabled', true);
 			$("#smithInfo_upgradeButton").removeClass("smith_enabledButton");
 			$("#smithInfo_upgradeButton").addClass("smith_disabledButton");
+			$("#smithInfo_upgradeButton").text("UPGRADE");
 		}
 	}
 	else
@@ -127,6 +147,7 @@ function SmithUpdatePanelInfo()
 		$("#smithInfo_upgradeButton").prop('disabled', true);
 		$("#smithInfo_upgradeButton").removeClass("smith_enabledButton");
 		$("#smithInfo_upgradeButton").addClass("smith_disabledButton");
+		$("#smithInfo_upgradeButton").text("UPGRADE");
 	}
 }
 
@@ -289,4 +310,36 @@ function SmithCanUpgradeItem()
 	}
 
 	return bCanUpgradeItem;
+}
+
+function SmithTryToUpgradeItem()
+{
+	// Sanity checks
+	if(!(smithCurrentItemSlot instanceof Item) || !SmithCanUpgradeItem())
+	{
+		return;
+	}
+
+	playerGold = playerGold - SmithGetUpgradeGoldCost();
+
+	//Use pitty
+	if(smithCurrentItemSlot.itemUpgradePitty >= SmithGetMaxPitty(smithCurrentItemSlot))
+	{
+		smithCurrentItemSlot.itemUpgradeLevel = smithCurrentItemSlot.itemUpgradeLevel + 1;
+		smithCurrentItemSlot.itemUpgradePitty = 0;
+		return;
+	}
+
+	const upgradeChance = SmithGetUpgradeChance(smithCurrentItemSlot);
+	if(Math.random() <= upgradeChance)
+	{
+		//Upgraded
+		smithCurrentItemSlot.itemUpgradeLevel = smithCurrentItemSlot.itemUpgradeLevel + 1;
+		smithCurrentItemSlot.itemUpgradePitty = 0;
+	}
+	else
+	{
+		//lol, nope.
+		smithCurrentItemSlot.itemUpgradePitty = smithCurrentItemSlot.itemUpgradePitty + 1;
+	}
 }
