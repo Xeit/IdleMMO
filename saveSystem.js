@@ -37,35 +37,6 @@ function gatherPlayerData()
 {
 	addData("player")
 	addData(JSON.stringify(player))
-
-	addData("playerHealthPotions");
-	addData(playerHealthPotions);
-
-	addData("playerHealthPotionUsePercent");
-	addData(playerHealthPotionUsePercent);
-
-	addData("playerBuffList");
-	addData(serializeBuffList());
-}
-
-function serializeBuffList()
-{
-	var buffsString = "";
-
-	for(var i = 1; i <= playerBuffList.length; i = i + 1)
-	{
-		if(playerBuffList[i-1] instanceof PlayerBuff)
-		{
-			buffsString += playerBuffList[i-1].serializeBuff();
-	
-			if(playerBuffList.length > 1 && i != playerBuffList.length)
-			{
-				buffsString += "|buffList|";
-			}
-		}
-	}
-
-	return buffsString;
 }
 
 function DEPRECATED_readPlayerData(arrayOfVariables)
@@ -265,13 +236,12 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 						}
 						break;
 					case "playerHealthPotions":
-						playerHealthPotions = +arrayOfVariables[i+1];
+						player.healthPotions = +arrayOfVariables[i+1];
 						break;
 					case "playerHealthPotionUsePercent":
-						playerHealthPotionUsePercent = +arrayOfVariables[i+1];
+						player.healthPotionUsePercent = +arrayOfVariables[i+1];
 						break;
 					case "playerBuffList":
-						readPlayerBuffList(arrayOfVariables[i+1]);
 						break;
 					default:
 						console.log("There was unexpected data when reading the save file, name of unexpected variable: " + VariableName); 
@@ -308,43 +278,10 @@ function readPlayerData(arrayOfVariables)
 						{
 						}
 						break;
-					case "playerHealthPotions":
-						playerHealthPotions = +arrayOfVariables[i+1];
-						break;
-					case "playerHealthPotionUsePercent":
-						playerHealthPotionUsePercent = +arrayOfVariables[i+1];
-						break;
-					case "playerBuffList":
-						readPlayerBuffList(arrayOfVariables[i+1]);
-						break;
 					default:
 						console.log("There was unexpected data when reading the save file, name of unexpected variable: " + VariableName); 
 				}
 			}
-		}
-	}
-}
-
-function readPlayerBuffList(buffListString)
-{
-	const arrayOfBuffs = buffListString.split("|buffList|");
-
-	if(arrayOfBuffs.length == 1 && arrayOfBuffs[0] == "")
-	{
-		return;
-	}
-
-	for(var i = 0; i < arrayOfBuffs.length; i = i + 1)
-	{
-		const arrayOfBuffParameters = arrayOfBuffs[i].split("|buff|");
-		if(arrayOfBuffParameters.length == 6)
-		{
-			var recreatedBuff = new PlayerBuff(arrayOfBuffParameters[0], arrayOfBuffParameters[1], arrayOfBuffParameters[2], arrayOfBuffParameters[3], arrayOfBuffParameters[4], arrayOfBuffParameters[5]);
-			playerBuffList.push(recreatedBuff);
-		}
-		else
-		{
-			console.log("Incorrect amount of buff parameters in saveSystem.js readPlayerBuffList(buffListString)");
 		}
 	}
 }

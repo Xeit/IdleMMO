@@ -24,7 +24,7 @@ function updateInfoPanel()
 	$("#HP.player_info_element").css("background-size", playerHealthPercent + " 100%");
 	$("#HP.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_health_potions").text(playerHealthPotions);
+	$("#player_info_health_potions").text(player.healthPotions);
 	
 	const playerManaPercent = (player.playerMana / player.playerMaxMana * 100).toFixed() + "%";
 	$("#player_info_mana").text(playerManaPercent);

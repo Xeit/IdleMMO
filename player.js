@@ -31,6 +31,13 @@ class Player
 	glovesSlot = undefined;
 	bootsSlot = undefined;
 
+	//Potions
+	healthPotions = 0;
+	healthPotionUsePercent = 50;
+
+	//Buffs
+	buffList = [];
+
 	playerUnlockFunctionsUntilLevel()
 	{
 		for(let i = 0; i <= this.playerLevel; i++)
@@ -45,13 +52,6 @@ var player = new Player()
 //Player data
 var currentTask = PlayerTasks.none;
 var currentOpenWindow = PlayerTasks.none;
-
-//Inventory
-var playerHealthPotions = 0;
-var playerHealthPotionUsePercent = 50;
-
-//Buffs
-var playerBuffList = [];
 
 //Debug
 var levelBreeze = false;
@@ -136,10 +136,10 @@ function playerTakeDamage(monsterDamageNumber)
 		player.playerHealth = 0;
 		newPlayerTask(PlayerTasks.healing);
 	}
-	else if((((player.playerHealth / player.playerMaxHealth) * 100) < playerHealthPotionUsePercent) && playerHealthPotions > 0)
+	else if((((player.playerHealth / player.playerMaxHealth) * 100) < player.healthPotionUsePercent) && player.healthPotions > 0)
 	{
 		//Use potion if under % health specified by player
-		playerHealthPotions -= 1;
+		player.healthPotions -= 1;
 		const healthToHeal = +Math.floor(player.playerMaxHealth / 2);
 		playerHealPlayer(healthToHeal);
 	}
@@ -175,13 +175,6 @@ function PlayerResetPlayer()
 	//Player data
 	currentTask = PlayerTasks.none;
 	currentOpenWindow = PlayerTasks.none;
-
-	//Inventory
-	playerHealthPotions = 0;
-	playerHealthPotionUsePercent = 50;
-
-	//Buffs
-	playerBuffList = [];
 }
 
 function PlayerUnlockFunctions(levelToUnlock)
