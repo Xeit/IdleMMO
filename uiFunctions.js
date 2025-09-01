@@ -12,49 +12,49 @@ function updateProgressBar()
 
 function updateInfoPanel()
 {
-	$("#player_info_level").text(playerLevel);
+	$("#player_info_level").text(player.level);
 
-	const playerXpPercent = (playerXp / playerRequiredXp * 100).toFixed(2) + "%";
+	const playerXpPercent = (player.xp / player.requiredXp * 100).toFixed(2) + "%";
 	$("#player_info_xp").text(playerXpPercent);
 	$("#XP.player_info_element").css("background-size", playerXpPercent + " 100%");
 	$("#XP.player_info_element").css("background-repeat", "no-repeat");
 
-	const playerHealthPercent = (playerHealth / playerMaxHealth * 100).toFixed() + "%";
+	const playerHealthPercent = (player.health / player.maxHealth * 100).toFixed() + "%";
 	$("#player_info_health").text(playerHealthPercent);
 	$("#HP.player_info_element").css("background-size", playerHealthPercent + " 100%");
 	$("#HP.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_health_potions").text(playerHealthPotions);
+	$("#player_info_health_potions").text(player.healthPotions);
 	
-	const playerManaPercent = (playerMana / playerMaxMana * 100).toFixed() + "%";
+	const playerManaPercent = (player.mana / player.maxMana * 100).toFixed() + "%";
 	$("#player_info_mana").text(playerManaPercent);
 	$("#MANA.player_info_element").css("background-size", playerManaPercent + " 100%");
 	$("#MANA.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_gold").text(playerGold);
+	$("#player_info_gold").text(player.gold);
 	
-	const maxSkillsLvl = playerLevel * 3;
-	$("#player_info_strength").text(playerStrength + "/" + maxSkillsLvl);
-	const playerSTRPercent = (playerStrength / maxSkillsLvl * 100).toFixed() + "%";
+	const maxSkillsLvl = player.level * 3;
+	$("#player_info_strength").text(player.strength + "/" + maxSkillsLvl);
+	const playerSTRPercent = (player.strength / maxSkillsLvl * 100).toFixed() + "%";
 	$("#STR.player_info_element").css("background-size", playerSTRPercent + " 100%");
 	$("#STR.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_dexterity").text(playerDexterity + "/" + maxSkillsLvl);
-	const playerDEXPercent = (playerDexterity / maxSkillsLvl * 100).toFixed() + "%";
+	$("#player_info_dexterity").text(player.dexterity + "/" + maxSkillsLvl);
+	const playerDEXPercent = (player.dexterity / maxSkillsLvl * 100).toFixed() + "%";
 	$("#DEX.player_info_element").css("background-size", playerDEXPercent + " 100%");
 	$("#DEX.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_stamina").text(playerStamina + "/" + maxSkillsLvl);
-	const playerSTAPercent = (playerStamina / maxSkillsLvl * 100).toFixed() + "%";
+	$("#player_info_stamina").text(player.stamina + "/" + maxSkillsLvl);
+	const playerSTAPercent = (player.stamina / maxSkillsLvl * 100).toFixed() + "%";
 	$("#STA.player_info_element").css("background-size", playerSTAPercent + " 100%");
 	$("#STA.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_intelligence").text(playerIntelligence + "/" + maxSkillsLvl);
-	const playerINTPercent = (playerIntelligence / maxSkillsLvl * 100).toFixed() + "%";
+	$("#player_info_intelligence").text(player.intelligence + "/" + maxSkillsLvl);
+	const playerINTPercent = (player.intelligence / maxSkillsLvl * 100).toFixed() + "%";
 	$("#INT.player_info_element").css("background-size", playerINTPercent + " 100%");
 	$("#INT.player_info_element").css("background-repeat", "no-repeat");
 	
-	const playerEXHPercent = (playerExhaustion / playerMaxExhaustion * 100).toFixed() + "%";
+	const playerEXHPercent = (player.exhaustion / player.maxExhaustion * 100).toFixed() + "%";
 	$("#player_info_exhaustion").text(playerEXHPercent);
 	$("#EXH.player_info_element").css("background-size", playerEXHPercent + " 100%");
 	$("#EXH.player_info_element").css("background-repeat", "no-repeat");
@@ -99,7 +99,7 @@ function UIItemDropped(generatedNewItem)
 
 function DisplayCritChanceUI(againstEnemyLevel)
 {
-	var playerDisplayedCritChance = Math.round(playerDexterity / (againstEnemyLevel * 3 * 2) * 100);
+	var playerDisplayedCritChance = Math.round(player.dexterity / (againstEnemyLevel * 3 * 2) * 100);
 	if(playerDisplayedCritChance > 100)
 	{
 		playerDisplayedCritChance = 100;

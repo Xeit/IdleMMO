@@ -23,7 +23,7 @@ $(document).ready(function()
 		{
 			timeFromLastTick += +event.data;
 			updateProgressBar();
-			if((timeFromLastTick >= 1000) || levelBreeze == true)
+			if(((timeFromLastTick >= 1000) || levelBreeze == true) && !freezeTime)
 			{
 				if(levelBreeze != true)
 				{

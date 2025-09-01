@@ -48,11 +48,11 @@ function initializeShops()
 	$("#shop_health_potion_slider").on("mousemove", function() 
 	{
 		$("#shop_health_potion_percentage").text($("#shop_health_potion_slider").val() + "%");
-		playerHealthPotionUsePercent = $("#shop_health_potion_slider").val();
+		player.healthPotionUsePercent = $("#shop_health_potion_slider").val();
 	});
 
-	$("#shop_health_potion_slider").val(playerHealthPotionUsePercent);
-	$("#shop_health_potion_percentage").text(playerHealthPotionUsePercent + "%");
+	$("#shop_health_potion_slider").val(player.healthPotionUsePercent);
+	$("#shop_health_potion_percentage").text(player.healthPotionUsePercent + "%");
 }
 
 function ShowShopsWindow()
@@ -90,14 +90,14 @@ function buyItem(itemId)
 			break;
 	}
 
-	if(playerGold >= itemCost)
+	if(player.gold >= itemCost)
 	{
-		playerGold -= +itemCost;
+		player.gold -= +itemCost;
 
 		switch(itemId)
 		{
 			case "0":
-				playerHealthPotions = playerHealthPotions + 1;
+				player.healthPotions = player.healthPotions + 1;
 				break;
 			default:
 				break;
@@ -107,9 +107,9 @@ function buyItem(itemId)
 
 function buyBuff(buffId, cost)
 {
-	if(playerGold >= cost)
+	if(player.gold >= cost)
 	{
-		playerGold -= +cost;
+		player.gold -= +cost;
 
 		var createNewBuff = true;
 		var buffDefaultValues = null;
@@ -126,14 +126,14 @@ function buyBuff(buffId, cost)
 			}
 		}
 
-		for(var i = 0; i < playerBuffList.length; i = i + 1)
+		for(var i = 0; i < player.buffList.length; i = i + 1)
 		{
-			if(typeof(playerBuffList[i] == PlayerBuff))
+			if(typeof(player.buffList[i] == PlayerBuff))
 			{
-				if(playerBuffList[i].buffId == buffId)
+				if(player.buffList[i].buffId == buffId)
 				{
 					//Refresh duration on the buff
-					playerBuffList[i].buffDuration = buffDefaultValues.buffDuration;
+					player.buffList[i].buffDuration = buffDefaultValues.buffDuration;
 					createNewBuff = false;
 					break;
 				}
@@ -142,7 +142,7 @@ function buyBuff(buffId, cost)
 
 		if(createNewBuff)
 		{
-			playerBuffList.push(buffDefaultValues);
+			player.buffList.push(buffDefaultValues);
 		}
 	}
 }

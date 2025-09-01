@@ -41,16 +41,16 @@ class PlayerBuff
 function tickBuffs()
 {
 	var atLeastOneBuffToShow = false;	
-	for(var i = 0; i < playerBuffList.length; i = i + 1)
+	for(var i = 0; i < player.buffList.length; i = i + 1)
 	{
-		if(typeof(playerBuffList[i] == PlayerBuff))
+		if(typeof(player.buffList[i] == PlayerBuff))
 		{
 			atLeastOneBuffToShow = true;
-			playerBuffList[i].buffDuration -= 1;
-			if(playerBuffList[i].buffDuration <= 0)
+			player.buffList[i].buffDuration -= 1;
+			if(player.buffList[i].buffDuration <= 0)
 			{
 				//This is the dumbest way of removing element from list. WTF JavaScript.
-				playerBuffList = playerBuffList.filter(buff => buff !== playerBuffList[i]);
+				player.buffList = player.buffList.filter(buff => buff !== player.buffList[i]);
 			}
 		}
 	}
@@ -62,13 +62,13 @@ function getTotalBuffsWithType(buffTypeToGet)
 {
 	var totalBuffStrength = 0;
 
-	for(var i = 0; i < playerBuffList.length; i = i + 1)
+	for(var i = 0; i < player.buffList.length; i = i + 1)
 	{
-		if(typeof(playerBuffList[i] == PlayerBuff))
+		if(typeof(player.buffList[i] == PlayerBuff))
 		{
-			if(playerBuffList[i].buffType == buffTypeToGet)
+			if(player.buffList[i].buffType == buffTypeToGet)
 			{
-				totalBuffStrength += +playerBuffList[i].buffPower;
+				totalBuffStrength += +player.buffList[i].buffPower;
 			}
 		}
 	}
@@ -89,12 +89,12 @@ function updateBuffInfoPanel(atLeastOneBuffToShow)
 
 	$("#player_info_buffs").empty();
 
-	for(var i = 0; i < playerBuffList.length; i = i + 1)
+	for(var i = 0; i < player.buffList.length; i = i + 1)
 	{
-		if(typeof(playerBuffList[i] == PlayerBuff))
+		if(typeof(player.buffList[i] == PlayerBuff))
 		{
-			let buffMinutesLeft = Math.trunc(playerBuffList[i].buffDuration / 60);
-			let buffSecondsLeft = playerBuffList[i].buffDuration - (buffMinutesLeft * 60);
+			let buffMinutesLeft = Math.trunc(player.buffList[i].buffDuration / 60);
+			let buffSecondsLeft = player.buffList[i].buffDuration - (buffMinutesLeft * 60);
 
 			var buffDurationString = buffMinutesLeft.toString() + ':';
 			if(buffSecondsLeft > 9)
@@ -108,7 +108,7 @@ function updateBuffInfoPanel(atLeastOneBuffToShow)
 
 			let buffInfoElement = document.createElement("div");
 			buffInfoElement.setAttribute("class", "player_info_element");
-			buffInfoElement.textContent =playerBuffList[i].buffName;
+			buffInfoElement.textContent = player.buffList[i].buffName;
 
 			let buffInfoDuration = document.createElement("span");
 			buffInfoDuration.textContent = buffDurationString;
