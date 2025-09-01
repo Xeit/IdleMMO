@@ -299,7 +299,7 @@ function SmithCanUpgradeItem()
 			bCanUpgradeItem = false;
 		}
 
-		if(SmithGetUpgradeGoldCost() > player.playerGold)
+		if(SmithGetUpgradeGoldCost() > player.gold)
 		{
 			bCanUpgradeItem = false;
 		}
@@ -320,7 +320,7 @@ function SmithTryToUpgradeItem()
 		return;
 	}
 
-	player.playerGold = player.playerGold - SmithGetUpgradeGoldCost();
+	player.gold = player.gold - SmithGetUpgradeGoldCost();
 
 	//Use pitty
 	if(smithCurrentItemSlot.itemUpgradePitty >= SmithGetMaxPitty(smithCurrentItemSlot))

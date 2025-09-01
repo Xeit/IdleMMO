@@ -255,12 +255,12 @@ function stopQuesting()
 
 function tickQuesting()
 {
-	if(player.playerExhaustion < player.playerMaxExhaustion)
+	if(player.exhaustion < player.maxExhaustion)
 	{
 		if(questProgress < questTarget)
 		{
 			questProgress++;
-			player.playerExhaustion++;
+			player.exhaustion++;
 			if(questProgress >= questTarget)
 			{
 				finishQuest();
@@ -277,11 +277,11 @@ function tickQuesting()
 
 function getNewQuest()
 {
-	const minXpRoll = player.playerLevel * 2.5 + 5;
+	const minXpRoll = player.level * 2.5 + 5;
 	const maxXpRoll = minXpRoll * 2;
 
-	const minGoldRoll = player.playerLevel * 4;
-	const maxGoldRoll = player.playerLevel * 3;
+	const minGoldRoll = player.level * 4;
+	const maxGoldRoll = player.level * 3;
 
 	var xpRoll = +(Math.random() * (maxXpRoll - minXpRoll) + minXpRoll).toFixed();
 	var goldRoll = +(Math.random() * (maxGoldRoll - minGoldRoll) + minGoldRoll).toFixed();
@@ -304,7 +304,7 @@ function getNewQuest()
 	questXp = xpRoll;
 	questGold = goldRoll;
 
-	questTarget = +(Math.random() * 3 + +((1/3 * player.playerLevel).toFixed()) + 3).toFixed();
+	questTarget = +(Math.random() * 3 + +((1/3 * player.level).toFixed()) + 3).toFixed();
 	questProgress = 0;
 	
 	const randomFlavourTextID = +(Math.random() * FlavoutTexts.length - 1).toFixed();
@@ -318,8 +318,8 @@ function getNewQuest()
 
 function finishQuest()
 {
-	addPlayerXp(questXp);
-	player.playerGold = +(player.playerGold + questGold);
+	playerAddXp(questXp);
+	player.gold = +(player.gold + questGold);
 
 	questTarget = 0;
 	questProgress = 0;
@@ -344,7 +344,7 @@ function updateQuestInfo()
 		$("#questing_progress_bar_inside").css("width", questProgressFillPercent);
 	}
 
-	const playerExhaustionFillPercent = (player.playerExhaustion / player.playerMaxExhaustion * 100).toFixed();
+	const playerExhaustionFillPercent = (player.exhaustion / player.maxExhaustion * 100).toFixed();
 	if(playerExhaustionFillPercent > 80)
 	{
 		$("#questing_exhaustion_percentage").css("color", "red");

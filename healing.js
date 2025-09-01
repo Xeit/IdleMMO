@@ -2,7 +2,7 @@ var bIsHealing = false;
 
 function ShowHealingWindow()
 {
-	const playerHealthPercentage = player.playerHealth / player.playerMaxHealth * 100;
+	const playerHealthPercentage = player.health / player.maxHealth * 100;
 	$("#player_resting_health").html("Your current HP: " + playerHealthPercentage.toFixed() + "%");
 	$("#healing_window").css("display", "flex");
 }
@@ -28,28 +28,28 @@ function tickHealing()
 	{
 		//Idea is that with maxes stamina stat on current level player heal 20% of hp per tick.
 		//If stamina is lower then heal percentage wise less
-		const maxPlayerStatLvl = player.playerLevel * 3;
+		const maxPlayerStatLvl = player.level * 3;
 
-		const hpToHeal = Math.round(player.playerMaxHealth / 5 * (player.playerStamina / maxPlayerStatLvl));
-		const manaToHeal = Math.round(player.playerMaxMana / 5 * (player.playerIntelligence / maxPlayerStatLvl));
+		const hpToHeal = Math.round(player.maxHealth / 5 * (player.stamina / maxPlayerStatLvl));
+		const manaToHeal = Math.round(player.maxMana / 5 * (player.intelligence / maxPlayerStatLvl));
 
-		player.playerHealth += hpToHeal;
-		player.playerMana += manaToHeal;
-		if(player.playerHealth > player.playerMaxHealth)
+		player.health += hpToHeal;
+		player.mana += manaToHeal;
+		if(player.health > player.maxHealth)
 		{
-			player.playerHealth = +player.playerMaxHealth;
+			player.health = +player.maxHealth;
 		}
-		if(player.playerMana > player.playerMaxMana)
+		if(player.mana > player.maxMana)
 		{
-			player.playerMana = +player.playerMaxMana;
+			player.mana = +player.maxMana;
 		}
-		const playerHealthPercentage = player.playerHealth / player.playerMaxHealth * 100;
+		const playerHealthPercentage = player.health / player.maxHealth * 100;
 		$("#player_resting_health").html("Your current HP: " + playerHealthPercentage.toFixed() + "%");
 	}
 }
 
 function healPlayerToMax()
 {
-	player.playerHealth = player.playerMaxHealth;
-	player.playerMana = player.playerMaxMana;
+	player.health = player.maxHealth;
+	player.mana = player.maxMana;
 }

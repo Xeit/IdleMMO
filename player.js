@@ -1,28 +1,28 @@
 class Player
 {
 	//Level
-	playerLevel = 1;
-	playerXp = 0;
-	playerRequiredXp = 50;
+	level = 1;
+	xp = 0;
+	requiredXp = 50;
 
 	//Spendables
-	playerGold = 0;
-	playerHealth = 100;
-	playerMaxHealth = 100;
-	playerMana = 100;
-	playerMaxMana = 100;
-	playerExhaustion = 0;
-	playerMaxExhaustion = 50;
+	gold = 0;
+	health = 100;
+	maxHealth = 100;
+	mana = 100;
+	maxMana = 100;
+	exhaustion = 0;
+	maxExhaustion = 50;
 
 	//Attributes
-	playerStrength = 1;
-	playerStrengthXP = 0;
-	playerDexterity = 1;
-	playerDexterityXP = 0;
-	playerStamina = 1;
-	playerStaminaXP = 0;
-	playerIntelligence = 1;
-	playerIntelligenceXP = 0;
+	strength = 1;
+	strengthXP = 0;
+	dexterity = 1;
+	dexterityXP = 0;
+	stamina = 1;
+	staminaXP = 0;
+	intelligence = 1;
+	intelligenceXP = 0;
 
 	//Equipment slots
 	weaponSlot = undefined;
@@ -40,9 +40,9 @@ class Player
 
 	playerUnlockFunctionsUntilLevel()
 	{
-		for(let i = 0; i <= this.playerLevel; i++)
+		for(let i = 0; i <= this.level; i++)
 		{
-			PlayerUnlockFunctions(i);
+			playerUnlockFunctions(i);
 		}
 	}
 }
@@ -55,14 +55,15 @@ var currentOpenWindow = PlayerTasks.none;
 
 //Debug
 var levelBreeze = false;
+var freezeTime = false;
 
-function addPlayerXp(xpToAdd)
+function playerAddXp(xpToAdd)
 {
 	//This is current level cap
-	if(player.playerLevel < 50)
+	if(player.level < 50)
 	{
-		player.playerXp += +xpToAdd;
-		if(player.playerXp >= +player.playerRequiredXp)
+		player.xp += +xpToAdd;
+		if(player.xp >= +player.requiredXp)
 		{
 			playerLevelUp();
 		}
@@ -71,17 +72,17 @@ function addPlayerXp(xpToAdd)
 
 function playerLevelUp()
 {
-	player.playerLevel += 1;
-	player.playerXp = 0;
-	player.playerRequiredXp = +(0.25 * (player.playerLevel + (300 * 2 * ((player.playerLevel - 1) / 4))) + 50).toFixed();
+	player.level += 1;
+	player.xp = 0;
+	player.requiredXp = +(0.25 * (player.level + (300 * 2 * ((player.level - 1) / 4))) + 50).toFixed();
 
-	player.playerMaxHealth = 100 + (10 * (player.playerLevel - 1));
-	player.playerMaxMana = 100 + (10 * (player.playerLevel - 1));
-	player.playerMaxExhaustion = 50 + (5 * (player.playerLevel - 1));
+	player.maxHealth = 100 + (10 * (player.level - 1));
+	player.maxMana = 100 + (10 * (player.level - 1));
+	player.maxExhaustion = 50 + (5 * (player.level - 1));
 
 	healPlayerToMax();
 
-	PlayerUnlockFunctions(player.playerLevel);
+	playerUnlockFunctions(player.level);
 }
 
 function playerGetArmourValue()
@@ -110,16 +111,16 @@ function playerGetArmourValue()
 
 function playerHealPlayer(hpToAdd)
 {
-	player.playerHealth += +hpToAdd;
-	if(player.playerHealth > player.playerMaxHealth)
+	player.health += +hpToAdd;
+	if(player.health > player.maxHealth)
 	{
-		player.playerHealth = player.playerMaxHealth;
+		player.health = player.maxHealth;
 	}
 }
 
 function playerTakeDamage(monsterDamageNumber)
 {	
-	monsterDamageNumber = +(monsterDamageNumber - Math.floor(player.playerStamina / 2));
+	monsterDamageNumber = +(monsterDamageNumber - Math.floor(player.stamina / 2));
 	monsterDamageNumber -= +Math.floor(playerGetArmourValue() / 2);
 
 	monsterDamageNumber -= +getTotalBuffsWithType(BuffType.defense);
@@ -129,18 +130,18 @@ function playerTakeDamage(monsterDamageNumber)
 		monsterDamageNumber = 1;
 	}
 
-	player.playerHealth -= +monsterDamageNumber;
+	player.health -= +monsterDamageNumber;
 
-	if(player.playerHealth <= 0)
+	if(player.health <= 0)
 	{
-		player.playerHealth = 0;
+		player.health = 0;
 		newPlayerTask(PlayerTasks.healing);
 	}
-	else if((((player.playerHealth / player.playerMaxHealth) * 100) < player.healthPotionUsePercent) && player.healthPotions > 0)
+	else if((((player.health / player.maxHealth) * 100) < player.healthPotionUsePercent) && player.healthPotions > 0)
 	{
 		//Use potion if under % health specified by player
 		player.healthPotions -= 1;
-		const healthToHeal = +Math.floor(player.playerMaxHealth / 2);
+		const healthToHeal = +Math.floor(player.maxHealth / 2);
 		playerHealPlayer(healthToHeal);
 	}
 }
@@ -149,14 +150,14 @@ function playerGetAttackDamage(againstEnemyLevel)
 {
 	var playerDamageToDeal = 0;
 	
-	playerDamageToDeal = +player.playerStrength;
+	playerDamageToDeal = +player.strength;
 	if(player.weaponSlot instanceof Item)
 	{
 		playerDamageToDeal += +player.weaponSlot.returnItemPower(true);
 	}
 
 	const critRoll = +(Math.random() * againstEnemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex for enemy on same level
-	if(critRoll < player.playerDexterity)
+	if(critRoll < player.dexterity)
 	{
 		//This is crit
 		playerDamageToDeal = playerDamageToDeal * 2;
@@ -168,7 +169,7 @@ function playerGetAttackDamage(againstEnemyLevel)
 	return playerDamageToDeal;
 }
 
-function PlayerResetPlayer()
+function playerResetPlayer()
 {
 	player = new Player();
 
@@ -177,7 +178,7 @@ function PlayerResetPlayer()
 	currentOpenWindow = PlayerTasks.none;
 }
 
-function PlayerUnlockFunctions(levelToUnlock)
+function playerUnlockFunctions(levelToUnlock)
 {
 	switch(levelToUnlock)
 	{
@@ -200,7 +201,7 @@ function PlayerUnlockFunctions(levelToUnlock)
 	}
 }
 
-function StartDebug()
+function startDebug()
 {
 	levelBreeze = true;
 }

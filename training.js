@@ -87,8 +87,8 @@ function tickTraining()
 {
 	if(bIsTraining)
 	{
-		const maxPlayerStatLvl = player.playerLevel * 3;
-		var xpToReceive = 1 + Math.floor(player.playerIntelligence /2);
+		const maxPlayerStatLvl = player.level * 3;
+		var xpToReceive = 1 + Math.floor(player.intelligence /2);
 
 		if(levelBreeze == true)
 		{
@@ -100,54 +100,54 @@ function tickTraining()
 			case "none":
 				break;
 			case "strength":
-				if(player.playerStrength < maxPlayerStatLvl)
+				if(player.strength < maxPlayerStatLvl)
 				{
-					player.playerStrengthXP += xpToReceive;
-					let playerStrengthRequiredXP = player.playerStrength * 50;
+					player.strengthXP += xpToReceive;
+					let requiredXP = player.strength * 50;
 
-					if(player.playerStrengthXP >= playerStrengthRequiredXP)
+					if(player.strengthXP >= requiredXP)
 					{
-						player.playerStrength += 1;
-						player.playerStrengthXP = 0;
+						player.strength += 1;
+						player.strengthXP = 0;
 					}
 				}
 				break;
 			case "dexterity":
-				if(player.playerDexterity < maxPlayerStatLvl)
+				if(player.dexterity < maxPlayerStatLvl)
 				{
-					player.playerDexterityXP += xpToReceive;
-					let playerDexterityRequiredXP = player.playerDexterity * 50;
+					player.dexterityXP += xpToReceive;
+					let requiredXP = player.dexterity * 50;
 
-					if(playerDexterityXP >= playerDexterityRequiredXP)
+					if(dexterityXP >= requiredXP)
 					{
-						player.playerDexterity += 1;
-						player.playerDexterityXP = 0;
+						player.dexterity += 1;
+						player.dexterityXP = 0;
 					}
 				}
 				break;
 			case "stamina":
-				if(player.playerStamina < maxPlayerStatLvl)
+				if(player.stamina < maxPlayerStatLvl)
 				{
-					player.playerStaminaXP += xpToReceive;
-					let playerStaminaRequiredXP = player.playerStamina * 50;
+					player.staminaXP += xpToReceive;
+					let requiredXP = player.stamina * 50;
 
-					if(player.playerStaminaXP >= playerStaminaRequiredXP)
+					if(player.staminaXP >= requiredXP)
 					{
-						player.playerStamina += 1;
-						player.playerStaminaXP = 0;
+						player.stamina += 1;
+						player.staminaXP = 0;
 					}
 				}
 				break;
 			case "intelligence":
-				if(player.playerIntelligence < maxPlayerStatLvl)
+				if(player.intelligence < maxPlayerStatLvl)
 				{
-					player.playerIntelligenceXP += xpToReceive;
-					let playerIntelligenceRequiredXP = player.playerIntelligence * 50;
+					player.intelligenceXP += xpToReceive;
+					let requiredXP = player.intelligence * 50;
 
-					if(player.playerIntelligenceXP >= playerIntelligenceRequiredXP)
+					if(player.intelligenceXP >= requiredXP)
 					{
-						player.playerIntelligence += 1;
-						player.playerIntelligenceXP = 0;
+						player.intelligence += 1;
+						player.intelligenceXP = 0;
 					}
 				}
 				break;
@@ -159,44 +159,44 @@ function tickTraining()
 
 function updateTrainingXpValues()
 {
-	const maxStrengthLvl = player.playerLevel * 3;
-	if(player.playerStrength < maxStrengthLvl)
+	const maxStrengthLvl = player.level * 3;
+	if(player.strength < maxStrengthLvl)
 	{
-		let playerStrengthRequiredXP = player.playerStrength * 50;
-		$("#training_strength_xp").html("XP: " + player.playerStrengthXP + "/" + playerStrengthRequiredXP);
+		let requiredXP = player.strength * 50;
+		$("#training_strength_xp").html("XP: " + player.strengthXP + "/" + requiredXP);
 	}
 	else
 	{
 		$("#training_strength_xp").html("MAX for current LVL");
 	}
 
-	const maxDexterityLvl = player.playerLevel * 3;
-	if(player.playerDexterity < maxDexterityLvl)
+	const maxDexterityLvl = player.level * 3;
+	if(player.dexterity < maxDexterityLvl)
 	{
-		let playerDexterityRequiredXP = player.playerDexterity * 50;
-		$("#training_dexterity_xp").html("XP: " + player.playerDexterityXP + "/" + playerDexterityRequiredXP);
+		let requiredXP = player.dexterity * 50;
+		$("#training_dexterity_xp").html("XP: " + player.dexterityXP + "/" + requiredXP);
 	}
 	else
 	{
 		$("#training_dexterity_xp").html("MAX for current LVL");
 	}
 
-	const maxStaminaLvl = player.playerLevel * 3;
-	if(player.playerStamina < maxStaminaLvl)
+	const maxStaminaLvl = player.level * 3;
+	if(player.stamina < maxStaminaLvl)
 	{
-		let playerStaminaRequiredXP = player.playerStamina * 50;
-		$("#training_stamina_xp").html("XP: " + player.playerStaminaXP + "/" + playerStaminaRequiredXP);
+		let requiredXP = player.stamina * 50;
+		$("#training_stamina_xp").html("XP: " + player.staminaXP + "/" + requiredXP);
 	}
 	else
 	{
 		$("#training_stamina_xp").html("MAX for current LVL");
 	}
 
-	const maxIntelligenceLvl = player.playerLevel * 3;
-	if(player.playerIntelligence < maxIntelligenceLvl)
+	const maxIntelligenceLvl = player.level * 3;
+	if(player.intelligence < maxIntelligenceLvl)
 	{
-		let playerIntelligenceRequiredXP = player.playerIntelligence * 50;
-		$("#training_intelligence_xp").html("XP: " + player.playerIntelligenceXP + "/" + playerIntelligenceRequiredXP);
+		let requiredXP = player.intelligence * 50;
+		$("#training_intelligence_xp").html("XP: " + player.intelligenceXP + "/" + requiredXP);
 	}
 	else
 	{

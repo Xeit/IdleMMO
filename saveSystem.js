@@ -51,59 +51,59 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 				switch(VariableName)
 				{
 					case "playerLevel":
-						player.playerLevel = +arrayOfVariables[i+1];
+						player.level = +arrayOfVariables[i+1];
 						player.playerUnlockFunctionsUntilLevel();
 						break;
 					case "playerXp":
-						player.playerXp = +arrayOfVariables[i+1];
+						player.xp = +arrayOfVariables[i+1];
 						break;
 					case "playerRequiredXp":
-						player.playerRequiredXp = +arrayOfVariables[i+1];
+						player.requiredXp = +arrayOfVariables[i+1];
 						break;
 					case "playerGold":
-						player.playerGold = +arrayOfVariables[i+1];
+						player.gold = +arrayOfVariables[i+1];
 						break;
 					case "playerHealth":
-						player.playerHealth = +arrayOfVariables[i+1];
+						player.health = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxHealth":
-						player.playerMaxHealth = +arrayOfVariables[i+1];
+						player.maxHealth = +arrayOfVariables[i+1];
 						break;
 					case "playerMana":
-						player.playerMana = +arrayOfVariables[i+1];
+						player.mana = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxMana":
-						player.playerMaxMana = +arrayOfVariables[i+1];
+						player.maxMana = +arrayOfVariables[i+1];
 						break;
 					case "playerExhaustion":
-						player.playerExhaustion = +arrayOfVariables[i+1];
+						player.exhaustion = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxExhaustion":
-						player.playerMaxExhaustion = +arrayOfVariables[i+1];
+						player.maxExhaustion = +arrayOfVariables[i+1];
 						break;
 					case "playerStrength":
-						player.playerStrength = +arrayOfVariables[i+1];
+						player.strength = +arrayOfVariables[i+1];
 						break;
 					case "playerStrengthXP":
-						player.playerStrengthXP = +arrayOfVariables[i+1];
+						player.strengthXP = +arrayOfVariables[i+1];
 						break;
 					case "playerDexterity":
-						player.playerDexterity = +arrayOfVariables[i+1];
+						player.dexterity = +arrayOfVariables[i+1];
 						break;
 					case "playerDexterityXP":
-						player.playerDexterityXP = +arrayOfVariables[i+1];
+						player.dexterityXP = +arrayOfVariables[i+1];
 						break;
 					case "playerStamina":
-						player.playerStamina = +arrayOfVariables[i+1];
+						player.stamina = +arrayOfVariables[i+1];
 						break;
 					case "playerStaminaXP":
-						player.playerStaminaXP = +arrayOfVariables[i+1];
+						player.staminaXP = +arrayOfVariables[i+1];
 						break;
 					case "playerIntelligence":
-						player.playerIntelligence = +arrayOfVariables[i+1];
+						player.intelligence = +arrayOfVariables[i+1];
 						break;
 					case "playerIntelligenceXP":
-						player.playerIntelligenceXP = +arrayOfVariables[i+1];
+						player.intelligenceXP = +arrayOfVariables[i+1];
 						break;
 					case "playerWeaponSlot":
 						if(arrayOfVariables[i+1] != "undefined")

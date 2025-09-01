@@ -161,19 +161,19 @@ function hitEnemy()
 	{
 		bIsEnemyAlive = false;
 
-		if(player.playerLevel > enemyLevel)
+		if(player.level > enemyLevel)
 		{
-			const levelDifference = player.playerLevel - enemyLevel;
+			const levelDifference = player.level - enemyLevel;
 			if(levelDifference < 10)
 			{
 				const xpPenaltyMultiplier = levelDifference * 0.1;
 				const xpToAddAfterPenalty = enemyXp * (1 - xpPenaltyMultiplier);
-				addPlayerXp(xpToAddAfterPenalty);
+				playerAddXp(xpToAddAfterPenalty);
 			}
 		}
 		else
 		{
-			addPlayerXp(enemyXp);
+			playerAddXp(enemyXp);
 		}
 
 		//Item drop
@@ -189,33 +189,33 @@ function hitEnemy()
 
 		//Gold drop
 		const goldDropRoll = Math.round((Math.random() * enemyLevel)) + enemyLevel;
-		player.playerGold += +goldDropRoll;
+		player.gold += +goldDropRoll;
 
 		//Lower player quest exhaustion
-		if(player.playerExhaustion > 0)
+		if(player.exhaustion > 0)
 		{
-			if(enemyLevel >= player.playerLevel)
+			if(enemyLevel >= player.level)
 			{
-				player.playerExhaustion -= 5;
+				player.exhaustion -= 5;
 			}
-			else if(enemyLevel >= player.playerLevel - 3)
+			else if(enemyLevel >= player.level - 3)
 			{
-				player.playerExhaustion -= 3;
+				player.exhaustion -= 3;
 			}
-			else if(enemyLevel >= player.playerLevel - 6)
+			else if(enemyLevel >= player.level - 6)
 			{
-				player.playerExhaustion -= 2;
+				player.exhaustion -= 2;
 			}
-			else if(enemyLevel >= player.playerLevel - 10)
+			else if(enemyLevel >= player.level - 10)
 			{
-				player.playerExhaustion -= 1;
+				player.exhaustion -= 1;
 			}
 
 			//Do not lower it if monster is 10 levels lower than player
 
-			if(player.playerExhaustion < 0)
+			if(player.exhaustion < 0)
 			{
-				player.playerExhaustion = 0;
+				player.exhaustion = 0;
 			}
 		}
 	}
@@ -223,7 +223,7 @@ function hitEnemy()
 
 function updateBattleHealth()
 {
-	const playerHealthPercentage = player.playerHealth / player.playerMaxHealth * 100;
+	const playerHealthPercentage = player.health / player.maxHealth * 100;
 	$("#player_battle_health").html("HP: " + playerHealthPercentage.toFixed() + "%");
 	$("#battle_player_health_bar_inside").css("background-size", playerHealthPercentage + "%");
 	$("#battle_player_health_bar_inside").css("background-repeat", "no-repeat");
@@ -247,7 +247,7 @@ function updateBattleHealth()
 
 function updatePlayerInfo()
 {
-	let critChance = Math.round((player.playerDexterity / (enemyLevel * 3 * 2)) * 100);
+	let critChance = Math.round((player.dexterity / (enemyLevel * 3 * 2)) * 100);
 	if(critChance > 100)
 	{
 		critChance = 100;

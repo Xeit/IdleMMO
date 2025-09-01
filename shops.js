@@ -90,9 +90,9 @@ function buyItem(itemId)
 			break;
 	}
 
-	if(player.playerGold >= itemCost)
+	if(player.gold >= itemCost)
 	{
-		player.playerGold -= +itemCost;
+		player.gold -= +itemCost;
 
 		switch(itemId)
 		{
@@ -107,9 +107,9 @@ function buyItem(itemId)
 
 function buyBuff(buffId, cost)
 {
-	if(player.playerGold >= cost)
+	if(player.gold >= cost)
 	{
-		player.playerGold -= +cost;
+		player.gold -= +cost;
 
 		var createNewBuff = true;
 		var buffDefaultValues = null;
