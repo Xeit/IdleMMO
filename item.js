@@ -182,35 +182,35 @@ function generateItem(enemyLevel, enemyDifficulty)
 
 function updateEquipmentWindow()
 {
-	if(playerWeaponSlot instanceof Item)
+	if(player.weaponSlot instanceof Item)
 	{
-		$("#equipment_weapon_name").text(playerWeaponSlot.itemName);
-		$("#equipment_weapon_level").text(playerWeaponSlot.itemLevel);
-		$("#equipment_weapon_power").text(playerWeaponSlot.returnItemPower(true));
+		$("#equipment_weapon_name").text(player.weaponSlot.itemName);
+		$("#equipment_weapon_level").text(player.weaponSlot.itemLevel);
+		$("#equipment_weapon_power").text(player.weaponSlot.returnItemPower(true));
 	}
-	if(playerHelmetSlot instanceof Item)
+	if(player.helmetSlot instanceof Item)
 	{
-		$("#equipment_helmet_name").text(playerHelmetSlot.itemName);
-		$("#equipment_helmet_level").text(playerHelmetSlot.itemLevel);
-		$("#equipment_helmet_power").text(playerHelmetSlot.returnItemPower(true));
+		$("#equipment_helmet_name").text(player.helmetSlot.itemName);
+		$("#equipment_helmet_level").text(player.helmetSlot.itemLevel);
+		$("#equipment_helmet_power").text(player.helmetSlot.returnItemPower(true));
 	}
-	if(playerBodyArmourSlot instanceof Item)
+	if(player.bodyArmourSlot instanceof Item)
 	{
-		$("#equipment_body_armour_name").text(playerBodyArmourSlot.itemName);
-		$("#equipment_body_armour_level").text(playerBodyArmourSlot.itemLevel);
-		$("#equipment_body_armour_power").text(playerBodyArmourSlot.returnItemPower(true));
+		$("#equipment_body_armour_name").text(player.bodyArmourSlot.itemName);
+		$("#equipment_body_armour_level").text(player.bodyArmourSlot.itemLevel);
+		$("#equipment_body_armour_power").text(player.bodyArmourSlot.returnItemPower(true));
 	}
-	if(playerGlovesSlot instanceof Item)
+	if(player.glovesSlot instanceof Item)
 	{
-		$("#equipment_gloves_name").text(playerGlovesSlot.itemName);
-		$("#equipment_gloves_level").text(playerGlovesSlot.itemLevel);
-		$("#equipment_gloves_power").text(playerGlovesSlot.returnItemPower(true));
+		$("#equipment_gloves_name").text(player.glovesSlot.itemName);
+		$("#equipment_gloves_level").text(player.glovesSlot.itemLevel);
+		$("#equipment_gloves_power").text(player.glovesSlot.returnItemPower(true));
 	}
-	if(playerBootsSlot instanceof Item)
+	if(player.bootsSlot instanceof Item)
 	{
-		$("#equipment_boots_name").text(playerBootsSlot.itemName);
-		$("#equipment_boots_level").text(playerBootsSlot.itemLevel);
-		$("#equipment_boots_power").text(playerBootsSlot.returnItemPower(true));
+		$("#equipment_boots_name").text(player.bootsSlot.itemName);
+		$("#equipment_boots_level").text(player.bootsSlot.itemLevel);
+		$("#equipment_boots_power").text(player.bootsSlot.returnItemPower(true));
 	}
 }
 
@@ -289,57 +289,57 @@ function tryNewItem(newItem)
 	
 	switch (newItem.itemSlot) {
 		case ItemSlot.weapon:
-			if(playerWeaponSlot != null)
+			if(player.weaponSlot != null)
 			{
-				currentItemPower = playerWeaponSlot.returnItemPower(false);
+				currentItemPower = player.weaponSlot.returnItemPower(false);
 			}
 			if(newItem.returnItemPower(false) > currentItemPower)
 			{
-				playerWeaponSlot = newItem;
+				player.weaponSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.boots:
-			if(playerBootsSlot != null)
+			if(player.bootsSlot != null)
 			{
-				currentItemPower = playerBootsSlot.returnItemPower(false);
+				currentItemPower = player.bootsSlot.returnItemPower(false);
 			}
 			if(newItem.returnItemPower(false) > currentItemPower)
 			{
-				playerBootsSlot = newItem;
+				player.bootsSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.gloves:
-			if(playerGlovesSlot != null)
+			if(player.glovesSlot != null)
 			{
-				currentItemPower = playerGlovesSlot.returnItemPower(false);
+				currentItemPower = player.glovesSlot.returnItemPower(false);
 			}
 			if(newItem.returnItemPower(false) > currentItemPower)
 			{
-				playerGlovesSlot = newItem;
+				player.glovesSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.helmet:
-			if(playerHelmetSlot != null)
+			if(player.helmetSlot != null)
 			{
-				currentItemPower = playerHelmetSlot.returnItemPower(false);
+				currentItemPower = player.helmetSlot.returnItemPower(false);
 			}
 			if(newItem.returnItemPower(false) > currentItemPower)
 			{
-				playerHelmetSlot = newItem;
+				player.helmetSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.body_armour:
-			if(playerBodyArmourSlot != null)
+			if(player.bodyArmourSlot != null)
 			{
-				currentItemPower = playerBodyArmourSlot.returnItemPower(false);
+				currentItemPower = player.bodyArmourSlot.returnItemPower(false);
 			}
 			if(newItem.returnItemPower(false) > currentItemPower)
 			{
-				playerBodyArmourSlot = newItem;
+				player.bodyArmourSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;

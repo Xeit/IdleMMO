@@ -17,27 +17,27 @@ function InitializeSmith()
 {
 	$("#smithWeapon").click(function()
 	{
-		SmithNewItemSlot(playerWeaponSlot);
+		SmithNewItemSlot(player.weaponSlot);
 		SmithUpdatePanelInfo();
 	});
 	$("#smithHelmet").click(function()
 	{
-		SmithNewItemSlot(playerHelmetSlot);
+		SmithNewItemSlot(player.helmetSlot);
 		SmithUpdatePanelInfo();
 	});
 	$("#smithBodyArmour").click(function()
 	{
-		SmithNewItemSlot(playerBodyArmourSlot);
+		SmithNewItemSlot(player.bodyArmourSlot);
 		SmithUpdatePanelInfo();
 	});
 	$("#smithGloves").click(function()
 	{
-		SmithNewItemSlot(playerGlovesSlot);
+		SmithNewItemSlot(player.glovesSlot);
 		SmithUpdatePanelInfo();
 	});
 	$("#smithBoots").click(function()
 	{
-		SmithNewItemSlot(playerBootsSlot);
+		SmithNewItemSlot(player.bootsSlot);
 		SmithUpdatePanelInfo();
 	});
 	$("#smithInfo_upgradeButton").click(function()
@@ -50,35 +50,35 @@ function InitializeSmith()
 
 function SmithUpdateButtonsInfo()
 {
-	if(playerWeaponSlot !== undefined)
+	if(player.weaponSlot !== undefined)
 	{
-		$("#smithWeapon_upgradeLevel").text("+" + playerWeaponSlot.itemUpgradeLevel);
-		$("#smithWeapon_rarity").text(playerWeaponSlot.itemRarity.toUpperCase());
-		$("#smithWeapon_pitty").text(playerWeaponSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(playerWeaponSlot) + " PITTY");
+		$("#smithWeapon_upgradeLevel").text("+" + player.weaponSlot.itemUpgradeLevel);
+		$("#smithWeapon_rarity").text(player.weaponSlot.itemRarity.toUpperCase());
+		$("#smithWeapon_pitty").text(player.weaponSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.weaponSlot) + " PITTY");
 	}
-	if(playerHelmetSlot !== undefined)
+	if(player.helmetSlot !== undefined)
 	{
-		$("#smithHelmet_upgradeLevel").text("+" + playerHelmetSlot.itemUpgradeLevel);
-		$("#smithHelmet_rarity").text(playerHelmetSlot.itemRarity.toUpperCase());
-		$("#smithHelmet_pitty").text(playerHelmetSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(playerHelmetSlot) + " PITTY");
+		$("#smithHelmet_upgradeLevel").text("+" + player.helmetSlot.itemUpgradeLevel);
+		$("#smithHelmet_rarity").text(player.helmetSlot.itemRarity.toUpperCase());
+		$("#smithHelmet_pitty").text(player.helmetSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.helmetSlot) + " PITTY");
 	}
-	if(playerBodyArmourSlot !== undefined)
+	if(player.bodyArmourSlot !== undefined)
 	{
-		$("#smithBodyArmour_upgradeLevel").text("+" + playerBodyArmourSlot.itemUpgradeLevel);
-		$("#smithBodyArmour_rarity").text(playerBodyArmourSlot.itemRarity.toUpperCase());
-		$("#smithBodyArmour_pitty").text(playerBodyArmourSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(playerBodyArmourSlot) + " PITTY");
+		$("#smithBodyArmour_upgradeLevel").text("+" + player.bodyArmourSlot.itemUpgradeLevel);
+		$("#smithBodyArmour_rarity").text(player.bodyArmourSlot.itemRarity.toUpperCase());
+		$("#smithBodyArmour_pitty").text(player.bodyArmourSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.bodyArmourSlot) + " PITTY");
 	}
-	if(playerGlovesSlot !== undefined)
+	if(player.glovesSlot !== undefined)
 	{
-		$("#smithGloves_upgradeLevel").text("+" + playerGlovesSlot.itemUpgradeLevel);
-		$("#smithGloves_rarity").text(playerGlovesSlot.itemRarity.toUpperCase());
-		$("#smithGloves_pitty").text(playerGlovesSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(playerGlovesSlot) + " PITTY");
+		$("#smithGloves_upgradeLevel").text("+" + player.glovesSlot.itemUpgradeLevel);
+		$("#smithGloves_rarity").text(player.glovesSlot.itemRarity.toUpperCase());
+		$("#smithGloves_pitty").text(player.glovesSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.glovesSlot) + " PITTY");
 	}
-	if(playerBootsSlot !== undefined)
+	if(player.bootsSlot !== undefined)
 	{
-		$("#smithBoots_upgradeLevel").text("+" + playerBootsSlot.itemUpgradeLevel);
-		$("#smithBoots_rarity").text(playerBootsSlot.itemRarity.toUpperCase());
-		$("#smithBoots_pitty").text(playerBootsSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(playerBootsSlot) + " PITTY");
+		$("#smithBoots_upgradeLevel").text("+" + player.bootsSlot.itemUpgradeLevel);
+		$("#smithBoots_rarity").text(player.bootsSlot.itemRarity.toUpperCase());
+		$("#smithBoots_pitty").text(player.bootsSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.bootsSlot) + " PITTY");
 	}
 }
 

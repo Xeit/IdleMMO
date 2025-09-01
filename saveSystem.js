@@ -37,56 +37,6 @@ function gatherPlayerData()
 {
 	addData("player")
 	addData(JSON.stringify(player))
-	
-	addData("playerWeaponSlot");
-	if(playerWeaponSlot !== undefined)
-	{
-		addData(JSON.stringify(playerWeaponSlot));
-	}
-	else
-	{
-		addData("undefined");
-	}
-	
-	addData("playerHelmetSlot");
-	if(playerHelmetSlot !== undefined)
-	{
-		addData(JSON.stringify(playerHelmetSlot));
-	}
-	else
-	{
-		addData("undefined");
-	}
-	
-	addData("playerBodyArmourSlot");
-	if(playerBodyArmourSlot !== undefined)
-	{
-		addData(JSON.stringify(playerBodyArmourSlot));
-	}
-	else
-	{
-		addData("undefined");
-	}
-	
-	addData("playerGlovesSlot");
-	if(playerGlovesSlot !== undefined)
-	{
-		addData(JSON.stringify(playerGlovesSlot));
-	}
-	else
-	{
-		addData("undefined");
-	}
-	
-	addData("playerBootsSlot");
-	if(playerBootsSlot !== undefined)
-	{
-		addData(JSON.stringify(playerBootsSlot));
-	}
-	else
-	{
-		addData("undefined");
-	}
 
 	addData("playerHealthPotions");
 	addData(playerHealthPotions);
@@ -194,7 +144,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								Object.assign(recreatedItem, retrivedJSON);
 								if(recreatedItem instanceof Item)
 								{
-									playerWeaponSlot = recreatedItem;
+									player.weaponSlot = recreatedItem;
 								}
 							}
 							catch (e)
@@ -205,7 +155,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								if(itemArrayOfVariables.length == 4)
 								{
 									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerWeaponSlot = recreatedItem;
+									player.weaponSlot = recreatedItem;
 								}
 							}
 						}
@@ -220,7 +170,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								Object.assign(recreatedItem, retrivedJSON);
 								if(recreatedItem instanceof Item)
 								{
-									playerHelmetSlot = recreatedItem;
+									player.helmetSlot = recreatedItem;
 								}
 							}
 							catch (e)
@@ -231,7 +181,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								if(itemArrayOfVariables.length == 4)
 								{
 									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerHelmetSlot = recreatedItem;
+									player.helmetSlot = recreatedItem;
 								}
 							}
 						}
@@ -246,7 +196,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								Object.assign(recreatedItem, retrivedJSON);
 								if(recreatedItem instanceof Item)
 								{
-									playerBodyArmourSlot = recreatedItem;
+									player.bodyArmourSlot = recreatedItem;
 								}
 							}
 							catch (e)
@@ -257,7 +207,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								if(itemArrayOfVariables.length == 4)
 								{
 									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerBodyArmourSlot = recreatedItem;
+									player.bodyArmourSlot = recreatedItem;
 								}
 							}
 						}
@@ -272,7 +222,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								Object.assign(recreatedItem, retrivedJSON);
 								if(recreatedItem instanceof Item)
 								{
-									playerGlovesSlot = recreatedItem;
+									player.glovesSlot = recreatedItem;
 								}
 							}
 							catch (e)
@@ -283,7 +233,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								if(itemArrayOfVariables.length == 4)
 								{
 									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerGlovesSlot = recreatedItem;
+									player.glovesSlot = recreatedItem;
 								}
 							}
 						}
@@ -298,7 +248,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								Object.assign(recreatedItem, retrivedJSON);
 								if(recreatedItem instanceof Item)
 								{
-									playerBootsSlot = recreatedItem;
+									player.bootsSlot = recreatedItem;
 								}
 							}
 							catch (e)
@@ -309,7 +259,7 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								if(itemArrayOfVariables.length == 4)
 								{
 									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerBootsSlot = recreatedItem;
+									player.bootsSlot = recreatedItem;
 								}
 							}
 						}
@@ -356,136 +306,6 @@ function readPlayerData(arrayOfVariables)
 						}
 						catch (e)
 						{
-						}
-						break;
-					case "playerWeaponSlot":
-						if(arrayOfVariables[i+1] != "undefined")
-						{
-							try
-							{
-								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
-								let recreatedItem = new Item();
-								Object.assign(recreatedItem, retrivedJSON);
-								if(recreatedItem instanceof Item)
-								{
-									playerWeaponSlot = recreatedItem;
-								}
-							}
-							catch (e)
-							{
-								// TODO: Remove this in the future, this is depricated
-								var itemString = arrayOfVariables[i+1];
-								var itemArrayOfVariables = itemString.split("|item|");
-								if(itemArrayOfVariables.length == 4)
-								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerWeaponSlot = recreatedItem;
-								}
-							}
-						}
-						break;
-					case "playerHelmetSlot":
-						if(arrayOfVariables[i+1] != "undefined")
-						{
-							try
-							{
-								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
-								let recreatedItem = new Item();
-								Object.assign(recreatedItem, retrivedJSON);
-								if(recreatedItem instanceof Item)
-								{
-									playerHelmetSlot = recreatedItem;
-								}
-							}
-							catch (e)
-							{
-								// TODO: Remove this in the future, this is depricated
-								var itemString = arrayOfVariables[i+1];
-								var itemArrayOfVariables = itemString.split("|item|");
-								if(itemArrayOfVariables.length == 4)
-								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerHelmetSlot = recreatedItem;
-								}
-							}
-						}
-						break;
-					case "playerBodyArmourSlot":
-						if(arrayOfVariables[i+1] != "undefined")
-						{
-							try
-							{
-								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
-								let recreatedItem = new Item();
-								Object.assign(recreatedItem, retrivedJSON);
-								if(recreatedItem instanceof Item)
-								{
-									playerBodyArmourSlot = recreatedItem;
-								}
-							}
-							catch (e)
-							{
-								// TODO: Remove this in the future, this is depricated
-								var itemString = arrayOfVariables[i+1];
-								var itemArrayOfVariables = itemString.split("|item|");
-								if(itemArrayOfVariables.length == 4)
-								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerBodyArmourSlot = recreatedItem;
-								}
-							}
-						}
-						break;
-					case "playerGlovesSlot":
-						if(arrayOfVariables[i+1] != "undefined")
-						{
-							try
-							{
-								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
-								let recreatedItem = new Item();
-								Object.assign(recreatedItem, retrivedJSON);
-								if(recreatedItem instanceof Item)
-								{
-									playerGlovesSlot = recreatedItem;
-								}
-							}
-							catch (e)
-							{
-								// TODO: Remove this in the future, this is depricated
-								var itemString = arrayOfVariables[i+1];
-								var itemArrayOfVariables = itemString.split("|item|");
-								if(itemArrayOfVariables.length == 4)
-								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerGlovesSlot = recreatedItem;
-								}
-							}
-						}
-						break;
-					case "playerBootsSlot":
-						if(arrayOfVariables[i+1] != "undefined")
-						{
-							try
-							{
-								const retrivedJSON = JSON.parse(arrayOfVariables[i+1]);
-								let recreatedItem = new Item();
-								Object.assign(recreatedItem, retrivedJSON);
-								if(recreatedItem instanceof Item)
-								{
-									playerBootsSlot = recreatedItem;
-								}
-							}
-							catch (e)
-							{
-								// TODO: Remove this in the future, this is depricated
-								var itemString = arrayOfVariables[i+1];
-								var itemArrayOfVariables = itemString.split("|item|");
-								if(itemArrayOfVariables.length == 4)
-								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
-									playerBootsSlot = recreatedItem;
-								}
-							}
 						}
 						break;
 					case "playerHealthPotions":

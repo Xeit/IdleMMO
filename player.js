@@ -24,6 +24,13 @@ class Player
 	playerIntelligence = 1;
 	playerIntelligenceXP = 0;
 
+	//Equipment slots
+	weaponSlot = undefined;
+	helmetSlot = undefined;
+	bodyArmourSlot = undefined;
+	glovesSlot = undefined;
+	bootsSlot = undefined;
+
 	playerUnlockFunctionsUntilLevel()
 	{
 		for(let i = 0; i <= this.playerLevel; i++)
@@ -38,13 +45,6 @@ var player = new Player()
 //Player data
 var currentTask = PlayerTasks.none;
 var currentOpenWindow = PlayerTasks.none;
-
-//Equipment slots
-var playerWeaponSlot = undefined;
-var playerHelmetSlot = undefined;
-var playerBodyArmourSlot = undefined;
-var playerGlovesSlot = undefined;
-var playerBootsSlot = undefined;
 
 //Inventory
 var playerHealthPotions = 0;
@@ -88,21 +88,21 @@ function playerGetArmourValue()
 {
 	var armourValue = 0;
 
-	if(playerHelmetSlot instanceof Item)
+	if(player.helmetSlot instanceof Item)
 	{
-		armourValue += playerHelmetSlot.returnItemPower(true);
+		armourValue += player.helmetSlot.returnItemPower(true);
 	}
-	if(playerBodyArmourSlot instanceof Item)
+	if(player.bodyArmourSlot instanceof Item)
 	{
-		armourValue += playerBodyArmourSlot.returnItemPower(true);
+		armourValue += player.bodyArmourSlot.returnItemPower(true);
 	}
-	if(playerGlovesSlot instanceof Item)
+	if(player.glovesSlot instanceof Item)
 	{
-		armourValue += playerGlovesSlot.returnItemPower(true);
+		armourValue += player.glovesSlot.returnItemPower(true);
 	}
-	if(playerBootsSlot instanceof Item)
+	if(player.bootsSlot instanceof Item)
 	{
-		armourValue += playerBootsSlot.returnItemPower(true);
+		armourValue += player.bootsSlot.returnItemPower(true);
 	}
 
 	return armourValue;
@@ -150,9 +150,9 @@ function playerGetAttackDamage(againstEnemyLevel)
 	var playerDamageToDeal = 0;
 	
 	playerDamageToDeal = +player.playerStrength;
-	if(playerWeaponSlot instanceof Item)
+	if(player.weaponSlot instanceof Item)
 	{
-		playerDamageToDeal += +playerWeaponSlot.returnItemPower(true);
+		playerDamageToDeal += +player.weaponSlot.returnItemPower(true);
 	}
 
 	const critRoll = +(Math.random() * againstEnemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex for enemy on same level
@@ -175,13 +175,6 @@ function PlayerResetPlayer()
 	//Player data
 	currentTask = PlayerTasks.none;
 	currentOpenWindow = PlayerTasks.none;
-
-	//Equipment slots
-	playerWeaponSlot = undefined;
-	playerHelmetSlot = undefined;
-	playerBodyArmourSlot = undefined;
-	playerGlovesSlot = undefined;
-	playerBootsSlot = undefined;
 
 	//Inventory
 	playerHealthPotions = 0;
