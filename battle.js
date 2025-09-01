@@ -247,7 +247,7 @@ function updateBattleHealth()
 
 function updatePlayerInfo()
 {
-	let critChance = Math.round((playerDexterity / (enemyLevel * 3 * 2)) * 100);
+	let critChance = Math.round((player.playerDexterity / (enemyLevel * 3 * 2)) * 100);
 	if(critChance > 100)
 	{
 		critChance = 100;

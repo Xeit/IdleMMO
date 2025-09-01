@@ -14,6 +14,16 @@ class Player
 	playerExhaustion = 0;
 	playerMaxExhaustion = 50;
 
+	//Attributes
+	playerStrength = 1;
+	playerStrengthXP = 0;
+	playerDexterity = 1;
+	playerDexterityXP = 0;
+	playerStamina = 1;
+	playerStaminaXP = 0;
+	playerIntelligence = 1;
+	playerIntelligenceXP = 0;
+
 	playerUnlockFunctionsUntilLevel()
 	{
 		for(let i = 0; i <= this.playerLevel; i++)
@@ -28,20 +38,6 @@ var player = new Player()
 //Player data
 var currentTask = PlayerTasks.none;
 var currentOpenWindow = PlayerTasks.none;
-
-//Player
-var playerStrength = 1;
-var playerStrengthXP = 0;
-var playerStrengthRequiredXP = 50;
-var playerDexterity = 1;
-var playerDexterityXP = 0;
-var playerDexterityRequiredXP = 50;
-var playerStamina = 1;
-var playerStaminaXP = 0;
-var playerStaminaRequiredXP = 50;
-var playerIntelligence = 1;
-var playerIntelligenceXP = 0;
-var playerIntelligenceRequiredXP = 50;
 
 //Equipment slots
 var playerWeaponSlot = undefined;
@@ -123,7 +119,7 @@ function playerHealPlayer(hpToAdd)
 
 function playerTakeDamage(monsterDamageNumber)
 {	
-	monsterDamageNumber = +(monsterDamageNumber - Math.floor(playerStamina / 2));
+	monsterDamageNumber = +(monsterDamageNumber - Math.floor(player.playerStamina / 2));
 	monsterDamageNumber -= +Math.floor(playerGetArmourValue() / 2);
 
 	monsterDamageNumber -= +getTotalBuffsWithType(BuffType.defense);
@@ -153,14 +149,14 @@ function playerGetAttackDamage(againstEnemyLevel)
 {
 	var playerDamageToDeal = 0;
 	
-	playerDamageToDeal = +playerStrength;
+	playerDamageToDeal = +player.playerStrength;
 	if(playerWeaponSlot instanceof Item)
 	{
 		playerDamageToDeal += +playerWeaponSlot.returnItemPower(true);
 	}
 
 	const critRoll = +(Math.random() * againstEnemyLevel * 3 * 2).toFixed(); //50% crit chance with max dex for enemy on same level
-	if(critRoll < playerDexterity)
+	if(critRoll < player.playerDexterity)
 	{
 		//This is crit
 		playerDamageToDeal = playerDamageToDeal * 2;
@@ -179,20 +175,6 @@ function PlayerResetPlayer()
 	//Player data
 	currentTask = PlayerTasks.none;
 	currentOpenWindow = PlayerTasks.none;
-
-	//Player
-	playerStrength = 1;
-	playerStrengthXP = 0;
-	playerStrengthRequiredXP = 50;
-	playerDexterity = 1;
-	playerDexterityXP = 0;
-	playerDexterityRequiredXP = 50;
-	playerStamina = 1;
-	playerStaminaXP = 0;
-	playerStaminaRequiredXP = 50;
-	playerIntelligence = 1;
-	playerIntelligenceXP = 0;
-	playerIntelligenceRequiredXP = 50;
 
 	//Equipment slots
 	playerWeaponSlot = undefined;

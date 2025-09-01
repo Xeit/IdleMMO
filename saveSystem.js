@@ -22,7 +22,7 @@ function eatCookie(cname)
 	{
 		var stringToRead = localStorage.getItem("v1");
 		var arrayOfVariables = stringToRead.split("|save|");
-		readPlayerDataDepricated(arrayOfVariables);
+		DEPRECATED_readPlayerData(arrayOfVariables);
 		localStorage.removeItem("v1");
 	}
 	if(localStorage.getItem("v2") !== null)
@@ -37,42 +37,6 @@ function gatherPlayerData()
 {
 	addData("player")
 	addData(JSON.stringify(player))
-	
-	addData("playerStrength");
-	addData(playerStrength);
-	
-	addData("playerStrengthXP");
-	addData(playerStrengthXP);
-	
-	addData("playerStrengthRequiredXP");
-	addData(playerStrengthRequiredXP);
-	
-	addData("playerDexterity");
-	addData(playerDexterity);
-	
-	addData("playerDexterityXP");
-	addData(playerDexterityXP);
-	
-	addData("playerDexterityRequiredXP");
-	addData(playerDexterityRequiredXP);
-	
-	addData("playerStamina");
-	addData(playerStamina);
-	
-	addData("playerStaminaXP");
-	addData(playerStaminaXP);
-	
-	addData("playerStaminaRequiredXP");
-	addData(playerStaminaRequiredXP);
-	
-	addData("playerIntelligence");
-	addData(playerIntelligence);
-	
-	addData("playerIntelligenceXP");
-	addData(playerIntelligenceXP);
-	
-	addData("playerIntelligenceRequiredXP");
-	addData(playerIntelligenceRequiredXP);
 	
 	addData("playerWeaponSlot");
 	if(playerWeaponSlot !== undefined)
@@ -154,7 +118,7 @@ function serializeBuffList()
 	return buffsString;
 }
 
-function readPlayerDataDepricated(arrayOfVariables)
+function DEPRECATED_readPlayerData(arrayOfVariables)
 {
 	if(arrayOfVariables[0] === "v1")
 	{
@@ -197,40 +161,28 @@ function readPlayerDataDepricated(arrayOfVariables)
 						player.playerMaxExhaustion = +arrayOfVariables[i+1];
 						break;
 					case "playerStrength":
-						playerStrength = +arrayOfVariables[i+1];
+						player.playerStrength = +arrayOfVariables[i+1];
 						break;
 					case "playerStrengthXP":
-						playerStrengthXP = +arrayOfVariables[i+1];
-						break;
-					case "playerStrengthRequiredXP":
-						playerStrengthRequiredXP = +arrayOfVariables[i+1];
+						player.playerStrengthXP = +arrayOfVariables[i+1];
 						break;
 					case "playerDexterity":
-						playerDexterity = +arrayOfVariables[i+1];
+						player.playerDexterity = +arrayOfVariables[i+1];
 						break;
 					case "playerDexterityXP":
-						playerDexterityXP = +arrayOfVariables[i+1];
-						break;
-					case "playerDexterityRequiredXP":
-						playerDexterityRequiredXP = +arrayOfVariables[i+1];
+						player.playerDexterityXP = +arrayOfVariables[i+1];
 						break;
 					case "playerStamina":
-						playerStamina = +arrayOfVariables[i+1];
+						player.playerStamina = +arrayOfVariables[i+1];
 						break;
 					case "playerStaminaXP":
-						playerStaminaXP = +arrayOfVariables[i+1];
-						break;
-					case "playerStaminaRequiredXP":
-						playerStaminaRequiredXP = +arrayOfVariables[i+1];
+						player.playerStaminaXP = +arrayOfVariables[i+1];
 						break;
 					case "playerIntelligence":
-						playerIntelligence = +arrayOfVariables[i+1];
+						player.playerIntelligence = +arrayOfVariables[i+1];
 						break;
 					case "playerIntelligenceXP":
-						playerIntelligenceXP = +arrayOfVariables[i+1];
-						break;
-					case "playerIntelligenceRequiredXP":
-						playerIntelligenceRequiredXP = +arrayOfVariables[i+1];
+						player.playerIntelligenceXP = +arrayOfVariables[i+1];
 						break;
 					case "playerWeaponSlot":
 						if(arrayOfVariables[i+1] != "undefined")
@@ -405,42 +357,6 @@ function readPlayerData(arrayOfVariables)
 						catch (e)
 						{
 						}
-						break;
-					case "playerStrength":
-						playerStrength = +arrayOfVariables[i+1];
-						break;
-					case "playerStrengthXP":
-						playerStrengthXP = +arrayOfVariables[i+1];
-						break;
-					case "playerStrengthRequiredXP":
-						playerStrengthRequiredXP = +arrayOfVariables[i+1];
-						break;
-					case "playerDexterity":
-						playerDexterity = +arrayOfVariables[i+1];
-						break;
-					case "playerDexterityXP":
-						playerDexterityXP = +arrayOfVariables[i+1];
-						break;
-					case "playerDexterityRequiredXP":
-						playerDexterityRequiredXP = +arrayOfVariables[i+1];
-						break;
-					case "playerStamina":
-						playerStamina = +arrayOfVariables[i+1];
-						break;
-					case "playerStaminaXP":
-						playerStaminaXP = +arrayOfVariables[i+1];
-						break;
-					case "playerStaminaRequiredXP":
-						playerStaminaRequiredXP = +arrayOfVariables[i+1];
-						break;
-					case "playerIntelligence":
-						playerIntelligence = +arrayOfVariables[i+1];
-						break;
-					case "playerIntelligenceXP":
-						playerIntelligenceXP = +arrayOfVariables[i+1];
-						break;
-					case "playerIntelligenceRequiredXP":
-						playerIntelligenceRequiredXP = +arrayOfVariables[i+1];
 						break;
 					case "playerWeaponSlot":
 						if(arrayOfVariables[i+1] != "undefined")

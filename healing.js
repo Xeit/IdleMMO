@@ -30,8 +30,8 @@ function tickHealing()
 		//If stamina is lower then heal percentage wise less
 		const maxPlayerStatLvl = player.playerLevel * 3;
 
-		const hpToHeal = Math.round(player.playerMaxHealth / 5 * (playerStamina / maxPlayerStatLvl));
-		const manaToHeal = Math.round(player.playerMaxMana / 5 * (playerIntelligence / maxPlayerStatLvl));
+		const hpToHeal = Math.round(player.playerMaxHealth / 5 * (player.playerStamina / maxPlayerStatLvl));
+		const manaToHeal = Math.round(player.playerMaxMana / 5 * (player.playerIntelligence / maxPlayerStatLvl));
 
 		player.playerHealth += hpToHeal;
 		player.playerMana += manaToHeal;

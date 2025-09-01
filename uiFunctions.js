@@ -34,23 +34,23 @@ function updateInfoPanel()
 	$("#player_info_gold").text(player.playerGold);
 	
 	const maxSkillsLvl = player.playerLevel * 3;
-	$("#player_info_strength").text(playerStrength + "/" + maxSkillsLvl);
-	const playerSTRPercent = (playerStrength / maxSkillsLvl * 100).toFixed() + "%";
+	$("#player_info_strength").text(player.playerStrength + "/" + maxSkillsLvl);
+	const playerSTRPercent = (player.playerStrength / maxSkillsLvl * 100).toFixed() + "%";
 	$("#STR.player_info_element").css("background-size", playerSTRPercent + " 100%");
 	$("#STR.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_dexterity").text(playerDexterity + "/" + maxSkillsLvl);
-	const playerDEXPercent = (playerDexterity / maxSkillsLvl * 100).toFixed() + "%";
+	$("#player_info_dexterity").text(player.playerDexterity + "/" + maxSkillsLvl);
+	const playerDEXPercent = (player.playerDexterity / maxSkillsLvl * 100).toFixed() + "%";
 	$("#DEX.player_info_element").css("background-size", playerDEXPercent + " 100%");
 	$("#DEX.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_stamina").text(playerStamina + "/" + maxSkillsLvl);
-	const playerSTAPercent = (playerStamina / maxSkillsLvl * 100).toFixed() + "%";
+	$("#player_info_stamina").text(player.playerStamina + "/" + maxSkillsLvl);
+	const playerSTAPercent = (player.playerStamina / maxSkillsLvl * 100).toFixed() + "%";
 	$("#STA.player_info_element").css("background-size", playerSTAPercent + " 100%");
 	$("#STA.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_intelligence").text(playerIntelligence + "/" + maxSkillsLvl);
-	const playerINTPercent = (playerIntelligence / maxSkillsLvl * 100).toFixed() + "%";
+	$("#player_info_intelligence").text(player.playerIntelligence + "/" + maxSkillsLvl);
+	const playerINTPercent = (player.playerIntelligence / maxSkillsLvl * 100).toFixed() + "%";
 	$("#INT.player_info_element").css("background-size", playerINTPercent + " 100%");
 	$("#INT.player_info_element").css("background-repeat", "no-repeat");
 	
@@ -99,7 +99,7 @@ function UIItemDropped(generatedNewItem)
 
 function DisplayCritChanceUI(againstEnemyLevel)
 {
-	var playerDisplayedCritChance = Math.round(playerDexterity / (againstEnemyLevel * 3 * 2) * 100);
+	var playerDisplayedCritChance = Math.round(player.playerDexterity / (againstEnemyLevel * 3 * 2) * 100);
 	if(playerDisplayedCritChance > 100)
 	{
 		playerDisplayedCritChance = 100;
