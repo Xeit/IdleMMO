@@ -12,9 +12,9 @@ function updateProgressBar()
 
 function updateInfoPanel()
 {
-	$("#player_info_level").text(playerLevel);
+	$("#player_info_level").text(player.playerLevel);
 
-	const playerXpPercent = (playerXp / playerRequiredXp * 100).toFixed(2) + "%";
+	const playerXpPercent = (player.playerXp / player.playerRequiredXp * 100).toFixed(2) + "%";
 	$("#player_info_xp").text(playerXpPercent);
 	$("#XP.player_info_element").css("background-size", playerXpPercent + " 100%");
 	$("#XP.player_info_element").css("background-repeat", "no-repeat");
@@ -33,7 +33,7 @@ function updateInfoPanel()
 
 	$("#player_info_gold").text(playerGold);
 	
-	const maxSkillsLvl = playerLevel * 3;
+	const maxSkillsLvl = player.playerLevel * 3;
 	$("#player_info_strength").text(playerStrength + "/" + maxSkillsLvl);
 	const playerSTRPercent = (playerStrength / maxSkillsLvl * 100).toFixed() + "%";
 	$("#STR.player_info_element").css("background-size", playerSTRPercent + " 100%");

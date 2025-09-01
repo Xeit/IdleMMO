@@ -1,12 +1,17 @@
+class Player
+{
+	//Level
+	playerLevel = 1;
+	playerXp = 0;
+	playerRequiredXp = 50;
+}
+
+var player = new Player()
+
 //Player data
 var currentTask = PlayerTasks.none;
 var currentOpenWindow = PlayerTasks.none;
 var playerUnlockedFunctionsUntilLevel = 0;
-
-//Level
-var playerLevel = 1;
-var playerXp = 0;
-var playerRequiredXp = 50;
 
 //Spendables
 var playerGold = 0;
@@ -51,10 +56,10 @@ var levelBreeze = false;
 function addPlayerXp(xpToAdd)
 {
 	//This is current level cap
-	if(playerLevel < 50)
+	if(player.playerLevel < 50)
 	{
-		playerXp += +xpToAdd;
-		if(playerXp >= +playerRequiredXp)
+		player.playerXp += +xpToAdd;
+		if(player.playerXp >= +player.playerRequiredXp)
 		{
 			playerLevelUp();
 		}
@@ -63,18 +68,18 @@ function addPlayerXp(xpToAdd)
 
 function playerLevelUp()
 {
-	playerLevel += 1;
-	playerXp = 0;
-	playerRequiredXp = +(0.25 * (playerLevel + (300 * 2 * ((playerLevel - 1) / 4))) + 50).toFixed();
+	player.playerLevel += 1;
+	player.playerXp = 0;
+	player.playerRequiredXp = +(0.25 * (player.playerLevel + (300 * 2 * ((player.playerLevel - 1) / 4))) + 50).toFixed();
 
-	playerMaxHealth = 100 + (10 * (playerLevel - 1));
-	playerMaxMana = 100 + (10 * (playerLevel - 1));
-	playerMaxExhaustion = 50 + (5 * (playerLevel - 1));
+	playerMaxHealth = 100 + (10 * (player.playerLevel - 1));
+	playerMaxMana = 100 + (10 * (player.playerLevel - 1));
+	playerMaxExhaustion = 50 + (5 * (player.playerLevel - 1));
 
 	healPlayerToMax();
 
-	PlayerUnlockFunctions(playerLevel);
-	playerUnlockedFunctionsUntilLevel = playerLevel;
+	PlayerUnlockFunctions(player.playerLevel);
+	playerUnlockedFunctionsUntilLevel = player.playerLevel;
 }
 
 function playerGetArmourValue()
@@ -163,15 +168,12 @@ function playerGetAttackDamage(againstEnemyLevel)
 
 function PlayerResetPlayer()
 {
+	player = new Player();
+
 	//Player data
 	currentTask = PlayerTasks.none;
 	currentOpenWindow = PlayerTasks.none;
 	playerUnlockedFunctionsUntilLevel = 0;
-
-	//Level
-	playerLevel = 1;
-	playerXp = 0;
-	playerRequiredXp = 50;
 
 	//Spendables
 	playerGold = 0;

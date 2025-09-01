@@ -161,9 +161,9 @@ function hitEnemy()
 	{
 		bIsEnemyAlive = false;
 
-		if(playerLevel > enemyLevel)
+		if(player.playerLevel > enemyLevel)
 		{
-			const levelDifference = playerLevel - enemyLevel;
+			const levelDifference = player.playerLevel - enemyLevel;
 			if(levelDifference < 10)
 			{
 				const xpPenaltyMultiplier = levelDifference * 0.1;
@@ -194,19 +194,19 @@ function hitEnemy()
 		//Lower player quest exhaustion
 		if(playerExhaustion > 0)
 		{
-			if(enemyLevel >= playerLevel)
+			if(enemyLevel >= player.playerLevel)
 			{
 				playerExhaustion -= 5;
 			}
-			else if(enemyLevel >= playerLevel - 3)
+			else if(enemyLevel >= player.playerLevel - 3)
 			{
 				playerExhaustion -= 3;
 			}
-			else if(enemyLevel >= playerLevel - 6)
+			else if(enemyLevel >= player.playerLevel - 6)
 			{
 				playerExhaustion -= 2;
 			}
-			else if(enemyLevel >= playerLevel - 10)
+			else if(enemyLevel >= player.playerLevel - 10)
 			{
 				playerExhaustion -= 1;
 			}
