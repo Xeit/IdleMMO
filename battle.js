@@ -189,33 +189,33 @@ function hitEnemy()
 
 		//Gold drop
 		const goldDropRoll = Math.round((Math.random() * enemyLevel)) + enemyLevel;
-		playerGold += +goldDropRoll;
+		player.playerGold += +goldDropRoll;
 
 		//Lower player quest exhaustion
-		if(playerExhaustion > 0)
+		if(player.playerExhaustion > 0)
 		{
 			if(enemyLevel >= player.playerLevel)
 			{
-				playerExhaustion -= 5;
+				player.playerExhaustion -= 5;
 			}
 			else if(enemyLevel >= player.playerLevel - 3)
 			{
-				playerExhaustion -= 3;
+				player.playerExhaustion -= 3;
 			}
 			else if(enemyLevel >= player.playerLevel - 6)
 			{
-				playerExhaustion -= 2;
+				player.playerExhaustion -= 2;
 			}
 			else if(enemyLevel >= player.playerLevel - 10)
 			{
-				playerExhaustion -= 1;
+				player.playerExhaustion -= 1;
 			}
 
 			//Do not lower it if monster is 10 levels lower than player
 
-			if(playerExhaustion < 0)
+			if(player.playerExhaustion < 0)
 			{
-				playerExhaustion = 0;
+				player.playerExhaustion = 0;
 			}
 		}
 	}
@@ -223,7 +223,7 @@ function hitEnemy()
 
 function updateBattleHealth()
 {
-	const playerHealthPercentage = playerHealth / playerMaxHealth * 100;
+	const playerHealthPercentage = player.playerHealth / player.playerMaxHealth * 100;
 	$("#player_battle_health").html("HP: " + playerHealthPercentage.toFixed() + "%");
 	$("#battle_player_health_bar_inside").css("background-size", playerHealthPercentage + "%");
 	$("#battle_player_health_bar_inside").css("background-repeat", "no-repeat");

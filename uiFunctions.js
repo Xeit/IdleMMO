@@ -19,19 +19,19 @@ function updateInfoPanel()
 	$("#XP.player_info_element").css("background-size", playerXpPercent + " 100%");
 	$("#XP.player_info_element").css("background-repeat", "no-repeat");
 
-	const playerHealthPercent = (playerHealth / playerMaxHealth * 100).toFixed() + "%";
+	const playerHealthPercent = (player.playerHealth / player.playerMaxHealth * 100).toFixed() + "%";
 	$("#player_info_health").text(playerHealthPercent);
 	$("#HP.player_info_element").css("background-size", playerHealthPercent + " 100%");
 	$("#HP.player_info_element").css("background-repeat", "no-repeat");
 
 	$("#player_info_health_potions").text(playerHealthPotions);
 	
-	const playerManaPercent = (playerMana / playerMaxMana * 100).toFixed() + "%";
+	const playerManaPercent = (player.playerMana / player.playerMaxMana * 100).toFixed() + "%";
 	$("#player_info_mana").text(playerManaPercent);
 	$("#MANA.player_info_element").css("background-size", playerManaPercent + " 100%");
 	$("#MANA.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_gold").text(playerGold);
+	$("#player_info_gold").text(player.playerGold);
 	
 	const maxSkillsLvl = player.playerLevel * 3;
 	$("#player_info_strength").text(playerStrength + "/" + maxSkillsLvl);
@@ -54,7 +54,7 @@ function updateInfoPanel()
 	$("#INT.player_info_element").css("background-size", playerINTPercent + " 100%");
 	$("#INT.player_info_element").css("background-repeat", "no-repeat");
 	
-	const playerEXHPercent = (playerExhaustion / playerMaxExhaustion * 100).toFixed() + "%";
+	const playerEXHPercent = (player.playerExhaustion / player.playerMaxExhaustion * 100).toFixed() + "%";
 	$("#player_info_exhaustion").text(playerEXHPercent);
 	$("#EXH.player_info_element").css("background-size", playerEXHPercent + " 100%");
 	$("#EXH.player_info_element").css("background-repeat", "no-repeat");

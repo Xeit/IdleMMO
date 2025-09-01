@@ -4,6 +4,23 @@ class Player
 	playerLevel = 1;
 	playerXp = 0;
 	playerRequiredXp = 50;
+
+	//Spendables
+	playerGold = 0;
+	playerHealth = 100;
+	playerMaxHealth = 100;
+	playerMana = 100;
+	playerMaxMana = 100;
+	playerExhaustion = 0;
+	playerMaxExhaustion = 50;
+
+	playerUnlockFunctionsUntilLevel()
+	{
+		for(let i = 0; i <= this.playerLevel; i++)
+		{
+			PlayerUnlockFunctions(i);
+		}
+	}
 }
 
 var player = new Player()
@@ -11,16 +28,6 @@ var player = new Player()
 //Player data
 var currentTask = PlayerTasks.none;
 var currentOpenWindow = PlayerTasks.none;
-var playerUnlockedFunctionsUntilLevel = 0;
-
-//Spendables
-var playerGold = 0;
-var playerHealth = 100;
-var playerMaxHealth = 100;
-var playerMana = 100;
-var playerMaxMana = 100;
-var playerExhaustion = 0;
-var playerMaxExhaustion = 50;
 
 //Player
 var playerStrength = 1;
@@ -72,14 +79,13 @@ function playerLevelUp()
 	player.playerXp = 0;
 	player.playerRequiredXp = +(0.25 * (player.playerLevel + (300 * 2 * ((player.playerLevel - 1) / 4))) + 50).toFixed();
 
-	playerMaxHealth = 100 + (10 * (player.playerLevel - 1));
-	playerMaxMana = 100 + (10 * (player.playerLevel - 1));
-	playerMaxExhaustion = 50 + (5 * (player.playerLevel - 1));
+	player.playerMaxHealth = 100 + (10 * (player.playerLevel - 1));
+	player.playerMaxMana = 100 + (10 * (player.playerLevel - 1));
+	player.playerMaxExhaustion = 50 + (5 * (player.playerLevel - 1));
 
 	healPlayerToMax();
 
 	PlayerUnlockFunctions(player.playerLevel);
-	playerUnlockedFunctionsUntilLevel = player.playerLevel;
 }
 
 function playerGetArmourValue()
@@ -108,10 +114,10 @@ function playerGetArmourValue()
 
 function playerHealPlayer(hpToAdd)
 {
-	playerHealth += +hpToAdd;
-	if(playerHealth > playerMaxHealth)
+	player.playerHealth += +hpToAdd;
+	if(player.playerHealth > player.playerMaxHealth)
 	{
-		playerHealth = playerMaxHealth;
+		player.playerHealth = player.playerMaxHealth;
 	}
 }
 
@@ -127,18 +133,18 @@ function playerTakeDamage(monsterDamageNumber)
 		monsterDamageNumber = 1;
 	}
 
-	playerHealth -= +monsterDamageNumber;
+	player.playerHealth -= +monsterDamageNumber;
 
-	if(playerHealth <= 0)
+	if(player.playerHealth <= 0)
 	{
-		playerHealth = 0;
+		player.playerHealth = 0;
 		newPlayerTask(PlayerTasks.healing);
 	}
-	else if((((playerHealth / playerMaxHealth) * 100) < playerHealthPotionUsePercent) && playerHealthPotions > 0)
+	else if((((player.playerHealth / player.playerMaxHealth) * 100) < playerHealthPotionUsePercent) && playerHealthPotions > 0)
 	{
 		//Use potion if under % health specified by player
 		playerHealthPotions -= 1;
-		const healthToHeal = +Math.floor(playerMaxHealth / 2);
+		const healthToHeal = +Math.floor(player.playerMaxHealth / 2);
 		playerHealPlayer(healthToHeal);
 	}
 }
@@ -173,16 +179,6 @@ function PlayerResetPlayer()
 	//Player data
 	currentTask = PlayerTasks.none;
 	currentOpenWindow = PlayerTasks.none;
-	playerUnlockedFunctionsUntilLevel = 0;
-
-	//Spendables
-	playerGold = 0;
-	playerHealth = 100;
-	playerMaxHealth = 100;
-	playerMana = 100;
-	playerMaxMana = 100;
-	playerExhaustion = 0;
-	playerMaxExhaustion = 50;
 
 	//Player
 	playerStrength = 1;

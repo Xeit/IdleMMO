@@ -2,7 +2,7 @@ var bIsHealing = false;
 
 function ShowHealingWindow()
 {
-	const playerHealthPercentage = playerHealth / playerMaxHealth * 100;
+	const playerHealthPercentage = player.playerHealth / player.playerMaxHealth * 100;
 	$("#player_resting_health").html("Your current HP: " + playerHealthPercentage.toFixed() + "%");
 	$("#healing_window").css("display", "flex");
 }
@@ -30,26 +30,26 @@ function tickHealing()
 		//If stamina is lower then heal percentage wise less
 		const maxPlayerStatLvl = player.playerLevel * 3;
 
-		const hpToHeal = Math.round(playerMaxHealth / 5 * (playerStamina / maxPlayerStatLvl));
-		const manaToHeal = Math.round(playerMaxMana / 5 * (playerIntelligence / maxPlayerStatLvl));
+		const hpToHeal = Math.round(player.playerMaxHealth / 5 * (playerStamina / maxPlayerStatLvl));
+		const manaToHeal = Math.round(player.playerMaxMana / 5 * (playerIntelligence / maxPlayerStatLvl));
 
-		playerHealth += hpToHeal;
-		playerMana += manaToHeal;
-		if(playerHealth > playerMaxHealth)
+		player.playerHealth += hpToHeal;
+		player.playerMana += manaToHeal;
+		if(player.playerHealth > player.playerMaxHealth)
 		{
-			playerHealth = +playerMaxHealth;
+			player.playerHealth = +player.playerMaxHealth;
 		}
-		if(playerMana > playerMaxMana)
+		if(player.playerMana > player.playerMaxMana)
 		{
-			playerMana = +playerMaxMana;
+			player.playerMana = +player.playerMaxMana;
 		}
-		const playerHealthPercentage = playerHealth / playerMaxHealth * 100;
+		const playerHealthPercentage = player.playerHealth / player.playerMaxHealth * 100;
 		$("#player_resting_health").html("Your current HP: " + playerHealthPercentage.toFixed() + "%");
 	}
 }
 
 function healPlayerToMax()
 {
-	playerHealth = playerMaxHealth;
-	playerMana = playerMaxMana;
+	player.playerHealth = player.playerMaxHealth;
+	player.playerMana = player.playerMaxMana;
 }

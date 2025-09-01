@@ -255,12 +255,12 @@ function stopQuesting()
 
 function tickQuesting()
 {
-	if(playerExhaustion < playerMaxExhaustion)
+	if(player.playerExhaustion < player.playerMaxExhaustion)
 	{
 		if(questProgress < questTarget)
 		{
 			questProgress++;
-			playerExhaustion++;
+			player.playerExhaustion++;
 			if(questProgress >= questTarget)
 			{
 				finishQuest();
@@ -319,7 +319,7 @@ function getNewQuest()
 function finishQuest()
 {
 	addPlayerXp(questXp);
-	playerGold = +(playerGold + questGold);
+	player.playerGold = +(player.playerGold + questGold);
 
 	questTarget = 0;
 	questProgress = 0;
@@ -344,7 +344,7 @@ function updateQuestInfo()
 		$("#questing_progress_bar_inside").css("width", questProgressFillPercent);
 	}
 
-	const playerExhaustionFillPercent = (playerExhaustion / playerMaxExhaustion * 100).toFixed();
+	const playerExhaustionFillPercent = (player.playerExhaustion / player.playerMaxExhaustion * 100).toFixed();
 	if(playerExhaustionFillPercent > 80)
 	{
 		$("#questing_exhaustion_percentage").css("color", "red");

@@ -29,38 +29,14 @@ function eatCookie(cname)
 	{
 		var stringToRead = localStorage.getItem("v2");
 		var arrayOfVariables = stringToRead.split("|save|");
-		readPlayerDataDepricated(arrayOfVariables);
+		readPlayerData(arrayOfVariables);
 	}
 }
 
 function gatherPlayerData()
 {
-	addData("playerUnlockedFunctionsUntilLevel");
-	addData(playerUnlockedFunctionsUntilLevel);
-
 	addData("player")
 	addData(JSON.stringify(player))
-	
-	addData("playerGold");
-	addData(playerGold);
-	
-	addData("playerHealth");
-	addData(playerHealth);
-	
-	addData("playerMaxHealth");
-	addData(playerMaxHealth);
-
-	addData("playerMana");
-	addData(playerMana);
-	
-	addData("playerMaxMana");
-	addData(playerMaxMana);
-	
-	addData("playerExhaustion");
-	addData(playerExhaustion);
-	
-	addData("playerMaxExhaustion");
-	addData(playerMaxExhaustion);
 	
 	addData("playerStrength");
 	addData(playerStrength);
@@ -189,16 +165,9 @@ function readPlayerDataDepricated(arrayOfVariables)
 				var VariableName = arrayOfVariables[i];
 				switch(VariableName)
 				{
-					case "playerUnlockedFunctionsUntilLevel":
-						let functionsLevels = +arrayOfVariables[i+1];
-						for(let i = 0; i <= functionsLevels; i++)
-						{
-							PlayerUnlockFunctions(i);
-						}
-						playerUnlockedFunctionsUntilLevel = functionsLevels;
-						break;
 					case "playerLevel":
 						player.playerLevel = +arrayOfVariables[i+1];
+						player.playerUnlockFunctionsUntilLevel();
 						break;
 					case "playerXp":
 						player.playerXp = +arrayOfVariables[i+1];
@@ -207,25 +176,25 @@ function readPlayerDataDepricated(arrayOfVariables)
 						player.playerRequiredXp = +arrayOfVariables[i+1];
 						break;
 					case "playerGold":
-						playerGold = +arrayOfVariables[i+1];
+						player.playerGold = +arrayOfVariables[i+1];
 						break;
 					case "playerHealth":
-						playerHealth = +arrayOfVariables[i+1];
+						player.playerHealth = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxHealth":
-						playerMaxHealth = +arrayOfVariables[i+1];
+						player.playerMaxHealth = +arrayOfVariables[i+1];
 						break;
 					case "playerMana":
-						playerMana = +arrayOfVariables[i+1];
+						player.playerMana = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxMana":
-						playerMaxMana = +arrayOfVariables[i+1];
+						player.playerMaxMana = +arrayOfVariables[i+1];
 						break;
 					case "playerExhaustion":
-						playerExhaustion = +arrayOfVariables[i+1];
+						player.playerExhaustion = +arrayOfVariables[i+1];
 						break;
 					case "playerMaxExhaustion":
-						playerMaxExhaustion = +arrayOfVariables[i+1];
+						player.playerMaxExhaustion = +arrayOfVariables[i+1];
 						break;
 					case "playerStrength":
 						playerStrength = +arrayOfVariables[i+1];
@@ -410,7 +379,7 @@ function readPlayerDataDepricated(arrayOfVariables)
 	}
 }
 
-function readPlayerDataDepricated(arrayOfVariables)
+function readPlayerData(arrayOfVariables)
 {
 	if(arrayOfVariables[0] === "v2")
 	{
@@ -421,14 +390,6 @@ function readPlayerDataDepricated(arrayOfVariables)
 				var VariableName = arrayOfVariables[i];
 				switch(VariableName)
 				{
-					case "playerUnlockedFunctionsUntilLevel":
-						let functionsLevels = +arrayOfVariables[i+1];
-						for(let i = 0; i <= functionsLevels; i++)
-						{
-							PlayerUnlockFunctions(i);
-						}
-						playerUnlockedFunctionsUntilLevel = functionsLevels;
-						break;
 					case "player":
 						try
 						{
@@ -438,32 +399,12 @@ function readPlayerDataDepricated(arrayOfVariables)
 							if(recreatedPlayer instanceof Player)
 							{
 								player = recreatedPlayer;
+								player.playerUnlockFunctionsUntilLevel();
 							}
 						}
 						catch (e)
 						{
 						}
-						break;
-					case "playerGold":
-						playerGold = +arrayOfVariables[i+1];
-						break;
-					case "playerHealth":
-						playerHealth = +arrayOfVariables[i+1];
-						break;
-					case "playerMaxHealth":
-						playerMaxHealth = +arrayOfVariables[i+1];
-						break;
-					case "playerMana":
-						playerMana = +arrayOfVariables[i+1];
-						break;
-					case "playerMaxMana":
-						playerMaxMana = +arrayOfVariables[i+1];
-						break;
-					case "playerExhaustion":
-						playerExhaustion = +arrayOfVariables[i+1];
-						break;
-					case "playerMaxExhaustion":
-						playerMaxExhaustion = +arrayOfVariables[i+1];
 						break;
 					case "playerStrength":
 						playerStrength = +arrayOfVariables[i+1];
