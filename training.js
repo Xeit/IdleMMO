@@ -118,7 +118,7 @@ function tickTraining()
 					player.dexterityXP += xpToReceive;
 					let requiredXP = player.dexterity * 50;
 
-					if(dexterityXP >= requiredXP)
+					if(player.dexterityXP >= requiredXP)
 					{
 						player.dexterity += 1;
 						player.dexterityXP = 0;

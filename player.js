@@ -45,6 +45,18 @@ class Player
 			playerUnlockFunctions(i);
 		}
 	}
+
+	playerFixItems()
+	{
+		// Holy fuck it took me way too long to understand that deserialization make Object rather than correct class...
+		// And even longer to finaly come up with way to fix this... What the fuck xD
+
+		this.weaponSlot = castObjectToItem(player.weaponSlot);
+		this.helmetSlot = castObjectToItem(player.helmetSlot);
+		this.bodyArmourSlot = castObjectToItem(player.bodyArmourSlot);
+		this.glovesSlot = castObjectToItem(player.glovesSlot);
+		this.bootsSlot = castObjectToItem(player.bootsSlot);
+	}
 }
 
 var player = new Player()

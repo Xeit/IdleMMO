@@ -177,9 +177,9 @@ function hitEnemy()
 		}
 
 		//Item drop
-		var generatedNewItem = new Item();
-		generatedNewItem = generateItem(enemyLevel, enemyDifficulty);
-		var bGotNewItem = tryNewItem(generatedNewItem);
+		let generatedNewItem = generateItem(enemyLevel, enemyDifficulty);
+		let bGotNewItem = tryNewItem(generatedNewItem);
+
 		updateEquipmentWindow();
 
 		if(bGotNewItem)

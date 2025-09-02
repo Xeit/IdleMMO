@@ -26,14 +26,6 @@ class Item
 	itemUpgradeLevel = 0;
 	itemUpgradePitty = 0;
 
-	constructor (itemRarity, itemSlot, itemLevel, itemName)
-	{
-		this.itemRarity = itemRarity;
-		this.itemSlot = itemSlot;
-		this.itemLevel = +itemLevel;
-		this.itemName = itemName;
-	}
-
 	returnItemPower(bWithUpgrades) 
 	{
 		var itemPower = this.itemLevel;
@@ -177,7 +169,12 @@ function generateItem(enemyLevel, enemyDifficulty)
 
 	itemName = newItemRarity + " " + itemSlot;
 
-	return (new Item(newItemRarity, itemSlot, enemyLevel, itemName));
+	let newItem = new Item();
+	newItem.itemRarity = newItemRarity;
+	newItem.itemSlot = itemSlot;
+	newItem.itemLevel = enemyLevel;
+	newItem.itemName = itemName;
+	return (newItem);
 }
 
 function updateEquipmentWindow()
@@ -289,7 +286,7 @@ function tryNewItem(newItem)
 	
 	switch (newItem.itemSlot) {
 		case ItemSlot.weapon:
-			if(player.weaponSlot != null)
+			if(player.weaponSlot instanceof Item)
 			{
 				currentItemPower = player.weaponSlot.returnItemPower(false);
 			}
@@ -300,7 +297,7 @@ function tryNewItem(newItem)
 			}
 			break;
 		case ItemSlot.boots:
-			if(player.bootsSlot != null)
+			if(player.bootsSlot instanceof Item)
 			{
 				currentItemPower = player.bootsSlot.returnItemPower(false);
 			}
@@ -311,7 +308,7 @@ function tryNewItem(newItem)
 			}
 			break;
 		case ItemSlot.gloves:
-			if(player.glovesSlot != null)
+			if(player.glovesSlot instanceof Item)
 			{
 				currentItemPower = player.glovesSlot.returnItemPower(false);
 			}
@@ -322,7 +319,7 @@ function tryNewItem(newItem)
 			}
 			break;
 		case ItemSlot.helmet:
-			if(player.helmetSlot != null)
+			if(player.helmetSlot instanceof Item)
 			{
 				currentItemPower = player.helmetSlot.returnItemPower(false);
 			}
@@ -333,7 +330,7 @@ function tryNewItem(newItem)
 			}
 			break;
 		case ItemSlot.body_armour:
-			if(player.bodyArmourSlot != null)
+			if(player.bodyArmourSlot instanceof Item)
 			{
 				currentItemPower = player.bodyArmourSlot.returnItemPower(false);
 			}
@@ -347,4 +344,18 @@ function tryNewItem(newItem)
 			break;
 	}
 	return bGotNewItem;
+}
+
+function castObjectToItem(objectToCast)
+{
+	let returnItem = new Item();
+
+	returnItem.itemRarity = objectToCast.itemRarity;
+	returnItem.itemSlot = objectToCast.itemSlot;
+	returnItem.itemLevel = objectToCast.itemLevel;
+	returnItem.itemName = objectToCast.itemName;
+	returnItem.itemUpgradeLevel = objectToCast.itemUpgradeLevel;
+	returnItem.itemUpgradePitty = objectToCast.itemUpgradePitty;
+
+	return returnItem;
 }

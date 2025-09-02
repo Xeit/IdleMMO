@@ -125,7 +125,13 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								var itemArrayOfVariables = itemString.split("|item|");
 								if(itemArrayOfVariables.length == 4)
 								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									var recreatedItem = new Item();
+
+									recreatedItem.itemRarity = itemArrayOfVariables[0];
+									recreatedItem.itemSlot = itemArrayOfVariables[1];
+									recreatedItem.enemyLevel = itemArrayOfVariables[2];
+									recreatedItem.itemName = itemArrayOfVariables[3];
+
 									player.weaponSlot = recreatedItem;
 								}
 							}
@@ -151,7 +157,13 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								var itemArrayOfVariables = itemString.split("|item|");
 								if(itemArrayOfVariables.length == 4)
 								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									var recreatedItem = new Item();
+
+									recreatedItem.itemRarity = itemArrayOfVariables[0];
+									recreatedItem.itemSlot = itemArrayOfVariables[1];
+									recreatedItem.enemyLevel = itemArrayOfVariables[2];
+									recreatedItem.itemName = itemArrayOfVariables[3];
+
 									player.helmetSlot = recreatedItem;
 								}
 							}
@@ -177,7 +189,13 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								var itemArrayOfVariables = itemString.split("|item|");
 								if(itemArrayOfVariables.length == 4)
 								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									var recreatedItem = new Item();
+
+									recreatedItem.itemRarity = itemArrayOfVariables[0];
+									recreatedItem.itemSlot = itemArrayOfVariables[1];
+									recreatedItem.enemyLevel = itemArrayOfVariables[2];
+									recreatedItem.itemName = itemArrayOfVariables[3];
+
 									player.bodyArmourSlot = recreatedItem;
 								}
 							}
@@ -203,7 +221,13 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								var itemArrayOfVariables = itemString.split("|item|");
 								if(itemArrayOfVariables.length == 4)
 								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									var recreatedItem = new Item();
+
+									recreatedItem.itemRarity = itemArrayOfVariables[0];
+									recreatedItem.itemSlot = itemArrayOfVariables[1];
+									recreatedItem.enemyLevel = itemArrayOfVariables[2];
+									recreatedItem.itemName = itemArrayOfVariables[3];
+
 									player.glovesSlot = recreatedItem;
 								}
 							}
@@ -229,7 +253,13 @@ function DEPRECATED_readPlayerData(arrayOfVariables)
 								var itemArrayOfVariables = itemString.split("|item|");
 								if(itemArrayOfVariables.length == 4)
 								{
-									var recreatedItem = new Item(itemArrayOfVariables[0], itemArrayOfVariables[1], itemArrayOfVariables[2], itemArrayOfVariables[3]);
+									var recreatedItem = new Item();
+
+									recreatedItem.itemRarity = itemArrayOfVariables[0];
+									recreatedItem.itemSlot = itemArrayOfVariables[1];
+									recreatedItem.enemyLevel = itemArrayOfVariables[2];
+									recreatedItem.itemName = itemArrayOfVariables[3];
+
 									player.bootsSlot = recreatedItem;
 								}
 							}
@@ -272,6 +302,7 @@ function readPlayerData(arrayOfVariables)
 							{
 								player = recreatedPlayer;
 								player.playerUnlockFunctionsUntilLevel();
+								player.playerFixItems();
 							}
 						}
 						catch (e)
