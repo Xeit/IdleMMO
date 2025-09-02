@@ -162,7 +162,7 @@ function updateTrainingXpValues()
 	const maxStrengthLvl = player.level * 3;
 	if(player.strength < maxStrengthLvl)
 	{
-		let requiredXP = player.strength * 50;
+		let requiredXP = player.strength * 35;
 		$("#training_strength_xp").html("XP: " + player.strengthXP + "/" + requiredXP);
 	}
 	else
@@ -173,7 +173,7 @@ function updateTrainingXpValues()
 	const maxDexterityLvl = player.level * 3;
 	if(player.dexterity < maxDexterityLvl)
 	{
-		let requiredXP = player.dexterity * 50;
+		let requiredXP = player.dexterity * 35;
 		$("#training_dexterity_xp").html("XP: " + player.dexterityXP + "/" + requiredXP);
 	}
 	else
@@ -184,7 +184,7 @@ function updateTrainingXpValues()
 	const maxStaminaLvl = player.level * 3;
 	if(player.stamina < maxStaminaLvl)
 	{
-		let requiredXP = player.stamina * 50;
+		let requiredXP = player.stamina * 35;
 		$("#training_stamina_xp").html("XP: " + player.staminaXP + "/" + requiredXP);
 	}
 	else
@@ -195,7 +195,7 @@ function updateTrainingXpValues()
 	const maxIntelligenceLvl = player.level * 3;
 	if(player.intelligence < maxIntelligenceLvl)
 	{
-		let requiredXP = player.intelligence * 50;
+		let requiredXP = player.intelligence * 25;
 		$("#training_intelligence_xp").html("XP: " + player.intelligenceXP + "/" + requiredXP);
 	}
 	else
