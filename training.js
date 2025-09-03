@@ -103,7 +103,7 @@ function tickTraining()
 				if(player.strength < maxPlayerStatLvl)
 				{
 					player.strengthXP += xpToReceive;
-					let requiredXP = player.strength * 50;
+					let requiredXP = player.strength * 35;
 
 					if(player.strengthXP >= requiredXP)
 					{
@@ -116,7 +116,7 @@ function tickTraining()
 				if(player.dexterity < maxPlayerStatLvl)
 				{
 					player.dexterityXP += xpToReceive;
-					let requiredXP = player.dexterity * 50;
+					let requiredXP = player.dexterity * 35;
 
 					if(player.dexterityXP >= requiredXP)
 					{
@@ -129,7 +129,7 @@ function tickTraining()
 				if(player.stamina < maxPlayerStatLvl)
 				{
 					player.staminaXP += xpToReceive;
-					let requiredXP = player.stamina * 50;
+					let requiredXP = player.stamina * 35;
 
 					if(player.staminaXP >= requiredXP)
 					{
@@ -142,7 +142,7 @@ function tickTraining()
 				if(player.intelligence < maxPlayerStatLvl)
 				{
 					player.intelligenceXP += xpToReceive;
-					let requiredXP = player.intelligence * 50;
+					let requiredXP = player.intelligence * 25;
 
 					if(player.intelligenceXP >= requiredXP)
 					{
