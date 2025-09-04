@@ -167,3 +167,11 @@ function UIDisplayNewTask(newTaskToDisplay)
 			break;
 	}
 }
+
+function consoleLogDebug(text)
+{
+	if(debugGame == true)
+	{
+		console.log(text);
+	}
+}

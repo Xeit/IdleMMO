@@ -68,6 +68,7 @@ var currentOpenWindow = PlayerTasks.none;
 //Debug
 var levelBreeze = false;
 var freezeTime = false;
+var debugGame = false;
 
 function playerAddXp(xpToAdd)
 {
@@ -132,10 +133,22 @@ function playerHealPlayer(hpToAdd)
 
 function playerTakeDamage(monsterDamageNumber)
 {	
-	monsterDamageNumber = +(monsterDamageNumber - Math.floor(player.stamina / 2));
-	monsterDamageNumber -= +Math.floor(playerGetArmourValue() / 2);
+	let baseMonsterDamage = monsterDamageNumber;
+
+	consoleLogDebug("Monster damage before reductions: " + monsterDamageNumber);
+
+	monsterDamageNumber = monsterDamageNumber - (monsterDamageNumber * (player.stamina / (baseMonsterDamage * 4)));
+	consoleLogDebug("Monster damage after stamina: " + monsterDamageNumber);
+
+	armourReduction = playerGetArmourValue() / (playerGetArmourValue() + (3 * baseMonsterDamage));
+	consoleLogDebug("Monster damage: " + baseMonsterDamage + " Armor: " + playerGetArmourValue() + " Negation: " + armourReduction);
+	monsterDamageNumber = monsterDamageNumber - (baseMonsterDamage * armourReduction);
+
+	monsterDamageNumber = +Math.floor(monsterDamageNumber);
+	consoleLogDebug("Monster damage after armor: " + monsterDamageNumber);
 
 	monsterDamageNumber -= +getTotalBuffsWithType(BuffType.defense);
+	consoleLogDebug("Monster damage after buffs: " + monsterDamageNumber + "\n");
 
 	if(monsterDamageNumber < 1)
 	{
@@ -178,6 +191,18 @@ function playerGetAttackDamage(againstEnemyLevel)
 
 	playerDamageToDeal += +getTotalBuffsWithType(BuffType.damage);
 
+	// Nerf player damage if monster is above player level
+	if(againstEnemyLevel > player.level)
+	{
+		const levelDiff = againstEnemyLevel - player.level;
+		playerDamageToDeal = playerDamageToDeal - ((levelDiff / 10) * playerDamageToDeal);
+	}
+
+	if(playerDamageToDeal < 1)
+	{
+		playerDamageToDeal = 1;
+	}
+
 	return playerDamageToDeal;
 }
 
@@ -211,9 +236,4 @@ function playerUnlockFunctions(levelToUnlock)
 			$("#shopButton").css("display", "block");
 			break;
 	}
-}
-
-function startDebug()
-{
-	levelBreeze = true;
 }
