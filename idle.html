@@ -61,8 +61,9 @@
 					<span id="player_info_health_potions"></span>
 				</div>
 			</div>
-			<br>
-			<div class="player_info_group">
+			<!-- Currently mana doesn't exist so I will hide it, maybe someday it will be useful. -->
+			<br style="display: none;" >
+			<div class="player_info_group" style="display: none;" >
 				<div class="player_info_element" id="MANA">
 					Mana:
 					<span id="player_info_mana"></span>
@@ -110,6 +111,7 @@
 		<div class="vertical_spacer"></div>
 
 		<div id="main_panel">
+			<!-- Tick bar and task info -->
 			<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 15%;">
 				<div id="tick_info">
 					<div style="padding-top: 10px;">Tick: </div>
@@ -122,8 +124,7 @@
 
 
 			<!-- STARTING PLACE -->
-			<div class="task_window" id="empty_window">
-			</div>
+			<div class="task_window" id="empty_window"></div>
 
 			<!-- BATTLE -->
 			<div class = "task_window" id="battle_window">
@@ -633,12 +634,49 @@
 				</div>
 			</div>
 
+			<div class="task_window" id="dungeonWindow" style="display: none;">
+				<div id="dungeonWindow_selectDungeon" style="display: flex;flex-direction: column; width: 100%;height: 100%;overflow-y:scroll;">
+					<!-- This part is temp, should be created in JS and be dynamic :> -->
+					<div style="display: flex;flex-shrink: 0;justify-content: center;align-items: center; height: 35%;width: 100%;border-bottom: #000 solid 1px;">
+						<div style="display: flex;flex-direction: column;align-items: center; height: 100%;width: 33%;border: #000 solid 1px;">
+							<div class="space"></div>
+							<div style="font-size: x-large;">DUNGEON NAME</div>
+							<div class="space"></div>
+							<div>Recommended ilvl: 150</div>
+							<div>Experience: 0/100</div>
+							<div class="space"></div>
+							<button id="dungeonWindow_startDebugDungeon">START</button>
+						</div>
+						<div style="display: flex;flex-direction: column;height: 100%;width: 33%;border: #000 solid 1px;"></div>
+						<div style="display: flex;flex-direction: column;height: 100%;width: 33%;border: #000 solid 1px;"></div>
+					</div>
+					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
+					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
+					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
+					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
+					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
+					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
+				</div>
+				<div id="dungeonWindow_insideDungeon" style="display: none;flex-direction: column; width: 100%;height: 100%;border:#000 solid 1px;">
+					<div style="display: flex;align-items: center;justify-content: center;width: 100%;height: 80%;">ENEMIES</div>
+					<div style="display: flex;justify-content: center;align-items: center;width: 100%;height: 20%;">
+						<div style="display: flex;justify-content: center;align-items: center;height: 100%;width: 20%;border: #000 solid 1px;">TANK</div>
+						<div style="display: flex;justify-content: center;align-items: center;height: 100%;width: 20%;border: #000 solid 1px;">HEALER</div>
+						<div style="display: flex;justify-content: center;align-items: center;height: 100%;width: 20%;border: #000 solid 1px;">PLAYER</div>
+						<div style="display: flex;justify-content: center;align-items: center;height: 100%;width: 20%;border: #000 solid 1px;">DPS2</div>
+						<div style="display: flex;justify-content: center;align-items: center;height: 100%;width: 20%;border: #000 solid 1px;">DPS3</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Buttons at the bottom of the screen -->
 			<div id = "control_buttons">
 				<span style="display: flex; width: 50%;">
 					<button id="battleButton" style="display: none;">BATTLE</button>
 					<button id="questingButton">QUESTS</button>
 					<button id="recoverHealthButton" style="display: none;">HEAL</button>
 					<button id="trainingButton" style="display: none;">TRAIN</button>
+					<button id="dungeonButton" style="display: block;">DUNGEONS</button>
 				</span>
 				<span style="display: flex; flex-direction: row-reverse; width: 50%;">
 					<button id="equipmentButton" style="display: none;">EQ</button>

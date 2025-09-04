@@ -10,6 +10,7 @@ $(document).ready(function()
 	initializeShops();
 	InitializeSmith();
 	InitializeEquipment();
+	initializeDungeon();
 	
 	updateInfoPanel();
 	tickBuffs();
@@ -94,6 +95,10 @@ $(document).ready(function()
 	
 	$("#smithButton").click(function(){
 		newPlayerTask(PlayerTasks.smith);
+	})
+
+	$("#dungeonButton").click(function(){
+		newPlayerTask(PlayerTasks.dungeon);
 	})
 
 	//Tbh all bs I wrote was started by this tutorial: https://www.youtube.com/playlist?list=PLgHw_wODS1vX20X7ppbssrn_MU6SaYoDF
