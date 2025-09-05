@@ -7,7 +7,7 @@ class ZoneEnemyWeight
 	}
 }
 
-class	BattleZone
+class BattleZone
 {
 	constructor(zoneName, levelsRange, monsters, description)
 	{

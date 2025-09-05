@@ -15,6 +15,22 @@ class Dungeon
 	dungeonDifficulty = 1; // Probably will be from 1 to 100, works against player mechanics and gameKnowledge
 }
 
+const AllyRole = {
+	none: "none",
+	tank: "tank",
+	healer: "healer",
+	dps: "dps"
+};
+
+class Ally
+{
+	role = AllyRole.none;
+	itemLevel = 1;
+	totalExperience = 1;
+}
+
+const dungeonsMap = new Array();
+
 function initializeDungeon()
 {
 	$("#dungeonWindow_startDebugDungeon").click(function()
