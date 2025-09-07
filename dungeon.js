@@ -1,13 +1,13 @@
 class Dungeon
 {
-	constructor(name, monsters, averageTeammateItemLevel, dungeonDifficulty, recommendedILVl)
+	constructor(name, monsterNames, averageTeammateItemLevel, dungeonDifficulty, recommendedMinLevel)
 	{
 		this.name = name;
-		this.monsters = monsters;
+		this.enemyWaves = monsterNames; // Should be array 2d of monster names
 		this.averageTeammateItemLevel = averageTeammateItemLevel;
 		this.dungeonDifficulty = dungeonDifficulty; // Probably will be from 1 to 100, works against player mechanics and gameKnowledge
 
-		this.recommendedILVl = recommendedILVl;
+		this.recommendedMinLevel = recommendedMinLevel;
 	}
 }
 
@@ -23,11 +23,23 @@ class Ally
 	role = AllyRole.none;
 	itemLevel = 1;
 	totalExperience = 1;
+	currentHp = 100;
+	maxHp = 100;
 }
 
+var dungeonCurrentWave = 0;
+var dungeonSelectedDungeonID = 0;
+var dungeonGeneratedAllies = new Array();
 const dungeonsMap = new Array();
 
-dungeonsMap.push(new Dungeon("Testing Dungeon", [new ZoneEnemyWeight("Rat", 95), new ZoneEnemyWeight("Big Rat", 5)], 110, 15, 50));
+dungeonsMap.push(
+	new Dungeon("Testing Dungeon", 
+	[
+		["Rat", "Rat"],
+		["Rat", "Rat", "Fox", "Rat", "Rat"]
+	],
+	110, 15, 20)
+);
 
 function initializeDungeon()
 {
@@ -83,7 +95,7 @@ function createDungeonsHtml()
 				divDungeonName.setAttribute("style", "font-size: x-large;");
 				divDungeonName.textContent = dungeonsMap[i].name;
 				divSpace2.setAttribute("class", "space");
-				divRecommendedILvl.textContent = "Recommended ilvl: 150";
+				divRecommendedILvl.textContent = "Recommended lvl: 20+";
 				divDungeonExperience.textContent = "Experience: 0/100";
 				divSpace3.setAttribute("class", "space");
 				buttonStartDungeon.textContent = "START";
@@ -91,6 +103,7 @@ function createDungeonsHtml()
 				{
 					$("#dungeonWindow_selectDungeon").css("display", "none");
 					$("#dungeonWindow_insideDungeon").css("display", "flex");
+					startDungeon(i);
 				}
 
 				newLocation.append(divSpace1);
@@ -107,4 +120,34 @@ function createDungeonsHtml()
 			newRow.append(newLocation);
 		}
 	}
+}
+
+function dungeonGenerateAlly(allyRole, dungeonID)
+{
+	let NewAlly = new Ally()
+
+	NewAlly.role = allyRole;
+
+//	NewAlly.itemLevel = 
+
+	switch (allyRole)
+	{
+		case AllyRole.tank:
+			break;
+		case AllyRole.healer:
+			break;
+		case AllyRole.dps:
+			break;
+		default:
+			break;
+	}
+}
+
+function startDungeon(dungeonID)
+{
+	dungeonCurrentWave = 0;
+	dungeonSelectedDungeonID = dungeonID;
+
+	dungeonGeneratedAllies = new Array();
+	dungeonGeneratedAllies.append(dungeonGenerateAlly(AllyRole.tank, dungeonID));
 }
