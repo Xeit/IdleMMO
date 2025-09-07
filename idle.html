@@ -637,41 +637,41 @@
 
 			<div class="task_window" id="dungeonWindow" style="display: none;">
 				<div id="dungeonWindow_selectDungeon" style="display: flex;flex-direction: column; width: 100%;height: 100%;overflow-y:scroll;">
-					<!-- This part is temp, should be created in JS and be dynamic :> -->
-					<div style="display: flex;flex-shrink: 0;justify-content: center;align-items: center; height: 35%;width: 100%;border-bottom: #000 solid 1px;">
-						<div style="display: flex;flex-direction: column;align-items: center; height: 100%;width: 33%;border: #000 solid 1px;">
-							<div class="space"></div>
-							<div style="font-size: x-large;">DUNGEON NAME</div>
-							<div class="space"></div>
-							<div>Recommended ilvl: 150</div>
-							<div>Experience: 0/100</div>
-							<div class="space"></div>
-							<button id="dungeonWindow_startDebugDungeon">START</button>
-						</div>
-						<div style="display: flex;flex-direction: column;height: 100%;width: 33%;border: #000 solid 1px;"></div>
-						<div style="display: flex;flex-direction: column;height: 100%;width: 33%;border: #000 solid 1px;"></div>
-					</div>
-					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
-					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
-					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
-					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
-					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
-					<div style="display: flex;flex-shrink: 0;height: 35%;width: 100%;border-bottom: #000 solid 1px;"></div>
+					<!-- This part is created dynamicaly in dungeon.js createDungeonsHtml() -->
 				</div>
 				<div id="dungeonWindow_insideDungeon" style="display: none;flex-direction: column; width: 100%;height: 100%;border:#000 solid 1px;">
 					<div style="display: flex;align-items: center;justify-content: center;width: 100%;height: 80%;">ENEMIES</div>
 					<div style="display: flex;justify-content: center;align-items: center;width: 100%;height: 20%;">
-						<div class="dungeon_allySquare">TANK</div>
-						<div class="dungeon_allySquare">HEALER</div>
+						<div class="dungeon_allySquare">
+							<div>TANK</div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_tankHealth" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
+						<div class="dungeon_allySquare">
+							<div>HEALER</div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_healerHealth" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
 						<div class="dungeon_allySquare">
 							<div>PLAYER</div>
 							<div class="dungeon_hpBarOutside">
-								<div class="dungeon_hpBarInside">
-								</div>
+								<div id="dungeon_playerHealth" class="dungeon_hpBarInside"></div>
 							</div>
 						</div>
-						<div class="dungeon_allySquare">DPS2</div>
-						<div class="dungeon_allySquare">DPS3</div>
+						<div class="dungeon_allySquare">
+							<div>DPS</div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_dps2Health" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
+						<div class="dungeon_allySquare">
+							<div>DPS</div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_dps3Health" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

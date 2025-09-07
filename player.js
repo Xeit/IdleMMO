@@ -1,3 +1,14 @@
+class DungeonPlayerStatistics
+{
+	teamwork = 0; // Player soft skills? No clue
+	mechanics = 0; // Player skill
+	gameKnowledge = 0; // This might be trown out
+
+	mechanicAwarness = 0; // This should be per dungeon
+
+	nrOfUnlockedDungeons = 1; // Should start from 1 as first dungeon will be unlocked with option to enter dungeons
+}
+
 class Player
 {
 	//Level
@@ -37,6 +48,8 @@ class Player
 
 	//Buffs
 	buffList = [];
+
+	dungeonStatistics = new DungeonPlayerStatistics();
 
 	playerUnlockFunctionsUntilLevel()
 	{
