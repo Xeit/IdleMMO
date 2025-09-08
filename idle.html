@@ -640,34 +640,51 @@
 					<!-- This part is created dynamicaly in dungeon.js createDungeonsHtml() -->
 				</div>
 				<div id="dungeonWindow_insideDungeon" style="display: none;flex-direction: column; width: 100%;height: 100%;border:#000 solid 1px;">
-					<div style="display: flex;align-items: center;justify-content: center;width: 100%;height: 80%;">ENEMIES</div>
-					<div style="display: flex;justify-content: center;align-items: center;width: 100%;height: 20%;">
+					<div id="dungeonWindow_insideDungeon_enemies" style="display: flex;align-items: center;justify-content: center;width: 100%;height: 80%;">
+						ENEMIES
+					</div>
+					<div id="dungeonWindow_insideDungeon_allies" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 20%;">
 						<div class="dungeon_allySquare">
+							<div class="space"></div>
 							<div>TANK</div>
+							<div id="dungeon_tankPower">POWER: 250</div>
+							<div class="space"></div>
 							<div class="dungeon_hpBarOutside">
 								<div id="dungeon_tankHealth" class="dungeon_hpBarInside"></div>
 							</div>
 						</div>
 						<div class="dungeon_allySquare">
+							<div class="space"></div>
 							<div>HEALER</div>
+							<div id="dungeon_healerPower">POWER: 250</div>
+							<div class="space"></div>
 							<div class="dungeon_hpBarOutside">
 								<div id="dungeon_healerHealth" class="dungeon_hpBarInside"></div>
 							</div>
 						</div>
 						<div class="dungeon_allySquare">
-							<div>PLAYER</div>
+							<div class="space"></div>
+							<div>YOU</div>
+							<div id="dungeon_playerPower">POWER: 250</div>
+							<div class="space"></div>
 							<div class="dungeon_hpBarOutside">
 								<div id="dungeon_playerHealth" class="dungeon_hpBarInside"></div>
 							</div>
 						</div>
 						<div class="dungeon_allySquare">
-							<div>DPS</div>
+							<div class="space"></div>
+							<div>DPS NR.2</div>
+							<div id="dungeon_dps2Power">POWER: 250</div>
+							<div class="space"></div>
 							<div class="dungeon_hpBarOutside">
 								<div id="dungeon_dps2Health" class="dungeon_hpBarInside"></div>
 							</div>
 						</div>
 						<div class="dungeon_allySquare">
-							<div>DPS</div>
+							<div class="space"></div>
+							<div>DPS NR.3</div>
+							<div id="dungeon_dps3Power">POWER: 250</div>
+							<div class="space"></div>
 							<div class="dungeon_hpBarOutside">
 								<div id="dungeon_dps3Health" class="dungeon_hpBarInside"></div>
 							</div>

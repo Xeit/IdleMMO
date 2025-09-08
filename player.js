@@ -250,3 +250,31 @@ function playerUnlockFunctions(levelToUnlock)
 			break;
 	}
 }
+
+function playerGetTotalItemPower()
+{
+	let itemPower = 0;
+
+	if(player.weaponSlot !== undefined)
+	{
+		itemPower = itemPower + player.weaponSlot.returnItemPower(true);
+	}
+	if(player.helmetSlot !== undefined)
+	{
+		itemPower = itemPower + player.helmetSlot.returnItemPower(true);
+	}
+	if(player.bodyArmourSlot !== undefined)
+	{
+		itemPower = itemPower + player.bodyArmourSlot.returnItemPower(true);
+	}
+	if(player.glovesSlot !== undefined)
+	{
+		itemPower = itemPower + player.glovesSlot.returnItemPower(true);
+	}
+	if(player.bootsSlot !== undefined)
+	{
+		itemPower = itemPower + player.bootsSlot.returnItemPower(true);
+	}
+
+	return itemPower;
+}

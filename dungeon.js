@@ -1,10 +1,9 @@
 class Dungeon
 {
-	constructor(name, monsterNames, averageTeammateItemLevel, dungeonDifficulty, recommendedLevel)
+	constructor(name, monsterNames, dungeonDifficulty, recommendedLevel)
 	{
 		this.name = name;
 		this.enemyWaves = monsterNames; // Should be array 2d of monster names
-		this.averageTeammateItemLevel = averageTeammateItemLevel;
 		this.dungeonDifficulty = dungeonDifficulty; // Probably will be from 1 to 100, works against player mechanics and gameKnowledge
 
 		this.recommendedLevel = recommendedLevel;
@@ -21,9 +20,9 @@ const AllyRole = {
 class Ally
 {
 	role = AllyRole.none;
-	itemLevel = 1;
+	itemPower = 1;
 	totalExperience = 1;
-	currentHealth = 100;
+	health = 100;
 	maxHealth = 100;
 }
 
@@ -43,7 +42,7 @@ dungeonsMap.push(
 
 function initializeDungeon()
 {
-	createDungeonsHtml();
+	dungeonCreateSelectDungeonHtml();
 	
 	$("#dungeonWindow_startDebugDungeon").click(function()
 	{
@@ -64,7 +63,7 @@ function hideDungeonWindow()
 	$("#dungeonWindow").css("display", "none");
 }
 
-function createDungeonsHtml()
+function dungeonCreateSelectDungeonHtml()
 {
 	let numberOfRows = Math.ceil(dungeonsMap.length / 3);
 	let nrOfDungeonLocationsAdded = 0;
@@ -122,6 +121,36 @@ function createDungeonsHtml()
 	}
 }
 
+function dungeonRefreshAlliesPower()
+{
+	$("#dungeon_tankPower").text("POWER: " + dungeonGeneratedAllies[0].itemPower);
+	$("#dungeon_healerPower").text("POWER: " + dungeonGeneratedAllies[1].itemPower);
+	$("#dungeon_playerPower").text("POWER: " + playerGetTotalItemPower());
+	$("#dungeon_dps2Power").text("POWER: " + dungeonGeneratedAllies[2].itemPower);
+	$("#dungeon_dps3Power").text("POWER: " + dungeonGeneratedAllies[3].itemPower);
+}
+
+function dungeonRefreshAlliesHealth()
+{
+	const tankHealthPercent = (dungeonGeneratedAllies[0].health / dungeonGeneratedAllies[0].maxHealth * 100).toFixed() + "%";
+	const healerHealthPercent = (dungeonGeneratedAllies[1].health / dungeonGeneratedAllies[1].maxHealth * 100).toFixed() + "%";
+	const playerHealthPercent = (player.health / player.maxHealth * 100).toFixed() + "%";
+	const dps2HealthPercent = (dungeonGeneratedAllies[2].health / dungeonGeneratedAllies[2].maxHealth * 100).toFixed() + "%";
+	const dps3HealthPercent = (dungeonGeneratedAllies[3].health / dungeonGeneratedAllies[3].maxHealth * 100).toFixed() + "%";
+	
+	consoleLogDebug("Tank health: " + tankHealthPercent);
+	consoleLogDebug("Healer health: " + healerHealthPercent);
+	consoleLogDebug("Player health: " + playerHealthPercent);
+	consoleLogDebug("DPS2 health: " + dps2HealthPercent);
+	consoleLogDebug("DPS3 health: " + dps3HealthPercent);
+
+	$("#dungeon_tankHealth").css("width", tankHealthPercent);
+	$("#dungeon_healerHealth").css("width", healerHealthPercent);
+	$("#dungeon_playerHealth").css("width", playerHealthPercent);
+	$("#dungeon_dps2Health").css("width", dps2HealthPercent);
+	$("#dungeon_dps3Health").css("width", dps3HealthPercent);
+}
+
 function dungeonGenerateAlly(allyRole, dungeonID)
 {
 	let NewAlly = new Ally()
@@ -132,7 +161,7 @@ function dungeonGenerateAlly(allyRole, dungeonID)
 	// Ally item level
 	rarityPower = 2 + Math.random() * 1.5; // From 2 to 3.5 (magic to mythic)
 	const numberOfItems = 5;
-	NewAlly.itemLevel = Math.round(dungeonsMap[dungeonID].recommendedLevel * rarityPower * numberOfItems);
+	NewAlly.itemPower = Math.round(dungeonsMap[dungeonID].recommendedLevel * rarityPower * numberOfItems);
 
 	// Ally health
 	NewAlly.maxHealth = 100 + (10 * (dungeonsMap[dungeonID].recommendedLevel - 1));
@@ -149,7 +178,7 @@ function dungeonGenerateAlly(allyRole, dungeonID)
 			break;
 	}
 	NewAlly.maxHealth = Math.round(NewAlly.maxHealth);
-	NewAlly.currentHealth = NewAlly.maxHealth;
+	NewAlly.health = NewAlly.maxHealth;
 
 	// Ally experience in dungeons
 	let minimalExperience = 0;
@@ -180,4 +209,7 @@ function startDungeon(dungeonID)
 	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.healer, dungeonID));
 	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.dps, dungeonID));
 	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.dps, dungeonID));
+
+	dungeonRefreshAlliesPower();
+	dungeonRefreshAlliesHealth();
 }
