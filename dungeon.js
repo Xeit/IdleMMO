@@ -1,13 +1,13 @@
 class Dungeon
 {
-	constructor(name, monsterNames, averageTeammateItemLevel, dungeonDifficulty, recommendedMinLevel)
+	constructor(name, monsterNames, averageTeammateItemLevel, dungeonDifficulty, recommendedLevel)
 	{
 		this.name = name;
 		this.enemyWaves = monsterNames; // Should be array 2d of monster names
 		this.averageTeammateItemLevel = averageTeammateItemLevel;
 		this.dungeonDifficulty = dungeonDifficulty; // Probably will be from 1 to 100, works against player mechanics and gameKnowledge
 
-		this.recommendedMinLevel = recommendedMinLevel;
+		this.recommendedLevel = recommendedLevel;
 	}
 }
 
@@ -23,8 +23,8 @@ class Ally
 	role = AllyRole.none;
 	itemLevel = 1;
 	totalExperience = 1;
-	currentHp = 100;
-	maxHp = 100;
+	currentHealth = 100;
+	maxHealth = 100;
 }
 
 var dungeonCurrentWave = 0;
@@ -126,21 +126,48 @@ function dungeonGenerateAlly(allyRole, dungeonID)
 {
 	let NewAlly = new Ally()
 
+	// Ally Role
 	NewAlly.role = allyRole;
 
-//	NewAlly.itemLevel = 
+	// Ally item level
+	rarityPower = 2 + Math.random() * 1.5; // From 2 to 3.5 (magic to mythic)
+	const numberOfItems = 5;
+	NewAlly.itemLevel = Math.round(dungeonsMap[dungeonID].recommendedLevel * rarityPower * numberOfItems);
+
+	// Ally health
+	NewAlly.maxHealth = 100 + (10 * (dungeonsMap[dungeonID].recommendedLevel - 1));
 
 	switch (allyRole)
 	{
 		case AllyRole.tank:
+			NewAlly.maxHealth = NewAlly.maxHealth * 1.5;
 			break;
 		case AllyRole.healer:
-			break;
-		case AllyRole.dps:
+			NewAlly.maxHealth = NewAlly.maxHealth * 0.7;
 			break;
 		default:
 			break;
 	}
+	NewAlly.maxHealth = Math.round(NewAlly.maxHealth);
+	NewAlly.currentHealth = NewAlly.maxHealth;
+
+	// Ally experience in dungeons
+	let minimalExperience = 0;
+	switch (allyRole)
+	{
+		case AllyRole.tank:
+		case AllyRole.healer:
+			minimalExperience = dungeonsMap[dungeonID].dungeonDifficulty * 0.7;
+			break;
+		case AllyRole.dps:
+			minimalExperience = dungeonsMap[dungeonID].dungeonDifficulty * 0.4;
+			break;
+		default:
+			break;
+	}
+	NewAlly.totalExperience = Math.round(minimalExperience + dungeonsMap[dungeonID].dungeonDifficulty * Math.random());
+
+	return NewAlly;
 }
 
 function startDungeon(dungeonID)
@@ -149,5 +176,8 @@ function startDungeon(dungeonID)
 	dungeonSelectedDungeonID = dungeonID;
 
 	dungeonGeneratedAllies = new Array();
-	dungeonGeneratedAllies.append(dungeonGenerateAlly(AllyRole.tank, dungeonID));
+	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.tank, dungeonID));
+	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.healer, dungeonID));
+	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.dps, dungeonID));
+	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.dps, dungeonID));
 }
