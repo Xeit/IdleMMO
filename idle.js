@@ -51,6 +51,9 @@ $(document).ready(function()
 					case PlayerTasks.questing:
 						tickQuesting();
 						break;
+					case PlayerTasks.dungeon:
+						tickDungeon();
+						break;
 				}
 
 				tickBuffs();
@@ -111,7 +114,6 @@ function newPlayerTask(newTask)
 {
 	UIDisplayNewTask(newTask);
 
-
 	if(currentTask != newTask)
 	{
 		var bShouldStopPreviousTask = false;
@@ -134,6 +136,8 @@ function newPlayerTask(newTask)
 				break;
 			case PlayerTasks.shop:
 				break;
+			case PlayerTasks.dungeon:
+				bShouldStopPreviousTask = true;
 			default:
 				break;
 		}
@@ -147,13 +151,15 @@ function newPlayerTask(newTask)
 					stopBattle();
 					break;
 				case PlayerTasks.healing:
-					stopHealing();
 					break;
 				case PlayerTasks.training:
 					stopTraining();
 					break;
 				case PlayerTasks.questing:
 					stopQuesting();
+					break;
+				case PlayerTasks.dungeon:
+					// Should stop when not ticking, reset happens on start
 					break;
 				default:
 					break;
@@ -168,13 +174,14 @@ function newPlayerTask(newTask)
 				startBattle();
 				break;
 			case PlayerTasks.healing:
-				startHealing();
 				break;
 			case PlayerTasks.training:
 				startTraining();
 				break;
 			case PlayerTasks.questing:
 				startQuesting();
+				break;
+			case PlayerTasks.dungeon:
 				break;
 			default:
 				break;

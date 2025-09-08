@@ -26,9 +26,22 @@ class Ally
 	maxHealth = 100;
 }
 
+class DungeonEnemy
+{	
+	name;
+	health;
+	maxHealth;
+	damage;
+	xp;
+	target = "none";
+}
+
+var bSelectedDungeon = false;
+var dungeonPullTimer = 20;
 var dungeonCurrentWave = 0;
+var dungeonCurrentWaveEnemies = new Array();
 var dungeonSelectedDungeonID = 0;
-var dungeonGeneratedAllies = new Array();
+var dungeonGeneratedAllies = new Map();
 const dungeonsMap = new Array();
 
 dungeonsMap.push(
@@ -43,12 +56,24 @@ dungeonsMap.push(
 function initializeDungeon()
 {
 	dungeonCreateSelectDungeonHtml();
-	
-	$("#dungeonWindow_startDebugDungeon").click(function()
+}
+
+function tickDungeon()
+{
+	if(bSelectedDungeon)
 	{
-		$("#dungeonWindow_selectDungeon").css("display", "none");
-		$("#dungeonWindow_insideDungeon").css("display", "flex");
-	})
+		if(dungeonTickTankPullTimer())
+		{
+
+		}
+		else
+		{
+			dungeonHealParty();
+		}
+
+		dungeonRefreshAlliesStatus();
+		dungeonRefreshAlliesHealth();
+	}
 }
 
 function showDungeonWindow()
@@ -60,6 +85,7 @@ function showDungeonWindow()
 
 function hideDungeonWindow()
 {
+	bSelectedDungeon = false;
 	$("#dungeonWindow").css("display", "none");
 }
 
@@ -102,7 +128,7 @@ function dungeonCreateSelectDungeonHtml()
 				{
 					$("#dungeonWindow_selectDungeon").css("display", "none");
 					$("#dungeonWindow_insideDungeon").css("display", "flex");
-					startDungeon(i);
+					dungeonStartDungeon(i);
 				}
 
 				newLocation.append(divSpace1);
@@ -139,7 +165,7 @@ function dungeonCreateEnemiesHtml()
 		{
 			let enemySquare = document.createElement("div");
 			enemySquare.setAttribute("class", "dungeonWindow_insideDungeon_enemySquare");
-			enemySquare.setAttribute("id", ("dungeon_enemySquare_" + j));
+			enemySquare.setAttribute("id", ("dungeon_enemySquare_" + enemiesAlreadyCreated));
 			rowOfEnemies.append(enemySquare);
 
 			let divSpace1 = document.createElement("div");
@@ -147,7 +173,7 @@ function dungeonCreateEnemiesHtml()
 			enemySquare.append(divSpace1);
 
 			let enemyName = document.createElement("div");
-			enemyName.setAttribute("id", ("dungeon_enemyName_" + j));
+			enemyName.setAttribute("id", ("dungeon_enemyName_" + enemiesAlreadyCreated));
 			enemyName.textContent = currentWave[j];
 			enemySquare.append(enemyName);
 
@@ -161,7 +187,7 @@ function dungeonCreateEnemiesHtml()
 
 			let enemyHealthBarInside = document.createElement("div");
 			enemyHealthBarInside.setAttribute("class", "dungeon_hpBarInside");
-			enemyHealthBarInside.setAttribute("id", ("dungeon_enemyHealth_" + j));
+			enemyHealthBarInside.setAttribute("id", ("dungeon_enemyHealth_" + enemiesAlreadyCreated));
 			enemyHealthBarOutside.append(enemyHealthBarInside);
 
 			let divSpace3 = document.createElement("div");
@@ -169,8 +195,8 @@ function dungeonCreateEnemiesHtml()
 			enemySquare.append(divSpace3);
 
 			let enemyTarget = document.createElement("div");
-			enemyTarget.setAttribute("id", ("dungeon_enemyTarget_" + j));
-			enemyTarget.textContent = "TARGET: TANK";
+			enemyTarget.setAttribute("id", ("dungeon_enemyTarget_" + enemiesAlreadyCreated));
+			enemyTarget.textContent = "";
 			enemySquare.append(enemyTarget);
 		}
 	}
@@ -178,20 +204,20 @@ function dungeonCreateEnemiesHtml()
 
 function dungeonRefreshAlliesPower()
 {
-	$("#dungeon_tankPower").text("POWER: " + dungeonGeneratedAllies[0].itemPower);
-	$("#dungeon_healerPower").text("POWER: " + dungeonGeneratedAllies[1].itemPower);
+	$("#dungeon_tankPower").text("POWER: " + dungeonGeneratedAllies.get("tank").itemPower);
+	$("#dungeon_healerPower").text("POWER: " + dungeonGeneratedAllies.get("healer").itemPower);
 	$("#dungeon_playerPower").text("POWER: " + playerGetTotalItemPower());
-	$("#dungeon_dps2Power").text("POWER: " + dungeonGeneratedAllies[2].itemPower);
-	$("#dungeon_dps3Power").text("POWER: " + dungeonGeneratedAllies[3].itemPower);
+	$("#dungeon_dps2Power").text("POWER: " + dungeonGeneratedAllies.get("dps2").itemPower);
+	$("#dungeon_dps3Power").text("POWER: " + dungeonGeneratedAllies.get("dps3").itemPower);
 }
 
 function dungeonRefreshAlliesHealth()
 {
-	const tankHealthPercent = (dungeonGeneratedAllies[0].health / dungeonGeneratedAllies[0].maxHealth * 100).toFixed() + "%";
-	const healerHealthPercent = (dungeonGeneratedAllies[1].health / dungeonGeneratedAllies[1].maxHealth * 100).toFixed() + "%";
+	const tankHealthPercent = (dungeonGeneratedAllies.get("tank").health / dungeonGeneratedAllies.get("tank").maxHealth * 100).toFixed() + "%";
+	const healerHealthPercent = (dungeonGeneratedAllies.get("healer").health / dungeonGeneratedAllies.get("healer").maxHealth * 100).toFixed() + "%";
 	const playerHealthPercent = (player.health / player.maxHealth * 100).toFixed() + "%";
-	const dps2HealthPercent = (dungeonGeneratedAllies[2].health / dungeonGeneratedAllies[2].maxHealth * 100).toFixed() + "%";
-	const dps3HealthPercent = (dungeonGeneratedAllies[3].health / dungeonGeneratedAllies[3].maxHealth * 100).toFixed() + "%";
+	const dps2HealthPercent = (dungeonGeneratedAllies.get("dps2").health / dungeonGeneratedAllies.get("dps2").maxHealth * 100).toFixed() + "%";
+	const dps3HealthPercent = (dungeonGeneratedAllies.get("dps3").health / dungeonGeneratedAllies.get("dps3").maxHealth * 100).toFixed() + "%";
 	
 	consoleLogDebug("Tank health: " + tankHealthPercent);
 	consoleLogDebug("Healer health: " + healerHealthPercent);
@@ -204,6 +230,50 @@ function dungeonRefreshAlliesHealth()
 	$("#dungeon_playerHealth").css("width", playerHealthPercent);
 	$("#dungeon_dps2Health").css("width", dps2HealthPercent);
 	$("#dungeon_dps3Health").css("width", dps3HealthPercent);
+}
+
+function dungeonRefreshAlliesStatus()
+{
+	for (const [key, value] of dungeonGeneratedAllies) 
+	{
+		$("#dungeon_"+key+"Status").removeAttr("class");
+		if(value.health <= 0)
+		{
+			$("#dungeon_"+key+"Status").text("Dead");
+		}
+		else if(value.health < value.maxHealth && dungeonPullTimer > 0)
+		{
+			$("#dungeon_"+key+"Status").text("Healing");
+		}
+		else
+		{
+			$("#dungeon_"+key+"Status").text("");
+			$("#dungeon_"+key+"Status").addClass("space");
+		}
+	}
+
+	//Same for player character
+	$("#dungeon_playerStatus").removeAttr("class");
+	if(player.health <= 0)
+	{
+		$("#dungeon_playerStatus").text("Dead");
+	}
+	else if(player.health < player.maxHealth && dungeonPullTimer > 0)
+	{
+		$("#dungeon_playerStatus").text("Healing");
+	}
+	else
+	{
+		$("#dungeon_playerStatus").text("");
+		$("#dungeon_playerStatus").addClass("space");
+	}
+
+	// Tank timer takes priority anyway :,)
+	if(dungeonPullTimer > 0)
+	{
+		$("#dungeon_tankStatus").removeAttr("class");
+		$("#dungeon_tankStatus").text("Pull in: " + dungeonPullTimer);
+	}
 }
 
 function dungeonGenerateAlly(allyRole, dungeonID)
@@ -254,18 +324,125 @@ function dungeonGenerateAlly(allyRole, dungeonID)
 	return NewAlly;
 }
 
-function startDungeon(dungeonID)
+function dungeonStartDungeon(dungeonID)
 {
+	bSelectedDungeon = true;
 	dungeonCurrentWave = 0;
 	dungeonSelectedDungeonID = dungeonID;
 
-	dungeonGeneratedAllies = new Array();
-	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.tank, dungeonID));
-	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.healer, dungeonID));
-	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.dps, dungeonID));
-	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.dps, dungeonID));
+	dungeonGeneratedAllies = new Map();
+	dungeonGeneratedAllies.set("tank", dungeonGenerateAlly(AllyRole.tank, dungeonID));
+	dungeonGeneratedAllies.set("healer", dungeonGenerateAlly(AllyRole.healer, dungeonID));
+	dungeonGeneratedAllies.set("dps2", dungeonGenerateAlly(AllyRole.dps, dungeonID));
+	dungeonGeneratedAllies.set("dps3", dungeonGenerateAlly(AllyRole.dps, dungeonID));
 
+	dungeonStartNewWave();
 	dungeonCreateEnemiesHtml();
 	dungeonRefreshAlliesPower();
 	dungeonRefreshAlliesHealth();
+}
+
+function dungeonStartNewWave()
+{
+	dungeonCurrentWaveEnemies = new Array();
+	dungeonPullTimer = 20;
+
+	const currentWave = dungeonsMap[dungeonSelectedDungeonID].enemyWaves[dungeonCurrentWave];
+	for(let i = 0; i < currentWave.length; i++)
+	{
+		let newDungeonEnemy = new DungeonEnemy();
+		const foundEnemy = enemyMap.get(currentWave[i]);
+		newDungeonEnemy.name = foundEnemy.enemyName;
+		newDungeonEnemy.maxHealth = foundEnemy.enemyMaxHealth;
+		newDungeonEnemy.health = foundEnemy.enemyMaxHealth;
+		newDungeonEnemy.damage = foundEnemy.enemyDamage;
+		newDungeonEnemy.xp = foundEnemy.xp;
+
+		dungeonCurrentWaveEnemies.push(newDungeonEnemy);
+	}
+
+	dungeonCreateEnemiesHtml();
+	dungeonRefreshAlliesPower();
+}
+
+function dungeonEnemiesSelectTarget()
+{
+	for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+	{
+		let numberRolled = Math.random() * 100;
+		if(numberRolled < 80)
+		{
+			dungeonCurrentWaveEnemies[i].target = "tank";
+			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"TANK");
+		}
+		else if(numberRolled < 85)
+		{
+			dungeonCurrentWaveEnemies[i].target = "healer";
+			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"HEALER");
+		}
+		else if(numberRolled < 90)
+		{
+			dungeonCurrentWaveEnemies[i].target = "player";
+			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"YOU");
+		}
+		else if(numberRolled < 95)
+		{
+			dungeonCurrentWaveEnemies[i].target = "dps2";
+			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS2");
+		}
+		else
+		{
+			dungeonCurrentWaveEnemies[i].target = "dps3";
+			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS3");
+		}
+
+		// if character dead then change target
+		if(dungeonCurrentWaveEnemies[i].target == "player")
+		{
+			if(player.health <= 0)
+			{
+				i = i - 1;
+			}
+		}
+		else
+		{
+			if(dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].target).health <= 0)
+			{
+				i = i - 1;
+			}
+		}
+	}
+}
+
+function dungeonTickTankPullTimer()
+{
+	let bIsTimerFinished = false;
+	if(dungeonPullTimer > 0)
+	{
+		dungeonPullTimer = dungeonPullTimer - 1;
+	}
+	else
+	{
+		bIsTimerFinished = true;
+	}
+	return bIsTimerFinished;
+}
+
+function dungeonHealParty()
+{
+	for (const [key, value] of dungeonGeneratedAllies) 
+	{
+		if(value.health < value.maxHealth)
+		{
+			value.health = value.health + Math.round(value.maxHealth * 0.06);
+		}
+
+		if(value.health > value.maxHealth)
+		{
+			value.health = value.maxHealth;
+		}
+	}
+	
+	//This is for player
+	tickHealing();
 }

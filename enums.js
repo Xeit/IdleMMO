@@ -8,7 +8,7 @@ const PlayerTasks =
 	questing: "questing",
 	shop: "shop",
 	smith: "smith",
-	dungeon: "dungeon"
+	dungeon: "In dungeon"
  };
 
 const PlayerSkills =
