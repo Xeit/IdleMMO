@@ -636,14 +636,14 @@
 			</div>
 
 			<div class="task_window" id="dungeonWindow" style="display: none;">
-				<div id="dungeonWindow_selectDungeon" style="display: flex;flex-direction: column; width: 100%;height: 100%;overflow-y:scroll;">
+				<div id="dungeonWindow_selectDungeon" style="display: flex;flex-direction: column; width: 100%;height: 100%;overflow-y:auto;overflow-x:hidden">
 					<!-- This part is created dynamicaly in dungeon.js createDungeonsHtml() -->
 				</div>
 				<div id="dungeonWindow_insideDungeon" style="display: none;flex-direction: column; width: 100%;height: 100%;border:#000 solid 1px;">
-					<div id="dungeonWindow_insideDungeon_enemies" style="display: flex;align-items: center;justify-content: center;width: 100%;height: 80%;">
+					<div id="dungeonWindow_insideDungeon_enemies" style="display: flex;flex-direction: column;align-items: center;justify-content: center;width: 100%;height: 80%;">
 						ENEMIES
 					</div>
-					<div id="dungeonWindow_insideDungeon_allies" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 20%;">
+					<div id="dungeonWindow_insideDungeon_allies" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 20%;border-top: #000 double 5px;">
 						<div class="dungeon_allySquare">
 							<div class="space"></div>
 							<div>TANK</div>

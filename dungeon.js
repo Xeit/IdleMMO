@@ -35,7 +35,7 @@ dungeonsMap.push(
 	new Dungeon("Testing Dungeon", 
 	[
 		["Rat", "Rat"],
-		["Rat", "Rat", "Fox", "Rat", "Rat"]
+		["Rat", "Rat", "Fox", "Rat", "Rat", "Rat", "Rat"]
 	],
 	110, 15, 20)
 );
@@ -65,7 +65,7 @@ function hideDungeonWindow()
 
 function dungeonCreateSelectDungeonHtml()
 {
-	let numberOfRows = Math.ceil(dungeonsMap.length / 3);
+	const numberOfRows = Math.ceil(dungeonsMap.length / 3);
 	let nrOfDungeonLocationsAdded = 0;
 
 	for(let i = 0; i < numberOfRows; i++)
@@ -117,6 +117,61 @@ function dungeonCreateSelectDungeonHtml()
 			}
 
 			newRow.append(newLocation);
+		}
+	}
+}
+
+function dungeonCreateEnemiesHtml()
+{
+	$("#dungeonWindow_insideDungeon_enemies").empty();
+
+	const currentWave = dungeonsMap[dungeonSelectedDungeonID].enemyWaves[dungeonCurrentWave];
+	const numberOfRows = Math.ceil(currentWave.length / 5);
+	let enemiesAlreadyCreated = 0;
+	
+	for(let i = 0; i < numberOfRows; i++)
+	{
+		let rowOfEnemies = document.createElement("div");
+		rowOfEnemies.setAttribute("class", "dungeon_dungeonSelect_Row");
+		$("#dungeonWindow_insideDungeon_enemies").append(rowOfEnemies);
+
+		for(let j = 0; j < 5 && enemiesAlreadyCreated < currentWave.length; j++, enemiesAlreadyCreated++)
+		{
+			let enemySquare = document.createElement("div");
+			enemySquare.setAttribute("class", "dungeonWindow_insideDungeon_enemySquare");
+			enemySquare.setAttribute("id", ("dungeon_enemySquare_" + j));
+			rowOfEnemies.append(enemySquare);
+
+			let divSpace1 = document.createElement("div");
+			divSpace1.setAttribute("class", "space");
+			enemySquare.append(divSpace1);
+
+			let enemyName = document.createElement("div");
+			enemyName.setAttribute("id", ("dungeon_enemyName_" + j));
+			enemyName.textContent = currentWave[j];
+			enemySquare.append(enemyName);
+
+			let divSpace2 = document.createElement("div");
+			divSpace2.setAttribute("class", "space");
+			enemySquare.append(divSpace2);
+
+			let enemyHealthBarOutside = document.createElement("div");
+			enemyHealthBarOutside.setAttribute("class", "dungeon_hpBarOutside");
+			enemySquare.append(enemyHealthBarOutside);
+
+			let enemyHealthBarInside = document.createElement("div");
+			enemyHealthBarInside.setAttribute("class", "dungeon_hpBarInside");
+			enemyHealthBarInside.setAttribute("id", ("dungeon_enemyHealth_" + j));
+			enemyHealthBarOutside.append(enemyHealthBarInside);
+
+			let divSpace3 = document.createElement("div");
+			divSpace3.setAttribute("class", "space");
+			enemySquare.append(divSpace3);
+
+			let enemyTarget = document.createElement("div");
+			enemyTarget.setAttribute("id", ("dungeon_enemyTarget_" + j));
+			enemyTarget.textContent = "TARGET: TANK";
+			enemySquare.append(enemyTarget);
 		}
 	}
 }
@@ -210,6 +265,7 @@ function startDungeon(dungeonID)
 	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.dps, dungeonID));
 	dungeonGeneratedAllies.push(dungeonGenerateAlly(AllyRole.dps, dungeonID));
 
+	dungeonCreateEnemiesHtml();
 	dungeonRefreshAlliesPower();
 	dungeonRefreshAlliesHealth();
 }
