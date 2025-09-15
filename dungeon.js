@@ -62,9 +62,14 @@ function tickDungeon()
 {
 	if(bSelectedDungeon)
 	{
-		if(dungeonTickTankPullTimer())
+		if(dungeonTickTankPullTimerFinished())
 		{
-
+			dungeonTankLogic();
+			dungeonHealerLogic();
+			dungeonPlayerLogic();
+			dungeonDps2Logic();
+			dungeonDps3Logic();
+			dungeonEnemiesLogic();
 		}
 		else
 		{
@@ -414,7 +419,7 @@ function dungeonEnemiesSelectTarget()
 	}
 }
 
-function dungeonTickTankPullTimer()
+function dungeonTickTankPullTimerFinished()
 {
 	let bIsTimerFinished = false;
 	if(dungeonPullTimer > 0)
@@ -445,4 +450,49 @@ function dungeonHealParty()
 	
 	//This is for player
 	tickHealing();
+}
+
+function dungeonTankLogic()
+{
+	// If deff buff is ending in this turn then recast it
+
+	// Else target boss if alive
+
+	// Else target mob that was not targeting tank in last turn
+
+}
+
+function dungeonHealerLogic()
+{
+	// If 4 allies under 50% HP then cast Mass Heal (30% HP)
+
+	// Else cast heal on ally with least amount of HP
+
+}
+
+function dungeonPlayerLogic()
+{
+	// Fight with random mob... Maybe we could add some sort of strategy mode?
+}
+
+function dungeonDps2Logic()
+{
+	// Fight with random mob
+}
+
+function dungeonDps3Logic()
+{
+	// Fight with random mob
+}
+
+function dungeonEnemiesLogic()
+{
+	// Maybe different functions depending on role of a MOB?
+
+	// Attack here
+
+
+
+	// Select targets here
+	dungeonEnemiesSelectTarget();
 }
