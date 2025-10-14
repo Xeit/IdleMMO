@@ -24,6 +24,73 @@ class Ally
 	totalExperience = 1;
 	health = 100;
 	maxHealth = 100;
+
+	isAlive()
+	{
+		let bIsAlive = true;
+		if(this.health <= 0)
+		{
+			bIsAlive = false;
+		}
+		
+		return bIsAlive;
+	}
+
+	allyLogic()
+	{
+		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
+	}
+
+	findTarget()
+	{
+		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
+	}
+
+	takeDamage()
+	{
+		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
+	}
+}
+
+class AllyTank extends Ally
+{
+	defensiveBuffTimeLeft = 0;
+
+	allyLogic()
+	{
+		if(!this.isAlive())
+		{
+			//Ally is dead, there is no point of doing anything.
+			return;
+		}
+
+		if(this.defensiveBuffTimeLeft <= 1)
+		{
+			this.castBuff();
+			return;
+		}
+		// If deff buff is ending in this turn then recast it
+		// Else target boss if alive
+		// Else target mob that was not targeting tank in last turn
+	}
+
+	castBuff()
+	{
+		this.defensiveBuffTimeLeft = 5;
+	}
+
+	findTarget()
+	{
+		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+		{
+			
+		}
+	}
+	
+	takeDamage()
+	{
+		
+	}
 }
 
 class DungeonEnemy
@@ -454,12 +521,11 @@ function dungeonHealParty()
 
 function dungeonTankLogic()
 {
-	// If deff buff is ending in this turn then recast it
-
-	// Else target boss if alive
-
-	// Else target mob that was not targeting tank in last turn
-
+	let tankAlly = dungeonGeneratedAllies.get("tank");
+	if(tankAlly instanceof AllyTank)
+	{
+		tankAlly.allyLogic();
+	}
 }
 
 function dungeonHealerLogic()
