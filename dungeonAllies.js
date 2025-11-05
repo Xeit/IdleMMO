@@ -94,47 +94,70 @@ class AllyTank extends Ally
 
 	findTarget()
 	{
-		// This function is extremaly nonoptimal but idc, it works
 		this.enemyTargetID = -1;
+		let bossID = -1;
+		let targetedHealerID = -1;
+		let notTargetingTankID = -1;
 
-		// Attack boss
 		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
 		{
-			if(dungeonCurrentWaveEnemies[i].isAlive() && dungeonCurrentWaveEnemies[i].isBoss)
+			if(dungeonCurrentWaveEnemies[i].isAlive())
 			{
-				this.enemyTargetID = i;
-				return;
+				if(dungeonCurrentWaveEnemies[i].isBoss)
+				{
+					bossID = i;
+					break; // We just nope out of the loop, this will be 100% the target
+				}
+
+				if(dungeonCurrentWaveEnemies[i].target == "healer")
+				{
+					targetedHealerID = i;
+				}
+				else if(dungeonCurrentWaveEnemies[i].target != "tank")
+				{
+					notTargetingTankID = i;
+				}
 			}
 		}
 
-		// Attack enemy that is targetting healer
-		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+		if(bossID != -1)
 		{
-			if(dungeonCurrentWaveEnemies[i].isAlive() && dungeonCurrentWaveEnemies[i].target == "healer")
-			{
-				this.enemyTargetID = i;
-				return;
-			}
+			this.enemyTargetID = bossID;
+		}
+		else if(targetedHealerID != -1)
+		{
+			this.enemyTargetID = targetedHealerID;
+		}
+		else if(notTargetingTankID != -1)
+		{
+			this.enemyTargetID = notTargetingTankID;
 		}
 
-		// Attack enemy that is not targetting tank
-		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+		if(this.enemyTargetID != -1)
 		{
-			if(dungeonCurrentWaveEnemies[i].isAlive() && dungeonCurrentWaveEnemies[i].target != "tank")
-			{
-				this.enemyTargetID = i;
-				return;
-			}
+			// We got one of the preferred targets, we can return.
+			return;
 		}
-
-		// Select random enemy
-		while(this.enemyTargetID != -1)
+		else
 		{
-			let randomEnemyID = Math.round(Math.random() * dungeonCurrentWaveEnemies.length)
-			if(dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
+			// We select random target. We try to get alive target 3 times then we just take first alive.
+			for(let i = 0; i < 3; i++)
 			{
-				this.enemyTargetID = randomEnemyID;
-				return;
+				let randomEnemyID = Math.round(Math.random() * dungeonCurrentWaveEnemies.length)
+				if(dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
+				{
+					this.enemyTargetID = randomEnemyID;
+					return;
+				}
+			}
+			
+			for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+			{
+				if(dungeonCurrentWaveEnemies[i].isAlive())
+				{
+					this.enemyTargetID = i;
+					return;
+				}
 			}
 		}
 	}
