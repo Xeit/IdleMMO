@@ -76,6 +76,7 @@ $(document).ready(function()
 		newPlayerTask(PlayerTasks.farming_monsters);
 	});
 
+	// @ts-ignore
 	$("#questingButton").click(function(){
 		newPlayerTask(PlayerTasks.questing);
 	})
