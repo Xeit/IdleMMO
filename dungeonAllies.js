@@ -15,6 +15,12 @@ class Ally
 	maxHealth = 100;
 	enemyTargetID = -1;
 
+	// TODO: This are the most magical number here but it's "stamina reduction" and "buffs"
+	// It multiplied monster damage by itself before armour
+	staminaDamageReduction = 1;
+	// This is flat damage reduction bcs why not
+	buffDamageReduction = 0;
+
 	isAlive()
 	{
 		if(this.health > 0)
@@ -42,7 +48,7 @@ class Ally
 		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
 	}
 
-	takeDamage()
+	takeDamage(baseMonsterDamageNumber)
 	{
 		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
 	}
@@ -51,6 +57,14 @@ class Ally
 class AllyTank extends Ally
 {
 	defensiveBuffTimeLeft = 0;
+
+	constructor()
+	{
+		super();
+
+		this.staminaDamageReduction = 0.8;
+		this.buffDamageReduction = 250;
+	}
 
 	allyLogic()
 	{
@@ -132,12 +146,29 @@ class AllyTank extends Ally
 			return;
 		}
 
-		// How the fuck do I calculate damage? xD
+		// TODO:
+		// Let's say that I'll take quarter of item power to compensate for random buffs player can have.
+		// DPS will probably have half of item power
+		// It might be changed in the future if it's too OP / underpowered.
+
+		dungeonCurrentWaveEnemies[this.enemyTargetID].health -= Math.round(this.itemPower / 4);
 	}
 
-	takeDamage()
+	takeDamage(baseMonsterDamageNumber)
 	{
-		
+		// TODO: Tbh I have no idea currently how numbers relate so I'll make random stuff up xD
+
+		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber * this.staminaDamageReduction);
+		const armourRating = Math.round(this.itemPower * (3/4));
+		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
+		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
+		this.health = this.health - buffMonsterDamageNumber;
+
+		consoleLogDebug("TANK RECIVES DAMAGE");
+		consoleLogDebug("Base monster damage: " + baseMonsterDamageNumber);
+		consoleLogDebug("Stamina: " + staminaMonsterDamageNumber);
+		consoleLogDebug("Armour: " + armourMonsterDamageNumber);
+		consoleLogDebug("Buff: " + buffMonsterDamageNumber);
 	}
 }
 

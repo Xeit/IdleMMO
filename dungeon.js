@@ -47,7 +47,7 @@ dungeonsMap.push(
 		["Rat", "Rat"],
 		["Rat", "Rat", "Fox", "Rat", "Rat", "Rat", "Rat"]
 	],
-	110, 15, 20)
+	110, 15)
 );
 
 function initializeDungeon()
@@ -298,7 +298,7 @@ function dungeonGenerateAlly(allyRole, dungeonID)
 	NewAlly.role = allyRole;
 
 	// Ally item level
-	rarityPower = 2 + Math.random() * 1.5; // From 2 to 3.5 (magic to mythic)
+	const rarityPower = 2 + Math.random() * 1.5; // From 2 to 3.5 (magic to mythic)
 	const numberOfItems = 5;
 	NewAlly.itemPower = Math.round(dungeonsMap[dungeonID].recommendedLevel * rarityPower * numberOfItems);
 
