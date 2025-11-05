@@ -24,16 +24,18 @@ class Ally
 	totalExperience = 1;
 	health = 100;
 	maxHealth = 100;
+	enemyTargetID = -1;
 
 	isAlive()
 	{
-		let bIsAlive = true;
-		if(this.health <= 0)
+		if(this.health > 0)
 		{
-			bIsAlive = false;
+			return true;
 		}
-		
-		return bIsAlive;
+		else
+		{
+			return false;
+		}
 	}
 
 	allyLogic()
@@ -42,6 +44,11 @@ class Ally
 	}
 
 	findTarget()
+	{
+		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
+	}
+
+	attackTarget()
 	{
 		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
 	}
@@ -69,9 +76,12 @@ class AllyTank extends Ally
 			this.castBuff();
 			return;
 		}
-		// If deff buff is ending in this turn then recast it
-		// Else target boss if alive
-		// Else target mob that was not targeting tank in last turn
+
+		// I feel like tank should switch targets constantly for feeling of gathering aggro but we will see how this will look.
+		this.findTarget();
+
+		// Here should attack target
+		this.attackTarget();
 	}
 
 	castBuff()
@@ -81,9 +91,48 @@ class AllyTank extends Ally
 
 	findTarget()
 	{
+		// This function is extremaly nonoptimal but idc, it works
+		this.enemyTargetID = -1;
+
+		// Attack boss
 		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
 		{
-			
+			if(dungeonCurrentWaveEnemies[i].isAlive() && dungeonCurrentWaveEnemies[i].isBoss)
+			{
+				this.enemyTargetID = i;
+				return;
+			}
+		}
+
+		// Attack enemy that is targetting healer
+		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+		{
+			if(dungeonCurrentWaveEnemies[i].isAlive() && dungeonCurrentWaveEnemies[i].target == "healer")
+			{
+				this.enemyTargetID = i;
+				return;
+			}
+		}
+
+		// Attack enemy that is not targetting tank
+		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+		{
+			if(dungeonCurrentWaveEnemies[i].isAlive() && dungeonCurrentWaveEnemies[i].target != "tank")
+			{
+				this.enemyTargetID = i;
+				return;
+			}
+		}
+
+		// Select random enemy
+		while(this.enemyTargetID != -1)
+		{
+			let randomEnemyID = Math.round(Math.random() * dungeonCurrentWaveEnemies.length)
+			if(dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
+			{
+				this.enemyTargetID = randomEnemyID;
+				return;
+			}
 		}
 	}
 	
@@ -101,6 +150,19 @@ class DungeonEnemy
 	damage;
 	xp;
 	target = "none";
+	isBoss = false;
+
+	isAlive()
+	{
+		if(this.health > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 
 var bSelectedDungeon = false;
