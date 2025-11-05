@@ -143,7 +143,7 @@ class AllyTank extends Ally
 			// We select random target. We try to get alive target 3 times then we just take first alive.
 			for(let i = 0; i < 3; i++)
 			{
-				let randomEnemyID = Math.round(Math.random() * dungeonCurrentWaveEnemies.length)
+				let randomEnemyID = Math.round(Math.random() * (dungeonCurrentWaveEnemies.length - 1));
 				if(dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
 				{
 					this.enemyTargetID = randomEnemyID;
@@ -164,6 +164,12 @@ class AllyTank extends Ally
 
 	attackTarget()
 	{
+		if(this.enemyTargetID == -1)
+		{
+			// Something wrong happened in selecting enemy or round already ended
+			return;
+		}
+
 		if(!dungeonCurrentWaveEnemies[this.enemyTargetID].isAlive())
 		{
 			return;

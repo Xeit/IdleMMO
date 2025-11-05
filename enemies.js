@@ -42,6 +42,29 @@ class Enemy
 	}
 }
 
+class DungeonEnemy
+{	
+	name;
+	health;
+	maxHealth;
+	damage;
+	xp;
+	target = "none";
+	isBoss = false;
+
+	isAlive()
+	{
+		if(this.health > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
+
 const enemyMap = new Map();
 
 enemyMap.set("Rat", new Enemy("Rat", 1, EnemyDifficulty.easy));

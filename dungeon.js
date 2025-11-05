@@ -10,29 +10,6 @@ class Dungeon
 	}
 }
 
-class DungeonEnemy
-{	
-	name;
-	health;
-	maxHealth;
-	damage;
-	xp;
-	target = "none";
-	isBoss = false;
-
-	isAlive()
-	{
-		if(this.health > 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-}
-
 var bSelectedDungeon = false;
 var dungeonPullTimer = 20;
 var dungeonCurrentWave = 0;
