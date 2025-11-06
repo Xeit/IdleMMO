@@ -17,8 +17,8 @@ class Ally
 	enemyTargetID = -1;
 
 	// TODO: This are the most magical number here but it's "stamina reduction" and "buffs"
-	// It multiplied monster damage by itself before armour
-	staminaDamageReduction = 1;
+	// It lowers monster damage by percent before armour
+	staminaDamageReduction = 0;
 	// This is flat damage reduction bcs why not
 	buffDamageReduction = 0;
 
@@ -63,7 +63,7 @@ class AllyTank extends Ally
 	{
 		super();
 
-		this.staminaDamageReduction = 0.8;
+		this.staminaDamageReduction = 0.25;
 		this.buffDamageReduction = 250;
 	}
 
@@ -188,7 +188,7 @@ class AllyTank extends Ally
 	{
 		// TODO: Tbh I have no idea currently how numbers relate so I'll make random stuff up xD
 
-		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber * this.staminaDamageReduction);
+		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
 		const armourRating = Math.round(this.itemPower * (3/4));
 		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
 		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
@@ -209,6 +209,14 @@ class AllyHealer extends Ally
 
 class AllyDPS extends Ally
 {
+	constructor()
+	{
+		super();
+
+		this.staminaDamageReduction = 0.1;
+		this.buffDamageReduction = 150;
+	}
+
 	allyLogic()
 	{
 		if(!this.isAlive())
@@ -296,11 +304,25 @@ class AllyDPS extends Ally
 
 	attackTarget()
 	{
-		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
+		if(this.enemyTargetID == -1)
+		{
+			return;
+		}
+
+		if(!dungeonCurrentWaveEnemies[this.enemyTargetID].isAlive())
+		{
+			return;
+		}
+
+		dungeonCurrentWaveEnemies[this.enemyTargetID].health -= Math.round(this.itemPower / 2);
 	}
 
 	takeDamage(baseMonsterDamageNumber)
 	{
-		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
+		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
+		const armourRating = Math.round(this.itemPower * (1/2));
+		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
+		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
+		this.health = this.health - buffMonsterDamageNumber;
 	}
 }
