@@ -19,12 +19,12 @@ var dungeonGeneratedAllies = new Map();
 const dungeonsMap = new Array();
 
 dungeonsMap.push(
-	new Dungeon("Testing Dungeon", 
-	[
-		["Rat", "Rat"],
-		["Rat", "Rat", "Fox", "Rat", "Rat", "Rat", "Rat"]
-	],
-	110, 15)
+	new Dungeon("Testing Dungeon",
+		[
+			["Rat", "Rat"],
+			["Rat", "Rat", "Fox", "Rat", "Rat", "Rat", "Rat"]
+		],
+		110, 15)
 );
 
 function initializeDungeon()
@@ -133,7 +133,7 @@ function dungeonCreateEnemiesHtml()
 	const currentWave = dungeonsMap[dungeonSelectedDungeonID].enemyWaves[dungeonCurrentWave];
 	const numberOfRows = Math.ceil(currentWave.length / 5);
 	let enemiesAlreadyCreated = 0;
-	
+
 	for(let i = 0; i < numberOfRows; i++)
 	{
 		let rowOfEnemies = document.createElement("div");
@@ -197,7 +197,7 @@ function dungeonRefreshAlliesHealth()
 	const playerHealthPercent = (player.health / player.maxHealth * 100).toFixed() + "%";
 	const dps2HealthPercent = (dungeonGeneratedAllies.get("dps2").health / dungeonGeneratedAllies.get("dps2").maxHealth * 100).toFixed() + "%";
 	const dps3HealthPercent = (dungeonGeneratedAllies.get("dps3").health / dungeonGeneratedAllies.get("dps3").maxHealth * 100).toFixed() + "%";
-	
+
 	consoleLogDebug("Tank health: " + tankHealthPercent);
 	consoleLogDebug("Healer health: " + healerHealthPercent);
 	consoleLogDebug("Player health: " + playerHealthPercent);
@@ -255,7 +255,7 @@ function dungeonRefreshAlliesStatus()
 	}
 }
 
-function dungeonGenerateAlly(allyRole, dungeonID)
+function dungeonGenerateAlly(allyTag, allyRole, dungeonID)
 {
 	let NewAlly = null;
 	switch (allyRole)
@@ -270,6 +270,9 @@ function dungeonGenerateAlly(allyRole, dungeonID)
 			NewAlly = new AllyDPS();
 			break;
 	}
+
+	// Ally Tag
+	NewAlly.tag = allyTag;
 
 	// Ally Role
 	NewAlly.role = allyRole;
@@ -322,10 +325,10 @@ function dungeonStartDungeon(dungeonID)
 	dungeonSelectedDungeonID = dungeonID;
 
 	dungeonGeneratedAllies = new Map();
-	dungeonGeneratedAllies.set("tank", dungeonGenerateAlly(AllyRole.tank, dungeonID));
-	dungeonGeneratedAllies.set("healer", dungeonGenerateAlly(AllyRole.healer, dungeonID));
-	dungeonGeneratedAllies.set("dps2", dungeonGenerateAlly(AllyRole.dps, dungeonID));
-	dungeonGeneratedAllies.set("dps3", dungeonGenerateAlly(AllyRole.dps, dungeonID));
+	dungeonGeneratedAllies.set("tank", dungeonGenerateAlly("tank", AllyRole.tank, dungeonID));
+	dungeonGeneratedAllies.set("healer", dungeonGenerateAlly("healer", AllyRole.healer, dungeonID));
+	dungeonGeneratedAllies.set("dps2", dungeonGenerateAlly("dps2", AllyRole.dps, dungeonID));
+	dungeonGeneratedAllies.set("dps3", dungeonGenerateAlly("dps3", AllyRole.dps, dungeonID));
 
 	dungeonStartNewWave();
 	dungeonCreateEnemiesHtml();
@@ -363,32 +366,32 @@ function dungeonEnemiesSelectTarget()
 		let numberRolled = Math.random() * 100;
 		if(numberRolled < 80)
 		{
-			dungeonCurrentWaveEnemies[i].target = "tank";
+			dungeonCurrentWaveEnemies[i].targetTag = "tank";
 			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"TANK");
 		}
 		else if(numberRolled < 85)
 		{
-			dungeonCurrentWaveEnemies[i].target = "healer";
+			dungeonCurrentWaveEnemies[i].targetTag = "healer";
 			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"HEALER");
 		}
 		else if(numberRolled < 90)
 		{
-			dungeonCurrentWaveEnemies[i].target = "player";
+			dungeonCurrentWaveEnemies[i].targetTag = "player";
 			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"YOU");
 		}
 		else if(numberRolled < 95)
 		{
-			dungeonCurrentWaveEnemies[i].target = "dps2";
+			dungeonCurrentWaveEnemies[i].targetTag = "dps2";
 			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS2");
 		}
 		else
 		{
-			dungeonCurrentWaveEnemies[i].target = "dps3";
+			dungeonCurrentWaveEnemies[i].targetTag = "dps3";
 			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS3");
 		}
 
 		// if character dead then change target
-		if(dungeonCurrentWaveEnemies[i].target == "player")
+		if(dungeonCurrentWaveEnemies[i].targetTag == "player")
 		{
 			if(player.health <= 0)
 			{
@@ -397,7 +400,7 @@ function dungeonEnemiesSelectTarget()
 		}
 		else
 		{
-			if(dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].target).health <= 0)
+			if(dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
 			{
 				i = i - 1;
 			}
@@ -433,7 +436,7 @@ function dungeonHealParty()
 			value.health = value.maxHealth;
 		}
 	}
-	
+
 	//This is for player
 	tickHealing();
 }

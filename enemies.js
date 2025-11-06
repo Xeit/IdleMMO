@@ -43,13 +43,13 @@ class Enemy
 }
 
 class DungeonEnemy
-{	
+{
 	name;
 	health;
 	maxHealth;
 	damage;
 	xp;
-	target = "none";
+	targetTag = "none";
 	isBoss = false;
 
 	isAlive()

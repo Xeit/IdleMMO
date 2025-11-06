@@ -9,6 +9,7 @@ const AllyRole =
 class Ally
 {
 	role = AllyRole.none;
+	tag = "";
 	itemPower = 1;
 	totalExperience = 1;
 	health = 100;
@@ -109,11 +110,11 @@ class AllyTank extends Ally
 					break; // We just nope out of the loop, this will be 100% the target
 				}
 
-				if(dungeonCurrentWaveEnemies[i].target == "healer")
+				if(dungeonCurrentWaveEnemies[i].targetTag == "healer")
 				{
 					targetedHealerID = i;
 				}
-				else if(dungeonCurrentWaveEnemies[i].target != "tank")
+				else if(dungeonCurrentWaveEnemies[i].targetTag != "tank")
 				{
 					notTargetingTankID = i;
 				}
@@ -208,5 +209,98 @@ class AllyHealer extends Ally
 
 class AllyDPS extends Ally
 {
+	allyLogic()
+	{
+		if(!this.isAlive())
+		{
+			return;
+		}
+		this.findTarget();
+		this.attackTarget();
+	}
 
+	findTarget()
+	{
+		// DPS players will always protect themselfs by attacking enemy that attacks them.
+		// Then will try to protect healer
+		// And after self preservation and healer preservation they will attack boss.
+
+		if(dungeonCurrentWaveEnemies[this.enemyTargetID].isAlive() && dungeonCurrentWaveEnemies[this.enemyTargetID].targetTag == this.tag)
+		{
+			// We will continue attacking enemy that is attacking us
+			return;
+		}
+
+		this.enemyTargetID = -1;
+		let bossID = -1;
+		let targetedHealerID = -1;
+
+		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+		{
+			if(dungeonCurrentWaveEnemies[i].isAlive())
+			{
+				if(dungeonCurrentWaveEnemies[i].targetTag == this.tag)
+				{
+					this.enemyTargetID = i;
+					return;
+				}
+				else if(dungeonCurrentWaveEnemies[i].targetTag == "healer")
+				{
+					targetedHealerID = i;
+				}
+
+				if(dungeonCurrentWaveEnemies[i].isBoss)
+				{
+					bossID = i;
+				}
+			}
+		}
+
+		if(targetedHealerID != -1)
+		{
+			this.enemyTargetID = targetedHealerID;
+		}
+		else if(bossID != -1)
+		{
+			this.enemyTargetID = bossID;
+		}
+
+		if(this.enemyTargetID != -1)
+		{
+			// We got one of the preferred targets, we can return.
+			return;
+		}
+		else
+		{
+			// We select random target. We try to get alive target 3 times then we just take first alive.
+			for(let i = 0; i < 3; i++)
+			{
+				let randomEnemyID = Math.round(Math.random() * (dungeonCurrentWaveEnemies.length - 1));
+				if(dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
+				{
+					this.enemyTargetID = randomEnemyID;
+					return;
+				}
+			}
+			
+			for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+			{
+				if(dungeonCurrentWaveEnemies[i].isAlive())
+				{
+					this.enemyTargetID = i;
+					return;
+				}
+			}
+		}
+	}
+
+	attackTarget()
+	{
+		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
+	}
+
+	takeDamage(baseMonsterDamageNumber)
+	{
+		consoleLogDebug("Ally have incorrect class or this function is not overriden in child class. Please fix.");
+	}
 }
