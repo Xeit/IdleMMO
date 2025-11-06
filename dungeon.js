@@ -38,11 +38,13 @@ function tickDungeon()
 	{
 		if(dungeonTickTankPullTimerFinished())
 		{
-			dungeonTankLogic();
-			dungeonHealerLogic();
-			dungeonPlayerLogic();
-			dungeonDps2Logic();
-			dungeonDps3Logic();
+			dungeonGeneratedAllies.forEach(ally => {
+				if(ally instanceof Ally)
+				{
+					ally.allyLogic();
+				}
+			});
+
 			dungeonEnemiesLogic();
 		}
 		else
@@ -439,38 +441,6 @@ function dungeonHealParty()
 
 	//This is for player
 	tickHealing();
-}
-
-function dungeonTankLogic()
-{
-	let tankAlly = dungeonGeneratedAllies.get("tank");
-	if(tankAlly instanceof AllyTank)
-	{
-		tankAlly.allyLogic();
-	}
-}
-
-function dungeonHealerLogic()
-{
-	// If 4 allies under 50% HP then cast Mass Heal (30% HP)
-
-	// Else cast heal on ally with least amount of HP
-
-}
-
-function dungeonPlayerLogic()
-{
-	// Fight with random mob... Maybe we could add some sort of strategy mode?
-}
-
-function dungeonDps2Logic()
-{
-	// Fight with random mob
-}
-
-function dungeonDps3Logic()
-{
-	// Fight with random mob
 }
 
 function dungeonEnemiesLogic()

@@ -1,4 +1,4 @@
-const AllyRole = 
+var AllyRole = 
 {
 	none: "none",
 	tank: "tank",
@@ -32,6 +32,18 @@ class Ally
 		{
 			return false;
 		}
+	}
+
+	getHealthPercent()
+	{
+		let returnValue = 0;
+
+		if(this.health > 0)
+		{
+			returnValue = this.health / this.maxHealth;
+		}
+
+		return returnValue;
 	}
 
 	allyLogic()
@@ -204,7 +216,180 @@ class AllyTank extends Ally
 
 class AllyHealer extends Ally
 {
+	constructor()
+	{
+		super();
 
+		this.staminaDamageReduction = 0;
+		this.buffDamageReduction = 50;
+	}
+
+	allyLogic()
+	{
+		if(!this.isAlive())
+		{
+			return;
+		}
+		this.decideHeal();
+	}
+
+	decideHeal()
+	{
+		let numberOfAlliesForMassHeal = 0;
+		let lowestHpPercent = 1;
+		let allyWithLowestHp = null;
+		let isAllyWithLowestHpATank = false;
+		let deadAlly = null;
+		let deadAllyRole = AllyRole.none;
+
+		// Get info about target to heal / resurrect
+		dungeonGeneratedAllies.forEach(ally => {
+			if(ally instanceof Ally)
+			{
+				if(ally.isAlive())
+				{
+					const allyHealthPercent = ally.getHealthPercent();
+
+					if(allyHealthPercent < 0.5)
+					{
+						numberOfAlliesForMassHeal = numberOfAlliesForMassHeal + 1;
+					}
+
+					if(ally.role == AllyRole.tank && allyHealthPercent < 0.5)
+					{
+						// Tanks only get highest priority if they are under 50% HP.
+						// For some reason I made it as if there was multiple tanks... raids someday? xD
+						if(isAllyWithLowestHpATank)
+						{
+							if(lowestHpPercent > allyHealthPercent)
+							{
+								lowestHpPercent = allyHealthPercent;
+								allyWithLowestHp = ally;
+							}
+						}
+						else
+						{
+							lowestHpPercent = allyHealthPercent;
+							allyWithLowestHp = ally;
+							isAllyWithLowestHpATank = true;
+						}
+					}
+					else if(!isAllyWithLowestHpATank)
+					{
+						if(lowestHpPercent > allyHealthPercent)
+						{
+							lowestHpPercent = allyHealthPercent;
+							allyWithLowestHp = ally;
+						}
+					}
+				}
+				else
+				{
+					// Dead ally, que for revive!
+					if(deadAllyRole == AllyRole.healer)
+					{
+						// Nothing, slot taken.
+					}
+					else if(deadAllyRole == AllyRole.tank)
+					{
+						if(ally.role == AllyRole.healer)
+						{
+							deadAlly = ally;
+							deadAllyRole = ally.role;
+						}
+						else
+						{
+							// Nothing, slot taken.
+						}
+					}
+					else
+					{
+						if(ally.role == AllyRole.healer || ally.role == AllyRole.tank)
+						{
+							deadAlly = ally;
+							deadAllyRole = ally.role;
+						}
+					}
+				}
+			}
+		});
+
+		// Cast mass heal if more than 4 players under 50% hp
+		if(numberOfAlliesForMassHeal > 4)
+		{
+			this.castMassHeal();
+			return;
+		}
+		
+		// Prioritize survival over other players
+		if(this.getHealthPercent() < 0.4)
+		{
+			this.castSingleHeal(this);
+			return;
+		}
+
+		if(deadAlly != null && lowestHpPercent > 0.65)
+		{
+			this.resurrectAlly(deadAlly);
+		}
+		else
+		{
+			this.castSingleHeal(allyWithLowestHp);
+		}
+	}
+
+	castMassHeal()
+	{
+		dungeonGeneratedAllies.forEach(element => {
+			if(element instanceof Ally)
+			{
+				element.health = element.health + (0.3 * element.maxHealth);
+				if(element.health > element.maxHealth)
+				{
+					element.health = element.maxHealth;
+				}
+				else
+				{
+					element.health = Math.round(element.health);
+				}
+			}
+		});
+	}
+
+	castSingleHeal(target)
+	{
+		if(target instanceof Ally)
+		{
+			consoleLogDebug("Healing: " + target);
+			// This magic 0.6 is 60% of health
+			target.health = target.health + (0.6 * target.maxHealth);
+			if(target.health > target.maxHealth)
+			{
+				target.health = target.maxHealth;
+			}
+			else
+			{
+				target.health = Math.round(target.health);
+			}
+		}
+	}
+
+	resurrectAlly(target)
+	{
+		if(target instanceof Ally)
+		{
+			target.health = Math.round(target.maxHealth * 0.25);
+		}
+	}
+
+	takeDamage(baseMonsterDamageNumber)
+	{
+		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
+		const armourRating = Math.round(this.itemPower * (1/4));
+		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
+		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
+		this.health = this.health - buffMonsterDamageNumber;
+	}
 }
 
 class AllyDPS extends Ally
@@ -233,7 +418,7 @@ class AllyDPS extends Ally
 		// Then will try to protect healer
 		// And after self preservation and healer preservation they will attack boss.
 
-		if(dungeonCurrentWaveEnemies[this.enemyTargetID].isAlive() && dungeonCurrentWaveEnemies[this.enemyTargetID].targetTag == this.tag)
+		if(this.enemyTargetID != -1 && dungeonCurrentWaveEnemies[this.enemyTargetID].isAlive() && dungeonCurrentWaveEnemies[this.enemyTargetID].targetTag == this.tag)
 		{
 			// We will continue attacking enemy that is attacking us
 			return;
