@@ -44,7 +44,8 @@ function tickDungeon()
 					ally.allyLogic();
 				}
 			});
-
+			
+			dungeonPlayerLogic();
 			dungeonEnemiesLogic();
 		}
 		else
@@ -342,6 +343,7 @@ function dungeonStartNewWave()
 {
 	dungeonCurrentWaveEnemies = new Array();
 	dungeonPullTimer = 20;
+	player.dungeonEnemyID = -1;
 
 	const currentWave = dungeonsMap[dungeonSelectedDungeonID].enemyWaves[dungeonCurrentWave];
 	for(let i = 0; i < currentWave.length; i++)
@@ -453,4 +455,77 @@ function dungeonEnemiesLogic()
 
 	// Select targets here
 	dungeonEnemiesSelectTarget();
+}
+
+function dungeonPlayerLogic()
+{
+	if(player.dungeonEnemyID == -1)
+	{
+		dungeonPlayerFindTarget();
+	}
+	dungeonPlayerHitEnemy();
+}
+
+function dungeonPlayerFindTarget()
+{
+	let bossID = -1;
+	let targetedHealerID = -1;
+
+	for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+	{
+		if(dungeonCurrentWaveEnemies[i].isAlive())
+		{
+			if(dungeonCurrentWaveEnemies[i].targetTag == "player")
+			{
+				player.dungeonEnemyID = i;
+				return;
+			}
+
+			if(dungeonCurrentWaveEnemies[i].isBoss)
+			{
+				bossID = i;
+			}
+		}
+	}
+
+	if(bossID != -1)
+	{
+		player.enemyTargetID = bossID;
+	}
+
+	if(player.enemyTargetID != -1)
+	{
+		// We got one of the preferred targets, we can return.
+		return;
+	}
+	else
+	{
+		// We select random target. We try to get alive target 3 times then we just take first alive.
+		for(let i = 0; i < 3; i++)
+		{
+			let randomEnemyID = Math.round(Math.random() * (dungeonCurrentWaveEnemies.length - 1));
+			if(dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
+			{
+				player.enemyTargetID = randomEnemyID;
+				return;
+			}
+		}
+		
+		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+		{
+			if(dungeonCurrentWaveEnemies[i].isAlive())
+			{
+				player.enemyTargetID = i;
+				return;
+			}
+		}
+	}
+}
+
+function dungeonPlayerHitEnemy()
+{
+	if(player.dungeonEnemyID != -1 && dungeonCurrentWaveEnemies[player.dungeonEnemyID].isAlive())
+	{
+		dungeonCurrentWaveEnemies[player.dungeonEnemyID].health = dungeonCurrentWaveEnemies[player.dungeonEnemyID].health - playerGetAttackDamage(player.level);
+	}
 }

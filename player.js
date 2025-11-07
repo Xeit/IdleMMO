@@ -49,7 +49,9 @@ class Player
 	//Buffs
 	buffList = [];
 
+	//Dungeon
 	dungeonStatistics = new DungeonPlayerStatistics();
+	dungeonEnemyID = -1;
 
 	playerUnlockFunctionsUntilLevel()
 	{
