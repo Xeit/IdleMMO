@@ -340,17 +340,17 @@ class AllyHealer extends Ally
 
 	castMassHeal()
 	{
-		dungeonGeneratedAllies.forEach(element => {
-			if(element instanceof Ally)
+		dungeonGeneratedAllies.forEach(ally => {
+			if(ally instanceof Ally)
 			{
-				element.health = element.health + (0.3 * element.maxHealth);
-				if(element.health > element.maxHealth)
+				ally.health = ally.health + (0.3 * ally.maxHealth);
+				if(ally.health > ally.maxHealth)
 				{
-					element.health = element.maxHealth;
+					ally.health = ally.maxHealth;
 				}
 				else
 				{
-					element.health = Math.round(element.health);
+					ally.health = Math.round(ally.health);
 				}
 			}
 		});

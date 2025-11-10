@@ -21,7 +21,7 @@ const dungeonsMap = new Array();
 dungeonsMap.push(
 	new Dungeon("Testing Dungeon",
 		[
-			["Rat", "Rat"],
+			["Rat", "Rat", "Fox", "Rat", "Rat"],
 			["Rat", "Rat", "Fox", "Rat", "Rat", "Rat", "Rat"]
 		],
 		110, 15)
@@ -367,46 +367,114 @@ function dungeonEnemiesSelectTarget()
 {
 	for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
 	{
-		let numberRolled = Math.random() * 100;
-		if(numberRolled < 80)
+		if(dungeonCurrentWaveEnemies[i].targetTag == "none")
 		{
-			dungeonCurrentWaveEnemies[i].targetTag = "tank";
-			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"TANK");
-		}
-		else if(numberRolled < 85)
-		{
-			dungeonCurrentWaveEnemies[i].targetTag = "healer";
-			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"HEALER");
-		}
-		else if(numberRolled < 90)
-		{
-			dungeonCurrentWaveEnemies[i].targetTag = "player";
-			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"YOU");
-		}
-		else if(numberRolled < 95)
-		{
-			dungeonCurrentWaveEnemies[i].targetTag = "dps2";
-			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS2");
-		}
-		else
-		{
-			dungeonCurrentWaveEnemies[i].targetTag = "dps3";
-			$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS3");
-		}
+			// This is target select before pull of wave
 
-		// if character dead then change target
-		if(dungeonCurrentWaveEnemies[i].targetTag == "player")
-		{
-			if(player.health <= 0)
+			let numberRolled = Math.random() * 100;
+			if(numberRolled < 80)
 			{
-				i = i - 1;
+				dungeonCurrentWaveEnemies[i].targetTag = "tank";
+				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"TANK");
+			}
+			else if(numberRolled < 85)
+			{
+				dungeonCurrentWaveEnemies[i].targetTag = "healer";
+				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"HEALER");
+			}
+			else if(numberRolled < 90)
+			{
+				dungeonCurrentWaveEnemies[i].targetTag = "player";
+				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"YOU");
+			}
+			else if(numberRolled < 95)
+			{
+				dungeonCurrentWaveEnemies[i].targetTag = "dps2";
+				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS2");
+			}
+			else
+			{
+				dungeonCurrentWaveEnemies[i].targetTag = "dps3";
+				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS3");
+			}
+
+			// if character dead then change target
+			if(dungeonCurrentWaveEnemies[i].targetTag == "player")
+			{
+				if(player.health <= 0)
+				{
+					i = i - 1;
+				}
+			}
+			else
+			{
+				if(dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
+				{
+					i = i - 1;
+				}
 			}
 		}
 		else
 		{
-			if(dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
+			// You need to check if one of the heroes is targetting the enemy 
+			// then roll the chance for swapping target for that ally
+			// if heroes attacking the enemy was a tank then there should be 100% to swap
+
+			// also somehow there should be always be a chance for starting to attack healer.
+			let bSwappedTarget = false;
+			dungeonGeneratedAllies.forEach(ally => 
 			{
-				i = i - 1;
+				if(!bSwappedTarget && ally.isAlive() && ally.enemyTargetID == i)
+				{
+					if(ally.role == AllyRole.tank)
+					{
+						dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+						bSwappedTarget = true;
+					}
+					else
+					{
+						if((Math.random() * 100) < 20)
+						{
+							dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+							bSwappedTarget = true;
+						}
+					}
+				}
+			});
+
+			if(!bSwappedTarget)
+			{
+				const randomRoll = Math.random() * 100;
+
+				if(randomRoll < 5)
+				{
+					//Target healer
+					dungeonGeneratedAllies.forEach(ally => {
+						if(ally.role == AllyRole.healer)
+						{
+							dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+						}
+					});
+				}
+				else if(randomRoll < 10)
+				{
+					//Target any1
+					const newTarget = Math.round(Math.random() * (dungeonGeneratedAllies.size - 1));
+					let currentAllyID = 0;
+					dungeonGeneratedAllies.forEach(ally => {
+						if(ally instanceof Ally)
+						{
+							if(newTarget == currentAllyID)
+							{
+								dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+							}
+							else
+							{
+								currentAllyID = currentAllyID + 1;
+							}
+						}
+					});
+				}
 			}
 		}
 	}
