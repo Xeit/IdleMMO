@@ -375,27 +375,22 @@ function dungeonEnemiesSelectTarget()
 			if(numberRolled < 80)
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "tank";
-				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"TANK");
 			}
 			else if(numberRolled < 85)
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "healer";
-				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"HEALER");
 			}
 			else if(numberRolled < 90)
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "player";
-				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"YOU");
 			}
 			else if(numberRolled < 95)
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "dps2";
-				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS2");
 			}
 			else
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "dps3";
-				$("#dungeon_enemyTarget_"+i).text("TARGET: "+"DPS3");
 			}
 
 			// if character dead then change target
@@ -477,6 +472,8 @@ function dungeonEnemiesSelectTarget()
 				}
 			}
 		}
+
+		$("#dungeon_enemyTarget_" + i).text("TARGET: " + dungeonCurrentWaveEnemies[i].targetTag.toUpperCase());
 	}
 }
 
@@ -558,10 +555,10 @@ function dungeonPlayerFindTarget()
 
 	if(bossID != -1)
 	{
-		player.enemyTargetID = bossID;
+		player.dungeonEnemyID = bossID;
 	}
 
-	if(player.enemyTargetID != -1)
+	if(player.dungeonEnemyID != -1)
 	{
 		// We got one of the preferred targets, we can return.
 		return;
@@ -574,7 +571,7 @@ function dungeonPlayerFindTarget()
 			let randomEnemyID = Math.round(Math.random() * (dungeonCurrentWaveEnemies.length - 1));
 			if(dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
 			{
-				player.enemyTargetID = randomEnemyID;
+				player.dungeonEnemyID = randomEnemyID;
 				return;
 			}
 		}
@@ -583,7 +580,7 @@ function dungeonPlayerFindTarget()
 		{
 			if(dungeonCurrentWaveEnemies[i].isAlive())
 			{
-				player.enemyTargetID = i;
+				player.dungeonEnemyID = i;
 				return;
 			}
 		}
