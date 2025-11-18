@@ -34,17 +34,18 @@ function initializeDungeon()
 
 function tickDungeon()
 {
-	if(bSelectedDungeon)
+	if (bSelectedDungeon)
 	{
-		if(dungeonTickTankPullTimerFinished())
+		if (dungeonTickTankPullTimerFinished())
 		{
-			dungeonGeneratedAllies.forEach(ally => {
-				if(ally instanceof Ally)
+			dungeonGeneratedAllies.forEach(ally =>
+			{
+				if (ally instanceof Ally)
 				{
 					ally.allyLogic();
 				}
 			});
-			
+
 			dungeonPlayerLogic();
 			dungeonEnemiesLogic();
 		}
@@ -76,19 +77,19 @@ function dungeonCreateSelectDungeonHtml()
 	const numberOfRows = Math.ceil(dungeonsMap.length / 3);
 	let nrOfDungeonLocationsAdded = 0;
 
-	for(let i = 0; i < numberOfRows; i++)
+	for (let i = 0; i < numberOfRows; i++)
 	{
 		let newRow = document.createElement("div");
 		newRow.setAttribute("class", "dungeon_dungeonSelect_Row");
 
 		$("#dungeonWindow_selectDungeon").append(newRow);
 
-		for(let j = 0; j < 3; j++)
+		for (let j = 0; j < 3; j++)
 		{
 			let newLocation = document.createElement("div");
 			newLocation.setAttribute("class", "dungeon_dungeonSelect_location");
 
-			if(nrOfDungeonLocationsAdded < player.dungeonStatistics.nrOfUnlockedDungeons && nrOfDungeonLocationsAdded < dungeonsMap.length)
+			if (nrOfDungeonLocationsAdded < player.dungeonStatistics.nrOfUnlockedDungeons && nrOfDungeonLocationsAdded < dungeonsMap.length)
 			{
 				let divSpace1 = document.createElement("div");
 				let divDungeonName = document.createElement("div");
@@ -106,7 +107,7 @@ function dungeonCreateSelectDungeonHtml()
 				divDungeonExperience.textContent = "Experience: 0/100";
 				divSpace3.setAttribute("class", "space");
 				buttonStartDungeon.textContent = "START";
-				buttonStartDungeon.onclick = function()
+				buttonStartDungeon.onclick = function ()
 				{
 					$("#dungeonWindow_selectDungeon").css("display", "none");
 					$("#dungeonWindow_insideDungeon").css("display", "flex");
@@ -137,13 +138,13 @@ function dungeonCreateEnemiesHtml()
 	const numberOfRows = Math.ceil(currentWave.length / 5);
 	let enemiesAlreadyCreated = 0;
 
-	for(let i = 0; i < numberOfRows; i++)
+	for (let i = 0; i < numberOfRows; i++)
 	{
 		let rowOfEnemies = document.createElement("div");
 		rowOfEnemies.setAttribute("class", "dungeon_dungeonSelect_Row");
 		$("#dungeonWindow_insideDungeon_enemies").append(rowOfEnemies);
 
-		for(let j = 0; j < 5 && enemiesAlreadyCreated < currentWave.length; j++, enemiesAlreadyCreated++)
+		for (let j = 0; j < 5 && enemiesAlreadyCreated < currentWave.length; j++, enemiesAlreadyCreated++)
 		{
 			let enemySquare = document.createElement("div");
 			enemySquare.setAttribute("class", "dungeonWindow_insideDungeon_enemySquare");
@@ -218,29 +219,29 @@ function dungeonRefreshAlliesStatus()
 {
 	for (const [key, value] of dungeonGeneratedAllies) 
 	{
-		$("#dungeon_"+key+"Status").removeAttr("class");
-		if(value.health <= 0)
+		$("#dungeon_" + key + "Status").removeAttr("class");
+		if (value.health <= 0)
 		{
-			$("#dungeon_"+key+"Status").text("Dead");
+			$("#dungeon_" + key + "Status").text("Dead");
 		}
-		else if(value.health < value.maxHealth && dungeonPullTimer > 0)
+		else if (value.health < value.maxHealth && dungeonPullTimer > 0)
 		{
-			$("#dungeon_"+key+"Status").text("Healing");
+			$("#dungeon_" + key + "Status").text("Healing");
 		}
 		else
 		{
-			$("#dungeon_"+key+"Status").text("");
-			$("#dungeon_"+key+"Status").addClass("space");
+			$("#dungeon_" + key + "Status").text("");
+			$("#dungeon_" + key + "Status").addClass("space");
 		}
 	}
 
 	//Same for player character
 	$("#dungeon_playerStatus").removeAttr("class");
-	if(player.health <= 0)
+	if (player.health <= 0)
 	{
 		$("#dungeon_playerStatus").text("Dead");
 	}
-	else if(player.health < player.maxHealth && dungeonPullTimer > 0)
+	else if (player.health < player.maxHealth && dungeonPullTimer > 0)
 	{
 		$("#dungeon_playerStatus").text("Healing");
 	}
@@ -251,7 +252,7 @@ function dungeonRefreshAlliesStatus()
 	}
 
 	// Tank timer takes priority anyway :,)
-	if(dungeonPullTimer > 0)
+	if (dungeonPullTimer > 0)
 	{
 		$("#dungeon_tankStatus").removeAttr("class");
 		$("#dungeon_tankStatus").text("Pull in: " + dungeonPullTimer);
@@ -346,7 +347,7 @@ function dungeonStartNewWave()
 	player.dungeonEnemyID = -1;
 
 	const currentWave = dungeonsMap[dungeonSelectedDungeonID].enemyWaves[dungeonCurrentWave];
-	for(let i = 0; i < currentWave.length; i++)
+	for (let i = 0; i < currentWave.length; i++)
 	{
 		let newDungeonEnemy = new DungeonEnemy();
 		const foundEnemy = enemyMap.get(currentWave[i]);
@@ -365,26 +366,26 @@ function dungeonStartNewWave()
 
 function dungeonEnemiesSelectTarget()
 {
-	for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+	for (let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
 	{
-		if(dungeonCurrentWaveEnemies[i].targetTag == "none")
+		if (dungeonCurrentWaveEnemies[i].targetTag == "none")
 		{
 			// This is target select before pull of wave
 
 			let numberRolled = Math.random() * 100;
-			if(numberRolled < 80)
+			if (numberRolled < 80)
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "tank";
 			}
-			else if(numberRolled < 85)
+			else if (numberRolled < 85)
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "healer";
 			}
-			else if(numberRolled < 90)
+			else if (numberRolled < 90)
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "player";
 			}
-			else if(numberRolled < 95)
+			else if (numberRolled < 95)
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "dps2";
 			}
@@ -394,16 +395,16 @@ function dungeonEnemiesSelectTarget()
 			}
 
 			// if character dead then change target
-			if(dungeonCurrentWaveEnemies[i].targetTag == "player")
+			if (dungeonCurrentWaveEnemies[i].targetTag == "player")
 			{
-				if(player.health <= 0)
+				if (player.health <= 0)
 				{
 					i = i - 1;
 				}
 			}
 			else
 			{
-				if(dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
+				if (dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
 				{
 					i = i - 1;
 				}
@@ -419,16 +420,16 @@ function dungeonEnemiesSelectTarget()
 			let bSwappedTarget = false;
 			dungeonGeneratedAllies.forEach(ally => 
 			{
-				if(!bSwappedTarget && ally.isAlive() && ally.enemyTargetID == i)
+				if (!bSwappedTarget && ally.isAlive() && ally.enemyTargetID == i)
 				{
-					if(ally.role == AllyRole.tank)
+					if (ally.role == AllyRole.tank)
 					{
 						dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
 						bSwappedTarget = true;
 					}
 					else
 					{
-						if((Math.random() * 100) < 20)
+						if ((Math.random() * 100) < 20)
 						{
 							dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
 							bSwappedTarget = true;
@@ -437,29 +438,31 @@ function dungeonEnemiesSelectTarget()
 				}
 			});
 
-			if(!bSwappedTarget)
+			if (!bSwappedTarget)
 			{
 				const randomRoll = Math.random() * 100;
 
-				if(randomRoll < 5)
+				if (randomRoll < 5)
 				{
 					//Target healer
-					dungeonGeneratedAllies.forEach(ally => {
-						if(ally.role == AllyRole.healer)
+					dungeonGeneratedAllies.forEach(ally =>
+					{
+						if (ally.role == AllyRole.healer)
 						{
 							dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
 						}
 					});
 				}
-				else if(randomRoll < 10)
+				else if (randomRoll < 10)
 				{
 					//Target any1
 					const newTarget = Math.round(Math.random() * (dungeonGeneratedAllies.size - 1));
 					let currentAllyID = 0;
-					dungeonGeneratedAllies.forEach(ally => {
-						if(ally instanceof Ally)
+					dungeonGeneratedAllies.forEach(ally =>
+					{
+						if (ally instanceof Ally)
 						{
-							if(newTarget == currentAllyID)
+							if (newTarget == currentAllyID)
 							{
 								dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
 							}
@@ -480,7 +483,7 @@ function dungeonEnemiesSelectTarget()
 function dungeonTickTankPullTimerFinished()
 {
 	let bIsTimerFinished = false;
-	if(dungeonPullTimer > 0)
+	if (dungeonPullTimer > 0)
 	{
 		dungeonPullTimer = dungeonPullTimer - 1;
 	}
@@ -495,12 +498,12 @@ function dungeonHealParty()
 {
 	for (const [key, value] of dungeonGeneratedAllies) 
 	{
-		if(value.health < value.maxHealth)
+		if (value.health < value.maxHealth)
 		{
 			value.health = value.health + Math.round(value.maxHealth * 0.06);
 		}
 
-		if(value.health > value.maxHealth)
+		if (value.health > value.maxHealth)
 		{
 			value.health = value.maxHealth;
 		}
@@ -524,7 +527,7 @@ function dungeonEnemiesLogic()
 
 function dungeonPlayerLogic()
 {
-	if(player.dungeonEnemyID == -1)
+	if (player.dungeonEnemyID == -1)
 	{
 		dungeonPlayerFindTarget();
 	}
@@ -536,29 +539,29 @@ function dungeonPlayerFindTarget()
 	let bossID = -1;
 	let targetedHealerID = -1;
 
-	for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+	for (let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
 	{
-		if(dungeonCurrentWaveEnemies[i].isAlive())
+		if (dungeonCurrentWaveEnemies[i].isAlive())
 		{
-			if(dungeonCurrentWaveEnemies[i].targetTag == "player")
+			if (dungeonCurrentWaveEnemies[i].targetTag == "player")
 			{
 				player.dungeonEnemyID = i;
 				return;
 			}
 
-			if(dungeonCurrentWaveEnemies[i].isBoss)
+			if (dungeonCurrentWaveEnemies[i].isBoss)
 			{
 				bossID = i;
 			}
 		}
 	}
 
-	if(bossID != -1)
+	if (bossID != -1)
 	{
 		player.dungeonEnemyID = bossID;
 	}
 
-	if(player.dungeonEnemyID != -1)
+	if (player.dungeonEnemyID != -1)
 	{
 		// We got one of the preferred targets, we can return.
 		return;
@@ -566,19 +569,19 @@ function dungeonPlayerFindTarget()
 	else
 	{
 		// We select random target. We try to get alive target 3 times then we just take first alive.
-		for(let i = 0; i < 3; i++)
+		for (let i = 0; i < 3; i++)
 		{
 			let randomEnemyID = Math.round(Math.random() * (dungeonCurrentWaveEnemies.length - 1));
-			if(dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
+			if (dungeonCurrentWaveEnemies[randomEnemyID].isAlive())
 			{
 				player.dungeonEnemyID = randomEnemyID;
 				return;
 			}
 		}
-		
-		for(let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+
+		for (let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
 		{
-			if(dungeonCurrentWaveEnemies[i].isAlive())
+			if (dungeonCurrentWaveEnemies[i].isAlive())
 			{
 				player.dungeonEnemyID = i;
 				return;
@@ -589,7 +592,7 @@ function dungeonPlayerFindTarget()
 
 function dungeonPlayerHitEnemy()
 {
-	if(player.dungeonEnemyID != -1 && dungeonCurrentWaveEnemies[player.dungeonEnemyID].isAlive())
+	if (player.dungeonEnemyID != -1 && dungeonCurrentWaveEnemies[player.dungeonEnemyID].isAlive())
 	{
 		dungeonCurrentWaveEnemies[player.dungeonEnemyID].health = dungeonCurrentWaveEnemies[player.dungeonEnemyID].health - playerGetAttackDamage(player.level);
 	}
