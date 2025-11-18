@@ -56,6 +56,7 @@ function tickDungeon()
 
 		dungeonRefreshAlliesStatus();
 		dungeonRefreshAlliesHealth();
+		dungeonRefreshEnemiesHealth();
 	}
 }
 
@@ -256,6 +257,21 @@ function dungeonRefreshAlliesStatus()
 	{
 		$("#dungeon_tankStatus").removeAttr("class");
 		$("#dungeon_tankStatus").text("Pull in: " + dungeonPullTimer);
+	}
+}
+
+function dungeonRefreshEnemiesHealth()
+{
+	for (let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+	{
+		let healthPercent = (dungeonCurrentWaveEnemies[i].health / dungeonCurrentWaveEnemies[i].maxHealth * 100);
+
+		healthPercent = Math.max(0, Math.min(100, healthPercent));
+		const enemyHealthPercent = healthPercent.toFixed() + "%";
+
+		consoleLogDebug("Enemy " + i + " health: " + dungeonCurrentWaveEnemies[i].health + "/" + dungeonCurrentWaveEnemies[i].maxHealth + " = " + enemyHealthPercent);
+
+		$("#dungeon_enemyHealth_" + i).css("width", enemyHealthPercent);
 	}
 }
 
