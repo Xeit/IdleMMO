@@ -21,7 +21,7 @@ const dungeonsMap = new Array();
 dungeonsMap.push(
 	new Dungeon("Testing Dungeon",
 		[
-			["Rat", "Rat", "Fox", "Rat", "Rat"],
+			["TEST", "TEST", "Fox", "TEST", "TEST"],
 			["Rat", "Rat", "Fox", "Rat", "Rat", "Rat", "Rat"]
 		],
 		110, 15)
@@ -384,10 +384,27 @@ function dungeonEnemiesSelectTarget()
 {
 	for (let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
 	{
-		if (dungeonCurrentWaveEnemies[i].targetTag == "none")
+		// Check if current target is dead
+		if (dungeonCurrentWaveEnemies[i].targetTag != "none")
 		{
-			// This is target select before pull of wave
+			if (dungeonCurrentWaveEnemies[i].targetTag == "player")
+			{
+				if (player.health <= 0)
+				{
+					dungeonCurrentWaveEnemies[i].targetTag = "none";
+				}
+			}
+			else
+			{
+				if (dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
+				{
+					dungeonCurrentWaveEnemies[i].targetTag = "none";
+				}
+			}
+		}
 
+		function randomPullTarget()
+		{
 			let numberRolled = Math.random() * 100;
 			if (numberRolled < 80)
 			{
@@ -409,20 +426,51 @@ function dungeonEnemiesSelectTarget()
 			{
 				dungeonCurrentWaveEnemies[i].targetTag = "dps3";
 			}
+		}
+
+		if (dungeonCurrentWaveEnemies[i].targetTag == "none")
+		{
+			// This is target select before pull of wave
+			randomPullTarget();
 
 			// if character dead then change target
-			if (dungeonCurrentWaveEnemies[i].targetTag == "player")
+			let bCharacterDead = true;
+			let numberOfTries = 0;
+			while(bCharacterDead)
 			{
-				if (player.health <= 0)
+				randomPullTarget();
+
+				if (dungeonCurrentWaveEnemies[i].targetTag == "player")
 				{
-					i = i - 1;
+					if (player.health > 0)
+					{
+						bCharacterDead = false;
+					}
 				}
-			}
-			else
-			{
-				if (dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
+				else
 				{
-					i = i - 1;
+					if (dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).isAlive())
+					{
+						bCharacterDead = false;
+					}
+				}
+
+				numberOfTries = numberOfTries + 1;
+				if(numberOfTries > 5)
+				{
+					//Target first not dead or give up
+					dungeonGeneratedAllies.forEach(ally =>
+					{
+						if (ally instanceof Ally)
+						{
+							if(ally.isAlive())
+							{
+								dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+							}
+						}
+					});
+
+					bCharacterDead = false;
 				}
 			}
 		}
@@ -433,6 +481,7 @@ function dungeonEnemiesSelectTarget()
 			// if heroes attacking the enemy was a tank then there should be 100% to swap
 
 			// also somehow there should be always be a chance for starting to attack healer.
+			
 			let bSwappedTarget = false;
 			dungeonGeneratedAllies.forEach(ally => 
 			{
@@ -492,7 +541,10 @@ function dungeonEnemiesSelectTarget()
 			}
 		}
 
-		$("#dungeon_enemyTarget_" + i).text("TARGET: " + dungeonCurrentWaveEnemies[i].targetTag.toUpperCase());
+		if(dungeonCurrentWaveEnemies[i].targetTag !== undefined)
+		{
+			$("#dungeon_enemyTarget_" + i).text("TARGET: " + dungeonCurrentWaveEnemies[i].targetTag.toUpperCase());
+		}
 	}
 }
 
@@ -534,11 +586,36 @@ function dungeonEnemiesLogic()
 	// Maybe different functions depending on role of a MOB?
 
 	// Attack here
-
+	dungeonEnemiesAttack();
 
 
 	// Select targets here
 	dungeonEnemiesSelectTarget();
+}
+
+function dungeonEnemiesAttack()
+{
+	for (let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+	{
+		if (dungeonCurrentWaveEnemies[i].isAlive())
+		{
+			if (dungeonCurrentWaveEnemies[i].targetTag == "player")
+			{
+				if (player.health > 0)
+				{
+					playerTakeDamage(dungeonCurrentWaveEnemies[i].damage);
+				}
+			}
+			else if (dungeonCurrentWaveEnemies[i].targetTag != "none")
+			{
+				let targetAlly = dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag);
+				if (targetAlly.health > 0)
+				{
+					targetAlly.health = targetAlly.health - dungeonCurrentWaveEnemies[i].damage;
+				}
+			}
+		}
+	}
 }
 
 function dungeonPlayerLogic()
