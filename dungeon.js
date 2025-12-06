@@ -722,5 +722,32 @@ function dungeonCheckWaveEnd()
 
 function dungeonReceiveRewards()
 {
+	const dungeon = dungeonsMap[dungeonSelectedDungeonID];
+	let rewardDifficulty = EnemyDifficulty.hard;
+
+	if (dungeon.dungeonDifficulty >= 75)
+	{
+		rewardDifficulty = EnemyDifficulty.boss;
+	}
+	else if (dungeon.dungeonDifficulty >= 50)
+	{
+		rewardDifficulty = EnemyDifficulty.mini_boss;
+	}
+	else if (dungeon.dungeonDifficulty >= 25)
+	{
+		rewardDifficulty = EnemyDifficulty.very_hard;
+	}
+
+	const newItem = generateItem(dungeon.recommendedLevel, rewardDifficulty);
 	
+	consoleLogDebug("Dungeon Finished! Reward: " + newItem.itemName);
+	
+	if(tryNewItem(newItem))
+	{
+		consoleLogDebug("Equipped new item!");
+	}
+	else
+	{
+		consoleLogDebug("Item discarded.");
+	}
 }

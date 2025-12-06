@@ -365,7 +365,6 @@ function loadDriveCookie(fileContent)
 function bakeDriveCookie()
 {
 	const fileName = "NOTMMO_STILLRPG_SAVEFILE.json";
-	gatherPlayerData();
 
 	const fileContent = dataToSave;
 	const file = new Blob([fileContent], { type: 'application/json' });
