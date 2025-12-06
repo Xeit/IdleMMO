@@ -48,6 +48,7 @@ function tickDungeon()
 
 			dungeonPlayerLogic();
 			dungeonEnemiesLogic();
+			dungeonCheckWaveEnd();
 		}
 		else
 		{
@@ -308,10 +309,10 @@ function dungeonGenerateAlly(allyTag, allyRole, dungeonID)
 	switch (allyRole)
 	{
 		case AllyRole.tank:
-			NewAlly.maxHealth = NewAlly.maxHealth * 1.5;
+			NewAlly.maxHealth = NewAlly.maxHealth * 2;
 			break;
 		case AllyRole.healer:
-			NewAlly.maxHealth = NewAlly.maxHealth * 0.7;
+			NewAlly.maxHealth = NewAlly.maxHealth * 0.8;
 			break;
 		default:
 			break;
@@ -689,4 +690,37 @@ function dungeonPlayerHitEnemy()
 	{
 		dungeonCurrentWaveEnemies[player.dungeonEnemyID].health = dungeonCurrentWaveEnemies[player.dungeonEnemyID].health - playerGetAttackDamage(player.level);
 	}
+}
+
+function dungeonCheckWaveEnd()
+{
+	let bAllEnemiesDead = true;
+	for (let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
+	{
+		if(dungeonCurrentWaveEnemies[i].isAlive())
+		{
+			bAllEnemiesDead = false;
+			break;
+		}
+	}
+
+	if (bAllEnemiesDead)
+	{
+		dungeonCurrentWave++;
+		if (dungeonCurrentWave < dungeonsMap[dungeonSelectedDungeonID].enemyWaves.length)
+		{
+			dungeonStartNewWave();
+		}
+		else
+		{
+			dungeonReceiveRewards();
+			hideDungeonWindow();
+			newPlayerTask(PlayerTasks.none);
+		}
+	}
+}
+
+function dungeonReceiveRewards()
+{
+	
 }

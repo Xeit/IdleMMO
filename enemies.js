@@ -113,4 +113,4 @@ enemyMap.set("Labyrinth Watcher", new Enemy("Labyrinth Watcher", 51, EnemyDiffic
 enemyMap.set("Night Stalker", new Enemy("Night Stalker", 51, EnemyDifficulty.very_hard));
 enemyMap.set("Dark Knight", new Enemy("Dark Knight", 50, EnemyDifficulty.hard));
 enemyMap.set("Abyssal Beast", new Enemy("Abyssal Beast", 52, EnemyDifficulty.mini_boss));
-enemyMap.set("TEST", new Enemy("TEST", 30, EnemyDifficulty.hard));
+enemyMap.set("TEST", new Enemy("TEST", 15, EnemyDifficulty.hard));

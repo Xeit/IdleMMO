@@ -75,7 +75,7 @@ class AllyTank extends Ally
 	{
 		super();
 
-		this.staminaDamageReduction = 0.25;
+		this.staminaDamageReduction = 0.3;
 		this.buffDamageReduction = 250;
 	}
 
