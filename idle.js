@@ -2,6 +2,7 @@ var timeFromLastTick = 0;
 
 $(document).ready(function()
 {
+	initializeBakery();
 	eatCookie();
 	
 	initializeTraining();
