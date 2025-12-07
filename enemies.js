@@ -3,9 +3,9 @@ const EnemyDifficulty =
 	easy: 1,
 	medium: 1.5,
 	hard: 2,
-	very_hard: 3,
-	mini_boss: 5,
-	boss: 10
+	very_hard: 2.5,
+	mini_boss: 4,
+	boss: 8
 };
 
 function GetEnemyDifficultyName(enemyDifficulty)
@@ -38,7 +38,7 @@ class Enemy
 		this.enemyDifficulty = enemyDiff;
 		this.enemyXp = +(enemyLevel * enemyDiff).toFixed();
 		this.enemyMaxHealth = +(enemyLevel * 12 * enemyDiff).toFixed();
-		this.enemyDamage = +(enemyLevel * 2.5 * enemyDiff).toFixed();
+		this.enemyDamage = +(enemyLevel * 2.3 * enemyDiff).toFixed();
 	}
 }
 
@@ -113,4 +113,14 @@ enemyMap.set("Labyrinth Watcher", new Enemy("Labyrinth Watcher", 51, EnemyDiffic
 enemyMap.set("Night Stalker", new Enemy("Night Stalker", 51, EnemyDifficulty.very_hard));
 enemyMap.set("Dark Knight", new Enemy("Dark Knight", 50, EnemyDifficulty.hard));
 enemyMap.set("Abyssal Beast", new Enemy("Abyssal Beast", 52, EnemyDifficulty.mini_boss));
+
+// Dungeon enemies
 enemyMap.set("TEST", new Enemy("TEST", 15, EnemyDifficulty.hard));
+
+// City Sewers
+enemyMap.set("Sewer Rat", new Enemy("Sewer Rat", 15, EnemyDifficulty.medium));
+enemyMap.set("Goblin Thief", new Enemy("Goblin Thief", 17, EnemyDifficulty.medium));
+enemyMap.set("GobRat", new Enemy("GobRat", 18, EnemyDifficulty.hard));
+enemyMap.set("Vile GobRat", new Enemy("Vile GobRat", 18, EnemyDifficulty.hard));
+enemyMap.set("Boss GobRat", new Enemy("Boss GobRat", 18, EnemyDifficulty.very_hard));
+

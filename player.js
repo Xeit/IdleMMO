@@ -5,8 +5,6 @@ class DungeonPlayerStatistics
 	gameKnowledge = 0; // This might be trown out
 
 	mechanicAwarness = 0; // This should be per dungeon
-
-	nrOfUnlockedDungeons = 1; // Should start from 1 as first dungeon will be unlocked with option to enter dungeons
 }
 
 class Player
@@ -242,15 +240,20 @@ function playerUnlockFunctions(levelToUnlock)
 			$("#recoverHealthButton").css("display", "block");
 			$("#trainingButton").css("display", "block");
 			break;
-		case 5:
+		case 3:
 			$("#equipmentButton").css("display", "block");
 			break;
 		case 10:
 			$("#smithButton").css("display", "block");
+			break;
+		case 12:
+			$("#dungeonButton").css("display", "block");
+			break;
 		case 15:
 			$("#shopButton").css("display", "block");
 			break;
 	}
+	unlockDungeons(levelToUnlock);
 }
 
 function playerGetTotalItemPower()
