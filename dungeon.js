@@ -162,6 +162,10 @@ function dungeonCreateEnemiesHtml()
 			enemyTarget.setAttribute("id", ("dungeon_enemyTarget_" + enemiesAlreadyCreated));
 			enemyTarget.textContent = "";
 			enemySquare.append(enemyTarget);
+
+			let enemySquareSpacer = document.createElement("div");
+			enemySquareSpacer.style.width = "2px";
+			rowOfEnemies.append(enemySquareSpacer);
 		}
 	}
 }
@@ -372,6 +376,14 @@ function dungeonStartNewWave()
 		dungeonCurrentWaveEnemies.push(newDungeonEnemy);
 	}
 
+	dungeonGeneratedAllies.forEach(ally =>
+	{
+		if (ally instanceof Ally)
+		{
+			ally.enemyTargetID = -1;
+		}
+	});
+
 	dungeonCreateEnemiesHtml();
 	dungeonRefreshAlliesPower();
 }
@@ -564,7 +576,7 @@ function dungeonHealParty()
 	{
 		if (value.health < value.maxHealth)
 		{
-			value.health = value.health + Math.round(value.maxHealth * 0.06);
+			value.health = value.health + Math.round(value.maxHealth * 0.08);
 		}
 
 		if (value.health > value.maxHealth)
@@ -733,16 +745,20 @@ function dungeonReceiveRewards()
 		rewardDifficulty = EnemyDifficulty.very_hard;
 	}
 
-	const newItem = generateItem(dungeon.recommendedLevel, rewardDifficulty);
-	
-	consoleLogDebug("Dungeon Finished! Reward: " + newItem.itemName);
-	
-	if(tryNewItem(newItem))
+	// Generate 2 items bcs why not?
+	for(let i = 0; i < 2; i++)
 	{
-		consoleLogDebug("Equipped new item!");
-	}
-	else
-	{
-		consoleLogDebug("Item discarded.");
+		const newItem = generateItem(dungeon.recommendedLevel, rewardDifficulty);
+		
+		consoleLogDebug("Dungeon Finished! Reward: " + newItem.itemName);
+		
+		if(tryNewItem(newItem))
+		{
+			consoleLogDebug("Equipped new item!");
+		}
+		else
+		{
+			consoleLogDebug("Item discarded.");
+		}
 	}
 }

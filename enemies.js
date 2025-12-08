@@ -147,13 +147,25 @@ enemyMap.set("Lord Drakan", new Enemy("Lord Drakan", 40, EnemyDifficulty.mini_bo
 // Colosseum of Corruption - 43
 enemyMap.set("Skeleton Gladiator", new Enemy("Skeleton Gladiator", 41, EnemyDifficulty.hard));
 enemyMap.set("War Elephant", new Enemy("War Elephant", 42, EnemyDifficulty.very_hard));
+enemyMap.set("Saber-tooth Tiger", new Enemy("Saber-tooth Tiger", 41, EnemyDifficulty.very_hard));
 enemyMap.set("Undead Paladin", new Enemy("Undead Paladin", 46, EnemyDifficulty.hard));
 enemyMap.set("Nightmare Gladiator", new Enemy("Nightmare Gladiator", 47, EnemyDifficulty.very_hard));
 enemyMap.set("Skeleton Archer", new Enemy("Skeleton Archer", 46, EnemyDifficulty.very_hard));
 
 // Crimson Castle - 48
+enemyMap.set("Crimson Guard", new Enemy("Crimson Guard", 48, EnemyDifficulty.medium));
+enemyMap.set("Crimson Cavalier", new Enemy("Crimson Cavalier", 49, EnemyDifficulty.very_hard));
+enemyMap.set("Crimson Sharpshooter", new Enemy("Crimson Sharpshooter", 50, EnemyDifficulty.very_hard));
+enemyMap.set("Crimson Paladin", new Enemy("Crimson Paladin", 50, EnemyDifficulty.mini_boss));
+enemyMap.set("Ruby Golem", new Enemy("Ruby Golem", 51, EnemyDifficulty.mini_boss));
 
 // Plague City - 50
-//Mutated rat
+enemyMap.set("Mutated Rat", new Enemy("Mutated Rat", 50, EnemyDifficulty.very_hard));
+enemyMap.set("Mutated Dog", new Enemy("Mutated Dog", 51, EnemyDifficulty.very_hard));
+enemyMap.set("Corrupted Citizen", new Enemy("Corrupted Citizen", 49, EnemyDifficulty.mini_boss));
+enemyMap.set("Witch", new Enemy("Witch", 50, EnemyDifficulty.boss));
 
 // Tower of Corruption - 50+
+enemyMap.set("Coven Witch", new Enemy("Coven Witch", 48, EnemyDifficulty.mini_boss));
+enemyMap.set("Crimson Sorcerer", new Enemy("Crimson Sorcerer", 50, EnemyDifficulty.boss));
+enemyMap.set("THE BBG", new Enemy("THE BBG", 70, EnemyDifficulty.boss));

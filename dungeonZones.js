@@ -21,8 +21,10 @@ function unlockDungeons(playerLevel)
 				new Dungeon("City Sewers",
 					[
 						["Sewer Rat", "Goblin Thief", "Sewer Rat"],
-						["Sewer Rat", "GobRat", "GobRat", "GobRat", "Sewer Rat", "Sewer Rat", "Sewer Rat"],
-						["Sewer Rat", "GobRat", "Boss GobRat", "GobRat", "Sewer Rat", "Vile GobRat"],
+						["Sewer Rat", "GobRat", "GobRat", "GobRat", "Sewer Rat", 
+							"Sewer Rat", "Sewer Rat"],
+						["Sewer Rat", "GobRat", "Boss GobRat", "GobRat", "Sewer Rat", 
+							"Vile GobRat"],
 					],
 					10, 17)
 			);
@@ -31,8 +33,12 @@ function unlockDungeons(playerLevel)
 			dungeonsMap.push(
 				new Dungeon("Bandit's Lair",
 					[
-						["Big Rat", "Big Rat", "Fox", "Big Rat", "Big Rat"],
-						["Huge Bee", "Huge Bee", "Fox", "Huge Bee", "Huge Bee", "Huge Bee"]
+						["Bandit Thug", "Bandit Hunter", "Bandit Hunter", "Bandit Hunter", "Bandit Thug",
+							"Bandit Thug", "Bandit Thug"],
+						["Bandit Hunter","Bandit Hunter","Bandit Hunter","Bandit Hunter","Bandit Hunter",
+							"Trained Wolf","Slave Driver","Trained Wolf"],
+						["Bandit Thug","Slave Driver","Bandit Leader","Slave Driver","Bandit Thug",
+							"Bandit Thug","Bandit Thug","Bandit Thug"]
 					],
 					25, 25)
 			);
@@ -41,8 +47,10 @@ function unlockDungeons(playerLevel)
 			dungeonsMap.push(
 				new Dungeon("Poisonous Forest",
 					[
-						["Rat"],
-						["Rat"]
+						["Poisonous Spider","Forest Slime","Poisonous Spider"],
+						["Poisonous Spider","Poisonous Spider","Giant Spider","Poisonous Spider","Poisonous Spider",
+							"Poisonous Spider","Poisonous Spider","Poisonous Spider","Poisonous Spider","Poisonous Spider"],
+						["Giant Spider","Ogre","Spider Queen"]
 					],
 					40, 30)
 			);
@@ -51,8 +59,9 @@ function unlockDungeons(playerLevel)
 			dungeonsMap.push(
 				new Dungeon("Swamp with Vampires",
 					[
-						["Rat"],
-						["Rat"]
+						["Toxic Slime","Vampyre Juvinate","Toxic Slime"],
+						["Vampyre Juvinate","Vampyre Juvinate","Vampyre Juvinate","Blood Beast"],
+						["Blood Beast","Lord Drakan","Blood Beast"]
 					],
 					49, 37)
 			);
@@ -61,8 +70,10 @@ function unlockDungeons(playerLevel)
 			dungeonsMap.push(
 				new Dungeon("Colosseum of Corruption",
 					[
-						["Rat"],
-						["Rat"]
+						["Skeleton Gladiator","Undead Paladin","Skeleton Gladiator"],
+						["Saber-tooth Tiger","War Elephant","War Elephant","War Elephant","Saber-tooth Tiger"],
+						["Skeleton Archer","Undead Paladin","Skeleton Archer"],
+						["Undead Paladin","Undead Paladin","Nightmare Gladiator","Undead Paladin","Undead Paladin"]
 					],
 					65, 43)
 			);
@@ -71,8 +82,11 @@ function unlockDungeons(playerLevel)
 			dungeonsMap.push(
 				new Dungeon("Crimson Castle",
 					[
-						["Rat"],
-						["Rat"]
+						["Crimson Guard","Crimson Guard"],
+						["Crimson Cavalier","Crimson Cavalier","Crimson Cavalier"],
+						["Crimson Guard","Crimson Sharpshooter","Crimson Sharpshooter","Crimson Sharpshooter","Crimson Guard",
+							"Crimson Guard","Crimson Guard","Crimson Guard","Crimson Guard","Crimson Guard"],
+						["Crimson Paladin","Ruby Golem"]
 					],
 					74, 47)
 			);
@@ -81,8 +95,10 @@ function unlockDungeons(playerLevel)
 			dungeonsMap.push(
 				new Dungeon("Plague City",
 					[
-						["Rat"],
-						["Rat"]
+						["Rat","Mutated Rat","Mutated Rat","Mutated Rat","Rat",
+							"Mutated Rat","Mutated Dog","Mutated Dog","Mutated Rat"],
+						["Mutated Dog","Corrupted Citizen","Corrupted Citizen","Mutated Dog"],
+						["Corrupted Citizen","Witch","Corrupted Citizen"]
 					],
 					85, 50)
 			);
@@ -91,8 +107,9 @@ function unlockDungeons(playerLevel)
 			dungeonsMap.push(
 				new Dungeon("Tower of Corruption",
 					[
-						["Rat"],
-						["Rat"]
+						["Coven Witch","Coven Witch","Coven Witch"],
+						["Coven Witch","Crimson Sorcerer","Coven Witch"],
+						["THE BBG"]
 					],
 					100, 50)
 			);

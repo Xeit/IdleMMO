@@ -202,7 +202,7 @@ class AllyTank extends Ally
 
 		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
 		const armourRating = Math.round(this.itemPower * (3/4));
-		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
+		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (staminaMonsterDamageNumber * armourRating);
 		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
 		this.health = this.health - buffMonsterDamageNumber;
 
