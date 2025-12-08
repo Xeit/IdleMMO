@@ -54,47 +54,37 @@ function unlockDungeons(playerLevel)
 						["Rat"],
 						["Rat"]
 					],
-					49, 40)
+					49, 37)
 			);
 			break;
 		case 40:
-			dungeonsMap.push(
-				new Dungeon("Pyramid",
-					[
-						["Rat"],
-						["Rat"]
-					],
-					65, 45)
-			);
-			break;
-		case 45:
 			dungeonsMap.push(
 				new Dungeon("Colosseum of Corruption",
 					[
 						["Rat"],
 						["Rat"]
 					],
-					74, 50)
+					65, 43)
 			);
 			break;
-		case 48:
+		case 45:
 			dungeonsMap.push(
 				new Dungeon("Crimson Castle",
 					[
 						["Rat"],
 						["Rat"]
 					],
-					90, 50)
+					74, 47)
 			);
 			break;
-		case 49:
+		case 48:
 			dungeonsMap.push(
 				new Dungeon("Plague City",
 					[
 						["Rat"],
 						["Rat"]
 					],
-					95, 50)
+					85, 50)
 			);
 			break;
 		case 50:

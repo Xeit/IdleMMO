@@ -117,10 +117,43 @@ enemyMap.set("Abyssal Beast", new Enemy("Abyssal Beast", 52, EnemyDifficulty.min
 // Dungeon enemies
 enemyMap.set("TEST", new Enemy("TEST", 15, EnemyDifficulty.hard));
 
-// City Sewers
+// City Sewers - 17
 enemyMap.set("Sewer Rat", new Enemy("Sewer Rat", 15, EnemyDifficulty.medium));
 enemyMap.set("Goblin Thief", new Enemy("Goblin Thief", 17, EnemyDifficulty.medium));
 enemyMap.set("GobRat", new Enemy("GobRat", 18, EnemyDifficulty.hard));
 enemyMap.set("Vile GobRat", new Enemy("Vile GobRat", 18, EnemyDifficulty.hard));
 enemyMap.set("Boss GobRat", new Enemy("Boss GobRat", 18, EnemyDifficulty.very_hard));
 
+// Bandit's Lair - 25
+enemyMap.set("Bandit Thug", new Enemy("Bandit Thug", 22, EnemyDifficulty.medium));
+enemyMap.set("Bandit Hunter", new Enemy("Bandit Hunter", 23, EnemyDifficulty.medium));
+enemyMap.set("Trained Wolf", new Enemy("Trained Wolf", 21, EnemyDifficulty.hard));
+enemyMap.set("Slave Driver", new Enemy("Slave Driver", 24, EnemyDifficulty.very_hard));
+enemyMap.set("Bandit Leader", new Enemy("Bandit Leader", 26, EnemyDifficulty.very_hard));
+
+// Poisonous Forest - 30
+enemyMap.set("Forest Slime", new Enemy("Forest Slime", 28, EnemyDifficulty.medium));
+enemyMap.set("Poisonous Spider", new Enemy("Poisonous Spider", 32, EnemyDifficulty.easy));
+enemyMap.set("Giant Spider", new Enemy("Giant Spider", 30, EnemyDifficulty.hard));
+enemyMap.set("Ogre", new Enemy("Ogre", 32, EnemyDifficulty.very_hard));
+enemyMap.set("Spider Queen", new Enemy("Spider Queen", 30, EnemyDifficulty.mini_boss));
+
+// Swamp with Vampires - 37
+enemyMap.set("Toxic Slime", new Enemy("Toxic Slime", 36, EnemyDifficulty.hard));
+enemyMap.set("Vampyre Juvinate", new Enemy("Vampyre Juvinate", 38, EnemyDifficulty.very_hard));
+enemyMap.set("Blood Beast", new Enemy("Blood Beast", 37, EnemyDifficulty.mini_boss));
+enemyMap.set("Lord Drakan", new Enemy("Lord Drakan", 40, EnemyDifficulty.mini_boss));
+
+// Colosseum of Corruption - 43
+enemyMap.set("Skeleton Gladiator", new Enemy("Skeleton Gladiator", 41, EnemyDifficulty.hard));
+enemyMap.set("War Elephant", new Enemy("War Elephant", 42, EnemyDifficulty.very_hard));
+enemyMap.set("Undead Paladin", new Enemy("Undead Paladin", 46, EnemyDifficulty.hard));
+enemyMap.set("Nightmare Gladiator", new Enemy("Nightmare Gladiator", 47, EnemyDifficulty.very_hard));
+enemyMap.set("Skeleton Archer", new Enemy("Skeleton Archer", 46, EnemyDifficulty.very_hard));
+
+// Crimson Castle - 48
+
+// Plague City - 50
+//Mutated rat
+
+// Tower of Corruption - 50+
