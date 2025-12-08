@@ -78,14 +78,17 @@ function dungeonCreateSelectDungeonHtml()
 				let divRecommendedILvl = document.createElement("div");
 				let divDungeonExperience = document.createElement("div");
 				let divSpace3 = document.createElement("div");
+				let divSpace4 = document.createElement("div");
 				let buttonStartDungeon = document.createElement("button");
 
 				divSpace1.setAttribute("class", "space");
+				divSpace4.setAttribute("class", "space");
 				divDungeonName.setAttribute("style", "font-size: x-large;");
 				divDungeonName.textContent = dungeonsMap[i * 3 + j].name;
 				divSpace2.setAttribute("class", "space");
 				divRecommendedILvl.textContent = "Recommended lvl: " + dungeonsMap[i * 3 + j].recommendedLevel + "+";
-				divDungeonExperience.textContent = "Experience: 0/100";
+				// TODO: One day this will be implemented
+				//divDungeonExperience.textContent = "Experience: 0/100";
 				divSpace3.setAttribute("class", "space");
 				buttonStartDungeon.textContent = "START";
 				buttonStartDungeon.onclick = function ()
@@ -96,6 +99,7 @@ function dungeonCreateSelectDungeonHtml()
 				}
 
 				newLocation.append(divSpace1);
+				newLocation.append(divSpace4);
 				newLocation.append(divDungeonName);
 				newLocation.append(divSpace2);
 				newLocation.append(divRecommendedILvl);
