@@ -3,9 +3,9 @@ const EnemyDifficulty =
 	easy: 1,
 	medium: 1.5,
 	hard: 2,
-	very_hard: 3,
-	mini_boss: 5,
-	boss: 10
+	very_hard: 2.5,
+	mini_boss: 4,
+	boss: 8
 };
 
 function GetEnemyDifficultyName(enemyDifficulty)
@@ -38,7 +38,30 @@ class Enemy
 		this.enemyDifficulty = enemyDiff;
 		this.enemyXp = +(enemyLevel * enemyDiff).toFixed();
 		this.enemyMaxHealth = +(enemyLevel * 12 * enemyDiff).toFixed();
-		this.enemyDamage = +(enemyLevel * 2.5 * enemyDiff).toFixed();
+		this.enemyDamage = +(enemyLevel * 2.3 * enemyDiff).toFixed();
+	}
+}
+
+class DungeonEnemy
+{
+	name;
+	health;
+	maxHealth;
+	damage;
+	xp;
+	targetTag = "none";
+	isBoss = false;
+
+	isAlive()
+	{
+		if(this.health > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
 
@@ -90,3 +113,59 @@ enemyMap.set("Labyrinth Watcher", new Enemy("Labyrinth Watcher", 51, EnemyDiffic
 enemyMap.set("Night Stalker", new Enemy("Night Stalker", 51, EnemyDifficulty.very_hard));
 enemyMap.set("Dark Knight", new Enemy("Dark Knight", 50, EnemyDifficulty.hard));
 enemyMap.set("Abyssal Beast", new Enemy("Abyssal Beast", 52, EnemyDifficulty.mini_boss));
+
+// Dungeon enemies
+enemyMap.set("TEST", new Enemy("TEST", 15, EnemyDifficulty.hard));
+
+// City Sewers - 17
+enemyMap.set("Sewer Rat", new Enemy("Sewer Rat", 15, EnemyDifficulty.medium));
+enemyMap.set("Goblin Thief", new Enemy("Goblin Thief", 17, EnemyDifficulty.medium));
+enemyMap.set("GobRat", new Enemy("GobRat", 18, EnemyDifficulty.hard));
+enemyMap.set("Vile GobRat", new Enemy("Vile GobRat", 18, EnemyDifficulty.hard));
+enemyMap.set("Boss GobRat", new Enemy("Boss GobRat", 18, EnemyDifficulty.very_hard));
+
+// Bandit's Lair - 25
+enemyMap.set("Bandit Thug", new Enemy("Bandit Thug", 22, EnemyDifficulty.medium));
+enemyMap.set("Bandit Hunter", new Enemy("Bandit Hunter", 23, EnemyDifficulty.medium));
+enemyMap.set("Trained Wolf", new Enemy("Trained Wolf", 21, EnemyDifficulty.hard));
+enemyMap.set("Slave Driver", new Enemy("Slave Driver", 24, EnemyDifficulty.very_hard));
+enemyMap.set("Bandit Leader", new Enemy("Bandit Leader", 26, EnemyDifficulty.very_hard));
+
+// Poisonous Forest - 30
+enemyMap.set("Forest Slime", new Enemy("Forest Slime", 28, EnemyDifficulty.medium));
+enemyMap.set("Poisonous Spider", new Enemy("Poisonous Spider", 32, EnemyDifficulty.easy));
+enemyMap.set("Giant Spider", new Enemy("Giant Spider", 30, EnemyDifficulty.hard));
+enemyMap.set("Ogre", new Enemy("Ogre", 32, EnemyDifficulty.very_hard));
+enemyMap.set("Spider Queen", new Enemy("Spider Queen", 30, EnemyDifficulty.mini_boss));
+
+// Swamp with Vampires - 37
+enemyMap.set("Toxic Slime", new Enemy("Toxic Slime", 36, EnemyDifficulty.hard));
+enemyMap.set("Vampyre Juvinate", new Enemy("Vampyre Juvinate", 38, EnemyDifficulty.very_hard));
+enemyMap.set("Blood Beast", new Enemy("Blood Beast", 37, EnemyDifficulty.mini_boss));
+enemyMap.set("Lord Drakan", new Enemy("Lord Drakan", 40, EnemyDifficulty.mini_boss));
+
+// Colosseum of Corruption - 43
+enemyMap.set("Skeleton Gladiator", new Enemy("Skeleton Gladiator", 41, EnemyDifficulty.hard));
+enemyMap.set("War Elephant", new Enemy("War Elephant", 42, EnemyDifficulty.very_hard));
+enemyMap.set("Saber-tooth Tiger", new Enemy("Saber-tooth Tiger", 41, EnemyDifficulty.very_hard));
+enemyMap.set("Undead Paladin", new Enemy("Undead Paladin", 46, EnemyDifficulty.hard));
+enemyMap.set("Nightmare Gladiator", new Enemy("Nightmare Gladiator", 47, EnemyDifficulty.very_hard));
+enemyMap.set("Skeleton Archer", new Enemy("Skeleton Archer", 46, EnemyDifficulty.very_hard));
+
+// Crimson Castle - 48
+enemyMap.set("Crimson Guard", new Enemy("Crimson Guard", 48, EnemyDifficulty.medium));
+enemyMap.set("Crimson Cavalier", new Enemy("Crimson Cavalier", 49, EnemyDifficulty.very_hard));
+enemyMap.set("Crimson Sharpshooter", new Enemy("Crimson Sharpshooter", 50, EnemyDifficulty.very_hard));
+enemyMap.set("Crimson Paladin", new Enemy("Crimson Paladin", 50, EnemyDifficulty.mini_boss));
+enemyMap.set("Ruby Golem", new Enemy("Ruby Golem", 51, EnemyDifficulty.mini_boss));
+
+// Plague City - 50
+enemyMap.set("Mutated Rat", new Enemy("Mutated Rat", 50, EnemyDifficulty.very_hard));
+enemyMap.set("Mutated Dog", new Enemy("Mutated Dog", 51, EnemyDifficulty.very_hard));
+enemyMap.set("Corrupted Citizen", new Enemy("Corrupted Citizen", 49, EnemyDifficulty.mini_boss));
+enemyMap.set("Witch", new Enemy("Witch", 50, EnemyDifficulty.boss));
+
+// Tower of Corruption - 50+
+enemyMap.set("Coven Witch", new Enemy("Coven Witch", 48, EnemyDifficulty.mini_boss));
+enemyMap.set("Crimson Sorcerer", new Enemy("Crimson Sorcerer", 50, EnemyDifficulty.boss));
+enemyMap.set("THE BBG", new Enemy("THE BBG", 70, EnemyDifficulty.boss));

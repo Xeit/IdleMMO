@@ -1,5 +1,22 @@
 var dataToSave = "";
 
+function initializeBakery()
+{
+	const fileInput = document.getElementById('fileInput');
+	fileInput.addEventListener('change', (e) => {
+		const file = e.target.files && e.target.files[0];
+		if (file) 
+		{
+			loadDriveCookie(file);
+		}
+	});
+
+	const exportButton = document.getElementById('exportButton');
+	exportButton.addEventListener('click', (e) => {
+		bakeDriveCookie();
+	});
+}
+
 function addData(dataToAdd)
 {
 	dataToSave += "|save|";
@@ -315,4 +332,45 @@ function readPlayerData(arrayOfVariables)
 			}
 		}
 	}
+}
+
+function loadDriveCookie(fileContent)
+{
+	consoleLogDebug("Trying a cookie from drive :D");
+
+	if (fileContent.type.startsWith('application/json') || fileContent.name.toLowerCase().endsWith('.json')) 
+	{
+		try 
+		{
+			let fileReader = new FileReader();
+			let unsplitText;
+			fileReader.onload = function() {
+				unsplitText = fileReader.result;
+				var arrayOfVariables = unsplitText.split("|save|");
+				readPlayerData(arrayOfVariables);
+			};
+			fileReader.readAsText(fileContent);
+		}
+		catch (err) 
+		{
+			consoleLogDebug("Invalid JSON: " + err);
+		}
+	}
+	else 
+	{
+		consoleLogDebug("Failed eating a drive cookie :C");
+	}
+}
+
+function bakeDriveCookie()
+{
+	const fileName = "NOTMMO_STILLRPG_SAVEFILE.json";
+
+	const fileContent = dataToSave;
+	const file = new Blob([fileContent], { type: 'application/json' });
+
+	const a = document.createElement('a');
+	a.href = URL.createObjectURL(file);
+	a.download = fileName;
+	a.click();
 }

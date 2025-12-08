@@ -1,0 +1,69 @@
+.dungeon_hpBarOutside
+{
+	width: 70%;
+	height: 10%;
+	background-color: rgb(31, 32, 32);
+	border-radius: 10px;
+	border:#000 2px solid;
+}
+
+.dungeon_hpBarInside
+{
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, rgb(151, 58, 58), rgb(153, 100, 100)) 0% 0% / 100% 100% no-repeat;
+	border-radius: 10px;
+	transition-duration: 100ms;
+}
+
+.dungeon_allySquare
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 95%;
+	width: 19%;
+	border: #000 solid 1px;
+}
+
+.dungeon_dungeonSelect_Row
+{
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	height: 30%;
+	width: 100%;
+	border: #000 solid 1px;
+}
+
+.dungeon_dungeonSelect_location
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	width: 33%;
+	border: #000 solid 1px;
+}
+
+.dungeonWindow_insideDungeon_enemiesRow
+{
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	height: 33%;
+	width: 100%;
+	border-bottom: #000 solid 1px;
+}
+
+.dungeonWindow_insideDungeon_enemySquare
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 95%;
+	width: 19%;
+	border: #000 solid 1px;
+}

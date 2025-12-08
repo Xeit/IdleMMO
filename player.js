@@ -1,3 +1,12 @@
+class DungeonPlayerStatistics
+{
+	teamwork = 0; // Player soft skills? No clue
+	mechanics = 0; // Player skill
+	gameKnowledge = 0; // This might be trown out
+
+	mechanicAwarness = 0; // This should be per dungeon
+}
+
 class Player
 {
 	//Level
@@ -37,6 +46,10 @@ class Player
 
 	//Buffs
 	buffList = [];
+
+	//Dungeon
+	dungeonStatistics = new DungeonPlayerStatistics();
+	dungeonEnemyID = -1;
 
 	playerUnlockFunctionsUntilLevel()
 	{
@@ -227,13 +240,46 @@ function playerUnlockFunctions(levelToUnlock)
 			$("#recoverHealthButton").css("display", "block");
 			$("#trainingButton").css("display", "block");
 			break;
-		case 5:
+		case 3:
 			$("#equipmentButton").css("display", "block");
 			break;
 		case 10:
 			$("#smithButton").css("display", "block");
+			break;
+		case 12:
+			$("#dungeonButton").css("display", "block");
+			break;
 		case 15:
 			$("#shopButton").css("display", "block");
 			break;
 	}
+	unlockDungeons(levelToUnlock);
+}
+
+function playerGetTotalItemPower()
+{
+	let itemPower = 0;
+
+	if(player.weaponSlot !== undefined)
+	{
+		itemPower = itemPower + player.weaponSlot.returnItemPower(true);
+	}
+	if(player.helmetSlot !== undefined)
+	{
+		itemPower = itemPower + player.helmetSlot.returnItemPower(true);
+	}
+	if(player.bodyArmourSlot !== undefined)
+	{
+		itemPower = itemPower + player.bodyArmourSlot.returnItemPower(true);
+	}
+	if(player.glovesSlot !== undefined)
+	{
+		itemPower = itemPower + player.glovesSlot.returnItemPower(true);
+	}
+	if(player.bootsSlot !== undefined)
+	{
+		itemPower = itemPower + player.bootsSlot.returnItemPower(true);
+	}
+
+	return itemPower;
 }

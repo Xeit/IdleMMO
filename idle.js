@@ -2,6 +2,7 @@ var timeFromLastTick = 0;
 
 $(document).ready(function()
 {
+	initializeBakery();
 	eatCookie();
 	
 	initializeTraining();
@@ -10,6 +11,7 @@ $(document).ready(function()
 	initializeShops();
 	InitializeSmith();
 	InitializeEquipment();
+	initializeDungeon();
 	
 	updateInfoPanel();
 	tickBuffs();
@@ -50,6 +52,9 @@ $(document).ready(function()
 					case PlayerTasks.questing:
 						tickQuesting();
 						break;
+					case PlayerTasks.dungeon:
+						tickDungeon();
+						break;
 				}
 
 				tickBuffs();
@@ -72,6 +77,7 @@ $(document).ready(function()
 		newPlayerTask(PlayerTasks.farming_monsters);
 	});
 
+	// @ts-ignore
 	$("#questingButton").click(function(){
 		newPlayerTask(PlayerTasks.questing);
 	})
@@ -96,6 +102,10 @@ $(document).ready(function()
 		newPlayerTask(PlayerTasks.smith);
 	})
 
+	$("#dungeonButton").click(function(){
+		newPlayerTask(PlayerTasks.dungeon);
+	})
+
 	//Tbh all bs I wrote was started by this tutorial: https://www.youtube.com/playlist?list=PLgHw_wODS1vX20X7ppbssrn_MU6SaYoDF
 	//He had like 4k views on playlist, it's not best tutorial but still helped me start writing this website. Thanks!
 	//Old stuff from tutorial on YT that had literally like 1k views, LMAO.
@@ -105,7 +115,6 @@ $(document).ready(function()
 function newPlayerTask(newTask)
 {
 	UIDisplayNewTask(newTask);
-
 
 	if(currentTask != newTask)
 	{
@@ -129,6 +138,8 @@ function newPlayerTask(newTask)
 				break;
 			case PlayerTasks.shop:
 				break;
+			case PlayerTasks.dungeon:
+				bShouldStopPreviousTask = true;
 			default:
 				break;
 		}
@@ -142,13 +153,15 @@ function newPlayerTask(newTask)
 					stopBattle();
 					break;
 				case PlayerTasks.healing:
-					stopHealing();
 					break;
 				case PlayerTasks.training:
 					stopTraining();
 					break;
 				case PlayerTasks.questing:
 					stopQuesting();
+					break;
+				case PlayerTasks.dungeon:
+					// Should stop when not ticking, reset happens on start
 					break;
 				default:
 					break;
@@ -163,13 +176,14 @@ function newPlayerTask(newTask)
 				startBattle();
 				break;
 			case PlayerTasks.healing:
-				startHealing();
 				break;
 			case PlayerTasks.training:
 				startTraining();
 				break;
 			case PlayerTasks.questing:
 				startQuesting();
+				break;
+			case PlayerTasks.dungeon:
 				break;
 			default:
 				break;

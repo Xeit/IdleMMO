@@ -13,33 +13,42 @@
 		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 	</style>
 
-	<link rel="stylesheet" href="idle.css?v=34">
+	<link rel="stylesheet" href="idle.css?v=35">
+	<link rel="stylesheet" href="dungeon.css?v=35">
 	
-	<script src="uiFunctions.js?v=34"></script>
+	<script src="uiFunctions.js?v=35"></script>
 
-	<script src="enums.js?v=34"></script>
-	<script src="item.js?v=34"></script>
-	<script src="player.js?v=34"></script>
-	<script src="enemies.js?v=34"></script>
-	<script src="battleZones.js?v=34"></script>
-	<script src="buffs.js?v=34"></script>
+	<script src="enums.js?v=35"></script>
+	<script src="item.js?v=35"></script>
+	<script src="enemies.js?v=35"></script>
+	<script src="battleZones.js?v=35"></script>
+	<script src="dungeonZones.js?v=35"></script>
+	<script src="player.js?v=35"></script>
+	<script src="buffs.js?v=35"></script>
 	
-	<script src="saveSystem.js?v=2"></script>
+	<script src="saveSystem.js?v=35"></script>
 
-	<script src="battle.js?v=34"></script>
-	<script src="healing.js?v=34"></script>
-	<script src="training.js?v=34"></script>
-	<script src="questing.js?v=34"></script>
-	<script src="shops.js?v=34"></script>
-	<script src="smith.js?v=34"></script>
+	<script src="battle.js?v=35"></script>
+	<script src="healing.js?v=35"></script>
+	<script src="training.js?v=35"></script>
+	<script src="questing.js?v=35"></script>
+	<script src="shops.js?v=35"></script>
+	<script src="smith.js?v=35"></script>
+	<script src="dungeonAllies.js?v=35"></script>
+	<script src="dungeon.js?v=35"></script>
 
-	<script src="idle.js?v=34"></script>
+	<script src="idle.js?v=35"></script>
 </head>
 <body>
 	<div id="new_content">
 		<div id="info_panel">
 			<h3 id="statsHeader" style="padding-left: 2px;">STATISTICS:</h3>
 			<div class="player_info_group">
+				<label style="display: none;">
+					<strong>Import save file</strong>
+					<input id="fileInput" type="file" style="display:none" />
+					<button id="exportButton">EXPORT</button>
+				</label>
 				<div class="player_info_element">
 					Level:
 					<span id="player_info_level"></span>
@@ -60,8 +69,9 @@
 					<span id="player_info_health_potions"></span>
 				</div>
 			</div>
-			<br>
-			<div class="player_info_group">
+			<!-- Currently mana doesn't exist so I will hide it, maybe someday it will be useful. -->
+			<br style="display: none;" >
+			<div class="player_info_group" style="display: none;" >
 				<div class="player_info_element" id="MANA">
 					Mana:
 					<span id="player_info_mana"></span>
@@ -109,6 +119,7 @@
 		<div class="vertical_spacer"></div>
 
 		<div id="main_panel">
+			<!-- Tick bar and task info -->
 			<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 15%;">
 				<div id="tick_info">
 					<div style="padding-top: 10px;">Tick: </div>
@@ -121,8 +132,7 @@
 
 
 			<!-- STARTING PLACE -->
-			<div class="task_window" id="empty_window">
-			</div>
+			<div class="task_window" id="empty_window"></div>
 
 			<!-- BATTLE -->
 			<div class = "task_window" id="battle_window">
@@ -632,12 +642,76 @@
 				</div>
 			</div>
 
+			<div class="task_window" id="dungeonWindow" style="display: none;">
+				<div id="dungeonWindow_selectDungeon" style="display: flex;flex-direction: column; width: 100%;height: 100%;overflow-y:auto;overflow-x:hidden">
+					<!-- This part is created dynamicaly in dungeon.js createDungeonsHtml() -->
+				</div>
+				<div id="dungeonWindow_insideDungeon" style="display: none;flex-direction: column; width: 100%;height: 100%;border:#000 solid 1px;">
+					<div id="dungeonWindow_insideDungeon_enemies" style="display: flex;flex-direction: column;align-items: center;justify-content: center;width: 100%;height: 80%;">
+						ENEMIES
+					</div>
+					<div id="dungeonWindow_insideDungeon_allies" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 20%;border-top: #000 double 5px;">
+						<div class="dungeon_allySquare">
+							<div class="space"></div>
+							<div>TANK</div>
+							<div id="dungeon_tankPower">POWER: 250</div>
+							<div id="dungeon_tankStatus" class="space"></div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_tankHealth" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
+						<div style="width: 2px;"></div>
+						<div class="dungeon_allySquare">
+							<div class="space"></div>
+							<div>HEALER</div>
+							<div id="dungeon_healerPower">POWER: 250</div>
+							<div id="dungeon_healerStatus" class="space"></div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_healerHealth" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
+						<div style="width: 2px;"></div>
+						<div class="dungeon_allySquare">
+							<div class="space"></div>
+							<div>YOU</div>
+							<div id="dungeon_playerPower">POWER: 250</div>
+							<div id="dungeon_playerStatus" class="space"></div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_playerHealth" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
+						<div style="width: 2px;"></div>
+						<div class="dungeon_allySquare">
+							<div class="space"></div>
+							<div>DPS NR.2</div>
+							<div id="dungeon_dps2Power">POWER: 250</div>
+							<div id="dungeon_dps2Status" class="space"></div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_dps2Health" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
+						<div style="width: 2px;"></div>
+						<div class="dungeon_allySquare">
+							<div class="space"></div>
+							<div>DPS NR.3</div>
+							<div id="dungeon_dps3Power">POWER: 250</div>
+							<div id="dungeon_dps3Status" class="space"></div>
+							<div class="dungeon_hpBarOutside">
+								<div id="dungeon_dps3Health" class="dungeon_hpBarInside"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Buttons at the bottom of the screen -->
 			<div id = "control_buttons">
 				<span style="display: flex; width: 50%;">
 					<button id="battleButton" style="display: none;">BATTLE</button>
 					<button id="questingButton">QUESTS</button>
 					<button id="recoverHealthButton" style="display: none;">HEAL</button>
 					<button id="trainingButton" style="display: none;">TRAIN</button>
+					<button id="dungeonButton" style="display: none;">DUNGEONS</button>
 				</span>
 				<span style="display: flex; flex-direction: row-reverse; width: 50%;">
 					<button id="equipmentButton" style="display: none;">EQ</button>

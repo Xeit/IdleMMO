@@ -1,1 +1,7 @@
 .vscode/
+node_modules/
+*.code-workspace
+jsconfig.json
+package-lock.json
+package.json
+dev_server.py

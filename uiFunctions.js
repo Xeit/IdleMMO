@@ -136,6 +136,9 @@ function UIDisplayNewTask(newTaskToDisplay)
 		case PlayerTasks.smith:
 			HideSmithWindow();
 			break;
+		case PlayerTasks.dungeon:
+			hideDungeonWindow();
+			break;
 	}
 
 	//Start new task
@@ -164,6 +167,9 @@ function UIDisplayNewTask(newTaskToDisplay)
 			break;
 		case PlayerTasks.smith:
 			ShowSmithWindow();
+			break;
+		case PlayerTasks.dungeon:
+			showDungeonWindow();
 			break;
 	}
 }
