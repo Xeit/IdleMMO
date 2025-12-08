@@ -15,6 +15,7 @@
 
 	<link rel="stylesheet" href="idle.css?v=35">
 	<link rel="stylesheet" href="dungeon.css?v=35">
+	<link rel="stylesheet" href="shops/shops.css?v=35">
 	
 	<script src="uiFunctions.js?v=35"></script>
 
@@ -65,7 +66,7 @@
 					<span id="player_info_health"></span>
 				</div>
 				<div class="player_info_element" id="HP_Potions" style="background: linear-gradient(90deg, rgb(151, 58, 58), rgb(153, 100, 100)) 0% 0% / 100% 100% no-repeat">
-					HP potions:
+					Potions:
 					<span id="player_info_health_potions"></span>
 				</div>
 			</div>
@@ -79,7 +80,7 @@
 			</div>
 			<br>
 			<div class="player_info_group">
-				<div class="player_info_element">
+				<div class="player_info_element" style="background: linear-gradient(90deg, #c26f27e8, #d7ad03e1);">
 					Gold:
 					<span id="player_info_gold"></span>
 				</div>
@@ -106,7 +107,7 @@
 			<br>
 			<div class="player_info_group">
 				<div class="player_info_element" id="EXH">
-					Exhaustion:
+					Bloodlust:
 					<span id="player_info_exhaustion"></span>
 				</div>
 			</div>
@@ -194,15 +195,16 @@
 						</span>
 					</div>
 
-					<!-- Future skills and spells? Maybe -->
-					<div style="display: flex; width: 100%; height: 15%;">
-
-					</div>
-
 					<!-- Place for button to run away from battle -->
-					<div style="display: flex; width: 100%; height: 5%; justify-content: center;">
-						<button id="battle_window_stop_battle">RUN AWAY</button>
+					<div style="display: flex; width: 100%; height: 10%; justify-content: center;">
+						<button id="battle_window_stop_battle" style="height: 70%;">RUN AWAY</button>
 					</div>
+
+					<!-- Future skills and spells? Maybe -->
+					<div style="display: flex; width: 100%; height: 10%;">
+
+					</div>
+
 				</div>
 			</div>
 			
@@ -232,7 +234,9 @@
 				</div>
 				<div id="questing_window_exhaustion">
 					<div>Questing is mentaly exhausting, we know that... right?</div>
-					<div id="questing_exhaustion_percentage" style="font-size: x-large;">Exhaustion level: 0%</div>
+					<div id="questing_exhaustion_percentage" style="font-size: x-large;">Bloodlust level: 0%</div>
+					<div class="space"></div>
+					<div id="questing_exhaustion_tutorial" style="display: none; font-size: larger;color: red;">Kill enemies to reduce bloodlust</div>
 				</div>
 				<div id="questing_window_info">
 					<div>Current Quest</div>
@@ -357,7 +361,7 @@
 				<!-- POTION SELLER (SHOP) -->
 				<div class="task_window" id="potion_seller_window" style="display: none; flex-direction: column; align-items: center; justify-content: center;">
 					<div style="width: 80%; height: 95%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
-						<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<div class="shops_item_row">
 							<span style="width: 45%; display: flex; justify-content: center;">
 								NAME
 							</span>
@@ -370,7 +374,7 @@
 							</span>
 						</div>
 
-						<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<div class="shops_item_row">
 							<span style="width: 45%; display: flex; justify-content: center;">
 								HEALTH POTION
 							</span>
@@ -383,7 +387,7 @@
 								</div>
 							</span>
 						</div>
-						<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<div class="shops_item_row">
 							<span style="width: 45%; display: flex; justify-content: center;">
 								HEALTH POTION USAGE TRESHHOLD
 							</span>
@@ -405,7 +409,7 @@
 				<!-- CHURCH (SHOP) -->
 				<div class="task_window" id="church_window" style="display: none; flex-direction: column; align-items: center; justify-content: center;">
 					<div style="width: 80%; height: 95%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
-						<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<div class="shops_item_row">
 							<span style="width: 25%; display: flex; justify-content: center;">
 								NAME
 							</span>
@@ -421,7 +425,7 @@
 							</span>
 						</div>
 
-						<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<div class="shops_item_row">
 							<span style="width: 25%; display: flex; justify-content: center;">
 								+ 10 DAMAGE BLESSING
 							</span>
@@ -438,7 +442,7 @@
 							</span>
 						</div>
 					
-						<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<div class="shops_item_row">
 							<span style="width: 25%; display: flex; justify-content: center;">
 								+ 10 DEFENSE BLESSING
 							</span>
@@ -462,7 +466,7 @@
 				<!-- TAVERN (SHOP) -->
 				<div class="task_window" id="tavern_window" style="display: none; flex-direction: column; align-items: center;">
 					<div style="width: 80%; height: 95%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
-						<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<div class="shops_item_row">
 							<span style="width: 25%; display: flex; justify-content: center;">
 								NAME
 							</span>
@@ -478,7 +482,7 @@
 							</span>
 						</div>
 
-						<div style="height: 5%; display: flex; align-items: center; border-bottom:#000 solid 1px;">
+						<div class="shops_item_row">
 							<span style="width: 25%; display: flex; justify-content: center;">
 								+5 DAMAGE
 							</span>

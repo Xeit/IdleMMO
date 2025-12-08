@@ -348,10 +348,12 @@ function updateQuestInfo()
 	if(playerExhaustionFillPercent > 80)
 	{
 		$("#questing_exhaustion_percentage").css("color", "red");
+		$("#questing_exhaustion_tutorial").css("display", "block");
 	}
 	else
 	{
 		$("#questing_exhaustion_percentage").css("color", "white");
+		$("#questing_exhaustion_tutorial").css("display", "none");
 	}
-	$("#questing_exhaustion_percentage").text("Exhaustion level: " + playerExhaustionFillPercent + "%");
+	$("#questing_exhaustion_percentage").text("Bloodlust level: " + playerExhaustionFillPercent + "%");
 }

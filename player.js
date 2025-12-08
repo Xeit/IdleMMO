@@ -100,7 +100,9 @@ function playerLevelUp()
 {
 	player.level += 1;
 	player.xp = 0;
-	player.requiredXp = +(0.25 * (player.level + (300 * 2 * ((player.level - 1) / 4))) + 50).toFixed();
+
+	player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
+	player.requiredXp = +player.requiredXp.toFixed();
 
 	player.maxHealth = 100 + (10 * (player.level - 1));
 	player.maxMana = 100 + (10 * (player.level - 1));
