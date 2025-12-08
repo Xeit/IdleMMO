@@ -40,12 +40,10 @@ class PlayerBuff
 
 function tickBuffs()
 {
-	var atLeastOneBuffToShow = false;	
 	for(var i = 0; i < player.buffList.length; i = i + 1)
 	{
 		if(typeof(player.buffList[i] == PlayerBuff))
 		{
-			atLeastOneBuffToShow = true;
 			player.buffList[i].buffDuration -= 1;
 			if(player.buffList[i].buffDuration <= 0)
 			{
@@ -55,7 +53,7 @@ function tickBuffs()
 		}
 	}
 
-	updateBuffInfoPanel(atLeastOneBuffToShow);
+	UIUpdateBuffInfoPanel();
 }
 
 function getTotalBuffsWithType(buffTypeToGet)
@@ -74,49 +72,6 @@ function getTotalBuffsWithType(buffTypeToGet)
 	}
 
 	return totalBuffStrength;
-}
-
-function updateBuffInfoPanel(atLeastOneBuffToShow)
-{
-	if(atLeastOneBuffToShow)
-	{
-		$("#player_info_buffs").css("display", "block");
-	}
-	else
-	{
-		$("#player_info_buffs").css("display", "none");
-	}
-
-	$("#player_info_buffs").empty();
-
-	for(var i = 0; i < player.buffList.length; i = i + 1)
-	{
-		if(typeof(player.buffList[i] == PlayerBuff))
-		{
-			let buffMinutesLeft = Math.trunc(player.buffList[i].buffDuration / 60);
-			let buffSecondsLeft = player.buffList[i].buffDuration - (buffMinutesLeft * 60);
-
-			var buffDurationString = buffMinutesLeft.toString() + ':';
-			if(buffSecondsLeft > 9)
-			{
-				buffDurationString += buffSecondsLeft.toString();
-			}
-			else
-			{
-				buffDurationString += '0' + buffSecondsLeft.toString();
-			}
-
-			let buffInfoElement = document.createElement("div");
-			buffInfoElement.setAttribute("class", "player_info_element");
-			buffInfoElement.textContent = player.buffList[i].buffName;
-
-			let buffInfoDuration = document.createElement("span");
-			buffInfoDuration.textContent = buffDurationString;
-			buffInfoElement.append(buffInfoDuration);
-
-			$("#player_info_buffs").append(buffInfoElement);
-		}
-	}
 }
 
 const buffsDefaultsArray = new Array();

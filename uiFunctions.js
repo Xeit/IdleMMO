@@ -10,6 +10,11 @@ function updateProgressBar()
 	$("#tick_progress_inside").css("width", fillPercent);
 }
 
+function UIUpdateHPPotionsAmount()
+{
+	$("#player_info_health_potions").text(player.healthPotions);
+}
+
 function updateInfoPanel()
 {
 	$("#player_info_level").text(player.level);
@@ -24,7 +29,7 @@ function updateInfoPanel()
 	$("#HP.player_info_element").css("background-size", playerHealthPercent + " 100%");
 	$("#HP.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_health_potions").text(player.healthPotions);
+	UIUpdateHPPotionsAmount();
 	
 	const playerManaPercent = (player.mana / player.maxMana * 100).toFixed() + "%";
 	$("#player_info_mana").text(playerManaPercent);
@@ -179,5 +184,48 @@ function consoleLogDebug(text)
 	if(debugGame == true)
 	{
 		console.log(text);
+	}
+}
+
+function UIUpdateBuffInfoPanel()
+{
+	if(player.buffList.length > 0)
+	{
+		$("#player_info_buffs").css("display", "block");
+	}
+	else
+	{
+		$("#player_info_buffs").css("display", "none");
+	}
+
+	$("#player_info_buffs").empty();
+
+	for(var i = 0; i < player.buffList.length; i = i + 1)
+	{
+		if(typeof(player.buffList[i] == PlayerBuff))
+		{
+			let buffMinutesLeft = Math.trunc(player.buffList[i].buffDuration / 60);
+			let buffSecondsLeft = player.buffList[i].buffDuration - (buffMinutesLeft * 60);
+
+			var buffDurationString = buffMinutesLeft.toString() + ':';
+			if(buffSecondsLeft > 9)
+			{
+				buffDurationString += buffSecondsLeft.toString();
+			}
+			else
+			{
+				buffDurationString += '0' + buffSecondsLeft.toString();
+			}
+
+			let buffInfoElement = document.createElement("div");
+			buffInfoElement.setAttribute("class", "player_info_element");
+			buffInfoElement.textContent = player.buffList[i].buffName;
+
+			let buffInfoDuration = document.createElement("span");
+			buffInfoDuration.textContent = buffDurationString;
+			buffInfoElement.append(buffInfoDuration);
+
+			$("#player_info_buffs").append(buffInfoElement);
+		}
 	}
 }

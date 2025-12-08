@@ -86,7 +86,7 @@ function buyItem(itemId)
 			itemCost = 2000;
 			break;
 		default:
-			console.log("Missing itemId to buy: " + itemId);
+			consoleLogDebug("Missing itemId to buy: " + itemId);
 			break;
 	}
 
@@ -98,6 +98,7 @@ function buyItem(itemId)
 		{
 			case "0":
 				player.healthPotions = player.healthPotions + 1;
+				UIUpdateHPPotionsAmount();
 				break;
 			default:
 				break;
@@ -145,4 +146,6 @@ function buyBuff(buffId, cost)
 			player.buffList.push(buffDefaultValues);
 		}
 	}
+
+	UIUpdateBuffInfoPanel();
 }

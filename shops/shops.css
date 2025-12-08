@@ -1,0 +1,7 @@
+.shops_item_row
+{
+	display: flex;
+	height: 10%;
+	align-items: center;
+	border-bottom:#000 solid 1px;
+}
