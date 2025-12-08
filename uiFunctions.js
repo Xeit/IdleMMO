@@ -10,6 +10,11 @@ function updateProgressBar()
 	$("#tick_progress_inside").css("width", fillPercent);
 }
 
+function UIUpdateHPPotionsAmount()
+{
+	$("#player_info_health_potions").text(player.healthPotions);
+}
+
 function updateInfoPanel()
 {
 	$("#player_info_level").text(player.level);
@@ -24,7 +29,7 @@ function updateInfoPanel()
 	$("#HP.player_info_element").css("background-size", playerHealthPercent + " 100%");
 	$("#HP.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_health_potions").text(player.healthPotions);
+	UIUpdateHPPotionsAmount();
 	
 	const playerManaPercent = (player.mana / player.maxMana * 100).toFixed() + "%";
 	$("#player_info_mana").text(playerManaPercent);
