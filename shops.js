@@ -145,4 +145,6 @@ function buyBuff(buffId, cost)
 			player.buffList.push(buffDefaultValues);
 		}
 	}
+
+	UIUpdateBuffInfoPanel();
 }
