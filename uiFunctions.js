@@ -229,3 +229,51 @@ function UIUpdateBuffInfoPanel()
 		}
 	}
 }
+
+function showLevelUpPopup() 
+{
+    // Create popup element
+    const popup = document.createElement("div");
+    popup.className = "level-up-popup";
+    popup.innerHTML = 'Level Up!<button class="close-btn">X</button>';
+    document.body.appendChild(popup);
+
+    let timeoutId;
+    const fadeTime = 500; // 3 second fade
+    const displayTime = 10000000; // 10 seconds display
+
+    function startFadeOut() {
+        popup.classList.add("fade-out");
+        timeoutId = setTimeout(() => {
+            if (popup.parentNode) {
+                popup.parentNode.removeChild(popup);
+            }
+        }, fadeTime);
+    }
+
+    function startTimer() {
+        timeoutId = setTimeout(startFadeOut, displayTime);
+    }
+
+    // Initial timer
+    startTimer();
+
+    // Hover logic
+    popup.addEventListener("mouseenter", () => {
+        clearTimeout(timeoutId);
+        popup.classList.remove("fade-out");
+    });
+
+    popup.addEventListener("mouseleave", () => {
+        startTimer();
+    });
+
+    // Close button logic
+    const closeBtn = popup.querySelector(".close-btn");
+    closeBtn.addEventListener("click", () => {
+        clearTimeout(timeoutId);
+        if (popup.parentNode) {
+            popup.parentNode.removeChild(popup);
+        }
+    });
+}

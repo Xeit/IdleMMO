@@ -111,6 +111,7 @@ function playerLevelUp()
 	healPlayerToMax();
 
 	playerUnlockFunctions(player.level);
+	showLevelUpPopup();
 }
 
 function playerGetArmourValue()

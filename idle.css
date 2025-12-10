@@ -418,3 +418,44 @@ button
 	color: black;
 	text-shadow: 0px 0px 1px #6e6e6e;
 }
+
+.level-up-popup {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	background: linear-gradient(135deg, #454545, #6b6b6b);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #979797;
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity 500ms ease-out;
+}
+
+.level-up-popup .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: x-large;
+    color: white;
+    background: transparent;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+
+.level-up-popup .close-btn:hover {
+    color: #a3a3a3;
+}
+
+.fade-out {
+    opacity: 0;
+}
