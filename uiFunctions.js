@@ -232,48 +232,59 @@ function UIUpdateBuffInfoPanel()
 
 function showLevelUpPopup() 
 {
-    // Create popup element
-    const popup = document.createElement("div");
-    popup.className = "level-up-popup";
-    popup.innerHTML = 'Level Up!<button class="close-btn">X</button>';
-    document.body.appendChild(popup);
+	// Create popup element
+	const popup = document.createElement("div");
+	popup.className = "level-up-popup";
+	popup.style.animation="fadeInFromNone 0.7s ease-in"
+	popup.innerHTML = 'Level Up!<button class="close-btn">X</button>';
+	document.body.appendChild(popup);
 
-    let timeoutId;
-    const fadeTime = 500; // 3 second fade
-    const displayTime = 10000000; // 10 seconds display
+	let timeoutId;
+	const fadeTime = 1000; // 1 second fade
+	const displayTime = 7000; // 7 seconds display
 
-    function startFadeOut() {
-        popup.classList.add("fade-out");
-        timeoutId = setTimeout(() => {
-            if (popup.parentNode) {
-                popup.parentNode.removeChild(popup);
-            }
-        }, fadeTime);
-    }
+	function startFadeOut() 
+	{
+		const animationString = "fadeOutToNone " + fadeTime + "ms ease-out";
 
-    function startTimer() {
-        timeoutId = setTimeout(startFadeOut, displayTime);
-    }
+		popup.style.animation=animationString;
+		timeoutId = setTimeout(() => 
+		{
+			if (popup.parentNode) 
+			{
+				popup.parentNode.removeChild(popup);
+			}
+		}, fadeTime);
+	}
 
-    // Initial timer
-    startTimer();
+	function startTimer() 
+	{
+		timeoutId = setTimeout(startFadeOut, displayTime);
+	}
 
-    // Hover logic
-    popup.addEventListener("mouseenter", () => {
-        clearTimeout(timeoutId);
-        popup.classList.remove("fade-out");
-    });
+	// Initial timer
+	startTimer();
 
-    popup.addEventListener("mouseleave", () => {
-        startTimer();
-    });
+	// Hover logic
+	popup.addEventListener("mouseenter", () => 
+	{
+		clearTimeout(timeoutId);
+		popup.style.animation="";
+	});
 
-    // Close button logic
-    const closeBtn = popup.querySelector(".close-btn");
-    closeBtn.addEventListener("click", () => {
-        clearTimeout(timeoutId);
-        if (popup.parentNode) {
-            popup.parentNode.removeChild(popup);
-        }
-    });
+	popup.addEventListener("mouseleave", () => 
+	{
+		startTimer();
+	});
+
+	// Close button logic
+	const closeBtn = popup.querySelector(".close-btn");
+	closeBtn.addEventListener("click", () => 
+	{
+		clearTimeout(timeoutId);
+		if (popup.parentNode) 
+		{
+			popup.parentNode.removeChild(popup);
+		}
+	});
 }
