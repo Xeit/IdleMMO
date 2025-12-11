@@ -343,6 +343,12 @@ function tryNewItem(newItem)
 		default:
 			break;
 	}
+
+	if(bGotNewItem)
+	{
+		UIShowPopup("NewItem", currentItemPower, newItem);
+	}
+
 	return bGotNewItem;
 }
 

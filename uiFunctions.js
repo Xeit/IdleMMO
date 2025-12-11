@@ -80,28 +80,6 @@ function UIPlayerCrited()
 	$("#battle_monster_crit").css("opacity", monsterCritOpacity);
 }
 
-function UIDecayItemDropped()
-{
-	if(itemDroppedOpacity > 0)
-	{
-		itemDroppedOpacity = itemDroppedOpacity - itemDroppedOpacityDecay;
-		$("#battle_window_drops").css("opacity", itemDroppedOpacity)
-	}
-}
-
-function UIItemDropped(generatedNewItem)
-{
-	if(generatedNewItem instanceof Item)
-	{
-		itemDroppedOpacity = 1;
-		$("#battle_window_drops").css("opacity", itemDroppedOpacity);
-		$("#battle_window_drops_name").text(generatedNewItem.itemName);
-		$("#battle_window_drops_rarity").text("Rarity: " + generatedNewItem.itemRarity);
-		$("#battle_window_drops_slot").text("Slot: " + generatedNewItem.itemSlot);
-		$("#battle_window_drops_power").text("iLvl: " + generatedNewItem.itemLevel + " Power: " + generatedNewItem.returnItemPower(false));
-	}
-}
-
 function DisplayCritChanceUI(againstEnemyLevel)
 {
 	var playerDisplayedCritChance = Math.round(player.dexterity / (againstEnemyLevel * 3 * 2) * 100);
@@ -230,7 +208,7 @@ function UIUpdateBuffInfoPanel()
 	}
 }
 
-function UIShowPopup(ContentToGenerate) 
+function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2) 
 {
 	// Create popup elements
 	const popup = document.createElement("div");
@@ -252,6 +230,9 @@ function UIShowPopup(ContentToGenerate)
 	{
 		case "LevelUp":
 			popupContent = UIGenerateLevelUpContent();
+			break;
+		case "NewItem":
+			popupContent = UIEquippedNewItem(additionalStuff1, additionalStuff2);
 			break;
 	}
 	popup.append(popupContent);
@@ -303,4 +284,36 @@ function UIShowPopup(ContentToGenerate)
 	
 	// Initial timer (Start of the logic)
 	startTimer();
+}
+
+function UIGetItemRarityColor(itemRarity)
+{
+	let color = "#ffffff";
+
+	switch (itemRarity) 
+	{
+		case ItemRarity.none:
+			break;
+		case ItemRarity.common:
+			break;
+		case ItemRarity.uncommon:
+			color = "#00f000";
+			break;
+		case ItemRarity.magic:
+			color = "#00e0f0ff"
+			break;
+		case ItemRarity.rare:
+			color = "#f08000ff"
+			break;
+		case ItemRarity.mythic:
+			color = "#9000f0ff"
+			break;
+		case ItemRarity.legendary:
+			color = "#f00000ff"
+			break;
+		default:
+			break;
+	}
+
+	return color;
 }

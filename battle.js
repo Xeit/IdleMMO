@@ -182,11 +182,6 @@ function hitEnemy()
 
 		updateEquipmentWindow();
 
-		if(bGotNewItem)
-		{
-			UIItemDropped(generatedNewItem);
-		}
-
 		//Gold drop
 		const goldDropRoll = Math.round((Math.random() * enemyLevel)) + enemyLevel;
 		player.gold += +goldDropRoll;

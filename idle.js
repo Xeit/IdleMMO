@@ -63,7 +63,6 @@ $(document).ready(function()
 				bakeACookie();
 			}
 			UIDecayCritOpacity();
-			UIDecayItemDropped();
 		};
 	}
 	else

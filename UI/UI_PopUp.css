@@ -41,12 +41,13 @@
 
 	position: absolute;
 	top: 25vh;
-	left: 50vw;
+	left: 45vw;
 	background: linear-gradient(135deg, #454545, #6b6b6b);
 	padding: 15px 30px;
 	border-radius: 8px;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
 	z-index: 9999;
+    transform: translate(-50%, -50%);
 	border: 2px solid #979797;
 	pointer-events: auto;
 }
