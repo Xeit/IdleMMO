@@ -230,14 +230,34 @@ function UIUpdateBuffInfoPanel()
 	}
 }
 
-function showLevelUpPopup() 
+function UIShowPopup(ContentToGenerate) 
 {
-	// Create popup element
+	// Create popup elements
 	const popup = document.createElement("div");
-	popup.className = "level-up-popup";
-	popup.style.animation="fadeInFromNone 0.7s ease-in"
-	popup.innerHTML = 'Level Up!<button class="close-btn">X</button>';
 	document.body.appendChild(popup);
+
+	const closeButton = document.createElement("button");
+	popup.append(closeButton);
+
+	// const popupContent = document.createElement("div");
+	// popup.append(popupContent);
+
+	// Set style for popup and close button
+	popup.setAttribute("class", "pop_up");
+	popup.style.animation="fadeInFromNone 0.7s ease-in"
+
+	closeButton.setAttribute("class", "close_button");
+	closeButton.textContent = "X";
+
+	// Inside content for popup
+	let popupContent;
+	switch(ContentToGenerate)
+	{
+		case "LevelUp":
+			popupContent = UIGenerateLevelUpContent();
+			break;
+	}
+	popup.append(popupContent);
 
 	let timeoutId;
 	const fadeTime = 1000; // 1 second fade
@@ -262,9 +282,6 @@ function showLevelUpPopup()
 		timeoutId = setTimeout(startFadeOut, displayTime);
 	}
 
-	// Initial timer
-	startTimer();
-
 	// Hover logic
 	popup.addEventListener("mouseenter", () => 
 	{
@@ -278,8 +295,7 @@ function showLevelUpPopup()
 	});
 
 	// Close button logic
-	const closeBtn = popup.querySelector(".close-btn");
-	closeBtn.addEventListener("click", () => 
+	closeButton.addEventListener("click", () => 
 	{
 		clearTimeout(timeoutId);
 		if (popup.parentNode) 
@@ -287,4 +303,7 @@ function showLevelUpPopup()
 			popup.parentNode.removeChild(popup);
 		}
 	});
+	
+	// Initial timer (Start of the logic)
+	startTimer();
 }

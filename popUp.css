@@ -1,16 +1,19 @@
 @keyframes fadeInFromNone 
 {
-	0% {
+	0%
+	{
 		display: none;
 		opacity: 0;
 	}
 
-	1% {
+	1%
+	{
 		display: block;
 		opacity: 0;
 	}
 
-	100% {
+	100%
+	{
 		display: block;
 		opacity: 1;
 	}
@@ -31,10 +34,13 @@
 	}
 }
 
-.level-up-popup 
+.pop_up 
 {
-	position: fixed;
-	top: 30vh;
+	display: flex;
+	flex-direction: column;
+
+	position: absolute;
+	top: 25vh;
 	left: 50vw;
 	background: linear-gradient(135deg, #454545, #6b6b6b);
 	color: white;
@@ -49,7 +55,7 @@
 	pointer-events: auto;
 }
 
-.level-up-popup .close-btn 
+.pop_up .close_button 
 {
 	position: absolute;
 	top: 2px;
@@ -63,7 +69,7 @@
 	line-height: 1;
 }
 
-.level-up-popup .close-btn:hover 
+.pop_up .close_button:hover 
 {
 	color: #a3a3a3;
 }
