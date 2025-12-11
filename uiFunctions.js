@@ -80,28 +80,6 @@ function UIPlayerCrited()
 	$("#battle_monster_crit").css("opacity", monsterCritOpacity);
 }
 
-function UIDecayItemDropped()
-{
-	if(itemDroppedOpacity > 0)
-	{
-		itemDroppedOpacity = itemDroppedOpacity - itemDroppedOpacityDecay;
-		$("#battle_window_drops").css("opacity", itemDroppedOpacity)
-	}
-}
-
-function UIItemDropped(generatedNewItem)
-{
-	if(generatedNewItem instanceof Item)
-	{
-		itemDroppedOpacity = 1;
-		$("#battle_window_drops").css("opacity", itemDroppedOpacity);
-		$("#battle_window_drops_name").text(generatedNewItem.itemName);
-		$("#battle_window_drops_rarity").text("Rarity: " + generatedNewItem.itemRarity);
-		$("#battle_window_drops_slot").text("Slot: " + generatedNewItem.itemSlot);
-		$("#battle_window_drops_power").text("iLvl: " + generatedNewItem.itemLevel + " Power: " + generatedNewItem.returnItemPower(false));
-	}
-}
-
 function DisplayCritChanceUI(againstEnemyLevel)
 {
 	var playerDisplayedCritChance = Math.round(player.dexterity / (againstEnemyLevel * 3 * 2) * 100);
@@ -228,4 +206,114 @@ function UIUpdateBuffInfoPanel()
 			$("#player_info_buffs").append(buffInfoElement);
 		}
 	}
+}
+
+function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2) 
+{
+	// Create popup elements
+	const popup = document.createElement("div");
+	document.body.appendChild(popup);
+
+	const closeButton = document.createElement("button");
+	popup.append(closeButton);
+
+	// Set style for popup and close button
+	popup.setAttribute("class", "pop_up");
+	popup.style.animation="fadeInFromNone 0.7s ease-in"
+
+	closeButton.setAttribute("class", "close_button");
+	closeButton.textContent = "X";
+
+	// Inside content for popup
+	let popupContent;
+	switch(ContentToGenerate)
+	{
+		case "LevelUp":
+			popupContent = UIGenerateLevelUpContent();
+			break;
+		case "NewItem":
+			popupContent = UIEquippedNewItem(additionalStuff1, additionalStuff2);
+			break;
+	}
+	popup.append(popupContent);
+
+	let timeoutId;
+	const fadeTime = 1000; // 1 second fade
+	const displayTime = 7000; // 7 seconds display
+
+	function startFadeOut() 
+	{
+		const animationString = "fadeOutToNone " + fadeTime + "ms ease-out";
+
+		popup.style.animation=animationString;
+		timeoutId = setTimeout(() => 
+		{
+			if (popup.parentNode) 
+			{
+				popup.parentNode.removeChild(popup);
+			}
+		}, fadeTime);
+	}
+
+	function startTimer() 
+	{
+		timeoutId = setTimeout(startFadeOut, displayTime);
+	}
+
+	// Hover logic
+	popup.addEventListener("mouseenter", () => 
+	{
+		clearTimeout(timeoutId);
+		popup.style.animation="";
+	});
+
+	popup.addEventListener("mouseleave", () => 
+	{
+		startTimer();
+	});
+
+	// Close button logic
+	closeButton.addEventListener("click", () => 
+	{
+		clearTimeout(timeoutId);
+		if (popup.parentNode) 
+		{
+			popup.parentNode.removeChild(popup);
+		}
+	});
+	
+	// Initial timer (Start of the logic)
+	startTimer();
+}
+
+function UIGetItemRarityColor(itemRarity)
+{
+	let color = "#ffffff";
+
+	switch (itemRarity) 
+	{
+		case ItemRarity.none:
+			break;
+		case ItemRarity.common:
+			break;
+		case ItemRarity.uncommon:
+			color = "#00f000";
+			break;
+		case ItemRarity.magic:
+			color = "#00e0f0ff"
+			break;
+		case ItemRarity.rare:
+			color = "#f08000ff"
+			break;
+		case ItemRarity.mythic:
+			color = "#9000f0ff"
+			break;
+		case ItemRarity.legendary:
+			color = "#f00000ff"
+			break;
+		default:
+			break;
+	}
+
+	return color;
 }

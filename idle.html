@@ -15,30 +15,33 @@
 
 	<link rel="stylesheet" href="idle.css?v=36">
 	<link rel="stylesheet" href="dungeon.css?v=36">
+	<link rel="stylesheet" href="UI/UI_PopUp.css?v=36">
 	<link rel="stylesheet" href="shops/shops.css?v=36">
 	
-	<script src="uiFunctions.js?v=36"></script>
+	<script src="UI/UI_DivHelpers.js?v=36"></script>
+	<script defer src="UI/UI_PopUp.js?v=36"></script>
+	<script defer src="uiFunctions.js?v=36"></script>
 
-	<script src="enums.js?v=36"></script>
-	<script src="item.js?v=36"></script>
-	<script src="enemies.js?v=36"></script>
-	<script src="battleZones.js?v=36"></script>
-	<script src="dungeonZones.js?v=36"></script>
-	<script src="player.js?v=36"></script>
-	<script src="buffs.js?v=36"></script>
+	<script defer src="enums.js?v=36"></script>
+	<script defer src="item.js?v=36"></script>
+	<script defer src="enemies.js?v=36"></script>
+	<script defer src="battleZones.js?v=36"></script>
+	<script defer src="dungeonZones.js?v=36"></script>
+	<script defer src="player.js?v=36"></script>
+	<script defer src="buffs.js?v=36"></script>
 	
-	<script src="saveSystem.js?v=36"></script>
+	<script defer src="saveSystem.js?v=36"></script>
 
-	<script src="battle.js?v=36"></script>
-	<script src="healing.js?v=36"></script>
-	<script src="training.js?v=36"></script>
-	<script src="questing.js?v=36"></script>
-	<script src="shops.js?v=36"></script>
-	<script src="smith.js?v=36"></script>
-	<script src="dungeonAllies.js?v=36"></script>
-	<script src="dungeon.js?v=36"></script>
+	<script defer src="battle.js?v=36"></script>
+	<script defer src="healing.js?v=36"></script>
+	<script defer src="training.js?v=36"></script>
+	<script defer src="questing.js?v=36"></script>
+	<script defer src="shops.js?v=36"></script>
+	<script defer src="smith.js?v=36"></script>
+	<script defer src="dungeonAllies.js?v=36"></script>
+	<script defer src="dungeon.js?v=36"></script>
 
-	<script src="idle.js?v=36"></script>
+	<script defer src="idle.js?v=36"></script>
 </head>
 <body>
 	<div id="new_content">
@@ -117,8 +120,6 @@
 			</div>
 		</div>
 
-		<div class="vertical_spacer"></div>
-
 		<div id="main_panel">
 			<!-- Tick bar and task info -->
 			<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 15%;">
@@ -143,20 +144,8 @@
 
 				<div id="battle_window_battle">
 
-					<!-- Info about drops -->
-					<div id="battle_window_drops" style="opacity: 0;display: flex;width: 100%;height: 15%;flex-direction: column;">
-						<div style="height: 33%;width: 100%;display: flex;justify-content: center;align-items: center;">! NEW ITEM !</div>
-						<div style="height: 67%; width: 100%; display: flex;">
-							<span style="width: 50%; height: 100%;">
-								<div id="battle_window_drops_name" class="battle_window_drops_statistic"></div>
-								<div id="battle_window_drops_rarity" class="battle_window_drops_statistic"></div>
-							</span>
-							<span style="width: 50%; height: 100%;">
-								<div id="battle_window_drops_slot" class="battle_window_drops_statistic"></div>
-								<div id="battle_window_drops_power" class="battle_window_drops_statistic"></div>
-							</span>
-						</div>
-					</div>
+					<!-- Empty place before there were item drops -->
+					<div id="battle_window_drops" style="opacity: 0;display: flex;width: 100%;height: 15%;flex-direction: column;"></div>
 
 					<div style="height: 15%;"></div>
 
