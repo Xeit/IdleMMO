@@ -242,18 +242,16 @@ function playerUnlockFunctions(levelToUnlock)
 			$("#battleButton").css("display", "block");
 			$("#recoverHealthButton").css("display", "block");
 			$("#trainingButton").css("display", "block");
-			break;
-		case 3:
 			$("#equipmentButton").css("display", "block");
 			break;
-		case 10:
+		case 7:
 			$("#smithButton").css("display", "block");
+			break;
+		case 10:
+			$("#shopButton").css("display", "block");
 			break;
 		case 12:
 			$("#dungeonButton").css("display", "block");
-			break;
-		case 15:
-			$("#shopButton").css("display", "block");
 			break;
 	}
 	unlockDungeons(levelToUnlock);

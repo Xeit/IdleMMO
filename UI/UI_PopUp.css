@@ -43,16 +43,20 @@
 	top: 25vh;
 	left: 50vw;
 	background: linear-gradient(135deg, #454545, #6b6b6b);
-	color: white;
 	padding: 15px 30px;
 	border-radius: 8px;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
 	z-index: 9999;
+	border: 2px solid #979797;
+	pointer-events: auto;
+}
+
+.pop_up .title
+{
+	color: white;
 	font-size: xx-large;
 	font-weight: bold;
 	text-align: center;
-	border: 2px solid #979797;
-	pointer-events: auto;
 }
 
 .pop_up .close_button 

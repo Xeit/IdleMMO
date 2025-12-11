@@ -239,9 +239,6 @@ function UIShowPopup(ContentToGenerate)
 	const closeButton = document.createElement("button");
 	popup.append(closeButton);
 
-	// const popupContent = document.createElement("div");
-	// popup.append(popupContent);
-
 	// Set style for popup and close button
 	popup.setAttribute("class", "pop_up");
 	popup.style.animation="fadeInFromNone 0.7s ease-in"
