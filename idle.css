@@ -417,3 +417,49 @@ button
 	color: black;
 	text-shadow: 0px 0px 1px #6e6e6e;
 }
+
+@keyframes SmithUpgradeFlashSuccess
+{
+	0%
+	{
+		box-shadow: inset 0 -100px 100px -100px #ffdf2c00;
+	}
+
+	20%
+	{
+		box-shadow: inset 0 -100px 100px -20px #ffdf2c;
+	}
+
+	40%
+	{
+		box-shadow: inset 0 -100px 100px -20px #ffdf2cc7;
+	}
+
+	100%
+	{
+		box-shadow: inset 0 -100px 100px -100px #ffdf2c00;
+	}
+}
+
+@keyframes SmithUpgradeFlashFail
+{
+	0%
+	{
+		box-shadow: inset 0 -100px 100px -100px #af010100;
+	}
+
+	20%
+	{
+		box-shadow: inset 0 -100px 100px -20px #af0101;
+	}
+
+	40%
+	{
+		box-shadow: inset 0 -100px 100px -20px #af0101b2;
+	}
+
+	100%
+	{
+		box-shadow: inset 0 -100px 100px -100px #af010100;
+	}
+}
