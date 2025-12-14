@@ -16,32 +16,76 @@ function UIGenerateLevelUpContent()
 			popupContentInside.append(UIDiv_Text("Healing!"));
 			popupContentInside.append(UIDiv_Text("Equipment!"));
 			break;
+		case 3:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
+		case 4:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
+		case 6:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
 		case 7:
 			popupContentInside.append(UIDiv_Text("Smith (upgrading eq)!"));
 			break;
 		case 10:
 			popupContentInside.append(UIDiv_Text("Shops!"));
 			break;
+		case 11:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
 		case 12:
 			popupContentInside.append(UIDiv_Text("Dungeons!"));
+			break;
+		case 14:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
+		case 19:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			break;
 		case 20:
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));
 			break;
+		case 24:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
 		case 25:
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));
+			break;
+		case 26:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
+		case 33:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			break;
 		case 35:
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));
 			break;
+		case 36:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
 		case 40:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));
+			break;
+		case 42:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
+		case 44:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			break;
 		case 45:
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));
 			break;
+		case 46:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
+			break;
 		case 48:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));
+			break;
+		case 49:
+			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			break;
 		case 50:
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));

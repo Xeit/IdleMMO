@@ -319,7 +319,7 @@ button
 
 .battle_window_select_zone_element
 {
-	height: 5%; 
+	height: 7vh; 
 	display: flex; 
 	align-items: center;
 	border-bottom:#000 solid 1px;

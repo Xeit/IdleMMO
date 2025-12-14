@@ -57,7 +57,7 @@ function initializeBattle()
 			switchToBattleWindow();
 		};
 		
-		$("#select_zone_scrolling_list").append(newZone);
+		$("#select_zone_scrolling_list").prepend(newZone);
 
 		$("#battle_window_stop_battle").click(function(){
 			stopBattle();
