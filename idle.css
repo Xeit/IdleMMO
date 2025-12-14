@@ -275,6 +275,24 @@ button
 	border-bottom:#000 solid 1px;
 }
 
+.equipment_slot_content
+{
+	display: flex;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.equipment_slot_overlay
+{
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	opacity: 0.2;
+	background: radial-gradient(circle,rgba(255, 255, 255, 0) 20%, rgba(252, 70, 107, 0) 100%);
+}
+
 .equipment_slot_info
 {
 	display: flex;
@@ -301,7 +319,7 @@ button
 
 .battle_window_select_zone_element
 {
-	height: 5%; 
+	height: 7vh; 
 	display: flex; 
 	align-items: center;
 	border-bottom:#000 solid 1px;
@@ -398,4 +416,50 @@ button
 	border-color: #000;
 	color: black;
 	text-shadow: 0px 0px 1px #6e6e6e;
+}
+
+@keyframes SmithUpgradeFlashSuccess
+{
+	0%
+	{
+		box-shadow: inset 0 -100px 100px -100px #ffdf2c00;
+	}
+
+	20%
+	{
+		box-shadow: inset 0 -100px 100px -20px #ffdf2c;
+	}
+
+	40%
+	{
+		box-shadow: inset 0 -100px 100px -20px #ffdf2cc7;
+	}
+
+	100%
+	{
+		box-shadow: inset 0 -100px 100px -100px #ffdf2c00;
+	}
+}
+
+@keyframes SmithUpgradeFlashFail
+{
+	0%
+	{
+		box-shadow: inset 0 -100px 100px -100px #af010100;
+	}
+
+	20%
+	{
+		box-shadow: inset 0 -100px 100px -20px #af0101;
+	}
+
+	40%
+	{
+		box-shadow: inset 0 -100px 100px -20px #af0101b2;
+	}
+
+	100%
+	{
+		box-shadow: inset 0 -100px 100px -100px #af010100;
+	}
 }

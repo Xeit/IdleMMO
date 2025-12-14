@@ -336,10 +336,27 @@ function SmithTryToUpgradeItem()
 		//Upgraded
 		smithCurrentItemSlot.itemUpgradeLevel = smithCurrentItemSlot.itemUpgradeLevel + 1;
 		smithCurrentItemSlot.itemUpgradePitty = 0;
+		SmithPlayUpgradeAnimation(true);
 	}
 	else
 	{
 		//lol, nope.
 		smithCurrentItemSlot.itemUpgradePitty = smithCurrentItemSlot.itemUpgradePitty + 1;
+		SmithPlayUpgradeAnimation(false);
+	}
+}
+
+function SmithPlayUpgradeAnimation(bSuccess)
+{
+	const smithWindow = document.getElementById("smith_window");
+	smithWindow.style.animation="";
+
+	if(bSuccess == true)
+	{
+		smithWindow.style.animation="SmithUpgradeFlashSuccess 700ms ease-out";
+	}
+	else
+	{
+		smithWindow.style.animation="SmithUpgradeFlashFail 700ms ease-out";
 	}
 }

@@ -181,30 +181,45 @@ function updateEquipmentWindow()
 {
 	if(player.weaponSlot instanceof Item)
 	{
+		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.weaponSlot.itemRarity) + " 70%";
+		$("#equipment_weapon_overlay").css("background", overlayColor);
+		$("#equipment_weapon_name").css("color", UIGetItemRarityColor(player.weaponSlot.itemRarity));
 		$("#equipment_weapon_name").text(player.weaponSlot.itemName);
 		$("#equipment_weapon_level").text(player.weaponSlot.itemLevel);
 		$("#equipment_weapon_power").text(player.weaponSlot.returnItemPower(true));
 	}
 	if(player.helmetSlot instanceof Item)
 	{
+		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.helmetSlot.itemRarity) + " 70%";
+		$("#equipment_helmet_overlay").css("background", overlayColor);
+		$("#equipment_helmet_name").css("color", UIGetItemRarityColor(player.helmetSlot.itemRarity));
 		$("#equipment_helmet_name").text(player.helmetSlot.itemName);
 		$("#equipment_helmet_level").text(player.helmetSlot.itemLevel);
 		$("#equipment_helmet_power").text(player.helmetSlot.returnItemPower(true));
 	}
 	if(player.bodyArmourSlot instanceof Item)
 	{
+		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.bodyArmourSlot.itemRarity) + " 70%";
+		$("#equipment_body_armour_overlay").css("background", overlayColor);
+		$("#equipment_body_armour_name").css("color", UIGetItemRarityColor(player.bodyArmourSlot.itemRarity));
 		$("#equipment_body_armour_name").text(player.bodyArmourSlot.itemName);
 		$("#equipment_body_armour_level").text(player.bodyArmourSlot.itemLevel);
 		$("#equipment_body_armour_power").text(player.bodyArmourSlot.returnItemPower(true));
 	}
 	if(player.glovesSlot instanceof Item)
 	{
+		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.glovesSlot.itemRarity) + " 70%";
+		$("#equipment_gloves_overlay").css("background", overlayColor);
+		$("#equipment_gloves_name").css("color", UIGetItemRarityColor(player.glovesSlot.itemRarity));
 		$("#equipment_gloves_name").text(player.glovesSlot.itemName);
 		$("#equipment_gloves_level").text(player.glovesSlot.itemLevel);
 		$("#equipment_gloves_power").text(player.glovesSlot.returnItemPower(true));
 	}
 	if(player.bootsSlot instanceof Item)
 	{
+		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.bootsSlot.itemRarity) + " 70%";
+		$("#equipment_boots_overlay").css("background", overlayColor);
+		$("#equipment_boots_name").css("color", UIGetItemRarityColor(player.bootsSlot.itemRarity));
 		$("#equipment_boots_name").text(player.bootsSlot.itemName);
 		$("#equipment_boots_level").text(player.bootsSlot.itemLevel);
 		$("#equipment_boots_power").text(player.bootsSlot.returnItemPower(true));

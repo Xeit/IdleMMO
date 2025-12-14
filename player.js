@@ -255,6 +255,7 @@ function playerUnlockFunctions(levelToUnlock)
 			break;
 	}
 	unlockDungeons(levelToUnlock);
+	unlockMonsterZones(levelToUnlock);
 }
 
 function playerGetTotalItemPower()

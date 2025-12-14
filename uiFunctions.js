@@ -297,13 +297,13 @@ function UIGetItemRarityColor(itemRarity)
 		case ItemRarity.common:
 			break;
 		case ItemRarity.uncommon:
-			color = "#00f000";
+			color = "#00f000ff";
 			break;
 		case ItemRarity.magic:
 			color = "#00e0f0ff"
 			break;
 		case ItemRarity.rare:
-			color = "#f08000ff"
+			color = "#ff8800ff"
 			break;
 		case ItemRarity.mythic:
 			color = "#9000f0ff"
