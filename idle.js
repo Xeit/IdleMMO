@@ -113,10 +113,10 @@ $(document).ready(function()
 
 function newPlayerTask(newTask)
 {
-	UIDisplayNewTask(newTask);
-
 	if(currentTask != newTask)
 	{
+		UIDisplayNewTask(newTask);
+
 		var bShouldStopPreviousTask = false;
 		//End current task
 		switch(newTask)
@@ -187,9 +187,9 @@ function newPlayerTask(newTask)
 			default:
 				break;
 		}
+		
+		//Set current task
+		currentOpenWindow = newTask;
+		$("#task_info").text("CURRENT TASK: " + currentTask);
 	}
-
-	//Set current task
-	currentOpenWindow = newTask;
-	$("#task_info").text("CURRENT TASK: " + currentTask);
 }

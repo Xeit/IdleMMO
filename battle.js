@@ -89,7 +89,6 @@ function tickBattle()
 
 function ShowBattleWindow()
 {
-	$("#battle_window").css("display", "flex");
 	if(bIsInBattle == true)
 	{
 		$("#battle_window_battle").css("display", "flex");
@@ -100,6 +99,8 @@ function ShowBattleWindow()
 		$("#battle_window_battle").css("display", "none");
 		$("#battle_window_select_zone").css("display", "flex");
 	}
+
+	$("#battle_window").css("display", "flex");
 }
 
 function HideBattleWindow()
@@ -112,11 +113,21 @@ function stopBattle()
 	bIsInBattle = false;
 	bIsEnemyAlive = false;
 	currentZone = null;
+
+	$("#battleButton").click(function(){
+		newPlayerTask(PlayerTasks.farming_monsters);
+	})
 }
 
 function startBattle()
 {
 	updateBattleHealth();
+
+	$("#battleButton").click(function(){
+		stopBattle();
+		ShowBattleWindow();
+		updateBattleHealth();
+	})
 }
 
 function getNewEnemy()
