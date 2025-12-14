@@ -303,7 +303,7 @@ function UIGetItemRarityColor(itemRarity)
 			color = "#00e0f0ff"
 			break;
 		case ItemRarity.rare:
-			color = "#f08000ff"
+			color = "#ff8800ff"
 			break;
 		case ItemRarity.mythic:
 			color = "#9000f0ff"
