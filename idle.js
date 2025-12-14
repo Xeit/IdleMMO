@@ -113,10 +113,9 @@ $(document).ready(function()
 
 function newPlayerTask(newTask)
 {
+	UIDisplayNewTask(newTask);
 	if(currentTask != newTask)
 	{
-		UIDisplayNewTask(newTask);
-
 		var bShouldStopPreviousTask = false;
 		//End current task
 		switch(newTask)

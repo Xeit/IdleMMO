@@ -93,36 +93,47 @@ function DisplayCritChanceUI(againstEnemyLevel)
 function UIDisplayNewTask(newTaskToDisplay)
 {
 	//Hide current task
-	switch(currentOpenWindow)
-	{
-		case PlayerTasks.none:
-			$("#empty_window").css("display", "none");
-			break;
-		case PlayerTasks.farming_monsters:
-			HideBattleWindow();
-			break;
-		case PlayerTasks.healing:
-			HideHealingWindow();
-			break;
-		case PlayerTasks.training:
-			HideTrainingWindow();
-			break;
-		case PlayerTasks.equipment:
-			HideEquipmentWindow();
-			break;
-		case PlayerTasks.questing:
-			HideQuestingWindow();
-			break;
-		case PlayerTasks.shop:
-			HideShopsWindow();
-			break;
-		case PlayerTasks.smith:
-			HideSmithWindow();
-			break;
-		case PlayerTasks.dungeon:
-			hideDungeonWindow();
-			break;
-	}
+	//TODO: Fix regression that makes sometimes 2 tabs appear at once with something better than this
+	$("#empty_window").css("display", "none");
+	HideBattleWindow();
+	HideHealingWindow();
+	HideTrainingWindow();
+	HideEquipmentWindow();
+	HideQuestingWindow();
+	HideShopsWindow();
+	HideSmithWindow();
+	hideDungeonWindow();
+
+	// switch(currentOpenWindow)
+	// {
+	// 	case PlayerTasks.none:
+	// 		$("#empty_window").css("display", "none");
+	// 		break;
+	// 	case PlayerTasks.farming_monsters:
+	// 		HideBattleWindow();
+	// 		break;
+	// 	case PlayerTasks.healing:
+	// 		HideHealingWindow();
+	// 		break;
+	// 	case PlayerTasks.training:
+	// 		HideTrainingWindow();
+	// 		break;
+	// 	case PlayerTasks.equipment:
+	// 		HideEquipmentWindow();
+	// 		break;
+	// 	case PlayerTasks.questing:
+	// 		HideQuestingWindow();
+	// 		break;
+	// 	case PlayerTasks.shop:
+	// 		HideShopsWindow();
+	// 		break;
+	// 	case PlayerTasks.smith:
+	// 		HideSmithWindow();
+	// 		break;
+	// 	case PlayerTasks.dungeon:
+	// 		hideDungeonWindow();
+	// 		break;
+	// }
 
 	//Start new task
 	switch(newTaskToDisplay)

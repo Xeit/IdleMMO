@@ -359,4 +359,9 @@ function SmithPlayUpgradeAnimation(bSuccess)
 	{
 		smithWindow.style.animation="SmithUpgradeFlashFail 700ms ease-out";
 	}
+
+	smithWindow.addEventListener("animationend", function()
+	{
+		smithWindow.style.animation = "";
+	}, { once: true });
 }
