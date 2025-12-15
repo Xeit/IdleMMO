@@ -76,10 +76,29 @@ $(document).ready(function()
 		newPlayerTask(PlayerTasks.farming_monsters);
 	});
 
-	// @ts-ignore
+	$("#battleButton").hover(function() 
+	{
+		if($("#battle_window").css("display") == "flex")
+		{
+			$("#battleButton").unbind("click");
+			$("#battleButton").click(function(){
+				stopBattle();
+				ShowBattleWindow();
+				updateBattleHealth();
+			})
+		}
+		else
+		{
+			$("#battleButton").unbind("click");
+			$("#battleButton").click(function(){
+				newPlayerTask(PlayerTasks.farming_monsters);
+			})
+		}
+	});
+
 	$("#questingButton").click(function(){
 		newPlayerTask(PlayerTasks.questing);
-	})
+	});
 
 	$("#recoverHealthButton").click(function(){
 		newPlayerTask(PlayerTasks.healing);

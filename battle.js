@@ -113,21 +113,11 @@ function stopBattle()
 	bIsInBattle = false;
 	bIsEnemyAlive = false;
 	currentZone = null;
-
-	$("#battleButton").click(function(){
-		newPlayerTask(PlayerTasks.farming_monsters);
-	})
 }
 
 function startBattle()
 {
 	updateBattleHealth();
-
-	$("#battleButton").click(function(){
-		stopBattle();
-		ShowBattleWindow();
-		updateBattleHealth();
-	})
 }
 
 function getNewEnemy()
