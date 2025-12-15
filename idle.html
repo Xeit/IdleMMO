@@ -13,35 +13,35 @@
 		@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 	</style>
 
-	<link rel="stylesheet" href="idle.css?v=38">
-	<link rel="stylesheet" href="dungeon.css?v=38">
-	<link rel="stylesheet" href="UI/UI_PopUp.css?v=38">
-	<link rel="stylesheet" href="shops/shops.css?v=38">
+	<link rel="stylesheet" href="idle.css?v=39">
+	<link rel="stylesheet" href="dungeon.css?v=39">
+	<link rel="stylesheet" href="UI/UI_PopUp.css?v=39">
+	<link rel="stylesheet" href="shops/shops.css?v=39">
 	
-	<script src="UI/UI_DivHelpers.js?v=38"></script>
-	<script defer src="UI/UI_PopUp.js?v=38"></script>
-	<script defer src="uiFunctions.js?v=38"></script>
+	<script src="UI/UI_DivHelpers.js?v=39"></script>
+	<script defer src="UI/UI_PopUp.js?v=39"></script>
+	<script defer src="uiFunctions.js?v=39"></script>
 
-	<script defer src="enums.js?v=38"></script>
-	<script defer src="item.js?v=38"></script>
-	<script defer src="enemies.js?v=38"></script>
-	<script defer src="battleZones.js?v=38"></script>
-	<script defer src="dungeonZones.js?v=38"></script>
-	<script defer src="player.js?v=38"></script>
-	<script defer src="buffs.js?v=38"></script>
+	<script defer src="enums.js?v=39"></script>
+	<script defer src="item.js?v=39"></script>
+	<script defer src="enemies.js?v=39"></script>
+	<script defer src="battleZones.js?v=39"></script>
+	<script defer src="dungeonZones.js?v=39"></script>
+	<script defer src="player.js?v=39"></script>
+	<script defer src="buffs.js?v=39"></script>
 	
-	<script defer src="saveSystem.js?v=38"></script>
+	<script defer src="saveSystem.js?v=39"></script>
 
-	<script defer src="battle.js?v=38"></script>
-	<script defer src="healing.js?v=38"></script>
-	<script defer src="training.js?v=38"></script>
-	<script defer src="questing.js?v=38"></script>
-	<script defer src="shops.js?v=38"></script>
-	<script defer src="smith.js?v=38"></script>
-	<script defer src="dungeonAllies.js?v=38"></script>
-	<script defer src="dungeon.js?v=38"></script>
+	<script defer src="battle.js?v=39"></script>
+	<script defer src="healing.js?v=39"></script>
+	<script defer src="training.js?v=39"></script>
+	<script defer src="questing.js?v=39"></script>
+	<script defer src="shops.js?v=39"></script>
+	<script defer src="smith.js?v=39"></script>
+	<script defer src="dungeonAllies.js?v=39"></script>
+	<script defer src="dungeon.js?v=39"></script>
 
-	<script defer src="idle.js?v=38"></script>
+	<script defer src="idle.js?v=39"></script>
 </head>
 <body>
 	<div id="new_content">
@@ -253,13 +253,13 @@
 			<div class = "task_window" id="training_window">
 				<table id="training_table">
 					<tr>
-						<th style="width: 50%;">Strength
+						<th id="training_block_strength" style="width: 50%;">Strength
 							<div id="training_strength_xp">XP: </div>
 							<div>
 								<button id="train_strength">TRAIN</button>
 							</div>
 						</th>
-						<th style="width: 50%;">Dexterity
+						<th id="training_block_dexterity" style="width: 50%;">Dexterity
 							<div id="training_dexterity_xp">XP: </div>
 							<div>
 								<button id="train_dexterity">TRAIN</button>
@@ -267,13 +267,13 @@
 						</th>
 					</tr>
 					<tr>
-						<th style="width: 50%;">Stamina
+						<th id="training_block_stamina" style="width: 50%;">Stamina
 							<div id="training_stamina_xp">XP: </div>
 							<div>
 								<button id="train_stamina">TRAIN</button>
 							</div>
 						</th>
-						<th style="width: 50%;">Intelligence
+						<th id="training_block_intelligence" style="width: 50%;">Intelligence
 							<div id="training_intelligence_xp">XP: </div>
 							<div>
 								<button id="train_intelligence">TRAIN</button>
@@ -397,14 +397,14 @@
 					</span>
 					<span style="width: 2%;"></span>
 					<span style="width: 32%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;" id="tavern">
-						<div>Tavern</div>
+						<div style="font-size: xx-large;">Tavern</div>
 						<button id="tavernButton">ENTER</button>
 					</span>
 				</div>
 				
 				<!-- POTION SELLER (SHOP) -->
 				<div class="task_window" id="potion_seller_window" style="display: none; flex-direction: column; align-items: center; justify-content: center;">
-					<div style="width: 80%; height: 95%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
+					<div style="width: 80%; height: 90%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
 						<div class="shops_item_row">
 							<span style="width: 45%; display: flex; justify-content: center;">
 								NAME
@@ -445,14 +445,14 @@
 							</span>
 						</div>
 					</div>
-					<div style="display: flex; align-items: center; justify-content: center; height: 5%; width: 100%; border-top:#000 solid 1px">
+					<div style="display: flex; align-items: center; justify-content: center; height: 10%; width: 100%; border-top:#000 solid 1px">
 						<button class="shop_window_button_back">Go Back</button>
 					</div>
 				</div>
 
 				<!-- CHURCH (SHOP) -->
 				<div class="task_window" id="church_window" style="display: none; flex-direction: column; align-items: center; justify-content: center;">
-					<div style="width: 80%; height: 95%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
+					<div style="width: 80%; height: 90%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
 						<div class="shops_item_row">
 							<span style="width: 25%; display: flex; justify-content: center;">
 								NAME
@@ -503,13 +503,13 @@
 							</span>
 						</div>
 					</div>
-					<div style="display: flex; align-items: center; justify-content: center; height: 5%; width: 100%; border-top:#000 solid 1px">
+					<div style="display: flex; align-items: center; justify-content: center; height: 10%; width: 100%; border-top:#000 solid 1px">
 						<button class="shop_window_button_back">Go Back</button>
 					</div>
 				</div>
 				<!-- TAVERN (SHOP) -->
 				<div class="task_window" id="tavern_window" style="display: none; flex-direction: column; align-items: center;">
-					<div style="width: 80%; height: 95%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
+					<div style="width: 80%; height: 90%; display: flex; flex-direction: column;	border-left:#000 solid 1px; border-right:#000 solid 1px;">
 						<div class="shops_item_row">
 							<span style="width: 25%; display: flex; justify-content: center;">
 								NAME
@@ -543,7 +543,7 @@
 							</span>
 						</div>
 					</div>
-					<div style="display: flex; align-items: center; justify-content: center; height: 5%; width: 100%; border-top:#000 solid 1px">
+					<div style="display: flex; align-items: center; justify-content: center; height: 10%; width: 100%; border-top:#000 solid 1px">
 						<button class="shop_window_button_back">Go Back</button>
 					</div>
 				</div>

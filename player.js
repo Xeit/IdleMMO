@@ -51,6 +51,8 @@ class Player
 	dungeonStatistics = new DungeonPlayerStatistics();
 	dungeonEnemyID = -1;
 
+	questingFocus = QuestFocuses.BALANCED;
+
 	playerUnlockFunctionsUntilLevel()
 	{
 		for(let i = 0; i <= this.level; i++)

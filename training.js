@@ -154,6 +154,7 @@ function tickTraining()
 		}
 
 		updateTrainingXpValues();
+		TrainingGenerateAnimation();
 	}
 }
 
@@ -210,4 +211,87 @@ function ResetTrainingButtons()
 	$("#train_dexterity").text("TRAIN");
 	$("#train_stamina").text("TRAIN");
 	$("#train_intelligence").text("TRAIN");
+}
+
+function TrainingGenerateAnimation()
+{
+	let colorToUse = "#000000ff";
+	let divToUpdate;
+	const msDuration = 600;
+	let fillPercent = "0%";
+
+	switch(currentlyTrainedStatystic)
+	{
+		case "strength":
+			colorToUse = "#ca1c1cff";
+			divToUpdate = document.getElementById("training_block_strength");
+			if(player.strengthXP == 0)
+			{
+				fillPercent = 1000;
+			}
+			else
+			{
+				fillPercent = player.strengthXP / (player.strength * 35) * 100;
+			}
+			player.strengthXP;
+			break;
+		case "dexterity":
+			colorToUse = "#05e12aff";
+			divToUpdate = document.getElementById("training_block_dexterity");
+			if(player.dexterityXP == 0)
+			{
+				fillPercent = 1000;
+			}
+			else
+			{
+				fillPercent = player.dexterityXP / (player.dexterity * 35) * 50;
+			}
+			break;
+		case "stamina":
+			colorToUse = "#ffd700";
+			divToUpdate = document.getElementById("training_block_stamina");
+			if(player.staminaXP == 0)
+			{
+				fillPercent = 1000;
+			}
+			else
+			{
+				fillPercent = player.staminaXP / (player.stamina * 35) * 50;
+			}
+			break;
+		case "intelligence":
+			colorToUse = "#4169e1";
+			divToUpdate = document.getElementById("training_block_intelligence");
+			if(player.intelligenceXP == 0)
+			{
+				fillPercent = 1000;
+			}
+			else
+			{
+				fillPercent = player.intelligenceXP / (player.intelligence * 35) * 50;
+			}
+			break;
+		default: 
+			break;
+	}
+
+	if(currentlyTrainedStatystic != "none" && divToUpdate !== "undefined")
+	{
+		consoleLogDebug("Trying to animate?");
+		const animTarget = "inset 0px 0px " + fillPercent + "px " + fillPercent + "px " + colorToUse;
+
+		divToUpdate.animate(
+			[
+				{easing: "ease-out", boxShadow: "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"},
+				{easing: "ease-out", offset: 0.3, boxShadow: animTarget},
+				{easing: "ease-in", boxShadow: "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"}
+			],
+			msDuration
+		)
+
+		divToUpdate.addEventListener("animationend", function()
+		{
+			divToUpdate.style.animation = "";
+		}, { once: true });
+	}
 }

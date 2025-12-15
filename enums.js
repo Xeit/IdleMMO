@@ -18,3 +18,11 @@ const PlayerSkills =
 	stamina: "stamina",
 	intelligence: "intelligence"
 };
+
+const QuestFocuses = 
+{
+	NONE: "NONE",
+	XP: "XP",
+	BALANCED: "BALANCED",
+	GOLD: "GOLD"
+};

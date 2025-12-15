@@ -1,10 +1,3 @@
-const QuestFocuses = {
-	NONE: "NONE",
-	XP: "XP",
-	BALANCED: "BALANCED",
-	GOLD: "GOLD"
-};
-
 const FlavoutTexts = ["You are running from NPC to NPC as a messenger. Such challenge for a hero!",
 	"You are on quest to pick up apples from garden for the NPC. They are making a cake. No, not for You!",
 	"You are having a deep debate with NPCs. They forget about this after sometime.",
@@ -199,38 +192,54 @@ const FlavoutTexts = ["You are running from NPC to NPC as a messenger. Such chal
 	"You are retrieving a key lost in the castle moat. Because, of course, it couldn't be somewhere dry."
 	]
 
-var questFocus = QuestFocuses.NONE;
+//var questFocus = QuestFocuses.NONE;
 var questProgress = 0;
 var questTarget = 0;
 var questXp = 0;
 var questGold = 0;
 var questFlavourText = "You are running from NPC to NPC as a messenger. Such challenge for a hero!";
 
+function updateQuestFocus()
+{
+	$("#questing_slider_button_info_xp_selected").html("<br>");
+	$("#questing_slider_button_info_balanced_selected").html("<br>");
+	$("#questing_slider_button_info_gold_selected").html("<br>");
+
+	switch(player.questingFocus)
+	{
+		case QuestFocuses.XP:
+		$("#questing_slider_button_info_xp_selected").text("X");
+			break;
+		case QuestFocuses.BALANCED:
+		$("#questing_slider_button_info_balanced_selected").text("X");
+			break;
+		case QuestFocuses.GOLD:
+		$("#questing_slider_button_info_gold_selected").text("X");
+			break;
+		default:
+			consoleLogDebug("Unhandled case in updateQuestFocus() !");
+			break;
+	}
+}
+
 function initializeQuesting()
 {
 	$("#questing_focus_button_xp").click(function(){
-		questFocus = QuestFocuses.XP;
-		$("#questing_slider_button_info_xp_selected").text("X");
-		$("#questing_slider_button_info_balanced_selected").html("<br>");
-		$("#questing_slider_button_info_gold_selected").html("<br>");
+		player.questingFocus = QuestFocuses.XP;
+		updateQuestFocus();
 	});
 
 	$("#questing_focus_button_balanced").click(function(){
-		questFocus = QuestFocuses.BALANCED;
-		$("#questing_slider_button_info_xp_selected").html("<br>");
-		$("#questing_slider_button_info_balanced_selected").text("X");
-		$("#questing_slider_button_info_gold_selected").html("<br>");
+		player.questingFocus = QuestFocuses.BALANCED;
+		updateQuestFocus();
 	});
 
 	$("#questing_focus_button_gold").click(function(){
-		questFocus = QuestFocuses.GOLD;
-		$("#questing_slider_button_info_xp_selected").html("<br>");
-		$("#questing_slider_button_info_balanced_selected").html("<br>");
-		$("#questing_slider_button_info_gold_selected").text("X");
+		player.questingFocus = QuestFocuses.GOLD;
+		updateQuestFocus();
 	});
-
-	questFocus = QuestFocuses.BALANCED;
 	
+	updateQuestFocus();
 	updateQuestInfo();
 }
 
@@ -286,7 +295,7 @@ function getNewQuest()
 	var xpRoll = +(Math.random() * (maxXpRoll - minXpRoll) + minXpRoll).toFixed();
 	var goldRoll = +(Math.random() * (maxGoldRoll - minGoldRoll) + minGoldRoll).toFixed();
 
-	switch (questFocus) {
+	switch (player.questingFocus) {
 		case QuestFocuses.XP:
 			xpRoll = +(xpRoll * 1.25).toFixed();
 			goldRoll = +(goldRoll * 0.75).toFixed();
