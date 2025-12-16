@@ -250,7 +250,7 @@ function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2)
 
 	let timeoutId;
 	const fadeTime = 1000; // 1 second fade
-	const displayTime = 7000; // 7 seconds display
+	const displayTime = 6000; // 6 seconds display
 
 	function startFadeOut() 
 	{
@@ -263,7 +263,7 @@ function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2)
 			{
 				popup.parentNode.removeChild(popup);
 			}
-		}, fadeTime);
+		}, (fadeTime - 25)); // Hack to make it disappear properly on Windows?
 	}
 
 	function startTimer() 

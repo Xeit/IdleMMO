@@ -27,6 +27,12 @@
 		opacity: 1;
 	}
 	
+	95%
+	{
+		display: block;
+		opacity: 0;
+	}
+
 	100%
 	{
 		display: none;
