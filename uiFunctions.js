@@ -15,6 +15,11 @@ function UIUpdateHPPotionsAmount()
 	$("#player_info_health_potions").text(player.healthPotions);
 }
 
+function UIUpdateGold()
+{
+	$("#player_info_gold").text(player.gold);
+}
+
 function updateInfoPanel()
 {
 	$("#player_info_level").text(player.level);
@@ -36,7 +41,7 @@ function updateInfoPanel()
 	$("#MANA.player_info_element").css("background-size", playerManaPercent + " 100%");
 	$("#MANA.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_gold").text(player.gold);
+	UIUpdateGold();
 	
 	const maxSkillsLvl = player.level * 3;
 	$("#player_info_strength").text(player.strength + "/" + maxSkillsLvl);
@@ -103,37 +108,6 @@ function UIDisplayNewTask(newTaskToDisplay)
 	HideShopsWindow();
 	HideSmithWindow();
 	hideDungeonWindow();
-
-	// switch(currentOpenWindow)
-	// {
-	// 	case PlayerTasks.none:
-	// 		$("#empty_window").css("display", "none");
-	// 		break;
-	// 	case PlayerTasks.farming_monsters:
-	// 		HideBattleWindow();
-	// 		break;
-	// 	case PlayerTasks.healing:
-	// 		HideHealingWindow();
-	// 		break;
-	// 	case PlayerTasks.training:
-	// 		HideTrainingWindow();
-	// 		break;
-	// 	case PlayerTasks.equipment:
-	// 		HideEquipmentWindow();
-	// 		break;
-	// 	case PlayerTasks.questing:
-	// 		HideQuestingWindow();
-	// 		break;
-	// 	case PlayerTasks.shop:
-	// 		HideShopsWindow();
-	// 		break;
-	// 	case PlayerTasks.smith:
-	// 		HideSmithWindow();
-	// 		break;
-	// 	case PlayerTasks.dungeon:
-	// 		hideDungeonWindow();
-	// 		break;
-	// }
 
 	//Start new task
 	switch(newTaskToDisplay)

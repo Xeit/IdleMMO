@@ -9,32 +9,22 @@ const BuffType =
 class PlayerBuff
 {
 	buffId = "";
+	buffPrice = 0;
 	buffType = BuffType.none;
 	buffPower = 0;
 	buffDuration = 0;
 	buffName = "";
 	buffDescription = "";
 
-	constructor (buffId, buffType, buffPower, buffDuration, buffName, buffDescription)
+	constructor (buffId, buffPrice, buffType, buffPower, buffDuration, buffName, buffDescription)
 	{
 		this.buffId = buffId;
+		this.buffPrice = buffPrice;
 		this.buffType = buffType;
 		this.buffPower = buffPower;
 		this.buffDuration = buffDuration;
 		this.buffName = buffName;
 		this.buffDescription = buffDescription;
-	}
-
-	serializeBuff()
-	{
-		var serializedString = this.buffId + "|buff|";
-		serializedString += this.buffType + "|buff|";
-		serializedString += this.buffPower + "|buff|";
-		serializedString += this.buffDuration + "|buff|";
-		serializedString += this.buffName + "|buff|";
-		serializedString += this.buffDescription;
-
-		return serializedString;
 	}
 }
 
@@ -74,8 +64,33 @@ function getTotalBuffsWithType(buffTypeToGet)
 	return totalBuffStrength;
 }
 
-const buffsDefaultsArray = new Array();
+const churchBuffs = new Array();
 
-buffsDefaultsArray.push(new PlayerBuff("churchDamage", BuffType.damage, 10, 3600, "Church Damage Blessing", "Increases damage by 10"));
-buffsDefaultsArray.push(new PlayerBuff("churchDefense", BuffType.defense, 10, 3600, "Church Defense Blessing", "Reduces damage taken by 10"));
-buffsDefaultsArray.push(new PlayerBuff("spicyFood", BuffType.damage, 5, 1200, "Spicy!", "Increases damage by 5"));
+function unlockChurchBuffs(levelToUnlock)
+{
+	switch(levelToUnlock)
+	{
+		case 10:
+			churchBuffs.push(new PlayerBuff("churchDamage", 500, BuffType.damage, 10, 1800, "Minor Damage Blessing", "+10 flat DMG"));
+			break;
+		case 15:
+			churchBuffs.push(new PlayerBuff("churchDefense", 500, BuffType.defense, 10, 1800, "Minor Defense Blessing", "+10 flat DEF"));
+			break;
+		default:
+			break;
+	}
+}
+
+const tavernBuffs = new Array();
+
+function unlockTavernBuffs(levelToUnlock)
+{
+	switch(levelToUnlock)
+	{
+		case 20:
+			tavernBuffs.push(new PlayerBuff("spicyFood", 500, BuffType.damage, 25, 300, "Spicy!", "+25 flat DMG"));
+			break;
+		default:
+			break;
+	}
+}

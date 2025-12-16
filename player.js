@@ -258,6 +258,8 @@ function playerUnlockFunctions(levelToUnlock)
 	}
 	unlockDungeons(levelToUnlock);
 	unlockMonsterZones(levelToUnlock);
+	unlockChurchBuffs(levelToUnlock);
+	unlockTavernBuffs(levelToUnlock);
 }
 
 function playerGetTotalItemPower()
