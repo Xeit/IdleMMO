@@ -17,54 +17,7 @@ const itemDroppedOpacityDecay = 0.02;
 
 function initializeBattle()
 {
-	for(var i = 0; i < battleZonesMap.length; i++)
-	{
-		//Please do not question this code, it's verbdose but it was late and I was drunk. :>
-
-		let newZone = document.createElement("div");
-		newZone.setAttribute("class", "battle_window_select_zone_element");
-
-		let zoneName = document.createElement("span");
-		zoneName.style.cssText = "width: 45%; display: flex; justify-content: center;";
-		newZone.append(zoneName);
-
-		let zoneNameText = document.createElement("div");
-		zoneNameText.textContent = battleZonesMap[i].zoneName.toUpperCase();
-		zoneName.append(zoneNameText);
-
-		let levelInfo = document.createElement("span");
-		levelInfo.textContent = battleZonesMap[i].levelsRange.toUpperCase();
-		levelInfo.style.cssText = "width: 30%; display: flex; justify-content: center;";
-		newZone.append(levelInfo);
-
-		let clickableButton = document.createElement("span");
-		clickableButton.style.cssText = "width: 25%; display: flex; justify-content: center;";
-		newZone.append(clickableButton);
-
-		let buttonDiv = document.createElement("div");
-		clickableButton.append(buttonDiv);
-
-		let buttonItself = document.createElement("button");
-		let buttonId = battleZonesMap[i].zoneName + "Button";
-		buttonItself.setAttribute("id", buttonId);
-		buttonItself.textContent = "SELECT";
-		buttonItself.setAttribute("zoneId", i);
-		buttonDiv.append(buttonItself);
-
-		buttonItself.onclick = function()
-		{
-			currentZone = battleZonesMap[buttonItself.getAttribute("zoneID")];
-			switchToBattleWindow();
-		};
-		
-		$("#select_zone_scrolling_list").prepend(newZone);
-
-		$("#battle_window_stop_battle").click(function(){
-			stopBattle();
-			ShowBattleWindow();
-			updateBattleHealth();
-		})
-	}
+	BattleRecreateZoneList();
 }
 
 function tickBattle()
@@ -265,4 +218,58 @@ function switchToBattleWindow()
 	$("#battle_window_battle").css("display", "flex");
 	$("#battle_window_select_zone").css("display", "none");
 	$("#battle_data").css("display", "flex");
+}
+
+function BattleRecreateZoneList()
+{
+	$("#select_zone_scrolling_list").empty();
+
+	for(var i = 0; i < battleZonesMap.length; i++)
+	{
+		//Please do not question this code, it's verbdose but it was late and I was drunk. :>
+
+		let newZone = document.createElement("div");
+		newZone.setAttribute("class", "battle_window_select_zone_element");
+
+		let zoneName = document.createElement("span");
+		zoneName.style.cssText = "width: 45%; display: flex; justify-content: center;";
+		newZone.append(zoneName);
+
+		let zoneNameText = document.createElement("div");
+		zoneNameText.textContent = battleZonesMap[i].zoneName.toUpperCase();
+		zoneName.append(zoneNameText);
+
+		let levelInfo = document.createElement("span");
+		levelInfo.textContent = battleZonesMap[i].levelsRange.toUpperCase();
+		levelInfo.style.cssText = "width: 30%; display: flex; justify-content: center;";
+		newZone.append(levelInfo);
+
+		let clickableButton = document.createElement("span");
+		clickableButton.style.cssText = "width: 25%; display: flex; justify-content: center;";
+		newZone.append(clickableButton);
+
+		let buttonDiv = document.createElement("div");
+		clickableButton.append(buttonDiv);
+
+		let buttonItself = document.createElement("button");
+		let buttonId = battleZonesMap[i].zoneName + "Button";
+		buttonItself.setAttribute("id", buttonId);
+		buttonItself.textContent = "SELECT";
+		buttonItself.setAttribute("zoneId", i);
+		buttonDiv.append(buttonItself);
+
+		buttonItself.onclick = function()
+		{
+			currentZone = battleZonesMap[buttonItself.getAttribute("zoneID")];
+			switchToBattleWindow();
+		};
+		
+		$("#select_zone_scrolling_list").prepend(newZone);
+
+		$("#battle_window_stop_battle").click(function(){
+			stopBattle();
+			ShowBattleWindow();
+			updateBattleHealth();
+		})
+	}
 }
