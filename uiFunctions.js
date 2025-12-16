@@ -15,6 +15,11 @@ function UIUpdateHPPotionsAmount()
 	$("#player_info_health_potions").text(player.healthPotions);
 }
 
+function UIUpdateGold()
+{
+	$("#player_info_gold").text(player.gold);
+}
+
 function updateInfoPanel()
 {
 	$("#player_info_level").text(player.level);
@@ -36,7 +41,7 @@ function updateInfoPanel()
 	$("#MANA.player_info_element").css("background-size", playerManaPercent + " 100%");
 	$("#MANA.player_info_element").css("background-repeat", "no-repeat");
 
-	$("#player_info_gold").text(player.gold);
+	UIUpdateGold();
 	
 	const maxSkillsLvl = player.level * 3;
 	$("#player_info_strength").text(player.strength + "/" + maxSkillsLvl);
@@ -103,37 +108,6 @@ function UIDisplayNewTask(newTaskToDisplay)
 	HideShopsWindow();
 	HideSmithWindow();
 	hideDungeonWindow();
-
-	// switch(currentOpenWindow)
-	// {
-	// 	case PlayerTasks.none:
-	// 		$("#empty_window").css("display", "none");
-	// 		break;
-	// 	case PlayerTasks.farming_monsters:
-	// 		HideBattleWindow();
-	// 		break;
-	// 	case PlayerTasks.healing:
-	// 		HideHealingWindow();
-	// 		break;
-	// 	case PlayerTasks.training:
-	// 		HideTrainingWindow();
-	// 		break;
-	// 	case PlayerTasks.equipment:
-	// 		HideEquipmentWindow();
-	// 		break;
-	// 	case PlayerTasks.questing:
-	// 		HideQuestingWindow();
-	// 		break;
-	// 	case PlayerTasks.shop:
-	// 		HideShopsWindow();
-	// 		break;
-	// 	case PlayerTasks.smith:
-	// 		HideSmithWindow();
-	// 		break;
-	// 	case PlayerTasks.dungeon:
-	// 		hideDungeonWindow();
-	// 		break;
-	// }
 
 	//Start new task
 	switch(newTaskToDisplay)
@@ -250,7 +224,7 @@ function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2)
 
 	let timeoutId;
 	const fadeTime = 1000; // 1 second fade
-	const displayTime = 7000; // 7 seconds display
+	const displayTime = 6000; // 6 seconds display
 
 	function startFadeOut() 
 	{
@@ -263,7 +237,7 @@ function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2)
 			{
 				popup.parentNode.removeChild(popup);
 			}
-		}, fadeTime);
+		}, (fadeTime - 25)); // Hack to make it disappear properly on Windows?
 	}
 
 	function startTimer() 

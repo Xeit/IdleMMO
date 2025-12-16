@@ -105,4 +105,6 @@ function unlockMonsterZones(levelToUnlock)
 		default:
 			break;
 	}
+	
+	BattleRecreateZoneList();
 }

@@ -27,3 +27,18 @@ function UIDiv_Space()
 	space.setAttribute("class", "space");
 	return space;
 }
+
+function UIButton_Text(text)
+{
+	const newButton = document.createElement("button");
+	newButton.textContent = text;
+	return newButton;
+}
+
+function UIButton_ClassText(className, text)
+{
+	const newButton = document.createElement("button");
+	newButton.setAttribute("class", className);
+	newButton.textContent = text;
+	return newButton;
+}
