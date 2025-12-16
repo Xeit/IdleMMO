@@ -327,6 +327,7 @@ function SmithTryToUpgradeItem()
 	{
 		smithCurrentItemSlot.itemUpgradeLevel = smithCurrentItemSlot.itemUpgradeLevel + 1;
 		smithCurrentItemSlot.itemUpgradePitty = 0;
+		SmithPlayUpgradeAnimation(true);
 		return;
 	}
 
