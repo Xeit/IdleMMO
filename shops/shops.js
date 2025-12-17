@@ -324,55 +324,65 @@ function ShopCreateShopWindow(tabToCreate)
 			});
 			shopBottomControl.append(exitShopButton);
 
-			for(let nrOfAddedBuffs = 0; nrOfAddedBuffs < tavernBuffs.length; nrOfAddedBuffs++)
+			if(tavernBuffs.length > 0)
 			{
-				// Length of buff
-				const buffLength = tavernBuffs[nrOfAddedBuffs].buffDuration;
-				const hoursLength = Math.floor(buffLength / 3600);
-				if(hoursLength > 0)
+				for(let nrOfAddedBuffs = 0; nrOfAddedBuffs < tavernBuffs.length; nrOfAddedBuffs++)
 				{
-					buffLength = buffLength - (hoursLength * 3600);
-				}
-				const minLength = Math.floor(buffLength / 60);
-				let buffString = "[";
-				if(hoursLength > 0)
-				{
-					buffString = buffString + hoursLength + "h ";
-				}
-				if(minLength > 0)
-				{
-					buffString = buffString + minLength + "m";
-				}
-				buffString = buffString + "] ";
-				buffString = buffString + "[" + tavernBuffs[nrOfAddedBuffs].buffName + "] ";
-				buffString = buffString + "[" + tavernBuffs[nrOfAddedBuffs].buffDescription + "]";
+					// Length of buff
+					const buffLength = tavernBuffs[nrOfAddedBuffs].buffDuration;
+					const hoursLength = Math.floor(buffLength / 3600);
+					if(hoursLength > 0)
+					{
+						buffLength = buffLength - (hoursLength * 3600);
+					}
+					const minLength = Math.floor(buffLength / 60);
+					let buffString = "[";
+					if(hoursLength > 0)
+					{
+						buffString = buffString + hoursLength + "h ";
+					}
+					if(minLength > 0)
+					{
+						buffString = buffString + minLength + "m";
+					}
+					buffString = buffString + "] ";
+					buffString = buffString + "[" + tavernBuffs[nrOfAddedBuffs].buffName + "] ";
+					buffString = buffString + "[" + tavernBuffs[nrOfAddedBuffs].buffDescription + "]";
 
-				const newRow = UIDiv_ClassText("shops_item_row", "");
-				shopDisplay.append(newRow);
-				const leftPadding = UIDiv_Text("");
-				$(leftPadding).css("width", "2%");
-				newRow.append(leftPadding);
-				const buffText = UIDiv_Text(buffString);
-				$(buffText).css("display", "flex");
-				$(buffText).css("justify-content", "left");
-				$(buffText).css("width", "73%");
-				newRow.append(buffText);
-				const buffPrice = UIDiv_ClassText("shop_flexing_center", (tavernBuffs[nrOfAddedBuffs].buffPrice + "G"));
-				$(buffPrice).css("width", "15%");
-				newRow.append(buffPrice);
+					const newRow = UIDiv_ClassText("shops_item_row", "");
+					shopDisplay.append(newRow);
+					const leftPadding = UIDiv_Text("");
+					$(leftPadding).css("width", "2%");
+					newRow.append(leftPadding);
+					const buffText = UIDiv_Text(buffString);
+					$(buffText).css("display", "flex");
+					$(buffText).css("justify-content", "left");
+					$(buffText).css("width", "73%");
+					newRow.append(buffText);
+					const buffPrice = UIDiv_ClassText("shop_flexing_center", (tavernBuffs[nrOfAddedBuffs].buffPrice + "G"));
+					$(buffPrice).css("width", "15%");
+					newRow.append(buffPrice);
 
-				const buyButtonDiv = UIDiv_ClassText("shop_flexing_center", "");
-				$(buyButtonDiv).css("width", "10%");
-				newRow.append(buyButtonDiv);
-				const buyButton = UIButton_ClassText("buyItemButton", "BUY");
-				buyButtonDiv.append(buyButton);
-				$(buyButton).attr("buffId", tavernBuffs[nrOfAddedBuffs].buffId);
-				$(buyButton).attr("cost", tavernBuffs[nrOfAddedBuffs].buffPrice);
-				$(buyButton).attr("shop", "tavern");
-				$(buyButton).click(function()
-				{
-					buyBuff($(buyButton).attr("buffId"), $(buyButton).attr("cost"), $(buyButton).attr("shop"));
-				});
+					const buyButtonDiv = UIDiv_ClassText("shop_flexing_center", "");
+					$(buyButtonDiv).css("width", "10%");
+					newRow.append(buyButtonDiv);
+					const buyButton = UIButton_ClassText("buyItemButton", "BUY");
+					buyButtonDiv.append(buyButton);
+					$(buyButton).attr("buffId", tavernBuffs[nrOfAddedBuffs].buffId);
+					$(buyButton).attr("cost", tavernBuffs[nrOfAddedBuffs].buffPrice);
+					$(buyButton).attr("shop", "tavern");
+					$(buyButton).click(function()
+					{
+						buyBuff($(buyButton).attr("buffId"), $(buyButton).attr("cost"), $(buyButton).attr("shop"));
+					});
+				}
+			}
+			else
+			{
+				const message = UIDiv_ClassText("shop_flexing_center", "Come back at level 20.");
+				$(message).css("font-size", "xx-large");
+				shopDisplay.append(message);
+				$(shopDisplay).css("justify-content", "center");
 			}
 
 			break;
