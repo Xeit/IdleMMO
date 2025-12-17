@@ -58,6 +58,11 @@ function initializeTraining()
 	});
 
 	updateTrainingXpValues();
+
+	UIGenerateInfoPopup($("#training_block_text_strength"), ["Increases damage dealt."]);
+	UIGenerateInfoPopup($("#training_block_text_dexterity"), ["Increases crit chance during battle."]);
+	UIGenerateInfoPopup($("#training_block_text_stamina"), ["Reduces damage taken.", "Increases healing speed."]);
+	UIGenerateInfoPopup($("#training_block_text_intelligence"), ["Increases attributes learning speed."]);
 }
 
 function ShowTrainingWindow()

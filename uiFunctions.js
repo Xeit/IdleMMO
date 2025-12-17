@@ -302,3 +302,44 @@ function UIGetItemRarityColor(itemRarity)
 
 	return color;
 }
+
+function UIGenerateInfoPopup(divToAddInfoEvents, arrayOfDivsToInsert)
+{
+	$(divToAddInfoEvents).mouseenter(function()
+	{
+		const popup = document.createElement("div");
+		document.body.appendChild(popup);
+
+		popup.setAttribute("class", "pop_up");
+		popup.style.animation = "fadeInFromNone 0.5s ease-in";
+		
+		for(let i = 0; i < arrayOfDivsToInsert.length; i++)
+		{
+			popup.append(UIDiv_Text(arrayOfDivsToInsert[i]));
+		}
+
+		popup.style.pointerEvents = "none";
+		
+		$(this).data("info_popup", popup);
+	});
+
+	$(divToAddInfoEvents).mouseleave(function()
+	{
+		const popup = $(this).data("info_popup");
+		if(popup)
+		{
+			popup.remove();
+			$(this).removeData("info_popup");
+		}
+	});
+
+	$(divToAddInfoEvents).mousemove(function(event)
+	{
+		const popup = $(this).data("info_popup");
+		if(popup)
+		{
+			popup.style.left = event.pageX + "px";
+			popup.style.top = (event.pageY + 40) + "px";
+		}
+	});
+}
