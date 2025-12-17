@@ -256,7 +256,7 @@ function ShopCreateShopWindow(tabToCreate)
 			for(let nrOfAddedBuffs = 0; nrOfAddedBuffs < churchBuffs.length; nrOfAddedBuffs++)
 			{
 				// Length of buff
-				const buffLength = churchBuffs[nrOfAddedBuffs].buffDuration;
+				let buffLength = churchBuffs[nrOfAddedBuffs].buffDuration;
 				const hoursLength = Math.floor(buffLength / 3600);
 				if(hoursLength > 0)
 				{
@@ -329,7 +329,7 @@ function ShopCreateShopWindow(tabToCreate)
 				for(let nrOfAddedBuffs = 0; nrOfAddedBuffs < tavernBuffs.length; nrOfAddedBuffs++)
 				{
 					// Length of buff
-					const buffLength = tavernBuffs[nrOfAddedBuffs].buffDuration;
+					let buffLength = tavernBuffs[nrOfAddedBuffs].buffDuration;
 					const hoursLength = Math.floor(buffLength / 3600);
 					if(hoursLength > 0)
 					{
