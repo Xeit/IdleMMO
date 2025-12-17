@@ -54,31 +54,66 @@ function SmithUpdateButtonsInfo()
 	{
 		$("#smithWeapon_upgradeLevel").text("+" + player.weaponSlot.itemUpgradeLevel);
 		$("#smithWeapon_rarity").text(player.weaponSlot.itemRarity.toUpperCase());
-		$("#smithWeapon_pitty").text(player.weaponSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.weaponSlot) + " PITTY");
+		if(SmithCanItemHaveHigherLevel(player.weaponSlot))
+		{
+			$("#smithWeapon_pitty").text(player.weaponSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.weaponSlot) + " PITTY");
+		}
+		else
+		{
+			$("#smithWeapon_pitty").text("MAXED");
+		}
 	}
 	if(player.helmetSlot !== undefined)
 	{
 		$("#smithHelmet_upgradeLevel").text("+" + player.helmetSlot.itemUpgradeLevel);
 		$("#smithHelmet_rarity").text(player.helmetSlot.itemRarity.toUpperCase());
-		$("#smithHelmet_pitty").text(player.helmetSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.helmetSlot) + " PITTY");
+		if(SmithCanItemHaveHigherLevel(player.helmetSlot))
+		{
+			$("#smithHelmet_pitty").text(player.helmetSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.helmetSlot) + " PITTY");
+		}
+		else
+		{
+			$("#smithHelmet_pitty").text("MAXED");
+		}
 	}
 	if(player.bodyArmourSlot !== undefined)
 	{
 		$("#smithBodyArmour_upgradeLevel").text("+" + player.bodyArmourSlot.itemUpgradeLevel);
 		$("#smithBodyArmour_rarity").text(player.bodyArmourSlot.itemRarity.toUpperCase());
-		$("#smithBodyArmour_pitty").text(player.bodyArmourSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.bodyArmourSlot) + " PITTY");
+		if(SmithCanItemHaveHigherLevel(player.bodyArmourSlot))
+		{
+			$("#smithBodyArmour_pitty").text(player.bodyArmourSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.bodyArmourSlot) + " PITTY");
+		}
+		else
+		{
+			$("#smithBodyArmour_pitty").text("MAXED");
+		}
 	}
 	if(player.glovesSlot !== undefined)
 	{
 		$("#smithGloves_upgradeLevel").text("+" + player.glovesSlot.itemUpgradeLevel);
 		$("#smithGloves_rarity").text(player.glovesSlot.itemRarity.toUpperCase());
-		$("#smithGloves_pitty").text(player.glovesSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.glovesSlot) + " PITTY");
+		if(SmithCanItemHaveHigherLevel(player.glovesSlot))
+		{
+			$("#smithGloves_pitty").text(player.glovesSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.glovesSlot) + " PITTY");
+		}
+		else
+		{
+			$("#smithGloves_pitty").text("MAXED");
+		}
 	}
 	if(player.bootsSlot !== undefined)
 	{
 		$("#smithBoots_upgradeLevel").text("+" + player.bootsSlot.itemUpgradeLevel);
 		$("#smithBoots_rarity").text(player.bootsSlot.itemRarity.toUpperCase());
-		$("#smithBoots_pitty").text(player.bootsSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.bootsSlot) + " PITTY");
+		if(SmithCanItemHaveHigherLevel(player.bootsSlot))
+		{
+			$("#smithBoots_pitty").text(player.bootsSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(player.bootsSlot) + " PITTY");
+		}
+		else
+		{
+			$("#smithBoots_pitty").text("MAXED");
+		}
 	}
 }
 
@@ -92,23 +127,12 @@ function SmithUpdatePanelInfo()
 		Object.assign(temporaryItemWithNextUpgrade, smithCurrentItemSlot);
 		temporaryItemWithNextUpgrade.itemUpgradeLevel = temporaryItemWithNextUpgrade.itemUpgradeLevel + 1;
 		let additionalUpgradePower = temporaryItemWithNextUpgrade.returnItemPower(true) - smithCurrentItemSlot.returnItemPower(true);
-		$("#smithInfo_Power").text("ITEM POWER: " + smithCurrentItemSlot.returnItemPower(true) + " (+" + additionalUpgradePower + ")");
 
 		$("#smithInfo_itemRarity").text(smithCurrentItemSlot.itemRarity.toUpperCase());
 		$("#smithInfo_itemSlot").text(smithCurrentItemSlot.itemSlot.toUpperCase());
 		$("#smithInfo_itemUpgradeLevel").text("+ " + smithCurrentItemSlot.itemUpgradeLevel);
-		$("#smithInfo_goldCost").text(SmithGetUpgradeGoldCost() + " G");
 		$("#smithInfo_itemCost").text("NOTHING");
-		$("#smithInfo_pitty").text(smithCurrentItemSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(smithCurrentItemSlot));
 
-		if(smithCurrentItemSlot.itemUpgradePitty >= SmithGetMaxPitty(smithCurrentItemSlot))
-		{
-			$("#smithInfo_upgradeChance").text("100%");
-		}
-		else
-		{
-			$("#smithInfo_upgradeChance").text(SmithGetUpgradeChance(smithCurrentItemSlot) * 100 + "%");
-		}
 
 		if(SmithCanUpgradeItem())
 		{
@@ -124,6 +148,19 @@ function SmithUpdatePanelInfo()
 			{
 				$("#smithInfo_upgradeButton").text("UPGRADE");
 			}
+
+			$("#smithInfo_Power").text("ITEM POWER: " + smithCurrentItemSlot.returnItemPower(true) + " (+" + additionalUpgradePower + ")");
+			$("#smithInfo_goldCost").text(SmithGetUpgradeGoldCost() + " G");
+			$("#smithInfo_pitty").text(smithCurrentItemSlot.itemUpgradePitty + "/" + SmithGetMaxPitty(smithCurrentItemSlot));
+
+			if(smithCurrentItemSlot.itemUpgradePitty >= SmithGetMaxPitty(smithCurrentItemSlot))
+			{
+				$("#smithInfo_upgradeChance").text("100%");
+			}
+			else
+			{
+				$("#smithInfo_upgradeChance").text(SmithGetUpgradeChance(smithCurrentItemSlot) * 100 + "%");
+			}
 		}
 		else
 		{
@@ -131,6 +168,11 @@ function SmithUpdatePanelInfo()
 			$("#smithInfo_upgradeButton").removeClass("smith_enabledButton");
 			$("#smithInfo_upgradeButton").addClass("smith_disabledButton");
 			$("#smithInfo_upgradeButton").text("UPGRADE");
+
+			$("#smithInfo_Power").text("ITEM POWER: " + smithCurrentItemSlot.returnItemPower(true));
+			$("#smithInfo_goldCost").text("ITEM MAXED");
+			$("#smithInfo_pitty").text("");
+			$("#smithInfo_upgradeChance").text("");
 		}
 	}
 	else
@@ -142,7 +184,7 @@ function SmithUpdatePanelInfo()
 		$("#smithInfo_itemUpgradeLevel").text("");
 		$("#smithInfo_goldCost").text("");
 		$("#smithInfo_itemCost").text("");
-		$("#smithInfo_upgradeChance").text("0%");
+		$("#smithInfo_upgradeChance").text("");
 
 		$("#smithInfo_upgradeButton").prop('disabled', true);
 		$("#smithInfo_upgradeButton").removeClass("smith_enabledButton");
@@ -261,6 +303,45 @@ function SmithGetUpgradeGoldCost()
 	return goldCost;
 }
 
+function SmithCanItemHaveHigherLevel(itemToCheck)
+{
+	let bCanUpgradeItem = false
+	if(itemToCheck instanceof Item)
+	{
+		let maxUpgradeLevel = 0;
+		switch(itemToCheck.itemRarity)
+		{
+			case ItemRarity.none:
+				break;
+			case ItemRarity.common:
+				break;
+			case ItemRarity.uncommon:
+				maxUpgradeLevel = 2;
+				break;
+			case ItemRarity.magic:
+				maxUpgradeLevel = 4;
+				break;
+			case ItemRarity.rare:
+				maxUpgradeLevel = 6;
+				break;
+			case ItemRarity.mythic:
+				maxUpgradeLevel = 8;
+				break;
+			case ItemRarity.legendary:
+				maxUpgradeLevel = 10;
+				break;
+			default:
+				break;
+		}
+
+		if(itemToCheck.itemUpgradeLevel < maxUpgradeLevel)
+		{
+			bCanUpgradeItem = true;
+		}
+	}
+	return bCanUpgradeItem;
+}
+
 function SmithCanUpgradeItem()
 {
 	let bCanUpgradeItem = true;
@@ -350,7 +431,8 @@ function SmithTryToUpgradeItem()
 function SmithPlayUpgradeAnimation(bSuccess)
 {
 	const smithWindow = document.getElementById("smith_window");
-	smithWindow.style.animation="";
+	smithWindow.style.animation="none";
+  	smithWindow.offsetHeight;
 
 	if(bSuccess == true)
 	{
