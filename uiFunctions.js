@@ -303,6 +303,29 @@ function UIGetItemRarityColor(itemRarity)
 	return color;
 }
 
+function UIBindRemovalOfInfoPopup(divToBindTo)
+{
+	$(divToBindTo).mouseleave(function()
+	{
+		const popup = $(this).data("info_popup");
+		if(popup)
+		{
+			popup.remove();
+			$(this).removeData("info_popup");
+		}
+	});
+
+	$(divToBindTo).mousemove(function(event)
+	{
+		const popup = $(this).data("info_popup");
+		if(popup)
+		{
+			popup.style.left = event.pageX + "px";
+			popup.style.top = (event.pageY + 40) + "px";
+		}
+	});
+}
+
 function UIGenerateInfoPopup(divToAddInfoEvents, arrayOfDivsToInsert)
 {
 	$(divToAddInfoEvents).mouseenter(function()
@@ -323,23 +346,5 @@ function UIGenerateInfoPopup(divToAddInfoEvents, arrayOfDivsToInsert)
 		$(this).data("info_popup", popup);
 	});
 
-	$(divToAddInfoEvents).mouseleave(function()
-	{
-		const popup = $(this).data("info_popup");
-		if(popup)
-		{
-			popup.remove();
-			$(this).removeData("info_popup");
-		}
-	});
-
-	$(divToAddInfoEvents).mousemove(function(event)
-	{
-		const popup = $(this).data("info_popup");
-		if(popup)
-		{
-			popup.style.left = event.pageX + "px";
-			popup.style.top = (event.pageY + 40) + "px";
-		}
-	});
+	UIBindRemovalOfInfoPopup(divToAddInfoEvents);
 }

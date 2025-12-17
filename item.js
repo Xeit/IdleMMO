@@ -177,6 +177,34 @@ function generateItem(enemyLevel, enemyDifficulty)
 	return (newItem);
 }
 
+function equipmentBindInfoOnEnter(divToHover, itemSlot)
+{
+	$(divToHover).mouseenter(function()
+	{
+		const popup = document.createElement("div");
+		document.body.appendChild(popup);
+
+		popup.setAttribute("class", "pop_up");
+		popup.style.animation = "fadeInFromNone 0.5s ease-in";
+
+		if(itemSlot instanceof Item)
+		{
+			if(itemSlot.itemSlot == ItemSlot.weapon)
+			{
+				popup.append(UIDiv_Text("Damage with buffs: " + playerGetMaxDamageNoCrit()));
+			}
+			else
+			{
+				popup.append(UIDiv_Text("Total armor value: " + (+playerGetArmourValue() + (+getTotalBuffsWithType(BuffType.defense)))));
+			}
+		}
+		
+		popup.style.pointerEvents = "none";
+		
+		$(this).data("info_popup", popup);
+	});
+}
+
 function updateEquipmentWindow()
 {
 	if(player.weaponSlot instanceof Item)
@@ -187,6 +215,9 @@ function updateEquipmentWindow()
 		$("#equipment_weapon_name").text(player.weaponSlot.itemName);
 		$("#equipment_weapon_level").text(player.weaponSlot.itemLevel);
 		$("#equipment_weapon_power").text(player.weaponSlot.returnItemPower(true));
+
+		equipmentBindInfoOnEnter("#equipment_slot_info_weapon", player.weaponSlot);
+		UIBindRemovalOfInfoPopup("#equipment_slot_info_weapon");
 	}
 	if(player.helmetSlot instanceof Item)
 	{
@@ -196,6 +227,9 @@ function updateEquipmentWindow()
 		$("#equipment_helmet_name").text(player.helmetSlot.itemName);
 		$("#equipment_helmet_level").text(player.helmetSlot.itemLevel);
 		$("#equipment_helmet_power").text(player.helmetSlot.returnItemPower(true));
+
+		equipmentBindInfoOnEnter("#equipment_slot_info_helmet", player.helmetSlot);
+		UIBindRemovalOfInfoPopup("#equipment_slot_info_helmet");
 	}
 	if(player.bodyArmourSlot instanceof Item)
 	{
@@ -205,6 +239,9 @@ function updateEquipmentWindow()
 		$("#equipment_body_armour_name").text(player.bodyArmourSlot.itemName);
 		$("#equipment_body_armour_level").text(player.bodyArmourSlot.itemLevel);
 		$("#equipment_body_armour_power").text(player.bodyArmourSlot.returnItemPower(true));
+
+		equipmentBindInfoOnEnter("#equipment_slot_info_body_armour", player.bodyArmourSlot);
+		UIBindRemovalOfInfoPopup("#equipment_slot_info_body_armour");
 	}
 	if(player.glovesSlot instanceof Item)
 	{
@@ -214,6 +251,9 @@ function updateEquipmentWindow()
 		$("#equipment_gloves_name").text(player.glovesSlot.itemName);
 		$("#equipment_gloves_level").text(player.glovesSlot.itemLevel);
 		$("#equipment_gloves_power").text(player.glovesSlot.returnItemPower(true));
+
+		equipmentBindInfoOnEnter("#equipment_slot_info_gloves", player.glovesSlot);
+		UIBindRemovalOfInfoPopup("#equipment_slot_info_gloves");
 	}
 	if(player.bootsSlot instanceof Item)
 	{
@@ -223,6 +263,9 @@ function updateEquipmentWindow()
 		$("#equipment_boots_name").text(player.bootsSlot.itemName);
 		$("#equipment_boots_level").text(player.bootsSlot.itemLevel);
 		$("#equipment_boots_power").text(player.bootsSlot.returnItemPower(true));
+
+		equipmentBindInfoOnEnter("#equipment_slot_info_boots", player.bootsSlot);
+		UIBindRemovalOfInfoPopup("#equipment_slot_info_boots");
 	}
 }
 

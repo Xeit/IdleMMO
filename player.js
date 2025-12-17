@@ -189,6 +189,26 @@ function playerTakeDamage(monsterDamageNumber)
 	}
 }
 
+function playerGetMaxDamageNoCrit()
+{
+	var playerDamageToDeal = 0;
+	
+	playerDamageToDeal = +player.strength;
+	if(player.weaponSlot instanceof Item)
+	{
+		playerDamageToDeal += +player.weaponSlot.returnItemPower(true);
+	}
+
+	playerDamageToDeal += +getTotalBuffsWithType(BuffType.damage);
+
+	if(playerDamageToDeal < 1)
+	{
+		playerDamageToDeal = 1;
+	}
+
+	return playerDamageToDeal;
+}
+
 function playerGetAttackDamage(againstEnemyLevel)
 {
 	var playerDamageToDeal = 0;

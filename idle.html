@@ -311,7 +311,7 @@
 						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
 							<div id="equipment_helmet_level" style="z-index: 2;">0</div>
 						</span>
-						<span class="equipment_slot_info" style="width: 15%; background-color: #646464">
+						<span class="equipment_slot_info" id="equipment_slot_info_helmet" style="width: 15%; background-color: #646464">
 							<div id="equipment_helmet_power" style="z-index: 2;">0</div>
 						</span>
 						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
@@ -328,7 +328,7 @@
 						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
 							<div id="equipment_body_armour_level" style="z-index: 2;">0</div>
 						</span>
-						<span class="equipment_slot_info" style="width: 15%; background-color: #646464">
+						<span class="equipment_slot_info" id="equipment_slot_info_body_armour" style="width: 15%; background-color: #646464">
 							<div id="equipment_body_armour_power" style="z-index: 2;">0</div>
 						</span>
 						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
@@ -345,7 +345,7 @@
 						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
 							<div id="equipment_gloves_level" style="z-index: 2;">0</div>
 						</span>
-						<span class="equipment_slot_info" style="width: 15%; background-color: #646464">
+						<span class="equipment_slot_info" id="equipment_slot_info_gloves" style="width: 15%; background-color: #646464">
 							<div id="equipment_gloves_power" style="z-index: 2;">0</div>
 						</span>
 						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
@@ -362,7 +362,7 @@
 						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
 							<div id="equipment_boots_level" style="z-index: 2;">0</div>
 						</span>
-						<span class="equipment_slot_info" style="width: 15%; background-color: #646464">
+						<span class="equipment_slot_info" id="equipment_slot_info_boots" style="width: 15%; background-color: #646464">
 							<div id="equipment_boots_power" style="z-index: 2;">0</div>
 						</span>
 						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
@@ -379,7 +379,7 @@
 						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
 							<div id="equipment_weapon_level" style="z-index: 2;">0</div>
 						</span>
-						<span class="equipment_slot_info" style="width: 15%; background-color: #646464">
+						<span class="equipment_slot_info" id="equipment_slot_info_weapon" style="width: 15%; background-color: #646464">
 							<div id="equipment_weapon_power" style="z-index: 2;">0</div>
 						</span>
 						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
@@ -389,9 +389,15 @@
 					<div class="equipment_slot_overlay" id="equipment_weapon_overlay"></div>
 				</div>
 				<br>
-				<div style="padding-left: 2px;">Explanation about stats and what they do:</div>
-				<div style="padding-left: 2px;">Weapon power is added to your attack 1:1 :></div>
-				<div style="padding-left: 2px;">Armour power reduces damage received at half of it's power (rounded down). (still min dmg received is 1)</div>
+				<div style="padding-left: 4px;">Explanation about stats and what they do:</div>
+				<div class="space"></div>
+				<div style="padding-left: 4px;">Weapon power is added to your attack.</div>
+				<div style="padding-left: 4px;">Your attack is also affected by Strength and different kinds of buffs.</div>
+				<div class="space"></div>
+				<div style="padding-left: 4px;">Armour provides damage mitigation from monster damage in this formula:</div>
+				<div style="padding-left: 4px;">MonsterDamage * (Armour / (Armour + (3 * MonsterDamage)));</div>
+				<div class="space"></div>
+				<div style="padding-left: 4px;">TLDR: More Power is Better.</div>
 			</div>
 
 			<!-- SHOPS (fully generated in code in shops/shops.js) -->
