@@ -216,6 +216,7 @@ function updateEquipmentWindow()
 		$("#equipment_weapon_level").text(player.weaponSlot.itemLevel);
 		$("#equipment_weapon_power").text(player.weaponSlot.returnItemPower(true));
 
+		UIClearHoverEvents("#equipment_slot_info_weapon");
 		equipmentBindInfoOnEnter("#equipment_slot_info_weapon", player.weaponSlot);
 		UIBindRemovalOfInfoPopup("#equipment_slot_info_weapon");
 	}
@@ -228,6 +229,7 @@ function updateEquipmentWindow()
 		$("#equipment_helmet_level").text(player.helmetSlot.itemLevel);
 		$("#equipment_helmet_power").text(player.helmetSlot.returnItemPower(true));
 
+		UIClearHoverEvents("#equipment_slot_info_helmet");
 		equipmentBindInfoOnEnter("#equipment_slot_info_helmet", player.helmetSlot);
 		UIBindRemovalOfInfoPopup("#equipment_slot_info_helmet");
 	}
@@ -240,6 +242,7 @@ function updateEquipmentWindow()
 		$("#equipment_body_armour_level").text(player.bodyArmourSlot.itemLevel);
 		$("#equipment_body_armour_power").text(player.bodyArmourSlot.returnItemPower(true));
 
+		UIClearHoverEvents("#equipment_slot_info_body_armour");
 		equipmentBindInfoOnEnter("#equipment_slot_info_body_armour", player.bodyArmourSlot);
 		UIBindRemovalOfInfoPopup("#equipment_slot_info_body_armour");
 	}
@@ -252,6 +255,7 @@ function updateEquipmentWindow()
 		$("#equipment_gloves_level").text(player.glovesSlot.itemLevel);
 		$("#equipment_gloves_power").text(player.glovesSlot.returnItemPower(true));
 
+		UIClearHoverEvents("#equipment_slot_info_gloves");
 		equipmentBindInfoOnEnter("#equipment_slot_info_gloves", player.glovesSlot);
 		UIBindRemovalOfInfoPopup("#equipment_slot_info_gloves");
 	}
@@ -264,6 +268,7 @@ function updateEquipmentWindow()
 		$("#equipment_boots_level").text(player.bootsSlot.itemLevel);
 		$("#equipment_boots_power").text(player.bootsSlot.returnItemPower(true));
 
+		UIClearHoverEvents("#equipment_slot_info_boots");
 		equipmentBindInfoOnEnter("#equipment_slot_info_boots", player.bootsSlot);
 		UIBindRemovalOfInfoPopup("#equipment_slot_info_boots");
 	}

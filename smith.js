@@ -133,12 +133,22 @@ function SmithUpdatePanelInfo()
 		$("#smithInfo_itemUpgradeLevel").text("+ " + smithCurrentItemSlot.itemUpgradeLevel);
 		$("#smithInfo_itemCost").text("NOTHING");
 
-
-		if(SmithCanUpgradeItem())
+		if(SmithCanItemHaveHigherLevel(smithCurrentItemSlot))
 		{
-			$("#smithInfo_upgradeButton").prop('disabled', false);
-			$("#smithInfo_upgradeButton").removeClass("smith_disabledButton");
-			$("#smithInfo_upgradeButton").addClass("smith_enabledButton");
+			if(SmithCanUpgradeItem())
+			{
+				$("#smithInfo_upgradeButton").prop('disabled', false);
+				$("#smithInfo_upgradeButton").removeClass("smith_disabledButton");
+				$("#smithInfo_upgradeButton").addClass("smith_enabledButton");
+				$("#smithInfo_upgradeButton").text("UPGRADE");
+			}
+			else
+			{
+				$("#smithInfo_upgradeButton").prop('disabled', true);
+				$("#smithInfo_upgradeButton").removeClass("smith_enabledButton");
+				$("#smithInfo_upgradeButton").addClass("smith_disabledButton");
+				$("#smithInfo_upgradeButton").text("UPGRADE");
+			}
 
 			if(smithCurrentItemSlot.itemUpgradePitty >= SmithGetMaxPitty(smithCurrentItemSlot))
 			{

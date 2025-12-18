@@ -303,6 +303,13 @@ function UIGetItemRarityColor(itemRarity)
 	return color;
 }
 
+function UIClearHoverEvents(divToClear)
+{
+	$(divToClear).unbind("mouseleave");
+	$(divToClear).unbind("mouseenter");
+	$(divToClear).unbind("mousemove");
+}
+
 function UIBindRemovalOfInfoPopup(divToBindTo)
 {
 	$(divToBindTo).mouseleave(function()
