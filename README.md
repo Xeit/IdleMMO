@@ -10,7 +10,7 @@ Game was inspired by my thousands of hours wasted on playing different MMORPGs l
 
 - Killing mobs
 - Training skills
-- Upgradeing EQ
+- Upgrading EQ
 - Dungeons \o/
 - Levels up to 50!
 
