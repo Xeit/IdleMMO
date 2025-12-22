@@ -62,7 +62,7 @@ class Player
 		player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
 		player.requiredXp = +player.requiredXp.toFixed();
 
-		player.maxHealth = 100 + (10 * (player.level - 1));
+		player.maxHealth = 100 + (15 * (player.level - 1));
 		player.maxMana = 100 + (10 * (player.level - 1));
 		player.maxExhaustion = 80 + (10 * (player.level - 1));
 	}
@@ -120,7 +120,7 @@ function playerLevelUp()
 	player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
 	player.requiredXp = +player.requiredXp.toFixed();
 
-	player.maxHealth = 100 + (10 * (player.level - 1));
+	player.maxHealth = 100 + (15 * (player.level - 1));
 	player.maxMana = 100 + (10 * (player.level - 1));
 	player.maxExhaustion = 80 + (10 * (player.level - 1));
 
@@ -169,7 +169,7 @@ function playerTakeDamage(monsterDamageNumber)
 
 	consoleLogDebug("Monster damage before reductions: " + monsterDamageNumber);
 
-	monsterDamageNumber = monsterDamageNumber - (monsterDamageNumber * (player.stamina / (baseMonsterDamage * 4)));
+	monsterDamageNumber = monsterDamageNumber - (monsterDamageNumber * (player.stamina * 1.5 / (baseMonsterDamage * 4)));
 	consoleLogDebug("Monster damage after stamina: " + monsterDamageNumber);
 
 	armourReduction = playerGetArmourValue() / (playerGetArmourValue() + (3 * baseMonsterDamage));

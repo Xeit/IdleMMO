@@ -127,15 +127,15 @@ function generateItem(enemyLevel, enemyDifficulty)
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.uncommon, ItemRarity.magic, ItemRarity.rare, null);
 			break;
 		case EnemyDifficulty.very_hard:
-			var rarityRoll = rollPosibility(20, 45, 30, 5);
+			var rarityRoll = rollPosibility(20, 45, 30, 6);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.uncommon, ItemRarity.magic, ItemRarity.rare, ItemRarity.mythic);
 			break;
 		case EnemyDifficulty.mini_boss:
-			var rarityRoll = rollPosibility(20, 45, 30, 5);
+			var rarityRoll = rollPosibility(20, 45, 30, 3);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.magic, ItemRarity.rare, ItemRarity.mythic, ItemRarity.legendary);
 			break;
 		case EnemyDifficulty.boss:
-			var rarityRoll = rollPosibility(6, 3, 1, 0);
+			var rarityRoll = rollPosibility(6, 3, 2, 0);
 			newItemRarity = selectCorrectRarity(rarityRoll, ItemRarity.rare, ItemRarity.mythic, ItemRarity.legendary, null);
 			break;
 		default:
