@@ -55,6 +55,18 @@ class Player
 
 	questingFocus = QuestFocuses.BALANCED;
 
+	// This is function to update player stats on save load when balance was changed 
+	// TODO: Make this not... hardcoded XD It's extremaly bad but I need it NOW.
+	playerValidateMaxStats()
+	{
+		player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
+		player.requiredXp = +player.requiredXp.toFixed();
+
+		player.maxHealth = 100 + (10 * (player.level - 1));
+		player.maxMana = 100 + (10 * (player.level - 1));
+		player.maxExhaustion = 80 + (10 * (player.level - 1));
+	}
+
 	playerUnlockFunctionsUntilLevel()
 	{
 		for(let i = 0; i <= this.level; i++)
@@ -110,7 +122,7 @@ function playerLevelUp()
 
 	player.maxHealth = 100 + (10 * (player.level - 1));
 	player.maxMana = 100 + (10 * (player.level - 1));
-	player.maxExhaustion = 50 + (5 * (player.level - 1));
+	player.maxExhaustion = 80 + (10 * (player.level - 1));
 
 	healPlayerToMax();
 
