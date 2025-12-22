@@ -30,6 +30,7 @@ function UIGenerateLevelUpContent()
 			break;
 		case 10:
 			popupContentInside.append(UIDiv_Text("Shops!"));
+			popupContentInside.append(UIDiv_Space());
 			popupContentInside.append(UIDiv_Text("New buff in Church!"));
 			break;
 		case 11:
@@ -48,6 +49,8 @@ function UIGenerateLevelUpContent()
 			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			break;
 		case 20:
+			popupContentInside.append(UIDiv_Text("Fishing!"));
+			popupContentInside.append(UIDiv_Space());
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));
 			popupContentInside.append(UIDiv_Text("New buff in Tavern!"));
 			break;

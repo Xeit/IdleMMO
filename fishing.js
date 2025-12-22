@@ -95,7 +95,7 @@ function giveFishingRewards()
 	}
 	
 	// Gold Calculation
-	let goldGain = 10 + Math.floor(Math.random() * player.fishingLevel * 2);
+	let goldGain = 30 + Math.floor(Math.random() * player.fishingLevel * 3);
 	player.gold += goldGain;
 
 	UIShowPopup("FishCaught", goldGain, bDidLevelUp);

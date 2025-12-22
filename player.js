@@ -268,10 +268,6 @@ function playerUnlockFunctions(levelToUnlock)
 			$("#trainingButton").css("display", "block");
 			$("#equipmentButton").css("display", "block");
 			break;
-		case 3:
-			initializeFishing();
-			$("#fishingButton").css("display", "block");
-			break;
 		case 7:
 			$("#smithButton").css("display", "block");
 			break;
@@ -280,6 +276,10 @@ function playerUnlockFunctions(levelToUnlock)
 			break;
 		case 12:
 			$("#dungeonButton").css("display", "block");
+			break;
+		case 20:
+			initializeFishing();
+			$("#fishingButton").css("display", "block");
 			break;
 	}
 	unlockDungeons(levelToUnlock);
