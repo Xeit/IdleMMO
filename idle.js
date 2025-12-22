@@ -55,6 +55,9 @@ $(document).ready(function()
 					case PlayerTasks.dungeon:
 						tickDungeon();
 						break;
+					case PlayerTasks.fishing:
+						tickFishing();
+						break;
 				}
 
 				tickBuffs();
@@ -157,6 +160,10 @@ function newPlayerTask(newTask)
 				break;
 			case PlayerTasks.dungeon:
 				bShouldStopPreviousTask = true;
+				break;
+			case PlayerTasks.fishing:
+				bShouldStopPreviousTask = true;
+				break;
 			default:
 				break;
 		}
@@ -180,6 +187,9 @@ function newPlayerTask(newTask)
 				case PlayerTasks.dungeon:
 					// Should stop when not ticking, reset happens on start
 					break;
+				case PlayerTasks.fishing:
+					// Should stop when not ticking, reset happens on start
+					break;
 				default:
 					break;
 			}
@@ -201,6 +211,9 @@ function newPlayerTask(newTask)
 				startQuesting();
 				break;
 			case PlayerTasks.dungeon:
+				break;
+			case PlayerTasks.fishing:
+				startFishing();
 				break;
 			default:
 				break;

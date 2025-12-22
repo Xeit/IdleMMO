@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="dungeon.css?v=43">
 	<link rel="stylesheet" href="UI/UI_PopUp.css?v=43">
 	<link rel="stylesheet" href="shops/shops.css?v=43">
+	<link rel="stylesheet" href="fishing.css?v=43">
 	
 	<script src="UI/UI_DivHelpers.js?v=43"></script>
 	<script defer src="UI/UI_PopUp.js?v=43"></script>
@@ -40,6 +41,7 @@
 	<script defer src="smith.js?v=43"></script>
 	<script defer src="dungeonAllies.js?v=43"></script>
 	<script defer src="dungeon.js?v=43"></script>
+	<script defer src="fishing.js?v=43"></script>
 
 	<script defer src="idle.js?v=43"></script>
 </head>
@@ -606,6 +608,29 @@
 				</div>
 			</div>
 
+			<!-- FISHING -->
+			<div class="task_window" id="fishing_window" style="display: none; flex-direction: column; align-items: center; justify-content: space-between;">
+				<h2>Fishing Hole</h2>
+				<div id="fishing_scene" style="border: 5px solid #000; width: 50%; height: 35%; margin: 0 auto; position: relative; overflow: hidden;">
+					<div style="width: 100%; height: 60%; background: linear-gradient(rgb(255, 237, 197), #87CEEB);"></div>
+					<div style="width: 100%; height: 40%; background: linear-gradient(#00008B, #00004b)"></div>
+					
+					<div id="fishing_bobber" style="display: none; width: 20px; height: 20px; background: linear-gradient(rgb(175, 175, 175), rgb(71, 71, 71)); border-radius: 50%; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); border: 2px solid rgb(0, 0, 0);"></div>
+				</div>
+				
+				<div id="fishing_status" style="font-size: x-large; font-weight: bold; height: 10%;">Ready</div>
+
+				<div id="fishing_afk_bar" style="display: flex; height: 5%; width: 50%; align-items: center; justify-content: center; border: 2px solid #000; border-radius: 10px; background: linear-gradient(179deg, #454545, #6b6b6b); background-size: 0% 100%; background-repeat: no-repeat;">AFK ACTION</div>
+
+				<button id="fishing_cast_button" style="padding: 20px 40px; font-size: x-large; font-weight: bold;">CAST</button>
+				
+				<div style="width: 50%; text-align: center; margin-bottom: 2%;">
+					<div>Fishing Level: <span id="fishing_level">1</span></div>
+					<div>XP: <span id="fishing_xp">0/50</span></div>
+				</div>
+			</div>
+
+
 			<!-- Buttons at the bottom of the screen -->
 			<div id = "control_buttons">
 				<span style="display: flex; width: 50%;">
@@ -614,6 +639,7 @@
 					<button id="recoverHealthButton" style="display: none;">HEAL</button>
 					<button id="trainingButton" style="display: none;">TRAIN</button>
 					<button id="dungeonButton" style="display: none;">DUNGEONS</button>
+					<button id="fishingButton" style="display: none;">FISHING</button>
 				</span>
 				<span style="display: flex; flex-direction: row-reverse; width: 50%;">
 					<button id="equipmentButton" style="display: none;">EQ</button>

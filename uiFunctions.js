@@ -108,6 +108,7 @@ function UIDisplayNewTask(newTaskToDisplay)
 	HideShopsWindow();
 	HideSmithWindow();
 	hideDungeonWindow();
+	HideFishingWindow();
 
 	//Start new task
 	switch(newTaskToDisplay)
@@ -138,6 +139,9 @@ function UIDisplayNewTask(newTaskToDisplay)
 			break;
 		case PlayerTasks.dungeon:
 			showDungeonWindow();
+			break;
+		case PlayerTasks.fishing:
+			ShowFishingWindow();
 			break;
 	}
 }

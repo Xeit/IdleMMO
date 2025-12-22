@@ -32,6 +32,8 @@ class Player
 	staminaXP = 0;
 	intelligence = 1;
 	intelligenceXP = 0;
+	fishingLevel = 1;
+	fishingXP = 0;
 
 	//Equipment slots
 	weaponSlot = undefined;
@@ -265,6 +267,10 @@ function playerUnlockFunctions(levelToUnlock)
 			$("#recoverHealthButton").css("display", "block");
 			$("#trainingButton").css("display", "block");
 			$("#equipmentButton").css("display", "block");
+			break;
+		case 3:
+			initializeFishing();
+			$("#fishingButton").css("display", "block");
 			break;
 		case 7:
 			$("#smithButton").css("display", "block");
