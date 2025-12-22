@@ -140,3 +140,24 @@ function UIEquippedNewItem(oldItemPower, newItem)
 
 	return popupContentInside;
 }
+
+function UIFishSold(goldEarned, bDidLevelUp)
+{
+	const popupContentInside = document.createElement("div");
+	if(bDidLevelUp == true)
+	{
+		popupContentInside.append(UIDiv_ClassText("title", "Fishing Level Up!"));
+		popupContentInside.append(UIDiv_Space());
+		popupContentInside.append(UIDiv_Text("Faster AFK rod casting"));
+		popupContentInside.append(UIDiv_Space());
+		popupContentInside.append(UIDiv_Text("Gold +" + goldEarned));
+	}
+	else
+	{
+		popupContentInside.append(UIDiv_ClassText("title", "Fish Caught"));
+		popupContentInside.append(UIDiv_Space());
+		popupContentInside.append(UIDiv_Text("Gold +" + goldEarned));
+	}
+
+	return popupContentInside;
+}

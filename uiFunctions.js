@@ -197,7 +197,7 @@ function UIUpdateBuffInfoPanel()
 	}
 }
 
-function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2) 
+function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2)
 {
 	// Create popup elements
 	const popup = document.createElement("div");
@@ -222,6 +222,9 @@ function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2)
 			break;
 		case "NewItem":
 			popupContent = UIEquippedNewItem(additionalStuff1, additionalStuff2);
+			break;
+		case "FishCaught":
+			popupContent = UIFishSold(additionalStuff1, additionalStuff2);
 			break;
 	}
 	popup.append(popupContent);

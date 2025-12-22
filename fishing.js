@@ -77,22 +77,28 @@ function catchFish()
 
 function giveFishingRewards()
 {
-	// XP Calculation
-	let xpGain = 10 + (player.fishingLevel * 2);
-	if(levelBreeze) xpGain *= 50;
-	
-	player.fishingXP += xpGain;
-	let requiredXP = player.fishingLevel * 50;
-	if(player.fishingXP >= requiredXP)
+	// XP Calculation (currently max lvl is 30)
+	let bDidLevelUp = false;
+	if(player.fishingLevel < 30)
 	{
-		player.fishingLevel++;
-		player.fishingXP = 0;
+		let xpGain = 10 + (player.fishingLevel * 2);
+		
+		player.fishingXP += xpGain;
+		let requiredXP = player.fishingLevel * 50;
+		if(player.fishingXP >= requiredXP)
+		{
+			player.fishingLevel++;
+			player.fishingXP = 0;
+
+			bDidLevelUp = true
+		}
 	}
 	
 	// Gold Calculation
 	let goldGain = 10 + Math.floor(Math.random() * player.fishingLevel * 2);
 	player.gold += goldGain;
-	
+
+	UIShowPopup("FishCaught", goldGain, bDidLevelUp);
 	updateFishingStats();
 }
 
@@ -186,7 +192,15 @@ function drawFishingUI()
 
 function updateFishingStats()
 {
-	let requiredXP = player.fishingLevel * 50;
-	$("#fishing_level").text(player.fishingLevel);
-	$("#fishing_xp").text(player.fishingXP + "/" + requiredXP);
+	if(player.fishingLevel < 30)
+	{
+		let requiredXP = player.fishingLevel * 50;
+		$("#fishing_level").text(player.fishingLevel);
+		$("#fishing_xp").text(player.fishingXP + "/" + requiredXP);
+	}
+	else
+	{
+		$("#fishing_level").text(player.fishingLevel + " [MAX]");
+		$("#fishing_xp_div").css("display", "none");
+	}
 }
