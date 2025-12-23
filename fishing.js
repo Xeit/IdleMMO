@@ -123,7 +123,7 @@ function fishingSwitchStatus(newStatus)
 			$("#fishing_cast_button").prop('disabled', true);
 			$("#fishing_bobber").addClass("bobber_floating");
 			$("#fishing_bobber").css("display", "block");
-			fishingActionTimer = 3 +  +Math.floor(Math.random() * 30);
+			fishingActionTimer = 15 +  +Math.floor(Math.random() * 35);
 			break;
 		case FishingStatus.FISH_BITE:
 			$("#fishing_status").text("BITE! CATCH IT!");
