@@ -54,7 +54,7 @@ class Player
 	dungeonEnemyID = -1;
 
 	questingFocus = QuestFocuses.BALANCED;
-
+	
 	// This is function to update player stats on save load when balance was changed 
 	// TODO: Make this not... hardcoded XD It's extremaly bad but I need it NOW.
 	playerValidateMaxStats()
