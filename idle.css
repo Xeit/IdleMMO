@@ -138,11 +138,13 @@ button
 {
 	display:flex;
 	height: 3%;
+	min-width: calc(1260px * 0.704);
 	width: 70.4%;
 	border: black 2px solid;
 	border-radius: 8px;
 	background-color: #303030;
 	margin-left: 1%;
+	margin-top: -1%;
 	align-items: center;
 }
 
