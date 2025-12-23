@@ -39,6 +39,7 @@ function initializeFishing()
 				fishingSwitchStatus(FishingStatus.CAN_CAST);
 				break;
 		}
+		updateFishingAfkActionBar();
 	});
 }
 
