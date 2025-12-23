@@ -108,6 +108,7 @@ function UIDisplayNewTask(newTaskToDisplay)
 	HideShopsWindow();
 	HideSmithWindow();
 	hideDungeonWindow();
+	HideFishingWindow();
 
 	//Start new task
 	switch(newTaskToDisplay)
@@ -138,6 +139,9 @@ function UIDisplayNewTask(newTaskToDisplay)
 			break;
 		case PlayerTasks.dungeon:
 			showDungeonWindow();
+			break;
+		case PlayerTasks.fishing:
+			ShowFishingWindow();
 			break;
 	}
 }
@@ -193,7 +197,7 @@ function UIUpdateBuffInfoPanel()
 	}
 }
 
-function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2) 
+function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2)
 {
 	// Create popup elements
 	const popup = document.createElement("div");
@@ -218,6 +222,9 @@ function UIShowPopup(ContentToGenerate, additionalStuff1, additionalStuff2)
 			break;
 		case "NewItem":
 			popupContent = UIEquippedNewItem(additionalStuff1, additionalStuff2);
+			break;
+		case "FishCaught":
+			popupContent = UIFishSold(additionalStuff1, additionalStuff2);
 			break;
 	}
 	popup.append(popupContent);

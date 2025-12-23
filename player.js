@@ -32,6 +32,8 @@ class Player
 	staminaXP = 0;
 	intelligence = 1;
 	intelligenceXP = 0;
+	fishingLevel = 1;
+	fishingXP = 0;
 
 	//Equipment slots
 	weaponSlot = undefined;
@@ -52,6 +54,18 @@ class Player
 	dungeonEnemyID = -1;
 
 	questingFocus = QuestFocuses.BALANCED;
+	
+	// This is function to update player stats on save load when balance was changed 
+	// TODO: Make this not... hardcoded XD It's extremaly bad but I need it NOW.
+	playerValidateMaxStats()
+	{
+		player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
+		player.requiredXp = +player.requiredXp.toFixed();
+
+		player.maxHealth = 100 + (15 * (player.level - 1));
+		player.maxMana = 100 + (10 * (player.level - 1));
+		player.maxExhaustion = 80 + (10 * (player.level - 1));
+	}
 
 	playerUnlockFunctionsUntilLevel()
 	{
@@ -106,9 +120,9 @@ function playerLevelUp()
 	player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
 	player.requiredXp = +player.requiredXp.toFixed();
 
-	player.maxHealth = 100 + (10 * (player.level - 1));
+	player.maxHealth = 100 + (15 * (player.level - 1));
 	player.maxMana = 100 + (10 * (player.level - 1));
-	player.maxExhaustion = 50 + (5 * (player.level - 1));
+	player.maxExhaustion = 80 + (10 * (player.level - 1));
 
 	healPlayerToMax();
 
@@ -155,7 +169,7 @@ function playerTakeDamage(monsterDamageNumber)
 
 	consoleLogDebug("Monster damage before reductions: " + monsterDamageNumber);
 
-	monsterDamageNumber = monsterDamageNumber - (monsterDamageNumber * (player.stamina / (baseMonsterDamage * 4)));
+	monsterDamageNumber = monsterDamageNumber - (monsterDamageNumber * (player.stamina * 1.5 / (baseMonsterDamage * 4)));
 	consoleLogDebug("Monster damage after stamina: " + monsterDamageNumber);
 
 	armourReduction = playerGetArmourValue() / (playerGetArmourValue() + (3 * baseMonsterDamage));
@@ -274,6 +288,10 @@ function playerUnlockFunctions(levelToUnlock)
 			break;
 		case 12:
 			$("#dungeonButton").css("display", "block");
+			break;
+		case 20:
+			initializeFishing();
+			$("#fishingButton").css("display", "block");
 			break;
 	}
 	unlockDungeons(levelToUnlock);

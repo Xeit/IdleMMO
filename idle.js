@@ -55,6 +55,9 @@ $(document).ready(function()
 					case PlayerTasks.dungeon:
 						tickDungeon();
 						break;
+					case PlayerTasks.fishing:
+						tickFishing();
+						break;
 				}
 
 				tickBuffs();
@@ -114,15 +117,27 @@ $(document).ready(function()
 
 	$("#shopButton").click(function(){
 		newPlayerTask(PlayerTasks.shop);
-	})
+	});
 	
 	$("#smithButton").click(function(){
 		newPlayerTask(PlayerTasks.smith);
-	})
+	});
 
 	$("#dungeonButton").click(function(){
 		newPlayerTask(PlayerTasks.dungeon);
-	})
+	});
+
+	$("#shill_zone_button").click(function()
+	{
+		if($("#shill_zone_content").css("display") == "none")
+		{
+			$("#shill_zone_content").css("display", "block");
+		}
+		else
+		{
+			$("#shill_zone_content").css("display", "none");
+		}
+	});
 
 	//Tbh all bs I wrote was started by this tutorial: https://www.youtube.com/playlist?list=PLgHw_wODS1vX20X7ppbssrn_MU6SaYoDF
 	//He had like 4k views on playlist, it's not best tutorial but still helped me start writing this website. Thanks!
@@ -157,6 +172,10 @@ function newPlayerTask(newTask)
 				break;
 			case PlayerTasks.dungeon:
 				bShouldStopPreviousTask = true;
+				break;
+			case PlayerTasks.fishing:
+				bShouldStopPreviousTask = true;
+				break;
 			default:
 				break;
 		}
@@ -180,6 +199,9 @@ function newPlayerTask(newTask)
 				case PlayerTasks.dungeon:
 					// Should stop when not ticking, reset happens on start
 					break;
+				case PlayerTasks.fishing:
+					// Should stop when not ticking, reset happens on start
+					break;
 				default:
 					break;
 			}
@@ -201,6 +223,9 @@ function newPlayerTask(newTask)
 				startQuesting();
 				break;
 			case PlayerTasks.dungeon:
+				break;
+			case PlayerTasks.fishing:
+				startFishing();
 				break;
 			default:
 				break;

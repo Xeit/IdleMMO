@@ -30,6 +30,7 @@ function UIGenerateLevelUpContent()
 			break;
 		case 10:
 			popupContentInside.append(UIDiv_Text("Shops!"));
+			popupContentInside.append(UIDiv_Space());
 			popupContentInside.append(UIDiv_Text("New buff in Church!"));
 			break;
 		case 11:
@@ -48,6 +49,8 @@ function UIGenerateLevelUpContent()
 			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			break;
 		case 20:
+			popupContentInside.append(UIDiv_Text("Fishing!"));
+			popupContentInside.append(UIDiv_Space());
 			popupContentInside.append(UIDiv_Text("New Dungeon!"));
 			popupContentInside.append(UIDiv_Text("New buff in Tavern!"));
 			break;
@@ -136,6 +139,27 @@ function UIEquippedNewItem(oldItemPower, newItem)
 		popupContentInside.append(UIDiv_Text("Slot: " + newItem.itemSlot));
 		popupContentInside.append(UIDiv_Text("ilvl: " + newItem.itemLevel));
 		popupContentInside.append(UIDiv_ColorText(UIGetItemRarityColor(newItem.itemRarity), "Rarity: " + newItem.itemRarity));
+	}
+
+	return popupContentInside;
+}
+
+function UIFishSold(goldEarned, bDidLevelUp)
+{
+	const popupContentInside = document.createElement("div");
+	if(bDidLevelUp == true)
+	{
+		popupContentInside.append(UIDiv_ClassText("title", "Fishing Level Up!"));
+		popupContentInside.append(UIDiv_Space());
+		popupContentInside.append(UIDiv_Text("Faster AFK rod casting"));
+		popupContentInside.append(UIDiv_Space());
+		popupContentInside.append(UIDiv_Text("Gold +" + goldEarned));
+	}
+	else
+	{
+		popupContentInside.append(UIDiv_ClassText("title", "Fish Caught"));
+		popupContentInside.append(UIDiv_Space());
+		popupContentInside.append(UIDiv_Text("Gold +" + goldEarned));
 	}
 
 	return popupContentInside;
