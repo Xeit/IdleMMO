@@ -57,11 +57,8 @@ class Player
 	
 	// This is function to update player stats on save load when balance was changed 
 	// TODO: Make this not... hardcoded XD It's extremaly bad but I need it NOW.
-	playerValidateMaxStats()
+	playerValidateStats()
 	{
-		player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
-		player.requiredXp = +player.requiredXp.toFixed();
-
 		player.maxHealth = 100 + (15 * (player.level - 1));
 		player.maxMana = 100 + (10 * (player.level - 1));
 		player.maxExhaustion = 80 + (10 * (player.level - 1));
@@ -70,6 +67,19 @@ class Player
 		if(player.level < 2)
 		{
 			player.exhaustion = 0;
+		}
+
+		// If player is above max level then reset it to max, if not then make sure requiredXp is correct
+		if(player.level >= 50)
+		{
+			player.requiredXp = 1999999999;
+			player.xp = 0;
+			player.level = 50;
+		}
+		else
+		{
+			player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
+			player.requiredXp = +player.requiredXp.toFixed();
 		}
 	}
 
@@ -301,6 +311,9 @@ function playerUnlockFunctions(levelToUnlock)
 			initializeFishing();
 			$("#fishingButton").css("display", "block");
 			break;
+		case 50:
+			// Hide XP bar at level 50. No clue where to put it somewhere else
+			$("#XP").css("display", "none");
 	}
 	unlockDungeons(levelToUnlock);
 	unlockMonsterZones(levelToUnlock);
