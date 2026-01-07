@@ -146,9 +146,20 @@ function UIDisplayNewTask(newTaskToDisplay)
 	}
 }
 
-function consoleLogDebug(text)
+function consoleLogDebug(text, debugType)
 {
-	if(debugGame == true)
+	if(debugType !== undefined)
+	{
+		if(debugType == "debugDamageTaken" && debugDamageTaken == true)
+		{
+			console.log(text);
+		}
+		else if(debugType == "debugDungeon" && debugDungeon == true)
+		{
+			console.log(text);
+		}
+	}
+	else if(debugGame == true)
 	{
 		console.log(text);
 	}

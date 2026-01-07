@@ -191,11 +191,11 @@ function dungeonRefreshAlliesHealth()
 	const dps2HealthPercent = (dungeonGeneratedAllies.get("dps2").health / dungeonGeneratedAllies.get("dps2").maxHealth * 100).toFixed() + "%";
 	const dps3HealthPercent = (dungeonGeneratedAllies.get("dps3").health / dungeonGeneratedAllies.get("dps3").maxHealth * 100).toFixed() + "%";
 
-	consoleLogDebug("Tank health: " + tankHealthPercent);
-	consoleLogDebug("Healer health: " + healerHealthPercent);
-	consoleLogDebug("Player health: " + playerHealthPercent);
-	consoleLogDebug("DPS2 health: " + dps2HealthPercent);
-	consoleLogDebug("DPS3 health: " + dps3HealthPercent);
+	consoleLogDebug("Tank health: " + tankHealthPercent, "debugDungeon");
+	consoleLogDebug("Healer health: " + healerHealthPercent, "debugDungeon");
+	consoleLogDebug("Player health: " + playerHealthPercent, "debugDungeon");
+	consoleLogDebug("DPS2 health: " + dps2HealthPercent, "debugDungeon");
+	consoleLogDebug("DPS3 health: " + dps3HealthPercent, "debugDungeon");
 
 	$("#dungeon_tankHealth").css("width", tankHealthPercent);
 	$("#dungeon_healerHealth").css("width", healerHealthPercent);
@@ -257,7 +257,7 @@ function dungeonRefreshEnemiesHealth()
 		healthPercent = Math.max(0, Math.min(100, healthPercent));
 		const enemyHealthPercent = healthPercent.toFixed() + "%";
 
-		consoleLogDebug("Enemy " + i + " health: " + dungeonCurrentWaveEnemies[i].health + "/" + dungeonCurrentWaveEnemies[i].maxHealth + " = " + enemyHealthPercent);
+		consoleLogDebug("Enemy " + i + " health: " + dungeonCurrentWaveEnemies[i].health + "/" + dungeonCurrentWaveEnemies[i].maxHealth + " = " + enemyHealthPercent, "debugDungeon");
 
 		$("#dungeon_enemyHealth_" + i).css("width", enemyHealthPercent);
 	}
@@ -632,7 +632,7 @@ function dungeonEnemiesAttack()
 
 function dungeonPlayerLogic()
 {
-	if (player.dungeonEnemyID == -1)
+	if (player.dungeonEnemyID == -1 || !dungeonCurrentWaveEnemies[player.dungeonEnemyID].isAlive())
 	{
 		dungeonPlayerFindTarget();
 	}
@@ -697,9 +697,12 @@ function dungeonPlayerFindTarget()
 
 function dungeonPlayerHitEnemy()
 {
+	consoleLogDebug("Enemy targeted by Player ID: " + player.dungeonEnemyID, "debugDungeon");
 	if (player.dungeonEnemyID != -1 && dungeonCurrentWaveEnemies[player.dungeonEnemyID].isAlive())
 	{
+		consoleLogDebug("Enemy health before player attack: " + dungeonCurrentWaveEnemies[player.dungeonEnemyID].health, "debugDungeon");
 		dungeonCurrentWaveEnemies[player.dungeonEnemyID].health = dungeonCurrentWaveEnemies[player.dungeonEnemyID].health - playerGetAttackDamage(player.level);
+		consoleLogDebug("Enemy health after player attack: " + dungeonCurrentWaveEnemies[player.dungeonEnemyID].health, "debugDungeon");
 	}
 }
 

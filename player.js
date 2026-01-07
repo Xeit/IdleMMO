@@ -98,6 +98,8 @@ var currentOpenWindow = PlayerTasks.none;
 var levelBreeze = false;
 var freezeTime = false;
 var debugGame = false;
+var debugDamageTaken = false;
+var debugDungeon = false;
 
 function playerAddXp(xpToAdd)
 {
@@ -167,20 +169,20 @@ function playerTakeDamage(monsterDamageNumber)
 {	
 	let baseMonsterDamage = monsterDamageNumber;
 
-	consoleLogDebug("Monster damage before reductions: " + monsterDamageNumber);
+	consoleLogDebug("Monster damage before reductions: " + monsterDamageNumber, "debugDamageTaken");
 
 	monsterDamageNumber = monsterDamageNumber - (monsterDamageNumber * (player.stamina * 1.5 / (baseMonsterDamage * 4)));
-	consoleLogDebug("Monster damage after stamina: " + monsterDamageNumber);
+	consoleLogDebug("Monster damage after stamina: " + monsterDamageNumber, "debugDamageTaken");
 
 	armourReduction = playerGetArmourValue() / (playerGetArmourValue() + (3 * baseMonsterDamage));
-	consoleLogDebug("Monster damage: " + baseMonsterDamage + " Armor: " + playerGetArmourValue() + " Negation: " + armourReduction);
+	consoleLogDebug("Monster damage: " + baseMonsterDamage + " Armor: " + playerGetArmourValue() + " Negation: " + armourReduction, "debugDamageTaken");
 	monsterDamageNumber = monsterDamageNumber - (baseMonsterDamage * armourReduction);
 
 	monsterDamageNumber = +Math.floor(monsterDamageNumber);
-	consoleLogDebug("Monster damage after armor: " + monsterDamageNumber);
+	consoleLogDebug("Monster damage after armor: " + monsterDamageNumber, "debugDamageTaken");
 
 	monsterDamageNumber -= +getTotalBuffsWithType(BuffType.defense);
-	consoleLogDebug("Monster damage after buffs: " + monsterDamageNumber + "\n");
+	consoleLogDebug("Monster damage after buffs: " + monsterDamageNumber + "\n", "debugDamageTaken");
 
 	if(monsterDamageNumber < 1)
 	{
