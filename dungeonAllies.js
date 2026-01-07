@@ -331,6 +331,8 @@ class AllyHealer extends Ally
 		if(deadAlly != null && lowestHpPercent > 0.65)
 		{
 			this.resurrectAlly(deadAlly);
+			deadAlly = null;
+			deadAllyRole = AllyRole.none;
 		}
 		else
 		{
