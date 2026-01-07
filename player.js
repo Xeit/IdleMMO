@@ -65,6 +65,12 @@ class Player
 		player.maxHealth = 100 + (15 * (player.level - 1));
 		player.maxMana = 100 + (10 * (player.level - 1));
 		player.maxExhaustion = 80 + (10 * (player.level - 1));
+
+		// Failsafe to prevent soft lock when constantly reloading website at lvl 1
+		if(player.level < 2)
+		{
+			player.exhaustion = 0;
+		}
 	}
 
 	playerUnlockFunctionsUntilLevel()

@@ -286,25 +286,25 @@ function tickQuesting()
 
 function getNewQuest()
 {
-	const minXpRoll = player.level * 2.5 + 5;
-	const maxXpRoll = minXpRoll * 2;
+	const minXpRoll = player.level * 3 + 10;
+	const maxXpRoll = player.level * 6 + 15;
 
-	const minGoldRoll = player.level * 4;
-	const maxGoldRoll = player.level * 3;
+	const minGoldRoll = player.level * 9 + 10;
+	const maxGoldRoll = player.level * 15 + 15;
 
 	var xpRoll = +(Math.random() * (maxXpRoll - minXpRoll) + minXpRoll).toFixed();
 	var goldRoll = +(Math.random() * (maxGoldRoll - minGoldRoll) + minGoldRoll).toFixed();
 
 	switch (player.questingFocus) {
 		case QuestFocuses.XP:
-			xpRoll = +(xpRoll * 1.25).toFixed();
-			goldRoll = +(goldRoll * 0.75).toFixed();
+			xpRoll = +(xpRoll * 1.5).toFixed();
+			goldRoll = +(goldRoll * 0.70).toFixed();
 			break;
 		case QuestFocuses.BALANCED:
 			break;
 		case QuestFocuses.GOLD:
-			xpRoll = +(xpRoll * 0.75).toFixed();
-			goldRoll = +(goldRoll * 1.25).toFixed();
+			xpRoll = +(xpRoll * 0.70).toFixed();
+			goldRoll = +(goldRoll * 1.5).toFixed();
 			break;
 		default:
 			break;
@@ -313,7 +313,7 @@ function getNewQuest()
 	questXp = xpRoll;
 	questGold = goldRoll;
 
-	questTarget = +(Math.random() * 3 + +((1/3 * player.level).toFixed()) + 3).toFixed();
+	questTarget = +(Math.random() * 3 + +((1/5 * player.level).toFixed()) + 3).toFixed();
 	questProgress = 0;
 	
 	const randomFlavourTextID = +(Math.random() * FlavoutTexts.length - 1).toFixed();
