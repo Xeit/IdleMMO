@@ -314,6 +314,7 @@ function playerUnlockFunctions(levelToUnlock)
 		case 50:
 			// Hide XP bar at level 50. No clue where to put it somewhere else
 			$("#XP").css("display", "none");
+			break;
 	}
 	unlockDungeons(levelToUnlock);
 	unlockMonsterZones(levelToUnlock);
