@@ -57,14 +57,30 @@ class Player
 	
 	// This is function to update player stats on save load when balance was changed 
 	// TODO: Make this not... hardcoded XD It's extremaly bad but I need it NOW.
-	playerValidateMaxStats()
+	playerValidateStats()
 	{
-		player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
-		player.requiredXp = +player.requiredXp.toFixed();
-
 		player.maxHealth = 100 + (15 * (player.level - 1));
 		player.maxMana = 100 + (10 * (player.level - 1));
 		player.maxExhaustion = 80 + (10 * (player.level - 1));
+
+		// Failsafe to prevent soft lock when constantly reloading website at lvl 1
+		if(player.level < 2)
+		{
+			player.exhaustion = 0;
+		}
+
+		// If player is above max level then reset it to max, if not then make sure requiredXp is correct
+		if(player.level >= 50)
+		{
+			player.requiredXp = 1999999999;
+			player.xp = 0;
+			player.level = 50;
+		}
+		else
+		{
+			player.requiredXp = 0.25 * (player.level - 1 + 300 * Math.pow(2, (player.level-1)/4 )) + 50;
+			player.requiredXp = +player.requiredXp.toFixed();
+		}
 	}
 
 	playerUnlockFunctionsUntilLevel()
@@ -98,6 +114,8 @@ var currentOpenWindow = PlayerTasks.none;
 var levelBreeze = false;
 var freezeTime = false;
 var debugGame = false;
+var debugDamageTaken = false;
+var debugDungeon = false;
 
 function playerAddXp(xpToAdd)
 {
@@ -167,20 +185,20 @@ function playerTakeDamage(monsterDamageNumber)
 {	
 	let baseMonsterDamage = monsterDamageNumber;
 
-	consoleLogDebug("Monster damage before reductions: " + monsterDamageNumber);
+	consoleLogDebug("Monster damage before reductions: " + monsterDamageNumber, "debugDamageTaken");
 
 	monsterDamageNumber = monsterDamageNumber - (monsterDamageNumber * (player.stamina * 1.5 / (baseMonsterDamage * 4)));
-	consoleLogDebug("Monster damage after stamina: " + monsterDamageNumber);
+	consoleLogDebug("Monster damage after stamina: " + monsterDamageNumber, "debugDamageTaken");
 
 	armourReduction = playerGetArmourValue() / (playerGetArmourValue() + (3 * baseMonsterDamage));
-	consoleLogDebug("Monster damage: " + baseMonsterDamage + " Armor: " + playerGetArmourValue() + " Negation: " + armourReduction);
+	consoleLogDebug("Monster damage: " + baseMonsterDamage + " Armor: " + playerGetArmourValue() + " Negation: " + armourReduction, "debugDamageTaken");
 	monsterDamageNumber = monsterDamageNumber - (baseMonsterDamage * armourReduction);
 
 	monsterDamageNumber = +Math.floor(monsterDamageNumber);
-	consoleLogDebug("Monster damage after armor: " + monsterDamageNumber);
+	consoleLogDebug("Monster damage after armor: " + monsterDamageNumber, "debugDamageTaken");
 
 	monsterDamageNumber -= +getTotalBuffsWithType(BuffType.defense);
-	consoleLogDebug("Monster damage after buffs: " + monsterDamageNumber + "\n");
+	consoleLogDebug("Monster damage after buffs: " + monsterDamageNumber + "\n", "debugDamageTaken");
 
 	if(monsterDamageNumber < 1)
 	{
@@ -292,6 +310,10 @@ function playerUnlockFunctions(levelToUnlock)
 		case 20:
 			initializeFishing();
 			$("#fishingButton").css("display", "block");
+			break;
+		case 50:
+			// Hide XP bar at level 50. No clue where to put it somewhere else
+			$("#XP").css("display", "none");
 			break;
 	}
 	unlockDungeons(levelToUnlock);

@@ -22,6 +22,7 @@ span {
 
 button
 {
+	pointer-events: auto;
 	background-color: #c3c3c3;
 	font-size: larger;
 	font-family: "League Spartan", sans-serif;

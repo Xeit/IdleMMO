@@ -318,7 +318,7 @@ function readPlayerData(arrayOfVariables)
 							if(recreatedPlayer instanceof Player)
 							{
 								player = recreatedPlayer;
-								player.playerValidateMaxStats();
+								player.playerValidateStats();
 								player.playerUnlockFunctionsUntilLevel();
 								player.playerFixItems();
 							}
