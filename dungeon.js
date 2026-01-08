@@ -396,166 +396,174 @@ function dungeonEnemiesSelectTarget()
 {
 	for (let i = 0; i < dungeonCurrentWaveEnemies.length; i++)
 	{
-		// Check if current target is dead
-		if (dungeonCurrentWaveEnemies[i].targetTag != "none")
+		if(dungeonCurrentWaveEnemies[i].isAlive())
 		{
-			if (dungeonCurrentWaveEnemies[i].targetTag == "player")
+			// Check if current target is dead
+			if (dungeonCurrentWaveEnemies[i].targetTag != "none")
 			{
-				if (player.health <= 0)
-				{
-					dungeonCurrentWaveEnemies[i].targetTag = "none";
-				}
-			}
-			else
-			{
-				if (dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
-				{
-					dungeonCurrentWaveEnemies[i].targetTag = "none";
-				}
-			}
-		}
-
-		function randomPullTarget()
-		{
-			let numberRolled = Math.random() * 100;
-			if (numberRolled < 80)
-			{
-				dungeonCurrentWaveEnemies[i].targetTag = "tank";
-			}
-			else if (numberRolled < 85)
-			{
-				dungeonCurrentWaveEnemies[i].targetTag = "healer";
-			}
-			else if (numberRolled < 90)
-			{
-				dungeonCurrentWaveEnemies[i].targetTag = "player";
-			}
-			else if (numberRolled < 95)
-			{
-				dungeonCurrentWaveEnemies[i].targetTag = "dps2";
-			}
-			else
-			{
-				dungeonCurrentWaveEnemies[i].targetTag = "dps3";
-			}
-		}
-
-		if (dungeonCurrentWaveEnemies[i].targetTag == "none")
-		{
-			// This is target select before pull of wave
-			randomPullTarget();
-
-			// if character dead then change target
-			let bCharacterDead = true;
-			let numberOfTries = 0;
-			while(bCharacterDead)
-			{
-				randomPullTarget();
-
 				if (dungeonCurrentWaveEnemies[i].targetTag == "player")
 				{
-					if (player.health > 0)
+					if (player.health <= 0)
 					{
-						bCharacterDead = false;
+						dungeonCurrentWaveEnemies[i].targetTag = "none";
 					}
 				}
 				else
 				{
-					if (dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).isAlive())
+					if (dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).health <= 0)
 					{
-						bCharacterDead = false;
+						dungeonCurrentWaveEnemies[i].targetTag = "none";
 					}
 				}
+			}
 
-				numberOfTries = numberOfTries + 1;
-				if(numberOfTries > 5)
+			function randomPullTarget()
+			{
+				let numberRolled = Math.random() * 100;
+				if (numberRolled < 80)
 				{
-					//Target first not dead or give up
-					dungeonGeneratedAllies.forEach(ally =>
-					{
-						if (ally instanceof Ally)
-						{
-							if(ally.isAlive())
-							{
-								dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
-							}
-						}
-					});
-
-					bCharacterDead = false;
+					dungeonCurrentWaveEnemies[i].targetTag = "tank";
+				}
+				else if (numberRolled < 85)
+				{
+					dungeonCurrentWaveEnemies[i].targetTag = "healer";
+				}
+				else if (numberRolled < 90)
+				{
+					dungeonCurrentWaveEnemies[i].targetTag = "player";
+				}
+				else if (numberRolled < 95)
+				{
+					dungeonCurrentWaveEnemies[i].targetTag = "dps2";
+				}
+				else
+				{
+					dungeonCurrentWaveEnemies[i].targetTag = "dps3";
 				}
 			}
-		}
-		else
-		{
-			// You need to check if one of the heroes is targetting the enemy 
-			// then roll the chance for swapping target for that ally
-			// if heroes attacking the enemy was a tank then there should be 100% to swap
 
-			// also somehow there should be always be a chance for starting to attack healer.
-			
-			let bSwappedTarget = false;
-			dungeonGeneratedAllies.forEach(ally => 
+			if (dungeonCurrentWaveEnemies[i].targetTag == "none")
 			{
-				if (!bSwappedTarget && ally.isAlive() && ally.enemyTargetID == i)
+				// This is target select before pull of wave
+				randomPullTarget();
+
+				// if character dead then change target
+				let bCharacterDead = true;
+				let numberOfTries = 0;
+				while(bCharacterDead)
 				{
-					if (ally.role == AllyRole.tank)
+					randomPullTarget();
+
+					if (dungeonCurrentWaveEnemies[i].targetTag == "player")
 					{
-						dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
-						bSwappedTarget = true;
+						if (player.health > 0)
+						{
+							bCharacterDead = false;
+						}
 					}
 					else
 					{
-						if ((Math.random() * 100) < 20)
+						if (dungeonGeneratedAllies.get(dungeonCurrentWaveEnemies[i].targetTag).isAlive())
+						{
+							bCharacterDead = false;
+						}
+					}
+
+					numberOfTries = numberOfTries + 1;
+					if(numberOfTries > 5)
+					{
+						//Target first not dead or give up
+						dungeonGeneratedAllies.forEach(ally =>
+						{
+							if (ally instanceof Ally)
+							{
+								if(ally.isAlive())
+								{
+									dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+								}
+							}
+						});
+
+						bCharacterDead = false;
+					}
+				}
+			}
+			else
+			{
+				// You need to check if one of the heroes is targetting the enemy 
+				// then roll the chance for swapping target for that ally
+				// if heroes attacking the enemy was a tank then there should be 100% to swap
+
+				// also somehow there should be always be a chance for starting to attack healer.
+				
+				let bSwappedTarget = false;
+				dungeonGeneratedAllies.forEach(ally => 
+				{
+					if (!bSwappedTarget && ally.isAlive() && ally.enemyTargetID == i)
+					{
+						if (ally.role == AllyRole.tank)
 						{
 							dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
 							bSwappedTarget = true;
 						}
-					}
-				}
-			});
-
-			if (!bSwappedTarget)
-			{
-				const randomRoll = Math.random() * 100;
-
-				if (randomRoll < 5)
-				{
-					//Target healer
-					dungeonGeneratedAllies.forEach(ally =>
-					{
-						if (ally.role == AllyRole.healer)
+						else
 						{
-							dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+							if ((Math.random() * 100) < 20)
+							{
+								dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+								bSwappedTarget = true;
+							}
 						}
-					});
-				}
-				else if (randomRoll < 10)
+					}
+				});
+
+				if (!bSwappedTarget)
 				{
-					//Target any1
-					const newTarget = Math.round(Math.random() * (dungeonGeneratedAllies.size - 1));
-					let currentAllyID = 0;
-					dungeonGeneratedAllies.forEach(ally =>
+					const randomRoll = Math.random() * 100;
+
+					if (randomRoll < 5)
 					{
-						if (ally instanceof Ally)
+						//Target healer
+						dungeonGeneratedAllies.forEach(ally =>
 						{
-							if (newTarget == currentAllyID)
+							if (ally.role == AllyRole.healer)
 							{
 								dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
 							}
-							else
+						});
+					}
+					else if (randomRoll < 10)
+					{
+						//Target any1
+						const newTarget = Math.round(Math.random() * (dungeonGeneratedAllies.size - 1));
+						let currentAllyID = 0;
+						dungeonGeneratedAllies.forEach(ally =>
+						{
+							if (ally instanceof Ally)
 							{
-								currentAllyID = currentAllyID + 1;
+								if (newTarget == currentAllyID)
+								{
+									dungeonCurrentWaveEnemies[i].targetTag = ally.tag;
+								}
+								else
+								{
+									currentAllyID = currentAllyID + 1;
+								}
 							}
-						}
-					});
+						});
+					}
 				}
 			}
-		}
 
-		if(dungeonCurrentWaveEnemies[i].targetTag !== undefined)
+			if(dungeonCurrentWaveEnemies[i].targetTag !== undefined)
+			{
+				$("#dungeon_enemyTarget_" + i).text("TARGET: " + dungeonCurrentWaveEnemies[i].targetTag.toUpperCase());
+			}
+		}
+		else
 		{
-			$("#dungeon_enemyTarget_" + i).text("TARGET: " + dungeonCurrentWaveEnemies[i].targetTag.toUpperCase());
+			dungeonCurrentWaveEnemies[i].targetTag = "none";
+			$("#dungeon_enemyTarget_" + i).css("display", "none");
 		}
 	}
 }

@@ -200,8 +200,8 @@ class AllyTank extends Ally
 	{
 		// TODO: Tbh I have no idea currently how numbers relate so I'll make random stuff up xD
 
-		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
-		const armourRating = Math.round(this.itemPower * (3/4));
+		const staminaMonsterDamageNumber = +Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
+		const armourRating = +Math.round(this.itemPower * (3/4));
 		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (staminaMonsterDamageNumber * armourRating);
 		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
 		this.health = this.health - buffMonsterDamageNumber;
@@ -391,8 +391,8 @@ class AllyHealer extends Ally
 
 	takeDamage(baseMonsterDamageNumber)
 	{
-		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
-		const armourRating = Math.round(this.itemPower * (1/4));
+		const staminaMonsterDamageNumber = +Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
+		const armourRating = +Math.round(this.itemPower * (1/3));
 		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
 		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
 		this.health = this.health - buffMonsterDamageNumber;
@@ -516,8 +516,8 @@ class AllyDPS extends Ally
 
 	takeDamage(baseMonsterDamageNumber)
 	{
-		const staminaMonsterDamageNumber = Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
-		const armourRating = Math.round(this.itemPower * (1/2));
+		const staminaMonsterDamageNumber = +Math.round(baseMonsterDamageNumber - (baseMonsterDamageNumber * this.staminaDamageReduction));
+		const armourRating = +Math.round(this.itemPower * (1/2));
 		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
 		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
 		this.health = this.health - buffMonsterDamageNumber;
