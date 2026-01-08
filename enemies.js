@@ -185,4 +185,5 @@ enemyMap.set("Witch", new Enemy("Witch", 50, EnemyDifficulty.boss));
 // Tower of Corruption - 50+
 enemyMap.set("Coven Witch", new Enemy("Coven Witch", 48, EnemyDifficulty.mini_boss));
 enemyMap.set("Crimson Sorcerer", new Enemy("Crimson Sorcerer", 50, EnemyDifficulty.boss));
-enemyMap.set("THE BBG", new Enemy("THE BBG", 70, EnemyDifficulty.boss));
+enemyMap.set("THE BBEG", new Enemy("THE BBEG", 75, EnemyDifficulty.boss));
+enemyMap.get("THE BBEG").maxHealth = enemyMap.get("THE BBEG").maxHealth * 6;

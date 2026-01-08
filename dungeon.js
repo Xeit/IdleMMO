@@ -142,7 +142,7 @@ function dungeonCreateEnemiesHtml()
 
 			let enemyName = document.createElement("div");
 			enemyName.setAttribute("id", ("dungeon_enemyName_" + enemiesAlreadyCreated));
-			enemyName.textContent = currentWave[j];
+			enemyName.textContent = currentWave[enemiesAlreadyCreated];
 			enemySquare.append(enemyName);
 
 			let divSpace2 = document.createElement("div");
