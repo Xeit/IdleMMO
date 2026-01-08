@@ -206,6 +206,11 @@ class AllyTank extends Ally
 		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
 		this.health = this.health - buffMonsterDamageNumber;
 
+		if(this.health < 0)
+		{
+			this.health = 0;
+		}
+
 		consoleLogDebug("TANK RECIVES DAMAGE");
 		consoleLogDebug("Base monster damage: " + baseMonsterDamageNumber);
 		consoleLogDebug("Stamina: " + staminaMonsterDamageNumber);
@@ -391,6 +396,11 @@ class AllyHealer extends Ally
 		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
 		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
 		this.health = this.health - buffMonsterDamageNumber;
+
+		if(this.health < 0)
+		{
+			this.health = 0;
+		}
 	}
 }
 
@@ -511,5 +521,10 @@ class AllyDPS extends Ally
 		const armourMonsterDamageNumber = staminaMonsterDamageNumber - (baseMonsterDamageNumber * armourRating);
 		const buffMonsterDamageNumber = armourMonsterDamageNumber - this.buffDamageReduction;
 		this.health = this.health - buffMonsterDamageNumber;
+
+		if(this.health < 0)
+		{
+			this.health = 0;
+		}
 	}
 }
