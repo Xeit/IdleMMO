@@ -96,10 +96,12 @@ function giveFishingRewards()
 	}
 	
 	// Gold Calculation
-	let goldGain = 30 + Math.floor(Math.random() * player.fishingLevel * 3);
-	player.gold += goldGain;
+	let minGoldRoll = 50 + player.fishingLevel * 10;
+	let maxGoldRoll = 100 + player.fishingLevel * 20;
+	let goldRoll = +(Math.random() * (maxGoldRoll - minGoldRoll) + minGoldRoll).toFixed();
+	player.gold += goldRoll;
 
-	UIShowPopup("FishCaught", goldGain, bDidLevelUp);
+	UIShowPopup("FishCaught", goldRoll, bDidLevelUp);
 	updateFishingStats();
 }
 
@@ -204,4 +206,13 @@ function updateFishingStats()
 		$("#fishing_level").text(player.fishingLevel + " [MAX]");
 		$("#fishing_xp_div").css("display", "none");
 	}
+	updateFishingPrice();
+}
+
+function updateFishingPrice()
+{
+	const minGoldRoll = 50 + player.fishingLevel * 10;
+	const maxGoldRoll = 100 + player.fishingLevel * 25;
+	const textToApply = "Fish price: " + minGoldRoll + " - " + maxGoldRoll;
+	$("#fish_price").text(textToApply);
 }

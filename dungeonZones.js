@@ -95,7 +95,7 @@ function unlockDungeons(playerLevel)
 			dungeonsMap.push(
 				new Dungeon("Plague City",
 					[
-						["Rat","Mutated Rat","Mutated Rat","Mutated Rat","Rat",
+						["Rat","Mutated Rat","Rat","Mutated Rat","Rat",
 							"Mutated Rat","Mutated Dog","Mutated Dog","Mutated Rat"],
 						["Mutated Dog","Corrupted Citizen","Corrupted Citizen","Mutated Dog"],
 						["Corrupted Citizen","Witch","Corrupted Citizen"]
@@ -109,7 +109,7 @@ function unlockDungeons(playerLevel)
 					[
 						["Coven Witch","Coven Witch","Coven Witch"],
 						["Coven Witch","Crimson Sorcerer","Coven Witch"],
-						["THE BBG"]
+						["THE BBEG"]
 					],
 					100, 50)
 			);
