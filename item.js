@@ -28,7 +28,7 @@ class Item
 
 	returnItemPower(bWithUpgrades) 
 	{
-		var itemPower = this.itemLevel;
+		let itemPower = this.itemLevel;
 
 		switch (this.itemRarity) {
 			case ItemRarity.none:
@@ -347,57 +347,68 @@ function tryNewItem(newItem)
 	var currentItemPower = 0;
 	var bGotNewItem = false;
 	
-	switch (newItem.itemSlot) {
+	function ShouldSwapItems(mainItemSlot, betterBaseSlot, itemToTest)
+	{
+		let betterBaseItemPower = 0;
+		let newItemPower = 0;
+
+		if(mainItemSlot instanceof Item)
+		{
+			currentItemPower = mainItemSlot.returnItemPower(false);
+		}
+
+		if(betterBaseSlot instanceof Item)
+		{
+			betterBaseItemPower = betterBaseSlot.returnItemPower(false);
+		}
+
+		if(itemToTest instanceof Item)
+		{
+			newItemPower = itemToTest.returnItemPower(false);
+		}
+
+		if(newItemPower > currentItemPower && newItemPower > betterBaseItemPower)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	switch (newItem.itemSlot)
+	{
 		case ItemSlot.weapon:
-			if(player.weaponSlot instanceof Item)
-			{
-				currentItemPower = player.weaponSlot.returnItemPower(false);
-			}
-			if(newItem.returnItemPower(false) > currentItemPower)
+			if(ShouldSwapItems(player.weaponSlot, player.betterBaseWeaponSlot, newItem))
 			{
 				player.weaponSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.boots:
-			if(player.bootsSlot instanceof Item)
-			{
-				currentItemPower = player.bootsSlot.returnItemPower(false);
-			}
-			if(newItem.returnItemPower(false) > currentItemPower)
+			if(ShouldSwapItems(player.bootsSlot, player.betterBaseBootsSlot, newItem))
 			{
 				player.bootsSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.gloves:
-			if(player.glovesSlot instanceof Item)
-			{
-				currentItemPower = player.glovesSlot.returnItemPower(false);
-			}
-			if(newItem.returnItemPower(false) > currentItemPower)
+			if(ShouldSwapItems(player.glovesSlot, player.betterBaseGlovesSlot, newItem))
 			{
 				player.glovesSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.helmet:
-			if(player.helmetSlot instanceof Item)
-			{
-				currentItemPower = player.helmetSlot.returnItemPower(false);
-			}
-			if(newItem.returnItemPower(false) > currentItemPower)
+			if(ShouldSwapItems(player.helmetSlot, player.betterBaseHelmetSlot, newItem))
 			{
 				player.helmetSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.body_armour:
-			if(player.bodyArmourSlot instanceof Item)
-			{
-				currentItemPower = player.bodyArmourSlot.returnItemPower(false);
-			}
-			if(newItem.returnItemPower(false) > currentItemPower)
+			if(ShouldSwapItems(player.bodyArmourSlot, player.betterBaseBodyArmourSlot, newItem))
 			{
 				player.bodyArmourSlot = newItem;
 				bGotNewItem = true;
