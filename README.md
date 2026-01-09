@@ -13,5 +13,4 @@ Game was inspired by my thousands of hours wasted on playing different MMORPGs l
 - Upgrading EQ
 - Dungeons \o/
 - Levels up to 50!
-
-(Fishing is planned and not yet available, sorry!)
+- Fishing!
