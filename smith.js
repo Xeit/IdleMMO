@@ -436,6 +436,8 @@ function SmithTryToUpgradeItem()
 		smithCurrentItemSlot.itemUpgradePitty = smithCurrentItemSlot.itemUpgradePitty + 1;
 		SmithPlayUpgradeAnimation(false);
 	}
+
+	updateEquipmentWindow();
 }
 
 function SmithPlayUpgradeAnimation(bSuccess)
