@@ -42,12 +42,12 @@ class Player
 	glovesSlot = undefined;
 	bootsSlot = undefined;
 
-	//Better base slots
-	betterBaseWeaponSlot = undefined;
-	betterBaseHelmetSlot = undefined;
-	betterBaseBodyArmourSlot = undefined;
-	betterBaseGlovesSlot = undefined;
-	betterBaseBootsSlot = undefined;
+	//Backpack slots
+	backpackWeaponSlot = undefined;
+	backpackHelmetSlot = undefined;
+	backpackBodyArmourSlot = undefined;
+	backpackGlovesSlot = undefined;
+	backpackBootsSlot = undefined;
 
 	//Potions
 	healthPotions = 0;
@@ -109,11 +109,11 @@ class Player
 		this.glovesSlot = castObjectToItem(player.glovesSlot);
 		this.bootsSlot = castObjectToItem(player.bootsSlot);
 
-		this.betterBaseWeaponSlot = castObjectToItem(player.betterBaseWeaponSlot);
-		this.betterBaseHelmetSlot = castObjectToItem(player.betterBaseHelmetSlot);
-		this.betterBaseBodyArmourSlot = castObjectToItem(player.betterBaseBodyArmourSlot);
-		this.betterBaseGlovesSlot = castObjectToItem(player.betterBaseGlovesSlot);
-		this.betterBaseBootsSlot = castObjectToItem(player.betterBaseBootsSlot);
+		this.backpackWeaponSlot = castObjectToItem(player.backpackWeaponSlot);
+		this.backpackHelmetSlot = castObjectToItem(player.backpackHelmetSlot);
+		this.backpackBodyArmourSlot = castObjectToItem(player.backpackBodyArmourSlot);
+		this.backpackGlovesSlot = castObjectToItem(player.backpackGlovesSlot);
+		this.backpackBootsSlot = castObjectToItem(player.backpackBootsSlot);
 	}
 }
 

@@ -222,6 +222,7 @@ function updateEquipmentWindow()
 		UIBindRemovalOfInfoPopup("#equipment_slot_info_"+htmlSlotString);
 	}
 
+	// Equipped
 	if(player.weaponSlot instanceof Item)
 	{
 		updateEquipmentSlot(player.weaponSlot, "weapon");
@@ -241,6 +242,28 @@ function updateEquipmentWindow()
 	if(player.bootsSlot instanceof Item)
 	{
 		updateEquipmentSlot(player.bootsSlot, "boots");
+	}
+
+	// Backpack
+	if(player.backpackHelmetSlot instanceof Item)
+	{
+		updateEquipmentSlot(player.backpackHelmetSlot, "backpack_helmet");
+	}
+	if(player.backpackBodyArmourSlot instanceof Item)
+	{
+		updateEquipmentSlot(player.backpackBodyArmourSlot, "backpack_bodyArmour");
+	}
+	if(player.backpackGlovesSlot instanceof Item)
+	{
+		updateEquipmentSlot(player.backpackGlovesSlot, "backpack_gloves");
+	}
+	if(player.backpackBootsSlot instanceof Item)
+	{
+		updateEquipmentSlot(player.backpackBootsSlot, "backpack_boots");
+	}
+	if(player.backpackWeaponSlot instanceof Item)
+	{
+		updateEquipmentSlot(player.backpackWeaponSlot, "backpack_weapon");
 	}
 }
 
@@ -350,37 +373,37 @@ function tryNewItem(newItem)
 	switch (newItem.itemSlot)
 	{
 		case ItemSlot.weapon:
-			if(ShouldSwapItems(player.weaponSlot, player.betterBaseWeaponSlot, newItem))
+			if(ShouldSwapItems(player.weaponSlot, player.backpackWeaponSlot, newItem))
 			{
-				player.betterBaseWeaponSlot = newItem;
+				player.backpackWeaponSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.boots:
-			if(ShouldSwapItems(player.bootsSlot, player.betterBaseBootsSlot, newItem))
+			if(ShouldSwapItems(player.bootsSlot, player.backpackBootsSlot, newItem))
 			{
-				player.betterBaseBootsSlot = newItem;
+				player.backpackBootsSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.gloves:
-			if(ShouldSwapItems(player.glovesSlot, player.betterBaseGlovesSlot, newItem))
+			if(ShouldSwapItems(player.glovesSlot, player.backpackGlovesSlot, newItem))
 			{
-				player.betterBaseGlovesSlot = newItem;
+				player.backpackGlovesSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.helmet:
-			if(ShouldSwapItems(player.helmetSlot, player.betterBaseHelmetSlot, newItem))
+			if(ShouldSwapItems(player.helmetSlot, player.backpackHelmetSlot, newItem))
 			{
-				player.betterBaseHelmetSlot = newItem;
+				player.backpackHelmetSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.body_armour:
-			if(ShouldSwapItems(player.bodyArmourSlot, player.betterBaseBodyArmourSlot, newItem))
+			if(ShouldSwapItems(player.bodyArmourSlot, player.backpackBodyArmourSlot, newItem))
 			{
-				player.betterBaseBodyArmourSlot = newItem;
+				player.backpackBodyArmourSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
