@@ -207,70 +207,40 @@ function equipmentBindInfoOnEnter(divToHover, itemSlot)
 
 function updateEquipmentWindow()
 {
+	function updateEquipmentSlot(itemSlot, htmlSlotString)
+	{
+		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(itemSlot.itemRarity) + " 70%";
+		$("#equipment_"+htmlSlotString+"_overlay").css("background", overlayColor);
+		$("#equipment_"+htmlSlotString+"_name").css("color", UIGetItemRarityColor(itemSlot.itemRarity));
+		$("#equipment_"+htmlSlotString+"_name").text(itemSlot.itemName);
+		$("#equipment_"+htmlSlotString+"_level").text(itemSlot.itemLevel);
+		$("#equipment_"+htmlSlotString+"_base_power").text(itemSlot.returnItemPower(false));
+		$("#equipment_"+htmlSlotString+"_total_power").text(itemSlot.returnItemPower(true));
+
+		UIClearHoverEvents("#equipment_slot_info_"+htmlSlotString);
+		equipmentBindInfoOnEnter("#equipment_slot_info_"+htmlSlotString, itemSlot);
+		UIBindRemovalOfInfoPopup("#equipment_slot_info_"+htmlSlotString);
+	}
+
 	if(player.weaponSlot instanceof Item)
 	{
-		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.weaponSlot.itemRarity) + " 70%";
-		$("#equipment_weapon_overlay").css("background", overlayColor);
-		$("#equipment_weapon_name").css("color", UIGetItemRarityColor(player.weaponSlot.itemRarity));
-		$("#equipment_weapon_name").text(player.weaponSlot.itemName);
-		$("#equipment_weapon_level").text(player.weaponSlot.itemLevel);
-		$("#equipment_weapon_power").text(player.weaponSlot.returnItemPower(true));
-
-		UIClearHoverEvents("#equipment_slot_info_weapon");
-		equipmentBindInfoOnEnter("#equipment_slot_info_weapon", player.weaponSlot);
-		UIBindRemovalOfInfoPopup("#equipment_slot_info_weapon");
+		updateEquipmentSlot(player.weaponSlot, "weapon");
 	}
 	if(player.helmetSlot instanceof Item)
 	{
-		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.helmetSlot.itemRarity) + " 70%";
-		$("#equipment_helmet_overlay").css("background", overlayColor);
-		$("#equipment_helmet_name").css("color", UIGetItemRarityColor(player.helmetSlot.itemRarity));
-		$("#equipment_helmet_name").text(player.helmetSlot.itemName);
-		$("#equipment_helmet_level").text(player.helmetSlot.itemLevel);
-		$("#equipment_helmet_power").text(player.helmetSlot.returnItemPower(true));
-
-		UIClearHoverEvents("#equipment_slot_info_helmet");
-		equipmentBindInfoOnEnter("#equipment_slot_info_helmet", player.helmetSlot);
-		UIBindRemovalOfInfoPopup("#equipment_slot_info_helmet");
+		updateEquipmentSlot(player.helmetSlot, "helmet");
 	}
 	if(player.bodyArmourSlot instanceof Item)
 	{
-		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.bodyArmourSlot.itemRarity) + " 70%";
-		$("#equipment_body_armour_overlay").css("background", overlayColor);
-		$("#equipment_body_armour_name").css("color", UIGetItemRarityColor(player.bodyArmourSlot.itemRarity));
-		$("#equipment_body_armour_name").text(player.bodyArmourSlot.itemName);
-		$("#equipment_body_armour_level").text(player.bodyArmourSlot.itemLevel);
-		$("#equipment_body_armour_power").text(player.bodyArmourSlot.returnItemPower(true));
-
-		UIClearHoverEvents("#equipment_slot_info_body_armour");
-		equipmentBindInfoOnEnter("#equipment_slot_info_body_armour", player.bodyArmourSlot);
-		UIBindRemovalOfInfoPopup("#equipment_slot_info_body_armour");
+		updateEquipmentSlot(player.bodyArmourSlot, "bodyArmour");
 	}
 	if(player.glovesSlot instanceof Item)
 	{
-		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.glovesSlot.itemRarity) + " 70%";
-		$("#equipment_gloves_overlay").css("background", overlayColor);
-		$("#equipment_gloves_name").css("color", UIGetItemRarityColor(player.glovesSlot.itemRarity));
-		$("#equipment_gloves_name").text(player.glovesSlot.itemName);
-		$("#equipment_gloves_level").text(player.glovesSlot.itemLevel);
-		$("#equipment_gloves_power").text(player.glovesSlot.returnItemPower(true));
-
-		UIClearHoverEvents("#equipment_slot_info_gloves");
-		equipmentBindInfoOnEnter("#equipment_slot_info_gloves", player.glovesSlot);
-		UIBindRemovalOfInfoPopup("#equipment_slot_info_gloves");
+		updateEquipmentSlot(player.glovesSlot, "gloves");
 	}
 	if(player.bootsSlot instanceof Item)
 	{
-		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(player.bootsSlot.itemRarity) + " 70%";
-		$("#equipment_boots_overlay").css("background", overlayColor);
-		$("#equipment_boots_name").css("color", UIGetItemRarityColor(player.bootsSlot.itemRarity));
-		$("#equipment_boots_name").text(player.bootsSlot.itemName);
-		$("#equipment_boots_level").text(player.bootsSlot.itemLevel);
-		$("#equipment_boots_power").text(player.bootsSlot.returnItemPower(true));
-
-		UIClearHoverEvents("#equipment_slot_info_boots");
-		equipmentBindInfoOnEnter("#equipment_slot_info_boots", player.bootsSlot);
-		UIBindRemovalOfInfoPopup("#equipment_slot_info_boots");
+		updateEquipmentSlot(player.bootsSlot, "boots");
 	}
 }
 
@@ -382,35 +352,35 @@ function tryNewItem(newItem)
 		case ItemSlot.weapon:
 			if(ShouldSwapItems(player.weaponSlot, player.betterBaseWeaponSlot, newItem))
 			{
-				player.weaponSlot = newItem;
+				player.betterBaseWeaponSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.boots:
 			if(ShouldSwapItems(player.bootsSlot, player.betterBaseBootsSlot, newItem))
 			{
-				player.bootsSlot = newItem;
+				player.betterBaseBootsSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.gloves:
 			if(ShouldSwapItems(player.glovesSlot, player.betterBaseGlovesSlot, newItem))
 			{
-				player.glovesSlot = newItem;
+				player.betterBaseGlovesSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.helmet:
 			if(ShouldSwapItems(player.helmetSlot, player.betterBaseHelmetSlot, newItem))
 			{
-				player.helmetSlot = newItem;
+				player.betterBaseHelmetSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;
 		case ItemSlot.body_armour:
 			if(ShouldSwapItems(player.bodyArmourSlot, player.betterBaseBodyArmourSlot, newItem))
 			{
-				player.bodyArmourSlot = newItem;
+				player.betterBaseBodyArmourSlot = newItem;
 				bGotNewItem = true;
 			}
 			break;

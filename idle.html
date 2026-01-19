@@ -299,97 +299,217 @@
 
 			<!-- EQUIPMENT -->
 			<div class = "task_window" id="equipment_window" style="display: none;">
-				<div style="display: flex; height: 5%; border-bottom:#000 solid 1px;">
-					<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">Slot</span>
-					<span class="equipment_slot_info" style="width: 10%; background-color: #555">ilvl</span>
-					<span class="equipment_slot_info" style="width: 15%; background-color: #646464">Power</span>
-					<span class="equipment_slot_info" style="width: 55%; background-color: #555">Item Name</span>
-				</div>
-				<div class="equipment_slot" style="position: relative;">
-					<div class="equipment_slot_content">
-						<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
-							<div style="z-index: 2;">Helmet: </div>
-						</span>
-						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
-							<div id="equipment_helmet_level" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" id="equipment_slot_info_helmet" style="width: 15%; background-color: #646464">
-							<div id="equipment_helmet_power" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
-							<div id="equipment_helmet_name" style="z-index: 2;">None</div>
-						</span>
+				<div style="display:flex; width: 100%; height: 70%;">
+					<!-- EQUIPPED -->
+					<div style="display:flex;flex-direction: column;width: 49%;height: 100%;">
+						<div style="display: flex; height: 10%; border-bottom:#000 solid 1px;">
+							<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">Slot</span>
+							<span class="equipment_slot_info" style="width: 10%; background-color: #555">ilvl</span>
+							<span class="equipment_slot_info" style="width: 15%; background-color: #646464">Base Power</span>
+							<span class="equipment_slot_info" style="width: 15%; background-color: #555">Total Power</span>
+							<span class="equipment_slot_info" style="width: 40%; background-color: #646464">Rarity</span>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Helmet: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_helmet_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_helmet" style="width: 15%; background-color: #646464">
+									<div id="equipment_helmet_base_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_helmet" style="width: 15%; background-color: #555">
+									<div id="equipment_helmet_total_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 40%; background-color: #646464">
+									<div id="equipment_helmet_name" style="z-index: 2;">None</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_helmet_overlay"></div>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Body Armour: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_bodyArmour_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_bodyArmour" style="width: 15%; background-color: #646464">
+									<div id="equipment_bodyArmour_base_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_bodyArmour" style="width: 15%; background-color: #555">
+									<div id="equipment_bodyArmour_total_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 40%; background-color: #646464">
+									<div id="equipment_bodyArmour_name" style="z-index: 2;">None</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_bodyArmour_overlay"></div>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Gloves: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_gloves_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_gloves" style="width: 15%; background-color: #646464">
+									<div id="equipment_gloves_base_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_gloves" style="width: 15%; background-color: #555">
+									<div id="equipment_gloves_total_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 40%; background-color: #646464">
+									<div id="equipment_gloves_name" style="z-index: 2;">None</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_gloves_overlay"></div>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Boots: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_boots_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_boots" style="width: 15%; background-color: #646464">
+									<div id="equipment_boots_base_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_boots" style="width: 15%; background-color: #555">
+									<div id="equipment_boots_total_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 40%; background-color: #646464">
+									<div id="equipment_boots_name" style="z-index: 2;">None</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_boots_overlay"></div>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Weapon: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_weapon_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_weapon" style="width: 15%; background-color: #646464">
+									<div id="equipment_weapon_base_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_weapon" style="width: 15%; background-color: #555">
+									<div id="equipment_weapon_total_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 40%; background-color: #646464">
+									<div id="equipment_weapon_name" style="z-index: 2;">Fists</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_weapon_overlay"></div>
+						</div>
 					</div>
-					<div class="equipment_slot_overlay" id="equipment_helmet_overlay"></div>
-				</div>
-				<div class="equipment_slot" style="position: relative;">
-					<div class="equipment_slot_content">
-						<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
-							<div style="z-index: 2;">Body Armour: </div>
-						</span>
-						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
-							<div id="equipment_body_armour_level" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" id="equipment_slot_info_body_armour" style="width: 15%; background-color: #646464">
-							<div id="equipment_body_armour_power" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
-							<div id="equipment_body_armour_name" style="z-index: 2;">None</div>
-						</span>
+
+					<div style="width: 2%;"></div>
+
+					<!-- BACKPACK -->
+					<div style="display:flex;flex-direction: column;width: 49%;height: 100%;">
+						<div style="display: flex; height: 10%; border-bottom:#000 solid 1px;">
+							<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">Slot</span>
+							<span class="equipment_slot_info" style="width: 10%; background-color: #555">ilvl</span>
+							<span class="equipment_slot_info" style="width: 15%; background-color: #646464">Base Power</span>
+							<span class="equipment_slot_info" style="width: 40%; background-color: #646464">Rarity</span>
+							<span class="equipment_slot_info" style="width: 15%; background-color: #555">Equip it!</span>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Helmet: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_helmet_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_helmet" style="width: 15%; background-color: #646464">
+									<div id="equipment_helmet_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 55%; background-color: #555">
+									<div id="equipment_helmet_name" style="z-index: 2;">None</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_helmet_overlay"></div>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Body Armour: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_body_armour_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_body_armour" style="width: 15%; background-color: #646464">
+									<div id="equipment_body_armour_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 55%; background-color: #555">
+									<div id="equipment_body_armour_name" style="z-index: 2;">None</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_body_armour_overlay"></div>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Gloves: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_gloves_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_gloves" style="width: 15%; background-color: #646464">
+									<div id="equipment_gloves_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 55%; background-color: #555">
+									<div id="equipment_gloves_name" style="z-index: 2;">None</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_gloves_overlay"></div>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Boots: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_boots_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_boots" style="width: 15%; background-color: #646464">
+									<div id="equipment_boots_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 55%; background-color: #555">
+									<div id="equipment_boots_name" style="z-index: 2;">None</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_boots_overlay"></div>
+						</div>
+						<div class="equipment_slot" style="position: relative;">
+							<div class="equipment_slot_content">
+								<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
+									<div style="z-index: 2;">Weapon: </div>
+								</span>
+								<span class="equipment_slot_info" style="width: 10%; background-color: #555">
+									<div id="equipment_weapon_level" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" id="equipment_slot_info_weapon" style="width: 15%; background-color: #646464">
+									<div id="equipment_weapon_power" style="z-index: 2;">0</div>
+								</span>
+								<span class="equipment_slot_info" style="width: 55%; background-color: #555">
+									<div id="equipment_weapon_name" style="z-index: 2;">Fists</div>
+								</span>
+							</div>
+							<div class="equipment_slot_overlay" id="equipment_weapon_overlay"></div>
+						</div>
 					</div>
-					<div class="equipment_slot_overlay" id="equipment_body_armour_overlay"></div>
 				</div>
-				<div class="equipment_slot" style="position: relative;">
-					<div class="equipment_slot_content">
-						<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
-							<div style="z-index: 2;">Gloves: </div>
-						</span>
-						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
-							<div id="equipment_gloves_level" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" id="equipment_slot_info_gloves" style="width: 15%; background-color: #646464">
-							<div id="equipment_gloves_power" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
-							<div id="equipment_gloves_name" style="z-index: 2;">None</div>
-						</span>
-					</div>
-					<div class="equipment_slot_overlay" id="equipment_gloves_overlay"></div>
-				</div>
-				<div class="equipment_slot" style="position: relative;">
-					<div class="equipment_slot_content">
-						<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
-							<div style="z-index: 2;">Boots: </div>
-						</span>
-						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
-							<div id="equipment_boots_level" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" id="equipment_slot_info_boots" style="width: 15%; background-color: #646464">
-							<div id="equipment_boots_power" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
-							<div id="equipment_boots_name" style="z-index: 2;">None</div>
-						</span>
-					</div>
-					<div class="equipment_slot_overlay" id="equipment_boots_overlay"></div>
-				</div>
-				<div class="equipment_slot" style="position: relative;">
-					<div class="equipment_slot_content">
-						<span class="equipment_slot_info" style="width: 20%; border-left: none; background-color: #646464">
-							<div style="z-index: 2;">Weapon: </div>
-						</span>
-						<span class="equipment_slot_info" style="width: 10%; background-color: #555">
-							<div id="equipment_weapon_level" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" id="equipment_slot_info_weapon" style="width: 15%; background-color: #646464">
-							<div id="equipment_weapon_power" style="z-index: 2;">0</div>
-						</span>
-						<span class="equipment_slot_info" style="width: 55%; background-color: #555">
-							<div id="equipment_weapon_name" style="z-index: 2;">Fists</div>
-						</span>
-					</div>
-					<div class="equipment_slot_overlay" id="equipment_weapon_overlay"></div>
-				</div>
+				
 				<br>
 				<div style="padding-left: 4px;">Explanation about stats and what they do:</div>
 				<div class="space"></div>

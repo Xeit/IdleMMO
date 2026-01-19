@@ -315,6 +315,7 @@ button
 	justify-content: center;
 	align-items: center;
 	border-left: black solid 1px;
+	text-align: center;
 }
 
 #select_zone_scrolling_list
