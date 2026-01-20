@@ -77,6 +77,7 @@ $(document).ready(function()
 
 	$("#battleButton").click(function(){
 		newPlayerTask(PlayerTasks.farming_monsters);
+		UIStopButtonHighlight(this);
 	});
 
 	$("#battleButton").hover(function() 
@@ -88,6 +89,7 @@ $(document).ready(function()
 				stopBattle();
 				ShowBattleWindow();
 				updateBattleHealth();
+				UIStopButtonHighlight(this);
 			})
 		}
 		else
@@ -95,36 +97,44 @@ $(document).ready(function()
 			$("#battleButton").unbind("click");
 			$("#battleButton").click(function(){
 				newPlayerTask(PlayerTasks.farming_monsters);
+				UIStopButtonHighlight(this);
 			})
 		}
 	});
 
 	$("#questingButton").click(function(){
 		newPlayerTask(PlayerTasks.questing);
+		UIStopButtonHighlight(this);
 	});
 
 	$("#recoverHealthButton").click(function(){
 		newPlayerTask(PlayerTasks.healing);
+		UIStopButtonHighlight(this);
 	});
 
 	$("#trainingButton").click(function(){
 		newPlayerTask(PlayerTasks.training);
+		UIStopButtonHighlight(this);
 	});
 	
 	$("#equipmentButton").click(function(){
 		newPlayerTask(PlayerTasks.equipment);
+		UIStopButtonHighlight(this);
 	});
 
 	$("#shopButton").click(function(){
 		newPlayerTask(PlayerTasks.shop);
+		UIStopButtonHighlight(this);
 	});
 	
 	$("#smithButton").click(function(){
 		newPlayerTask(PlayerTasks.smith);
+		UIStopButtonHighlight(this);
 	});
 
 	$("#dungeonButton").click(function(){
 		newPlayerTask(PlayerTasks.dungeon);
+		UIStopButtonHighlight(this);
 	});
 
 	$("#shill_zone_button").click(function()
