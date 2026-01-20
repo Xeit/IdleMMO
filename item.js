@@ -77,11 +77,33 @@ function HideEquipmentWindow()
 
 function InitializeEquipment()
 {
-	updateEquipmentWindow();
-}
+	$("#equipment_backpack_helmet_equip_button").click(function()
+	{
+		[player.helmetSlot, player.backpackHelmetSlot] = [player.backpackHelmetSlot, player.helmetSlot];
+		updateEquipmentWindow();
+	});
+	$("#equipment_backpack_bodyArmour_equip_button").click(function()
+	{
+		[player.bodyArmourSlot, player.backpackBodyArmourSlot] = [player.backpackBodyArmourSlot, player.bodyArmourSlot];
+		updateEquipmentWindow();
+	});
+	$("#equipment_backpack_gloves_equip_button").click(function()
+	{
+		[player.glovesSlot, player.backpackGlovesSlot] = [player.backpackGlovesSlot, player.glovesSlot];
+		updateEquipmentWindow();
+	});
+	$("#equipment_backpack_boots_equip_button").click(function()
+	{
+		[player.bootsSlot, player.backpackBootsSlot] = [player.backpackBootsSlot, player.bootsSlot];
+		updateEquipmentWindow();
+	});
+	$("#equipment_backpack_weapon_equip_button").click(function()
+	{
+		[player.weaponSlot, player.backpackWeaponSlot] = [player.backpackWeaponSlot, player.weaponSlot];
+		updateEquipmentWindow();
+	});
 
-function stopEquipment()
-{
+	updateEquipmentWindow();
 }
 
 function generateItem(enemyLevel, enemyDifficulty)
@@ -209,62 +231,46 @@ function updateEquipmentWindow()
 {
 	function updateEquipmentSlot(itemSlot, htmlSlotString)
 	{
-		const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(itemSlot.itemRarity) + " 70%";
-		$("#equipment_"+htmlSlotString+"_overlay").css("background", overlayColor);
-		$("#equipment_"+htmlSlotString+"_name").css("color", UIGetItemRarityColor(itemSlot.itemRarity));
-		$("#equipment_"+htmlSlotString+"_name").text(itemSlot.itemName);
-		$("#equipment_"+htmlSlotString+"_level").text(itemSlot.itemLevel);
-		$("#equipment_"+htmlSlotString+"_base_power").text(itemSlot.returnItemPower(false));
-		$("#equipment_"+htmlSlotString+"_total_power").text(itemSlot.returnItemPower(true));
+		if(itemSlot instanceof Item)
+		{
+			const overlayColor = "radial-gradient(circle,rgba(255, 255, 255, 0) 20%, " + UIGetItemRarityColor(itemSlot.itemRarity) + " 70%";
+			$("#equipment_"+htmlSlotString+"_overlay").css("background", overlayColor);
+			$("#equipment_"+htmlSlotString+"_name").css("color", UIGetItemRarityColor(itemSlot.itemRarity));
+			$("#equipment_"+htmlSlotString+"_name").text(itemSlot.itemName);
+			$("#equipment_"+htmlSlotString+"_level").text(itemSlot.itemLevel);
+			$("#equipment_"+htmlSlotString+"_base_power").text(itemSlot.returnItemPower(false));
+			$("#equipment_"+htmlSlotString+"_total_power").text(itemSlot.returnItemPower(true));
 
-		UIClearHoverEvents("#equipment_slot_info_"+htmlSlotString);
-		equipmentBindInfoOnEnter("#equipment_slot_info_"+htmlSlotString, itemSlot);
-		UIBindRemovalOfInfoPopup("#equipment_slot_info_"+htmlSlotString);
+			UIClearHoverEvents("#equipment_slot_info_"+htmlSlotString);
+			equipmentBindInfoOnEnter("#equipment_slot_info_"+htmlSlotString, itemSlot);
+			UIBindRemovalOfInfoPopup("#equipment_slot_info_"+htmlSlotString);
+		}
+		else
+		{
+			$("#equipment_"+htmlSlotString+"_overlay").css("background", "#000000");
+			$("#equipment_"+htmlSlotString+"_name").css("color", UIGetItemRarityColor(ItemRarity.none));
+			$("#equipment_"+htmlSlotString+"_name").text("None");
+			$("#equipment_"+htmlSlotString+"_level").text("0");
+			$("#equipment_"+htmlSlotString+"_base_power").text("0");
+			$("#equipment_"+htmlSlotString+"_total_power").text("0");
+
+			UIClearHoverEvents("#equipment_slot_info_"+htmlSlotString);
+		}
 	}
 
 	// Equipped
-	if(player.weaponSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.weaponSlot, "weapon");
-	}
-	if(player.helmetSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.helmetSlot, "helmet");
-	}
-	if(player.bodyArmourSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.bodyArmourSlot, "bodyArmour");
-	}
-	if(player.glovesSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.glovesSlot, "gloves");
-	}
-	if(player.bootsSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.bootsSlot, "boots");
-	}
+	updateEquipmentSlot(player.weaponSlot, "weapon");
+	updateEquipmentSlot(player.helmetSlot, "helmet");
+	updateEquipmentSlot(player.bodyArmourSlot, "bodyArmour");
+	updateEquipmentSlot(player.glovesSlot, "gloves");
+	updateEquipmentSlot(player.bootsSlot, "boots");
 
 	// Backpack
-	if(player.backpackHelmetSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.backpackHelmetSlot, "backpack_helmet");
-	}
-	if(player.backpackBodyArmourSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.backpackBodyArmourSlot, "backpack_bodyArmour");
-	}
-	if(player.backpackGlovesSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.backpackGlovesSlot, "backpack_gloves");
-	}
-	if(player.backpackBootsSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.backpackBootsSlot, "backpack_boots");
-	}
-	if(player.backpackWeaponSlot instanceof Item)
-	{
-		updateEquipmentSlot(player.backpackWeaponSlot, "backpack_weapon");
-	}
+	updateEquipmentSlot(player.backpackHelmetSlot, "backpack_helmet");
+	updateEquipmentSlot(player.backpackBodyArmourSlot, "backpack_bodyArmour");
+	updateEquipmentSlot(player.backpackGlovesSlot, "backpack_gloves");
+	updateEquipmentSlot(player.backpackBootsSlot, "backpack_boots");
+	updateEquipmentSlot(player.backpackWeaponSlot, "backpack_weapon");
 }
 
 function rollPosibility(firstWeight, secondWeight, thirdWeight, fourthWeight)
