@@ -20,6 +20,7 @@ function initializeFishing()
 	$("#fishingButton").click(function()
 	{
 		newPlayerTask(PlayerTasks.fishing);
+		UIStopButtonHighlight(this);
 	});
 
 	$("#fishing_cast_button").click(function()

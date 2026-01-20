@@ -34,6 +34,11 @@ button
 	border-radius: 5px;
 }
 
+.border2pxBlack
+{
+	border: solid 2px black;
+}
+
 .help {
 	cursor: help;
 	text-align: center;

@@ -373,3 +373,36 @@ function UIGenerateInfoPopup(divToAddInfoEvents, arrayOfDivsToInsert)
 
 	UIBindRemovalOfInfoPopup(divToAddInfoEvents);
 }
+
+function UIStartButtonHighlight(button)
+{
+	let hue = 0;
+	const jqButton = $(button);
+
+	// Clear potential previous interval
+	const previousInterval = jqButton.data("buttonHighlightInterval");
+	if(previousInterval)
+	{
+		clearInterval(previousInterval);
+	}
+
+	const intervalFunction = setInterval(function()
+	{
+		hue = (hue + 10) % 360;
+		jqButton.css("border-color", "hsl(" + hue + ", 100%, 50%)");
+	}, 50);
+
+	jqButton.data("buttonHighlightInterval", intervalFunction);
+}
+
+function UIStopButtonHighlight(button)
+{
+	const jqButton = $(button);
+	const currentInterval = jqButton.data("buttonHighlightInterval");
+	if(currentInterval)
+	{
+		clearInterval(currentInterval);
+		jqButton.removeData("buttonHighlightInterval");
+		jqButton.css("border-color", "black");
+	}
+}
