@@ -68,6 +68,7 @@ class Item
 function ShowEquipmentWindow()
 {
 	$("#equipment_window").css("display", "block");
+	updateEquipmentWindow();
 }
 
 function HideEquipmentWindow()
@@ -258,12 +259,35 @@ function updateEquipmentWindow()
 		}
 	}
 
+	function updateEquipButton(equippedSlot, backpackSlot, backpackHtmlSlotString)
+	{
+		let bBackpackIsUpgrade = false;
+		if(equippedSlot instanceof Item && backpackSlot instanceof Item)
+		{
+			if(backpackSlot.returnItemPower(false) > equippedSlot.returnItemPower(false))
+			{
+				bBackpackIsUpgrade = true;
+			}
+		}
+		else if(equippedSlot === undefined && backpackSlot instanceof Item)
+		{
+			bBackpackIsUpgrade = true;
+		}
+
+		let overlayColor = "radial-gradient(circle,rgba(190, 60, 60, 0.9) 20%, rgba(255, 0, 0, 0.9) 70%";
+		if(bBackpackIsUpgrade == true)
+		{
+			overlayColor = "radial-gradient(circle,rgba(50, 255, 50, 0.9) 20%, rgba(0, 255, 0, 0.9) 70%";
+		}
+		$("#equipment_"+backpackHtmlSlotString+"_equip_button").css("background", overlayColor);
+	}
+
 	// Equipped
-	updateEquipmentSlot(player.weaponSlot, "weapon");
 	updateEquipmentSlot(player.helmetSlot, "helmet");
 	updateEquipmentSlot(player.bodyArmourSlot, "bodyArmour");
 	updateEquipmentSlot(player.glovesSlot, "gloves");
 	updateEquipmentSlot(player.bootsSlot, "boots");
+	updateEquipmentSlot(player.weaponSlot, "weapon");
 
 	// Backpack
 	updateEquipmentSlot(player.backpackHelmetSlot, "backpack_helmet");
@@ -271,6 +295,12 @@ function updateEquipmentWindow()
 	updateEquipmentSlot(player.backpackGlovesSlot, "backpack_gloves");
 	updateEquipmentSlot(player.backpackBootsSlot, "backpack_boots");
 	updateEquipmentSlot(player.backpackWeaponSlot, "backpack_weapon");
+
+	updateEquipButton(player.helmetSlot, player.backpackHelmetSlot, "backpack_helmet");
+	updateEquipButton(player.bodyArmourSlot, player.backpackBodyArmourSlot, "backpack_bodyArmour");
+	updateEquipButton(player.glovesSlot, player.backpackGlovesSlot, "backpack_gloves");
+	updateEquipButton(player.bootsSlot, player.backpackBootsSlot, "backpack_boots");
+	updateEquipButton(player.weaponSlot, player.backpackWeaponSlot, "backpack_weapon");
 }
 
 function rollPosibility(firstWeight, secondWeight, thirdWeight, fourthWeight)
@@ -427,6 +457,16 @@ function tryNewItem(newItem)
 
 function castObjectToItem(objectToCast)
 {
+	if(objectToCast === undefined || objectToCast === null)
+	{
+		return undefined;
+	}
+
+	if(objectToCast instanceof Item)
+	{
+		return objectToCast;
+	}
+
 	let returnItem = new Item();
 
 	returnItem.itemRarity = objectToCast.itemRarity;
