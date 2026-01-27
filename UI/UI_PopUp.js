@@ -92,7 +92,7 @@ function UIGenerateLevelUpContent()
 			popupContentInside.append(UIDiv_Text("New buff in Tavern!"));
 			UIStartButtonHighlight("#shopButton");
 			break;
-		case 33:
+		case 31:
 			popupContentInside.append(UIDiv_Text("New Monster Zone!"));
 			UIStartButtonHighlight("#battleButton");
 			break;

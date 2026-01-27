@@ -87,25 +87,25 @@ enemyMap.set("Kobold Warrior", new Enemy("Kobold Warrior", 14, EnemyDifficulty.m
 enemyMap.set("Kobold Shaman", new Enemy("Kobold Shaman", 15, EnemyDifficulty.medium));
 
 enemyMap.set("Mountain Goat", new Enemy("Mountain Goat", 15, EnemyDifficulty.medium));
-enemyMap.set("Stone Golem", new Enemy("Stone Golem", 19, EnemyDifficulty.hard));
-enemyMap.set("Snow Wolf", new Enemy("Snow Wolf", 22, EnemyDifficulty.medium));
+enemyMap.set("Stone Golem", new Enemy("Stone Golem", 17, EnemyDifficulty.hard));
+enemyMap.set("Snow Wolf", new Enemy("Snow Wolf", 20, EnemyDifficulty.medium));
 
 enemyMap.set("Skeleton Warrior", new Enemy("Skeleton Warrior", 20, EnemyDifficulty.medium));
 enemyMap.set("Plague Rat", new Enemy("Plague Rat", 23, EnemyDifficulty.hard));
 
 enemyMap.set("Jungle Spider", new Enemy("Jungle Spider", 25, EnemyDifficulty.medium));
-enemyMap.set("Poison Dart Frog", new Enemy("Poison Dart Frog", 28, EnemyDifficulty.hard));
-enemyMap.set("Temple Guardian", new Enemy("Temple Guardian", 33, EnemyDifficulty.hard));
+enemyMap.set("Poison Dart Frog", new Enemy("Poison Dart Frog", 27, EnemyDifficulty.hard));
+enemyMap.set("Temple Guardian", new Enemy("Temple Guardian", 30, EnemyDifficulty.hard));
 
 enemyMap.set("Swamp Lurker", new Enemy("Swamp Lurker", 27, EnemyDifficulty.hard));
-enemyMap.set("Drowned Zombie", new Enemy("Drowned Zombie", 30, EnemyDifficulty.hard));
+enemyMap.set("Drowned Zombie", new Enemy("Drowned Zombie", 31, EnemyDifficulty.hard));
 
-enemyMap.set("Haunted Armor", new Enemy("Haunted Armor", 34, EnemyDifficulty.hard));
-enemyMap.set("Vampire Thrall", new Enemy("Vampire Thrall", 37, EnemyDifficulty.hard));
-enemyMap.set("Castle Wraith", new Enemy("Castle Wraith", 39, EnemyDifficulty.hard));
+enemyMap.set("Haunted Armor", new Enemy("Haunted Armor", 32, EnemyDifficulty.hard));
+enemyMap.set("Vampire Thrall", new Enemy("Vampire Thrall", 35, EnemyDifficulty.hard));
+enemyMap.set("Castle Wraith", new Enemy("Castle Wraith", 37, EnemyDifficulty.hard));
 
-enemyMap.set("Restless Spirit", new Enemy("Restless Spirit", 37, EnemyDifficulty.hard));
-enemyMap.set("Banshee", new Enemy("Banshee", 41, EnemyDifficulty.very_hard));
+enemyMap.set("Restless Spirit", new Enemy("Restless Spirit", 37, EnemyDifficulty.very_hard));
+enemyMap.set("Banshee", new Enemy("Banshee", 41, EnemyDifficulty.hard));
 
 enemyMap.set("Sand Scorpion", new Enemy("Sand Scorpion", 42, EnemyDifficulty.hard));
 enemyMap.set("Desert Bandit", new Enemy("Desert Bandit", 45, EnemyDifficulty.hard));
