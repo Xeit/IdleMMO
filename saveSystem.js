@@ -23,7 +23,7 @@ function addData(dataToAdd)
 	dataToSave += dataToAdd;
 }
 
-function bakeACookie() 
+function bakeACookie()
 {
 	const fileName = "v2";
 	dataToSave = fileName;
@@ -33,7 +33,7 @@ function bakeACookie()
 	localStorage.setItem("v2", dataToSave);
 }
 
-function eatCookie(cname) 
+function eatCookie(cname)
 {
 	if(localStorage.getItem("v1") !== null)
 	{
@@ -321,6 +321,7 @@ function readPlayerData(arrayOfVariables)
 								player.playerValidateStats();
 								player.playerUnlockFunctionsUntilLevel();
 								player.playerFixItems();
+								UIClearAllButtonHighlights();
 							}
 						}
 						catch (e)

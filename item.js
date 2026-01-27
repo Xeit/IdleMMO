@@ -450,6 +450,7 @@ function tryNewItem(newItem)
 	if(bGotNewItem)
 	{
 		UIShowPopup("NewItem", currentItemPower, newItem);
+		UIStartButtonHighlight("#equipmentButton");
 	}
 
 	return bGotNewItem;
