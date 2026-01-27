@@ -406,3 +406,17 @@ function UIStopButtonHighlight(button)
 		jqButton.css("border-color", "black");
 	}
 }
+
+function UIClearAllButtonHighlights()
+{
+	UIStopButtonHighlight("#battleButton");
+	UIStopButtonHighlight("#questingButton");
+	UIStopButtonHighlight("#recoverHealthButton");
+	UIStopButtonHighlight("#trainingButton");
+	UIStopButtonHighlight("#dungeonButton");
+	UIStopButtonHighlight("#fishingButton");
+
+	UIStopButtonHighlight("#equipmentButton");
+	UIStopButtonHighlight("#shopButton");
+	UIStopButtonHighlight("#smithButton");
+}
