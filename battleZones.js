@@ -67,22 +67,22 @@ function unlockMonsterZones(levelToUnlock)
 			battleZonesMap.push(new BattleZone("Kobold Caves", "12-15", [new ZoneEnemyWeight("Kobold Scout", 50), new ZoneEnemyWeight("Kobold Warrior", 20), new ZoneEnemyWeight("Kobold Shaman", 5)], "A maze of tunnels crawling with pesky kobolds. They're territorial."));
 			break;
 		case 14:
-			battleZonesMap.push(new BattleZone("Mountain Pass", "15-22", [new ZoneEnemyWeight("Mountain Goat", 50), new ZoneEnemyWeight("Snow Wolf", 20), new ZoneEnemyWeight("Stone Golem", 10)], "A cold, windy pass. Wolves and worse lurk in the snow."));
+			battleZonesMap.push(new BattleZone("Mountain Pass", "15-20", [new ZoneEnemyWeight("Mountain Goat", 50), new ZoneEnemyWeight("Snow Wolf", 20), new ZoneEnemyWeight("Stone Golem", 20)], "A cold, windy pass. Wolves and worse lurk in the snow."));
 			break;
 		case 19:
 			battleZonesMap.push(new BattleZone("Catacombs", "20-23", [new ZoneEnemyWeight("Skeleton Warrior", 50), new ZoneEnemyWeight("Plague Rat", 15)], "Ancient burial grounds full of monsters."));
 			break;
 		case 25:
-			battleZonesMap.push(new BattleZone("Jungle Temple", "25-33", [new ZoneEnemyWeight("Jungle Spider", 50), new ZoneEnemyWeight("Poison Dart Frog", 50), new ZoneEnemyWeight("Temple Guardian", 10)], "A forgotten temple deep in the jungle."));
+			battleZonesMap.push(new BattleZone("Jungle Temple", "25-30", [new ZoneEnemyWeight("Jungle Spider", 50), new ZoneEnemyWeight("Poison Dart Frog", 50), new ZoneEnemyWeight("Temple Guardian", 20)], "A forgotten temple deep in the jungle."));
 			break;
 		case 26:
-			battleZonesMap.push(new BattleZone("Flooded Ruins", "27-30", [new ZoneEnemyWeight("Swamp Lurker", 50), new ZoneEnemyWeight("Drowned Zombie", 25)], "Submerged ruins hiding drowned horrors."));
+			battleZonesMap.push(new BattleZone("Flooded Ruins", "27-31", [new ZoneEnemyWeight("Swamp Lurker", 50), new ZoneEnemyWeight("Drowned Zombie", 25)], "Submerged ruins hiding drowned horrors."));
 			break;
-		case 33:
-			battleZonesMap.push(new BattleZone("Abandoned Castle", "34-39", [new ZoneEnemyWeight("Haunted Armor", 50), new ZoneEnemyWeight("Vampire Thrall", 25), new ZoneEnemyWeight("Castle Wraith", 10)], "An old castle haunted by restless spirits."));
+		case 31:
+			battleZonesMap.push(new BattleZone("Abandoned Castle", "32-37", [new ZoneEnemyWeight("Haunted Armor", 50), new ZoneEnemyWeight("Vampire Thrall", 25), new ZoneEnemyWeight("Castle Wraith", 10)], "An old castle haunted by restless spirits."));
 			break;
 		case 36:
-			battleZonesMap.push(new BattleZone("Cursed Village", "37-41", [new ZoneEnemyWeight("Restless Spirit", 25), new ZoneEnemyWeight("Banshee", 3)], "A very old village cursed by even older witch."));
+			battleZonesMap.push(new BattleZone("Cursed Village", "37-41", [new ZoneEnemyWeight("Restless Spirit", 10), new ZoneEnemyWeight("Banshee", 10)], "A very old village cursed by even older witch."));
 			break;
 		case 40:
 			battleZonesMap.push(new BattleZone("Desert Ruins", "42-45", [new ZoneEnemyWeight("Sand Scorpion", 50), new ZoneEnemyWeight("Desert Bandit", 25), new ZoneEnemyWeight("Mummy", 10)], "Shifting sands reveal ancient tombs... and what's inside."));
